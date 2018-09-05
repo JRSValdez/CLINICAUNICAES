@@ -55,20 +55,20 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        lblSol_medicamento = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
+        lblPac_espera = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        lblConsult_espera = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
+        lblMedxVencer = new javax.swing.JLabel();
         Tab_Cons = new javax.swing.JPanel();
         jPanelEstNuevo = new javax.swing.JPanel();
         lblHeader44 = new javax.swing.JLabel();
@@ -276,7 +276,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_sols.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
         btn_sols.setText("SOLICITUD DE MED.");
         btn_sols.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_sols.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_sols.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_sols.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_solsActionPerformed(evt);
@@ -289,7 +289,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_cons.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lista.png"))); // NOI18N
         btn_cons.setText("CONSULTAS");
         btn_cons.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_cons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cons.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_cons.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_consActionPerformed(evt);
@@ -302,7 +302,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_farmacia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
         btn_farmacia.setText("FARMACIA");
         btn_farmacia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_farmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_farmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_farmacia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_farmaciaActionPerformed(evt);
@@ -315,7 +315,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
         btn_home.setText("HOME");
         btn_home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_homeActionPerformed(evt);
@@ -328,7 +328,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_pac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
         btn_pac.setText("PACIENTES");
         btn_pac.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_pac.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_pac.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_pac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_pacActionPerformed(evt);
@@ -447,10 +447,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("4");
+        lblSol_medicamento.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblSol_medicamento.setForeground(new java.awt.Color(255, 255, 255));
+        lblSol_medicamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSol_medicamento.setText("4");
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img1.png"))); // NOI18N
 
@@ -466,7 +466,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSol_medicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel12)
@@ -484,7 +484,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11)
+                .addComponent(lblSol_medicamento)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -492,10 +492,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel13.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        jLabel16.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("100");
+        lblPac_espera.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblPac_espera.setForeground(new java.awt.Color(255, 255, 255));
+        lblPac_espera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPac_espera.setText("100");
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estudiante.png"))); // NOI18N
 
@@ -511,7 +511,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPac_espera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
@@ -527,7 +527,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
+                .addComponent(lblPac_espera)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -542,10 +542,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estetoscopio.png"))); // NOI18N
 
-        jLabel24.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("25");
+        lblConsult_espera.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblConsult_espera.setForeground(new java.awt.Color(255, 255, 255));
+        lblConsult_espera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblConsult_espera.setText("25");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -555,7 +555,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -571,7 +571,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24)
+                .addComponent(lblConsult_espera)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -606,9 +606,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel16.setBackground(new java.awt.Color(102, 0, 0));
         jPanel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("Medicamentos proximo a vencerse");
+        lblMedxVencer.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
+        lblMedxVencer.setText("Medicamentos proximo a vencerse");
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -616,14 +616,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel25)
+                .addComponent(lblMedxVencer)
                 .addContainerGap(669, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel25)
+                .addComponent(lblMedxVencer)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -678,7 +678,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel9.setText("Agregar Estudiante y Consulta");
         jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel9.setFocusable(false);
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1028,7 +1028,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jTextField1.setText("2015SV601");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel7.setBackground(new java.awt.Color(102, 0, 0));
 
@@ -1063,7 +1063,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel27.setFocusable(false);
         jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1133,7 +1133,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         jLabel6.setText("EN ESPERA");
         jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.setFocusable(false);
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1143,7 +1143,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
         jLabel7.setText("ATENDIDAS HOY");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1153,7 +1153,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel8.setText("HISTORIAL");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1791,7 +1791,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel13.setText("Historial");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1802,7 +1802,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel10.setText("Agregar Paciente");
         jLabel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel10.setFocusable(false);
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -1893,7 +1893,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jTextField6.setText("ACETAMINOFEN 500 ML");
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader6.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader6.setForeground(new java.awt.Color(255, 255, 255));
@@ -1930,7 +1930,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jScrollPane6.setViewportView(jTbusquedaMed);
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
-        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTextField27.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTextField27.setText("XXX");
@@ -2006,7 +2006,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jTextField5.setText("2015SV601");
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel19.setBackground(new java.awt.Color(102, 0, 0));
 
@@ -2237,7 +2237,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel14.setText("Agregar Medicamento");
         jLabel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel14.setFocusable(false);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2381,7 +2381,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel21.setText("EDITAR");
         jLabel21.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel21.setFocusable(false);
         jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2407,7 +2407,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         jLabel22.setText("BUSCAR");
         jLabel22.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel22.setFocusable(false);
         jLabel22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel22.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2497,7 +2497,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnHome2.setBackground(new java.awt.Color(102, 0, 0));
         btnHome2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         btnHome2.setBorder(null);
-        btnHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHome2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHome2ActionPerformed(evt);
@@ -2509,7 +2509,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader.setText("FARMACIA");
 
         btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
-        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -2521,7 +2521,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader1.setText("CLÍNICA UNIVERSITARIA - RECEPCIÓN ");
 
         btn_minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize.png"))); // NOI18N
-        btn_minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_minimizeMouseClicked(evt);
@@ -2529,7 +2529,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
 
         btn_maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maximize.png"))); // NOI18N
-        btn_maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_maximize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_maximizeMouseClicked(evt);
@@ -2847,12 +2847,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -2860,8 +2858,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
@@ -2951,6 +2947,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblConsult_espera;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
@@ -3008,6 +3005,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblHeader7;
     private javax.swing.JLabel lblHeader8;
+    private javax.swing.JLabel lblMedxVencer;
+    private javax.swing.JLabel lblPac_espera;
+    private javax.swing.JLabel lblSol_medicamento;
     private javax.swing.JRadioButton rdbFemenino;
     private javax.swing.JRadioButton rdbFemenino1;
     private javax.swing.JRadioButton rdbMasculino;

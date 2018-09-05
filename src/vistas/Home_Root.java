@@ -54,24 +54,24 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         jPanel31 = new javax.swing.JPanel();
-        jLabel47 = new javax.swing.JLabel();
+        lblMedxVencer = new javax.swing.JLabel();
         jPanel17 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
-        jLabel48 = new javax.swing.JLabel();
+        lblDoctores = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
-        jLabel51 = new javax.swing.JLabel();
+        lblPacientes = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
+        lblConsultas = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
+        lblMedicamentos = new javax.swing.JLabel();
         Tab_Doctores = new javax.swing.JPanel();
         jPanelEstNuevo = new javax.swing.JPanel();
         lblHeader21 = new javax.swing.JLabel();
@@ -318,7 +318,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_users.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
         btn_users.setText("USUARIOS");
         btn_users.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_users.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_users.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_users.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_usersActionPerformed(evt);
@@ -331,7 +331,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_farmacia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
         btn_farmacia.setText("FARMACIA");
         btn_farmacia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_farmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_farmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_farmacia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_farmaciaActionPerformed(evt);
@@ -344,7 +344,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_btn.png"))); // NOI18N
         btn_home.setText("HOME");
         btn_home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_homeActionPerformed(evt);
@@ -357,7 +357,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_docs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doctor.png"))); // NOI18N
         btn_docs.setText("DOCTORES");
         btn_docs.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_docs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_docs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_docs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_docsActionPerformed(evt);
@@ -370,7 +370,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_reports.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reportes.png"))); // NOI18N
         btn_reports.setText("REPORTES");
         btn_reports.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_reports.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_reports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_reports.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_reportsActionPerformed(evt);
@@ -383,7 +383,7 @@ public class Home_Root extends javax.swing.JFrame {
         btn_config.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/config.png"))); // NOI18N
         btn_config.setText("CONFIGURACIONES");
         btn_config.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_config.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_config.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_config.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_configActionPerformed(evt);
@@ -506,9 +506,9 @@ public class Home_Root extends javax.swing.JFrame {
         jPanel31.setBackground(new java.awt.Color(102, 0, 0));
         jPanel31.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel47.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel47.setText("Medicamentos proximo a vencerse");
+        lblMedxVencer.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
+        lblMedxVencer.setText("Medicamentos proximo a vencerse");
 
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
         jPanel31.setLayout(jPanel31Layout);
@@ -516,14 +516,14 @@ public class Home_Root extends javax.swing.JFrame {
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel47)
+                .addComponent(lblMedxVencer)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel47)
+                .addComponent(lblMedxVencer)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -534,10 +534,10 @@ public class Home_Root extends javax.swing.JFrame {
         jPanel32.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel32.setPreferredSize(new java.awt.Dimension(210, 250));
 
-        jLabel48.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("4");
+        lblDoctores.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblDoctores.setForeground(new java.awt.Color(255, 255, 255));
+        lblDoctores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctores.setText("4");
 
         jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img1.png"))); // NOI18N
 
@@ -553,7 +553,7 @@ public class Home_Root extends javax.swing.JFrame {
             .addGroup(jPanel32Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel48, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDoctores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
                         .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(jLabel49)
@@ -569,7 +569,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel49)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel48)
+                .addComponent(lblDoctores)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -577,10 +577,10 @@ public class Home_Root extends javax.swing.JFrame {
         jPanel33.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel33.setPreferredSize(new java.awt.Dimension(210, 250));
 
-        jLabel51.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel51.setText("100");
+        lblPacientes.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblPacientes.setForeground(new java.awt.Color(255, 255, 255));
+        lblPacientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPacientes.setText("100");
 
         jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estudiante.png"))); // NOI18N
 
@@ -596,7 +596,7 @@ public class Home_Root extends javax.swing.JFrame {
             .addGroup(jPanel33Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel51, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPacientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel52)
@@ -612,7 +612,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel52)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel51)
+                .addComponent(lblPacientes)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -627,10 +627,10 @@ public class Home_Root extends javax.swing.JFrame {
 
         jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estetoscopio.png"))); // NOI18N
 
-        jLabel56.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText("100");
+        lblConsultas.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        lblConsultas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblConsultas.setText("100");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -640,7 +640,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(40, Short.MAX_VALUE)
@@ -656,7 +656,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel56)
+                .addComponent(lblConsultas)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -671,10 +671,10 @@ public class Home_Root extends javax.swing.JFrame {
 
         jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estetoscopio.png"))); // NOI18N
 
-        jLabel59.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jLabel59.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel59.setText("25");
+        lblMedicamentos.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblMedicamentos.setForeground(new java.awt.Color(255, 255, 255));
+        lblMedicamentos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMedicamentos.setText("25");
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
@@ -684,7 +684,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel59, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblMedicamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel34Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -700,7 +700,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel59)
+                .addComponent(lblMedicamentos)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -850,7 +850,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel9.setText("Agregar Doctor");
         jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel9.setFocusable(false);
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -994,7 +994,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel27.setText("EDITAR");
         jLabel27.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel27.setFocusable(false);
         jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel27.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1004,7 +1004,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel29.setText("ELIMINAR");
         jLabel29.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel29.setFocusable(false);
         jLabel29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel29.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1109,7 +1109,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel14.setText("Agregar Medicamento");
         jLabel14.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel14.setFocusable(false);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -1239,7 +1239,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel21.setText("EDITAR");
         jLabel21.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel21.setFocusable(false);
         jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1249,7 +1249,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel23.setText("ELIMINAR");
         jLabel23.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel23.setFocusable(false);
         jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel23.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1337,7 +1337,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel10.setText("Agregar Usuario");
         jLabel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel10.setFocusable(false);
         jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -1431,7 +1431,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel11.setText("EDITAR");
         jLabel11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel11.setFocusable(false);
         jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1441,7 +1441,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel12.setText("DESACTIVAR");
         jLabel12.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel12.setFocusable(false);
         jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1589,11 +1589,11 @@ public class Home_Root extends javax.swing.JFrame {
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
         jComboBox6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader34.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader34.setForeground(new java.awt.Color(255, 255, 255));
@@ -1603,7 +1603,7 @@ public class Home_Root extends javax.swing.JFrame {
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCTOR 1", "DOCTOR 2", "DOCTOR 3" }));
         jComboBox7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader35.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader35.setForeground(new java.awt.Color(255, 255, 255));
@@ -1613,7 +1613,7 @@ public class Home_Root extends javax.swing.JFrame {
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         jComboBox8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader41.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader41.setForeground(new java.awt.Color(255, 255, 255));
@@ -1627,13 +1627,13 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader42.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader42.setText("MOTIVO:");
 
-        jCheckBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTextField21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTextField21.setText("MOTIVO");
         jTextField21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jCheckBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader49.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader49.setForeground(new java.awt.Color(255, 255, 255));
@@ -1652,7 +1652,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader54.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader54.setText("DEPARTAMENTO:");
 
-        jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
@@ -1662,7 +1662,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader59.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader59.setText("UBICACIÓN:");
 
-        jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jComboBox17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Urbano", "Rural" }));
@@ -1739,25 +1739,29 @@ public class Home_Root extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo4Layout.createSequentialGroup()
                 .addComponent(jLabel41)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader34)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3))
+                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox3)
+                    .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHeader34)
+                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader35)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox4))
+                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox4)
+                    .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHeader35)
+                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader41)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox5))
+                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox5)
+                    .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHeader41)
+                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader32)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1)
+                    .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHeader32)
+                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1833,7 +1837,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         jLabel8.setText("GENERAR REPORTE");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1934,15 +1938,15 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader51.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader51.setText("APELLIDOS:");
 
-        jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader60.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader60.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader60.setText("ID PACIENTE:");
 
-        jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader61.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader61.setForeground(new java.awt.Color(255, 255, 255));
@@ -1970,12 +1974,12 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         jLabel13.setText("BUSCAR EXPEDIENTE");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jCheckBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jCheckBox13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader62.setForeground(new java.awt.Color(255, 255, 255));
@@ -2075,7 +2079,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         jLabel15.setText("GENERAR REPORTE");
         jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel15.setFocusable(false);
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2269,7 +2273,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel17.setText("Agregar Categoría");
         jLabel17.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel17.setFocusable(false);
         jLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2281,7 +2285,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel18.setText("EDITAR");
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel18.setFocusable(false);
         jLabel18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2291,7 +2295,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel19.setText("ELIMINAR");
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel19.setFocusable(false);
         jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2440,7 +2444,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel20.setText("Agregar Facultad");
         jLabel20.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel20.setFocusable(false);
         jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2452,7 +2456,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel24.setText("EDITAR");
         jLabel24.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel24.setFocusable(false);
         jLabel24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel24.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2462,7 +2466,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel25.setText("ELIMINAR");
         jLabel25.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel25.setFocusable(false);
         jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel25.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2612,7 +2616,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel26.setText("Agregar Carrera");
         jLabel26.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel26.setFocusable(false);
         jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2624,7 +2628,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel30.setText("EDITAR");
         jLabel30.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel30.setFocusable(false);
         jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel30.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2634,7 +2638,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel31.setText("ELIMINAR");
         jLabel31.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel31.setFocusable(false);
         jLabel31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel31.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2798,7 +2802,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel32.setText("Agregar Especialidad");
         jLabel32.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel32.setFocusable(false);
         jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2810,7 +2814,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel33.setText("EDITAR");
         jLabel33.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel33.setFocusable(false);
         jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel33.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2820,7 +2824,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel34.setText("ELIMINAR");
         jLabel34.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel34.setFocusable(false);
         jLabel34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel34.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2969,7 +2973,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel35.setText("Agregar Unidad");
         jLabel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel35.setFocusable(false);
         jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -2981,7 +2985,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel36.setText("EDITAR");
         jLabel36.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel36.setFocusable(false);
         jLabel36.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel36.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2991,7 +2995,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel37.setText("ELIMINAR");
         jLabel37.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel37.setFocusable(false);
         jLabel37.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel37.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -3141,7 +3145,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         jLabel38.setText("Agregar Actividad");
         jLabel38.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel38.setFocusable(false);
         jLabel38.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
@@ -3153,7 +3157,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         jLabel39.setText("EDITAR");
         jLabel39.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel39.setFocusable(false);
         jLabel39.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel39.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -3163,7 +3167,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel40.setText("ELIMINAR");
         jLabel40.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel40.setFocusable(false);
         jLabel40.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel40.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -3313,7 +3317,7 @@ public class Home_Root extends javax.swing.JFrame {
         btnHome2.setBackground(new java.awt.Color(102, 0, 0));
         btnHome2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         btnHome2.setBorder(null);
-        btnHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHome2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHome2ActionPerformed(evt);
@@ -3325,7 +3329,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader.setText("HOME");
 
         btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
-        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -3337,7 +3341,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader1.setText("CLÍNICA UNIVERSITARIA - ADMINISTRADOR");
 
         btn_maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/maximize.png"))); // NOI18N
-        btn_maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_maximize.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_maximize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_maximizeMouseClicked(evt);
@@ -3345,7 +3349,7 @@ public class Home_Root extends javax.swing.JFrame {
         });
 
         btn_minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize.png"))); // NOI18N
-        btn_minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_minimizeMouseClicked(evt);
@@ -3726,20 +3730,15 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -3831,6 +3830,8 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTable jTfacultades;
     private javax.swing.JTable jTunidades;
+    private javax.swing.JLabel lblConsultas;
+    private javax.swing.JLabel lblDoctores;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
@@ -3885,5 +3886,8 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader7;
     private javax.swing.JLabel lblHeader8;
     private javax.swing.JLabel lblHeader9;
+    private javax.swing.JLabel lblMedicamentos;
+    private javax.swing.JLabel lblMedxVencer;
+    private javax.swing.JLabel lblPacientes;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,8 +16,8 @@ public class Consultas_En_espera extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnPosponer = new javax.swing.JLabel();
+        btnQuitar = new javax.swing.JLabel();
         Barra_Superior = new javax.swing.JPanel();
         btnHome2 = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
@@ -26,7 +26,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbConsultasEspera = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -37,23 +37,23 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        jLabel7.setText("POSPONER");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setFocusable(false);
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPosponer.setForeground(new java.awt.Color(255, 255, 255));
+        btnPosponer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnPosponer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
+        btnPosponer.setText("POSPONER");
+        btnPosponer.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnPosponer.setFocusable(false);
+        btnPosponer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPosponer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        jLabel8.setText("QUITAR");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setFocusable(false);
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQuitar.setForeground(new java.awt.Color(255, 255, 255));
+        btnQuitar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        btnQuitar.setText("QUITAR");
+        btnQuitar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnQuitar.setFocusable(false);
+        btnQuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnQuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -61,9 +61,9 @@ public class Consultas_En_espera extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(btnPosponer)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel8)
+                .addComponent(btnQuitar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -71,8 +71,8 @@ public class Consultas_En_espera extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7))
+                    .addComponent(btnQuitar)
+                    .addComponent(btnPosponer))
                 .addGap(15, 15, 15))
         );
 
@@ -154,7 +154,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas en Espera");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbConsultasEspera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -162,8 +162,8 @@ public class Consultas_En_espera extends javax.swing.JFrame {
                 "Carnet", "Actividad", "Nombre", "Apellido", "Fecha Nacimiento", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Motivo Consulta"
             }
         ));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tbConsultasEspera);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -292,16 +292,16 @@ public class Consultas_En_espera extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JButton btnHome2;
+    private javax.swing.JLabel btnPosponer;
+    private javax.swing.JLabel btnQuitar;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
+    private javax.swing.JTable tbConsultasEspera;
     // End of variables declaration//GEN-END:variables
 }

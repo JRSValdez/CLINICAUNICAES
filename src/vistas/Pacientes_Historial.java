@@ -22,23 +22,23 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblHeader48 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         lblHeader49 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         lblHeader50 = new javax.swing.JLabel();
-        jTextField24 = new javax.swing.JTextField();
+        txtCarnet = new javax.swing.JTextField();
         lblHeader51 = new javax.swing.JLabel();
-        jComboBox14 = new javax.swing.JComboBox<>();
+        cboFacultad = new javax.swing.JComboBox<>();
         lblHeader17 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        rbProyec_social = new javax.swing.JRadioButton();
+        rbFemenino = new javax.swing.JRadioButton();
         lblHeader52 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
         lblHeader53 = new javax.swing.JLabel();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
+        rbMasculino = new javax.swing.JRadioButton();
+        rbEstudiante = new javax.swing.JRadioButton();
+        rbPers_academ = new javax.swing.JRadioButton();
+        btnBuscar = new javax.swing.JLabel();
         Barra_Superior2 = new javax.swing.JPanel();
         btnHome4 = new javax.swing.JButton();
         lblHeader4 = new javax.swing.JLabel();
@@ -46,8 +46,8 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        tbPacientes = new javax.swing.JTable();
+        btnAtras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -72,30 +72,30 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader48.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader48.setText("NOMBRES:");
 
-        jTextField22.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader49.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader49.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader49.setText("APELLIDOS:");
 
-        jTextField23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtApellido.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader50.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader50.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader50.setText("CARNET:");
 
-        jTextField24.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader51.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader51.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader51.setText("FACULTAD:");
 
-        jComboBox14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        jComboBox14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
+        cboFacultad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -106,19 +106,19 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblHeader48, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblHeader50, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblHeader51, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 62, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -127,19 +127,19 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader48)
-                    .addComponent(jTextField22))
+                    .addComponent(txtNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader49)
-                    .addComponent(jTextField23))
+                    .addComponent(txtApellido))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader50)
-                    .addComponent(jTextField24))
+                    .addComponent(txtCarnet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHeader51)
-                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -147,43 +147,43 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader17.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader17.setText("SEXO:");
 
-        jRadioButton3.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Proyección social");
+        rbProyec_social.setBackground(new java.awt.Color(102, 0, 0));
+        rbProyec_social.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbProyec_social.setForeground(new java.awt.Color(255, 255, 255));
+        rbProyec_social.setText("Proyección social");
 
-        jRadioButton4.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Femenino");
+        rbFemenino.setBackground(new java.awt.Color(102, 0, 0));
+        rbFemenino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbFemenino.setForeground(new java.awt.Color(255, 255, 255));
+        rbFemenino.setText("Femenino");
 
         lblHeader52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader52.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader52.setText("TIPO PACIENTE:");
 
-        jTextField25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader53.setText("FECHA:");
 
-        jRadioButton6.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton6.setText("Masculino");
+        rbMasculino.setBackground(new java.awt.Color(102, 0, 0));
+        rbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        rbMasculino.setText("Masculino");
 
-        jRadioButton7.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton7.setText("Estudiante");
+        rbEstudiante.setBackground(new java.awt.Color(102, 0, 0));
+        rbEstudiante.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        rbEstudiante.setText("Estudiante");
 
-        jRadioButton8.setBackground(new java.awt.Color(102, 0, 0));
-        jRadioButton8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton8.setText("Personal academico");
+        rbPers_academ.setBackground(new java.awt.Color(102, 0, 0));
+        rbPers_academ.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbPers_academ.setForeground(new java.awt.Color(255, 255, 255));
+        rbPers_academ.setText("Personal academico");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -201,25 +201,25 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblHeader53, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblHeader17, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton6)
+                                        .addComponent(rbMasculino)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton4))))
+                                        .addComponent(rbFemenino))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(lblHeader52)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton7)))
+                                        .addComponent(rbEstudiante)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton8)
+                                .addComponent(rbPers_academ)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton3)))
+                                .addComponent(rbProyec_social)))
                         .addGap(70, 70, 70))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -236,20 +236,20 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader17)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton6))
+                            .addComponent(rbFemenino)
+                            .addComponent(rbMasculino))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField25)
+                            .addComponent(txtFecha)
                             .addComponent(lblHeader53))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader52)
-                            .addComponent(jRadioButton7)
-                            .addComponent(jRadioButton8)
-                            .addComponent(jRadioButton3))
+                            .addComponent(rbEstudiante)
+                            .addComponent(rbPers_academ)
+                            .addComponent(rbProyec_social))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)))
                 .addContainerGap())
         );
@@ -322,7 +322,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(102, 0, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -330,7 +330,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 "CARNET", "NOMBRES", "APELLIDOS", "PACIENTE", "FACULTAD", "CARRERA", "TELEFONO", "FECHA CONSULTA", "MOTIVO CONSULTA"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbPacientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -349,7 +349,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -361,15 +361,12 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAtras)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -383,7 +380,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(btnAtras)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -463,28 +460,18 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior2;
+    private javax.swing.JLabel btnAtras;
+    private javax.swing.JLabel btnBuscar;
     private javax.swing.JButton btnHome4;
     private javax.swing.JLabel btn_close2;
-    private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cboFacultad;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JLabel lblHeader17;
     private javax.swing.JLabel lblHeader4;
     private javax.swing.JLabel lblHeader48;
@@ -494,5 +481,15 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader51;
     private javax.swing.JLabel lblHeader52;
     private javax.swing.JLabel lblHeader53;
+    private javax.swing.JRadioButton rbEstudiante;
+    private javax.swing.JRadioButton rbFemenino;
+    private javax.swing.JRadioButton rbMasculino;
+    private javax.swing.JRadioButton rbPers_academ;
+    private javax.swing.JRadioButton rbProyec_social;
+    private javax.swing.JTable tbPacientes;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCarnet;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
