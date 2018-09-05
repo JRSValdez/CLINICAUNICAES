@@ -23,8 +23,8 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel22 = new javax.swing.JLabel();
+        tbConsultas = new javax.swing.JTable();
+        btnRegresar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -110,7 +110,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas atendidas Hoy");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -118,8 +118,8 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 "Carnet", "Actividad", "Nombre", "Apellido", "Fecha Nacimiento", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Motivo Consulta"
             }
         ));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        tbConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tbConsultas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,14 +144,14 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
-        jLabel22.setText("REGRESAR");
-        jLabel22.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel22.setFocusable(false);
-        jLabel22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel22.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
+        btnRegresar.setText("REGRESAR");
+        btnRegresar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnRegresar.setFocusable(false);
+        btnRegresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,7 +166,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel22)
+                .addComponent(btnRegresar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,7 +176,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -257,14 +257,14 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JButton btnHome2;
+    private javax.swing.JLabel btnRegresar;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
+    private javax.swing.JTable tbConsultas;
     // End of variables declaration//GEN-END:variables
 }
