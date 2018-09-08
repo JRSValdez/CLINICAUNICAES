@@ -4,6 +4,8 @@ package vistas;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import clases.BDConexion;
+
 
 
 public class Login extends javax.swing.JFrame implements Runnable {
@@ -13,6 +15,8 @@ public class Login extends javax.swing.JFrame implements Runnable {
    String hora,minutos,segundos, ampm;
    Calendar calendario;
    Thread hl;
+   
+   BDConexion cn = new BDConexion();
    
     public Login() {
         initComponents();
