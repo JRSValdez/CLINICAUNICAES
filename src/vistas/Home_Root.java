@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -3431,7 +3432,16 @@ public class Home_Root extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
-        System.exit(0);
+       Object [] opciones ={"Aceptar","Cancelar"};
+      int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
+      JOptionPane.YES_NO_OPTION,
+      JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+      if (eleccion == JOptionPane.YES_OPTION)
+      {
+       System.exit(0);
+       
+      }else{
+     }
     }//GEN-LAST:event_btn_closeMouseClicked
 
     private void SideBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseReleased
