@@ -19,6 +19,7 @@ public class ConexionDB {
     static ResultSet rs;
     public Connection con=null;
   
+    //instanciar la clase validar
   
     public void conectar(){
         try {
@@ -39,6 +40,17 @@ public class ConexionDB {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null,"Error al cerrar la conexión \n" +  e);
         }
+    }
+    
+    public int iniciar_sesion(Paciente _paciente){
+        
+        String user = _paciente.apellido;
+        String contra = _paciente.celular;
+    
+           
+        //llamar procedimeinto almacenado
+        
+        return 0;
     }
     
     public void aggEstudiante(Estudiante _estudiante){
