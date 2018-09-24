@@ -22,4 +22,9 @@ public class Paciente {
     public String tel_emergencia;
     public String parentezco;
     
+   
+    void Paciente(int _idPaciente){
+        
+    }
+   
 }
