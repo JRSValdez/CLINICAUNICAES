@@ -14,7 +14,7 @@ public class Empleado extends Paciente {
     
     public Empleado(String _nombre, String _apellido,
                     String _telefono, String _celular,
-                    char _sexo, Date _fecha_nac,
+                    String _sexo, String _fecha_nac,
                     String _departamento, String _zona,
                     String _caso_emergencia,  String _tel_emergencia,
                     String _parentezco, String _actividad,

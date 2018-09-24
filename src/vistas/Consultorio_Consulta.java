@@ -5,6 +5,16 @@
  */
 package vistas;
 
+import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+
 /**
  *
  * @author JRSVALDEZ
@@ -13,17 +23,27 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
     int xx, xy;
     int xs, ys, sbx,sby;
+    ConexionDB conn = new ConexionDB();
+    Consulta consulta;
     
-    public Consultorio_Consulta() {
+    public Consultorio_Consulta() throws SQLException {
         initComponents();
+        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10("COLERA"));
     }
+    
+    public Consultorio_Consulta(Consulta _consulta) throws SQLException{
+        initComponents();
+        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10("categoria"));
+        this.consulta = _consulta;
+        this.lblNombre.setText(_consulta.ef_cabeza);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         Barra_Superior = new javax.swing.JPanel();
-        btnHome2 = new javax.swing.JButton();
         btn_close = new javax.swing.JLabel();
         lblHeader1 = new javax.swing.JLabel();
         lblNombrePac = new javax.swing.JLabel();
@@ -64,37 +84,38 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         lblHeader5 = new javax.swing.JLabel();
         lblHeader56 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        txtBuscarAntecedente = new javax.swing.JTextField();
         lblHeader62 = new javax.swing.JLabel();
         lblHeader63 = new javax.swing.JLabel();
-        jComboBox16 = new javax.swing.JComboBox<>();
-        jComboBox17 = new javax.swing.JComboBox<>();
+        cmbAntecedentessEnfCat = new javax.swing.JComboBox<>();
+        cmbAntecedentessEnf = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTbusqueda1 = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
+        btnBuscarAntecedente = new javax.swing.JLabel();
         TAB_EXAMEN_FI = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         lblHeader6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        txt_Ef_Cabeza = new javax.swing.JTextArea();
         lblHeader8 = new javax.swing.JLabel();
         lblHeader10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        txt_Ef_Abdomen = new javax.swing.JTextArea();
         lblHeader12 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        txt_Ef_Torax = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        txt_Ef_Extremidades = new javax.swing.JTextArea();
         lblHeader13 = new javax.swing.JLabel();
         lblHeader14 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
+        txt_Ef_Cuello = new javax.swing.JTextArea();
         TAB_DIAGNOSTICO = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         lblHeader9 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        txt_recomendaciones = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
         lblHeader7 = new javax.swing.JLabel();
         lblHeader59 = new javax.swing.JLabel();
@@ -125,7 +146,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lblHeader58 = new javax.swing.JLabel();
         jTextField19 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        btnTerminarConsulta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1010, 650));
@@ -153,16 +174,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             }
         });
 
-        btnHome2.setBackground(new java.awt.Color(102, 0, 0));
-        btnHome2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
-        btnHome2.setBorder(null);
-        btnHome2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnHome2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHome2ActionPerformed(evt);
-            }
-        });
-
         btn_close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,24 +196,22 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Barra_SuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblHeader1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251)
                 .addComponent(lblNombrePac)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_close))
         );
         Barra_SuperiorLayout.setVerticalGroup(
             Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(Barra_SuperiorLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_close)
                     .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblHeader1)
-                        .addComponent(lblNombrePac))))
+                        .addComponent(lblNombrePac)))
+                .addGap(4, 4, 4))
         );
 
         TAB_SIGNOS.setBackground(new java.awt.Color(102, 0, 0));
@@ -510,9 +519,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader56.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader56.setText("Categoría:");
 
-        jTextField18.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField18.setText("BUSQUEDA CATEGORÍA");
-        jTextField18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtBuscarAntecedente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtBuscarAntecedente.setText("BUSQUEDA CATEGORÍA");
+        txtBuscarAntecedente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader62.setForeground(new java.awt.Color(255, 255, 255));
@@ -522,13 +531,14 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader63.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader63.setText("Enfermedad:");
 
-        jComboBox16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CATEGORIA 1", "CATEGORIA 2", "CATEGORIA 3", "CATEGORIA 4" }));
-        jComboBox16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cmbAntecedentessEnfCat.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        cmbAntecedentessEnfCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CATEGORIA 1", "CATEGORIA 2", "CATEGORIA 3", "CATEGORIA 4" }));
+        cmbAntecedentessEnfCat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cmbAntecedentessEnfCat.setMaximumSize(new java.awt.Dimension(350, 27));
 
-        jComboBox17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMEDAD 1", "ENFERMEDAD 2", "ENFERMEDAD 3" }));
-        jComboBox17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cmbAntecedentessEnf.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        cmbAntecedentessEnf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMEDAD 1", "ENFERMEDAD 2", "ENFERMEDAD 3" }));
+        cmbAntecedentessEnf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         jTbusqueda1.setBackground(new java.awt.Color(204, 204, 204));
         jTbusqueda1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -565,6 +575,20 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        btnBuscarAntecedente.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarAntecedente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBuscarAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
+        btnBuscarAntecedente.setToolTipText("");
+        btnBuscarAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarAntecedente.setFocusable(false);
+        btnBuscarAntecedente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBuscarAntecedente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscarAntecedente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarAntecedenteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -572,25 +596,27 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 123, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHeader62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHeader56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHeader63, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField18)
-                            .addComponent(jComboBox16, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 102, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblHeader5)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblHeader5)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblHeader62, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                .addComponent(lblHeader56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblHeader63))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbAntecedentessEnfCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbAntecedentessEnf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtBuscarAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(358, 358, 358)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -601,19 +627,22 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader56)
-                            .addComponent(jTextField18))
+                            .addComponent(txtBuscarAntecedente))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader62)
-                            .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblHeader63)
-                        .addGap(2, 2, 2))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(cmbAntecedentessEnfCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHeader62))
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbAntecedentessEnf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHeader63))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnBuscarAntecedente)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -623,15 +652,15 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 947, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 947, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TAB_ANTECEDENTESLayout.setVerticalGroup(
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ANTECEDENTES", TAB_ANTECEDENTES);
@@ -646,11 +675,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader6.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader6.setText("EXAMEN FÍSICO");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea3.setRows(2);
-        jTextArea3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane3.setViewportView(jTextArea3);
+        txt_Ef_Cabeza.setColumns(20);
+        txt_Ef_Cabeza.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_Ef_Cabeza.setRows(2);
+        txt_Ef_Cabeza.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane3.setViewportView(txt_Ef_Cabeza);
 
         lblHeader8.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader8.setForeground(new java.awt.Color(255, 255, 255));
@@ -660,27 +689,27 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader10.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader10.setText("ABDOMEN:");
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea4.setRows(2);
-        jTextArea4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane5.setViewportView(jTextArea4);
+        txt_Ef_Abdomen.setColumns(20);
+        txt_Ef_Abdomen.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_Ef_Abdomen.setRows(2);
+        txt_Ef_Abdomen.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane5.setViewportView(txt_Ef_Abdomen);
 
         lblHeader12.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader12.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader12.setText("TORAX:");
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea6.setRows(2);
-        jTextArea6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane7.setViewportView(jTextArea6);
+        txt_Ef_Torax.setColumns(20);
+        txt_Ef_Torax.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_Ef_Torax.setRows(2);
+        txt_Ef_Torax.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane7.setViewportView(txt_Ef_Torax);
 
-        jTextArea7.setColumns(20);
-        jTextArea7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea7.setRows(2);
-        jTextArea7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane10.setViewportView(jTextArea7);
+        txt_Ef_Extremidades.setColumns(20);
+        txt_Ef_Extremidades.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_Ef_Extremidades.setRows(2);
+        txt_Ef_Extremidades.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane10.setViewportView(txt_Ef_Extremidades);
 
         lblHeader13.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader13.setForeground(new java.awt.Color(255, 255, 255));
@@ -690,11 +719,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader14.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader14.setText("CUELLO:");
 
-        jTextArea8.setColumns(20);
-        jTextArea8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea8.setRows(2);
-        jTextArea8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane11.setViewportView(jTextArea8);
+        txt_Ef_Cuello.setColumns(20);
+        txt_Ef_Cuello.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_Ef_Cuello.setRows(2);
+        txt_Ef_Cuello.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane11.setViewportView(txt_Ef_Cuello);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -784,11 +813,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader9.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader9.setText("RECOMENDACIONES");
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea5.setRows(3);
-        jTextArea5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane6.setViewportView(jTextArea5);
+        txt_recomendaciones.setColumns(20);
+        txt_recomendaciones.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_recomendaciones.setRows(3);
+        txt_recomendaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane6.setViewportView(txt_recomendaciones);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1154,18 +1183,18 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
-        jLabel9.setText("Guardar Expediente y Finalizar Consulta");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel9.setFocusable(false);
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTerminarConsulta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnTerminarConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        btnTerminarConsulta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTerminarConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        btnTerminarConsulta.setText("Guardar Expediente y Finalizar Consulta");
+        btnTerminarConsulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnTerminarConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnTerminarConsulta.setFocusable(false);
+        btnTerminarConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnTerminarConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                btnTerminarConsultaMouseClicked(evt);
             }
         });
 
@@ -1181,7 +1210,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_TRATAMIENTOLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTerminarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(304, 304, 304))
         );
         TAB_TRATAMIENTOLayout.setVerticalGroup(
@@ -1192,7 +1221,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTerminarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1235,10 +1264,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome2ActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnHome2ActionPerformed
-
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
@@ -1259,10 +1284,37 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        Consultorio_Consulta consulta = new Consultorio_Consulta();
-        consulta.show();
-    }//GEN-LAST:event_jLabel9MouseClicked
+    public DefaultComboBoxModel llenarComboBoxsCIE10(String _cat) throws SQLException{
+        Object[] arrays = this.conn.getCIE10Cats(_cat);
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[1] );
+        return model;
+    }
+    
+    private void btnTerminarConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTerminarConsultaMouseClicked
+        consulta.motivo = this.txtMotivoConsulta.getText();
+        consulta.peso = this.txtPeso.getText();
+        consulta.frec_card = this.txtFrecCardiaca.getText();
+        consulta.pres_art = this.txtPresionArterial.getText();
+        consulta.pulso = this.txtPulso.getText();
+        consulta.talla = this.txtTalla.getText();
+        consulta.ef_cabeza = this.txt_Ef_Cabeza.getText();
+        consulta.ef_cuello = this.txt_Ef_Cuello.getText();
+        consulta.ef_torax = this.txt_Ef_Torax.getText();
+        consulta.ef_abdomen = this.txt_Ef_Abdomen.getText();
+        consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
+        
+        int idConsulta = conn.aggConsulta(consulta);
+        //agregar antecedentes, diagnosticos y receta con el Id obtenido de la consulta
+    }//GEN-LAST:event_btnTerminarConsultaMouseClicked
+
+    private void btnBuscarAntecedenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarAntecedenteMouseClicked
+        try {
+            String cat = this.txtBuscarAntecedente.getText();
+            this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10(cat));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarAntecedenteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1294,7 +1346,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultorio_Consulta().setVisible(true);
+                try {
+                    new Consultorio_Consulta().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1306,11 +1362,12 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JPanel TAB_EXAMEN_FI;
     private javax.swing.JPanel TAB_SIGNOS;
     private javax.swing.JPanel TAB_TRATAMIENTO;
+    private javax.swing.JLabel btnBuscarAntecedente;
     private javax.swing.JLabel btnHistorial;
-    private javax.swing.JButton btnHome2;
+    private javax.swing.JLabel btnTerminarConsulta;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JComboBox<String> jComboBox16;
-    private javax.swing.JComboBox<String> jComboBox17;
+    private javax.swing.JComboBox<String> cmbAntecedentessEnf;
+    private javax.swing.JComboBox<String> cmbAntecedentessEnfCat;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
     private javax.swing.JComboBox<String> jComboBox20;
@@ -1319,7 +1376,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1343,13 +1399,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JTable jTbusqueda1;
     private javax.swing.JTable jTbusqueda2;
     private javax.swing.JTable jTbusqueda3;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField30;
@@ -1398,6 +1447,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombrePac;
     private javax.swing.JPanel panelDatosPac;
     private javax.swing.JPanel panelSignosV;
+    private javax.swing.JTextField txtBuscarAntecedente;
     private javax.swing.JTextField txtFrecCardiaca;
     private javax.swing.JTextArea txtMotivoConsulta;
     private javax.swing.JTextField txtPeso;
@@ -1405,5 +1455,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtPulso;
     private javax.swing.JTextField txtTalla;
     private javax.swing.JTextField txtTemperatura;
+    private javax.swing.JTextArea txt_Ef_Abdomen;
+    private javax.swing.JTextArea txt_Ef_Cabeza;
+    private javax.swing.JTextArea txt_Ef_Cuello;
+    private javax.swing.JTextArea txt_Ef_Extremidades;
+    private javax.swing.JTextArea txt_Ef_Torax;
+    private javax.swing.JTextArea txt_recomendaciones;
     // End of variables declaration//GEN-END:variables
 }

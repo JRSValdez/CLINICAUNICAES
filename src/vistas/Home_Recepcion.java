@@ -4,8 +4,11 @@ package vistas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -73,7 +76,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         Tab_Cons = new javax.swing.JPanel();
         jPanelEstNuevo = new javax.swing.JPanel();
         lblHeader44 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        btnAggConPacNuevo = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         lblHeader37 = new javax.swing.JLabel();
         jTextField10 = new javax.swing.JTextField();
@@ -114,9 +117,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbusqueda = new javax.swing.JTable();
-        jLabel27 = new javax.swing.JLabel();
+        btnAggConsPacExistente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        btnConsultasEspera = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lblHeader2 = new javax.swing.JLabel();
@@ -673,18 +676,18 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader44.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader44.setText("ESTUDIANTE NUEVO");
 
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
-        jLabel9.setText("Agregar Estudiante y Consulta");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel9.setFocusable(false);
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAggConPacNuevo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAggConPacNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnAggConPacNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAggConPacNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
+        btnAggConPacNuevo.setText("Agregar Estudiante y Consulta");
+        btnAggConPacNuevo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnAggConPacNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAggConPacNuevo.setFocusable(false);
+        btnAggConPacNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggConPacNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                btnAggConPacNuevoMouseClicked(evt);
             }
         });
 
@@ -996,7 +999,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
@@ -1012,7 +1015,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
                         .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1059,17 +1062,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTbusqueda);
         jTbusqueda.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        jLabel27.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
-        jLabel27.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel27.setFocusable(false);
-        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAggConsPacExistente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAggConsPacExistente.setForeground(new java.awt.Color(255, 255, 255));
+        btnAggConsPacExistente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAggConsPacExistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
+        btnAggConsPacExistente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnAggConsPacExistente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAggConsPacExistente.setFocusable(false);
+        btnAggConsPacExistente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggConsPacExistente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel27MouseClicked(evt);
+                btnAggConsPacExistenteMouseClicked(evt);
             }
         });
 
@@ -1079,7 +1082,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAggConsPacExistente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1090,7 +1093,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAggConsPacExistente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
@@ -1129,15 +1132,20 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        jLabel6.setText("EN ESPERA");
-        jLabel6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel6.setFocusable(false);
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasEspera.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultasEspera.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConsultasEspera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
+        btnConsultasEspera.setText("EN ESPERA");
+        btnConsultasEspera.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasEspera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultasEspera.setFocusable(false);
+        btnConsultasEspera.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultasEspera.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasEspera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultasEsperaMouseClicked(evt);
+            }
+        });
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1165,7 +1173,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(btnConsultasEspera)
                 .addGap(40, 40, 40)
                 .addComponent(jLabel7)
                 .addGap(40, 40, 40)
@@ -1179,7 +1187,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel6))
+                    .addComponent(btnConsultasEspera))
                 .addContainerGap())
         );
 
@@ -2764,15 +2772,36 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
-    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
-        Consultorio_Consulta consulta = new Consultorio_Consulta();
-        consulta.show();
-    }//GEN-LAST:event_jLabel27MouseClicked
+    private void btnAggConsPacExistenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConsPacExistenteMouseClicked
+        try {
+            Consultorio_Consulta consulta;
+            consulta = new Consultorio_Consulta();
+            consulta.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAggConsPacExistenteMouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        Consultorio_Consulta consulta = new Consultorio_Consulta();
-        consulta.show();
-    }//GEN-LAST:event_jLabel9MouseClicked
+    private void btnAggConPacNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConPacNuevoMouseClicked
+        try {
+            Consultorio_Consulta consulta;
+            consulta = new Consultorio_Consulta();
+            consulta.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAggConPacNuevoMouseClicked
+
+    private void btnConsultasEsperaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasEsperaMouseClicked
+        try {
+            Consultas_En_espera consulta;
+            consulta = new Consultas_En_espera();
+            consulta.show();
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnConsultasEsperaMouseClicked
     
     
     /**
@@ -2827,6 +2856,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JPanel Tab_Pac;
     private javax.swing.JPanel Tab_Sols;
     private javax.swing.JPanel Tab_home;
+    private javax.swing.JLabel btnAggConPacNuevo;
+    private javax.swing.JLabel btnAggConsPacExistente;
+    private javax.swing.JLabel btnConsultasEspera;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
@@ -2869,7 +2901,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -2877,10 +2908,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
