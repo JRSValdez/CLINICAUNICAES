@@ -3,8 +3,11 @@ package vistas;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -994,8 +997,13 @@ public class Home_Consultorio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_maximizeMouseClicked
 
     private void btnAtenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderMouseClicked
-        Consultorio_Consulta consulta = new Consultorio_Consulta();
-        consulta.show();
+        try {
+            Consultorio_Consulta consulta;
+            consulta = new Consultorio_Consulta();
+            consulta.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAtenderMouseClicked
 
     

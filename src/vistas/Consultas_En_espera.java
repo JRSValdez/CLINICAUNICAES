@@ -1,12 +1,22 @@
 package vistas;
-
-import java.awt.Dimension;
+import Classes.ConexionDB;
+import Classes.Consulta;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class Consultas_En_espera extends javax.swing.JFrame {
 
     int xx,xy,xs,ys;
-    public Consultas_En_espera() {
+    ConexionDB conn = new ConexionDB();
+    public Consultas_En_espera() throws SQLException {
         initComponents();
+        this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
+        DefaultTableModel model  = (DefaultTableModel) tbConsultasEspera.getModel();
+        this.tbConsultasEspera.setSelectionForeground(Color.white);
     }
 
  
@@ -18,6 +28,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnPosponer = new javax.swing.JLabel();
         btnQuitar = new javax.swing.JLabel();
+        btnAtender = new javax.swing.JLabel();
         Barra_Superior = new javax.swing.JPanel();
         btnHome2 = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
@@ -55,22 +66,39 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnQuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btnAtender.setForeground(new java.awt.Color(255, 255, 255));
+        btnAtender.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atenderConsulta.png"))); // NOI18N
+        btnAtender.setText("ATENDER");
+        btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAtender.setFocusable(false);
+        btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAtender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtenderMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(483, Short.MAX_VALUE)
                 .addComponent(btnPosponer)
-                .addGap(25, 25, 25)
+                .addGap(28, 28, 28)
                 .addComponent(btnQuitar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(btnAtender)
+                .addContainerGap(486, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAtender)
                     .addComponent(btnQuitar)
                     .addComponent(btnPosponer))
                 .addGap(15, 15, 15))
@@ -154,14 +182,16 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas en Espera");
 
+        tbConsultasEspera.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         tbConsultasEspera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Apellido", "Fecha Nacimiento", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Motivo Consulta"
+                "ID", "Tipo Paciente", "Paciente", "Edad", "Fecha"
             }
         ));
+        tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultasEspera);
 
@@ -173,10 +203,10 @@ public class Consultas_En_espera extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 520, Short.MAX_VALUE)
+                        .addGap(0, 522, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addGap(0, 396, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1148, Short.MAX_VALUE))
+                        .addGap(0, 400, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -251,6 +281,21 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
+    private void btnAtenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderMouseClicked
+        // ////////////// ATENDER CONSULTA SELECCIONADA ////////////////////
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+            try {
+                Consultorio_Consulta form = new Consultorio_Consulta(this.conn.getConsulta(1));
+                form.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnAtenderMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -284,13 +329,18 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultas_En_espera().setVisible(true);
+                try {
+                    new Consultas_En_espera().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
+    private javax.swing.JLabel btnAtender;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btnPosponer;
     private javax.swing.JLabel btnQuitar;

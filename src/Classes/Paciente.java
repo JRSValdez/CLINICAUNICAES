@@ -1,7 +1,6 @@
 
 package Classes;
 
-import java.util.Date;
 
 /**
  *
@@ -14,13 +13,13 @@ public class Paciente {
     public String apellido;
     public String telefono;
     public String celular;
-    public char sexo;
-    public Date fecha_nac;
+    public String sexo;
+    public String fecha_nac;
     public String departamento;
     public String zona;
     public String caso_emergencia;
     public String tel_emergencia;
-    public String parentezco;
+    public String parentezco;   
     
    
     void Paciente(int _idPaciente){

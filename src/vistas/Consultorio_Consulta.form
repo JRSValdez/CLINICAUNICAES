@@ -104,8 +104,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblHeader1" min="-2" pref="278" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                      <Component id="lblHeader1" min="-2" pref="276" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
                       <Component id="lblNombrePac" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btn_close" min="-2" max="-2" attributes="0"/>
@@ -802,8 +802,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" pref="968" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel4" min="-2" pref="947" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -811,8 +811,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                          <Component id="jPanel4" min="-2" pref="315" max="-2" attributes="0"/>
-                          <EmptySpace pref="176" max="32767" attributes="0"/>
+                          <Component id="jPanel4" min="-2" pref="472" max="-2" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -841,30 +841,34 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblHeader62" max="32767" attributes="0"/>
-                                          <Component id="lblHeader56" max="32767" attributes="0"/>
-                                          <Component id="lblHeader63" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextField18" max="32767" attributes="0"/>
-                                          <Component id="jComboBox16" max="32767" attributes="0"/>
-                                          <Component id="jComboBox17" alignment="0" min="-2" pref="363" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="lblHeader5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="lblHeader62" pref="84" max="32767" attributes="0"/>
+                                              <Component id="lblHeader56" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblHeader63" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jLabel13" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="102" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblHeader5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cmbAntecedentessEnfCat" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cmbAntecedentessEnf" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="txtBuscarAntecedente" min="-2" pref="775" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnBuscarAntecedente" min="-2" pref="48" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
+                              <Component id="jLabel13" min="-2" pref="221" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -874,28 +878,32 @@
                               <Component id="lblHeader5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblHeader56" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField18" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="txtBuscarAntecedente" alignment="3" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="cmbAntecedentessEnfCat" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblHeader62" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox16" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="lblHeader63" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="cmbAntecedentessEnf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblHeader63" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel13" min="-2" pref="51" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="jComboBox17" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" min="-2" pref="223" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnBuscarAntecedente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jScrollPane2" min="-2" pref="153" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -923,7 +931,7 @@
                         <Property name="text" type="java.lang.String" value="Categor&#xed;a:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField18">
+                    <Component class="javax.swing.JTextField" name="txtBuscarAntecedente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
@@ -960,10 +968,10 @@
                         <Property name="text" type="java.lang.String" value="Enfermedad:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox16">
+                    <Component class="javax.swing.JComboBox" name="cmbAntecedentessEnfCat">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Comic Sans MS" size="14" style="0"/>
+                          <Font name="Comic Sans MS" size="12" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="4">
@@ -980,15 +988,18 @@
                             </LineBorder>
                           </Border>
                         </Property>
+                        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[350, 27]"/>
+                        </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox17">
+                    <Component class="javax.swing.JComboBox" name="cmbAntecedentessEnf">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Comic Sans MS" size="14" style="0"/>
+                          <Font name="Comic Sans MS" size="12" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
@@ -1107,6 +1118,27 @@
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="btnBuscarAntecedente">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/images/pill.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                          <Color id="Hand Cursor"/>
+                        </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="verticalTextPosition" type="int" value="3"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBuscarAntecedenteMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1257,7 +1289,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea3">
+                        <Component class="javax.swing.JTextArea" name="txt_Ef_Cabeza">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1304,7 +1336,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea4">
+                        <Component class="javax.swing.JTextArea" name="txt_Ef_Abdomen">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1340,7 +1372,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea6">
+                        <Component class="javax.swing.JTextArea" name="txt_Ef_Torax">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1365,7 +1397,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea7">
+                        <Component class="javax.swing.JTextArea" name="txt_Ef_Extremidades">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1412,7 +1444,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea8">
+                        <Component class="javax.swing.JTextArea" name="txt_Ef_Cuello">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1538,7 +1570,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="jTextArea5">
+                        <Component class="javax.swing.JTextArea" name="txt_recomendaciones">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1880,7 +1912,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel9" min="-2" pref="330" max="-2" attributes="0"/>
+                          <Component id="btnTerminarConsulta" min="-2" pref="330" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1893,7 +1925,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel10" min="-2" pref="197" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel9" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="btnTerminarConsulta" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2325,7 +2357,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="jLabel9">
+                <Component class="javax.swing.JLabel" name="btnTerminarConsulta">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Comic Sans MS" size="14" style="0"/>
@@ -2352,7 +2384,7 @@
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel9MouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTerminarConsultaMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
