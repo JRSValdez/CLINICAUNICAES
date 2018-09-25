@@ -137,7 +137,34 @@ public class ConexionDB {
         else{
             return null;
         }
+    }
+    
+    public Object[] getCIE10Enfs(String _idCat) throws SQLException{
+        String query = "SELECT COD_ENF, COD_CAT, ENFERMEDAD FROM CIE10_ENFERMEDAD WHERE COD_CAT = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_idCat);
+        ResultSet rs = preparedStatement.executeQuery();
         
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            String[] idEnfs = new String[numRows];
+            String[] idCats = new String[numRows];
+            String[] enfs = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                idEnfs[con] = rs.getString(1);
+                idCats[con] = rs.getString(2);
+                enfs[con] = rs.getString(3);
+                con++;
+            }
+            return new Object[]{idEnfs,idCats, enfs};
+        }
+        else{
+            return null;
+        }
     }
     
     //////////////////////////////////////////////////////////////////////

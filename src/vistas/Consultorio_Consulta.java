@@ -7,13 +7,12 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Consulta;
-import Classes.Paciente;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,14 +25,20 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
     Consulta consulta;
     
+    String[] idCatsAntecedentes;
+    String[] idCatsDiagnosticos;
+    
+    String[] idEnfsAntecedentes;
+    String[] idEnfsDiagnosticos;
+    
     public Consultorio_Consulta() throws SQLException {
         initComponents();
-        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10("COLERA"));
+        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE"));
     }
     
     public Consultorio_Consulta(Consulta _consulta) throws SQLException{
         initComponents();
-        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10("categoria"));
+        this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE"));
         this.consulta = _consulta;
         this.lblNombre.setText(_consulta.ef_cabeza);
     }
@@ -90,8 +95,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         cmbAntecedentessEnfCat = new javax.swing.JComboBox<>();
         cmbAntecedentessEnf = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTbusqueda1 = new javax.swing.JTable();
-        jLabel13 = new javax.swing.JLabel();
+        jtAntecedentes = new javax.swing.JTable();
+        btnAggAntecedente = new javax.swing.JLabel();
         btnBuscarAntecedente = new javax.swing.JLabel();
         TAB_EXAMEN_FI = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -196,8 +201,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Barra_SuperiorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256)
+                .addComponent(lblHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(251, 251, 251)
                 .addComponent(lblNombrePac)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_close))
@@ -535,14 +540,19 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         cmbAntecedentessEnfCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CATEGORIA 1", "CATEGORIA 2", "CATEGORIA 3", "CATEGORIA 4" }));
         cmbAntecedentessEnfCat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
         cmbAntecedentessEnfCat.setMaximumSize(new java.awt.Dimension(350, 27));
+        cmbAntecedentessEnfCat.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbAntecedentessEnfCatItemStateChanged(evt);
+            }
+        });
 
         cmbAntecedentessEnf.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         cmbAntecedentessEnf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMEDAD 1", "ENFERMEDAD 2", "ENFERMEDAD 3" }));
         cmbAntecedentessEnf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jTbusqueda1.setBackground(new java.awt.Color(204, 204, 204));
-        jTbusqueda1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTbusqueda1.setModel(new javax.swing.table.DefaultTableModel(
+        jtAntecedentes.setBackground(new java.awt.Color(204, 204, 204));
+        jtAntecedentes.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jtAntecedentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"A01", "CATEGORÏA", "A001", "ENFERMEDAD"}
             },
@@ -558,26 +568,31 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTbusqueda1.setGridColor(new java.awt.Color(255, 255, 153));
-        jTbusqueda1.setRowHeight(25);
-        jTbusqueda1.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTbusqueda1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTbusqueda1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTbusqueda1);
+        jtAntecedentes.setGridColor(new java.awt.Color(255, 255, 153));
+        jtAntecedentes.setRowHeight(25);
+        jtAntecedentes.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jtAntecedentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jtAntecedentes.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtAntecedentes);
 
-        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
-        jLabel13.setText("Agregar Antecedente");
-        jLabel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel13.setFocusable(false);
-        jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggAntecedente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAggAntecedente.setForeground(new java.awt.Color(255, 255, 255));
+        btnAggAntecedente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAggAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
+        btnAggAntecedente.setText("Agregar Antecedente");
+        btnAggAntecedente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnAggAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAggAntecedente.setFocusable(false);
+        btnAggAntecedente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggAntecedente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAggAntecedenteMouseClicked(evt);
+            }
+        });
 
         btnBuscarAntecedente.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarAntecedente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnBuscarAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
+        btnBuscarAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchCat.png"))); // NOI18N
         btnBuscarAntecedente.setToolTipText("");
         btnBuscarAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarAntecedente.setFocusable(false);
@@ -607,7 +622,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmbAntecedentessEnfCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbAntecedentessEnf, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbAntecedentessEnf, 0, 833, Short.MAX_VALUE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(txtBuscarAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -615,7 +630,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(358, 358, 358)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAggAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -637,7 +652,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                             .addComponent(cmbAntecedentessEnf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblHeader63))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAggAntecedente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -652,8 +667,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 968, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 947, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         TAB_ANTECEDENTESLayout.setVerticalGroup(
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1283,9 +1298,21 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
-    public DefaultComboBoxModel llenarComboBoxsCIE10(String _cat) throws SQLException{
+    public DefaultComboBoxModel llenarComboBoxsCIE10cats(String _cat) throws SQLException{
         Object[] arrays = this.conn.getCIE10Cats(_cat);
         DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[1] );
+        //llenar arraysIds
+        this.idCatsAntecedentes = (String[]) arrays[0];
+        this.cmbAntecedentessEnf.setModel(this.llenarComboBoxsCIE10enfs(this.idCatsAntecedentes[0]));
+        
+        return model;
+    }
+    
+    public DefaultComboBoxModel llenarComboBoxsCIE10enfs(String _idCat) throws SQLException{
+        Object[] arrays = this.conn.getCIE10Enfs(_idCat);
+        this.idEnfsAntecedentes = (String[]) arrays[0];
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[2] );
         return model;
     }
     
@@ -1309,12 +1336,40 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private void btnBuscarAntecedenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarAntecedenteMouseClicked
         try {
             String cat = this.txtBuscarAntecedente.getText();
-            this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10(cat));
+            this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats(cat));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarAntecedenteMouseClicked
 
+    private void btnAggAntecedenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggAntecedenteMouseClicked
+        // Agregar antecedente a la tabla
+        String idC = this.idCatsAntecedentes[this.cmbAntecedentessEnfCat.getSelectedIndex()];
+        String idE = this.idEnfsAntecedentes[this.cmbAntecedentessEnf.getSelectedIndex()];
+        String cat = this.cmbAntecedentessEnfCat.getSelectedItem().toString();
+        String enf = this.cmbAntecedentessEnf.getSelectedItem().toString();
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.jtAntecedentes.getModel();
+        this.jtAntecedentes.setModel(this.aggEnfermedadJt(modelo, idE, idC, enf, cat));
+        
+    }//GEN-LAST:event_btnAggAntecedenteMouseClicked
+
+    private void cmbAntecedentessEnfCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbAntecedentessEnfCatItemStateChanged
+        try {
+            // Llenar enfermedades segun la cat cambiada en el combobox
+            String idCat = this.idCatsAntecedentes[this.cmbAntecedentessEnfCat.getSelectedIndex()];
+            this.cmbAntecedentessEnf.setModel(this.llenarComboBoxsCIE10enfs(idCat));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbAntecedentessEnfCatItemStateChanged
+
+    public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String _idE, String _idC, String _enf, String _cat){
+        String[] newRow = new String[]{_idC, _cat, _idE, _enf};
+        _modelo.addRow(newRow);
+        return _modelo;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1361,6 +1416,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JPanel TAB_EXAMEN_FI;
     private javax.swing.JPanel TAB_SIGNOS;
     private javax.swing.JPanel TAB_TRATAMIENTO;
+    private javax.swing.JLabel btnAggAntecedente;
     private javax.swing.JLabel btnBuscarAntecedente;
     private javax.swing.JLabel btnHistorial;
     private javax.swing.JLabel btnTerminarConsulta;
@@ -1370,7 +1426,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
     private javax.swing.JComboBox<String> jComboBox20;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel22;
@@ -1395,13 +1450,13 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTbusqueda1;
     private javax.swing.JTable jTbusqueda2;
     private javax.swing.JTable jTbusqueda3;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
+    private javax.swing.JTable jtAntecedentes;
     private javax.swing.JLabel lblActividad;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblEdad;

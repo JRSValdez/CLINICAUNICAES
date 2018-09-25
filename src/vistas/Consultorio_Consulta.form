@@ -854,7 +854,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="cmbAntecedentessEnfCat" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="cmbAntecedentessEnf" max="32767" attributes="0"/>
+                                          <Component id="cmbAntecedentessEnf" pref="833" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="txtBuscarAntecedente" min="-2" pref="775" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -867,7 +867,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="358" max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" pref="221" max="-2" attributes="0"/>
+                              <Component id="btnAggAntecedente" min="-2" pref="221" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -894,7 +894,7 @@
                                           <Component id="lblHeader63" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel13" min="-2" pref="51" max="-2" attributes="0"/>
+                                      <Component id="btnAggAntecedente" min="-2" pref="51" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jScrollPane2" min="-2" pref="223" max="-2" attributes="0"/>
                                   </Group>
@@ -992,6 +992,9 @@
                           <Dimension value="[350, 27]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbAntecedentessEnfCatItemStateChanged"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
@@ -1027,7 +1030,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTbusqueda1">
+                        <Component class="javax.swing.JTable" name="jtAntecedentes">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -1092,7 +1095,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel13">
+                    <Component class="javax.swing.JLabel" name="btnAggAntecedente">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
@@ -1118,6 +1121,9 @@
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAggAntecedenteMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="btnBuscarAntecedente">
                       <Properties>
@@ -1126,7 +1132,7 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/pill.png"/>
+                          <Image iconType="3" name="/images/searchCat.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">

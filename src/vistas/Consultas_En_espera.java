@@ -1,6 +1,5 @@
 package vistas;
 import Classes.ConexionDB;
-import Classes.Consulta;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
