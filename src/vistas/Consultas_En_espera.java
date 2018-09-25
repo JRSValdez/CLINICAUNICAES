@@ -52,6 +52,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnPosponer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         btnPosponer.setText("POSPONER");
         btnPosponer.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnPosponer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPosponer.setFocusable(false);
         btnPosponer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPosponer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -61,6 +62,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnQuitar.setText("QUITAR");
         btnQuitar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnQuitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQuitar.setFocusable(false);
         btnQuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -70,6 +72,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atenderConsulta.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
