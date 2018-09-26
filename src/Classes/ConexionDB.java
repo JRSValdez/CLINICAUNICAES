@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -64,12 +66,12 @@ public class ConexionDB {
                         " (trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, " +
                         " P.PAC_DIRECCION, D.DEPARTAMENTO,  P.PAC_RESPONSABLE, P.PAC_RES_TEL, PA.PARENTESCO " +
                     "FROM PACIENTES P " +
-                    "    INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
-                    "    INNER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
-                    "    INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
-                    "    INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
-                    "    INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
-                    "    WHERE P.IDPACIENTE = ?";
+                    " INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                    " INNER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
+                    " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
+                    " INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
+                    " INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
+                    " WHERE P.IDPACIENTE = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPaciente);
         ResultSet rs = preparedStatement.executeQuery();
@@ -178,8 +180,15 @@ public class ConexionDB {
         }
     }
     
+    public Medicamento getMedicamentos(int _idTipo) throws SQLException{
+        Medicamento medicamento = new Medicamento();
+        
+        return medicamento;
+    }
     
-    ////////////////////// ADDS //////////////////////
+    //////////////////////////////////////////////////////////////////
+    ////////////////////// ADDS //////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     
     public int aggConsulta(Consulta _consulta){
         int idConsulta = 0;
@@ -189,19 +198,10 @@ public class ConexionDB {
         return idConsulta;
     }
     
-    public void aggEstudiante(Estudiante _estudiante){
-        //agregar a la base mediante un proc almecenado
-    }
-    
-    public void aggEmpleado(Empleado _estudiante){
-        //agregar a la base mediante un proc almecenado
-    }
-    
-    public void aggProSocial(ProSocial _estudiante){
-        //agregar a la base mediante un proc almecenado
-    }
-    
-    ////////////// OTROS /////////////////
+ 
+    //////////////////////////////////////////////////////////////////
+    ////////////////////// OTROS //////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     
     public int iniciar_sesion(Paciente _paciente){
         
@@ -216,7 +216,7 @@ public class ConexionDB {
     
     
     //////////////////////////////////////////////////////////////////////
-    //////////////////////////  LLENAR JTABLES ///////////////////////////
+    //////////////////////////  LLENAR JTABLES, COMBOBOXs ///////////////////////////
     //////////////////////////////////////////////////////////////////////
     
     public DefaultTableModel getConsultasEnEspera( JTable jTable1) throws SQLException{
@@ -246,5 +246,87 @@ public class ConexionDB {
            }
            return model;
         }
+    
+    public DefaultTableModel getMedicamentos(JTable jTable1, int _idTipo) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT M.IDMEDICAMENTO, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_DATE(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
+                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                        " WHERE M.IDTIPO = ? AND M.ELIMINADO = 0";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idTipo);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[5];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getMedicamento(JTable jTable1, String _med) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT M.IDMEDICAMENTO, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_DATE(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
+                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                        " WHERE M.MEDICAMENTO LIKE ? AND M.ELIMINADO = 0";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,"%" + _med + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[5];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public Object[] llenarCatsMedicamentos(JComboBox _combo) throws SQLException{
+        DefaultComboBoxModel model;
+        
+        String query = "SELECT * FROM TIPO_MEDICAMENTO";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        int[] idCats =  new int[numRows];
+        
+        model = (DefaultComboBoxModel) _combo.getModel();
+        model.removeAllElements();
+        int con = 0;
+          while (rs.next())
+           {
+              idCats[con]= rs.getInt(1);
+              model.addElement(rs.getString(2));
+              con++;
+           }
+        
+        return new Object[]{model, idCats};
+    }
     
 }
