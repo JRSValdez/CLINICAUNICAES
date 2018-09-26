@@ -34,12 +34,12 @@ public class Estudiante extends Paciente {
         this.carnet = validacion.validarCarnet(_carnet);
         this.facultad = _facultad;
         this.carrera = _carrera;
-        this.fecha_nac = validacion.validarFecha(_fecha_nac);
+       // this.fecha_nac = validacion.validarFecha(_fecha_nac);
         this.celular = validacion.validarCelular(_celular);
         this.telefono = validacion.validarString(_telefono);
         this.sexo = validacion.validarSexo(_sexo);
         this.departamento = _departamento;
-        this.zona = _zona;
+       // this.zona = _zona;
         this.caso_emergencia = validacion.validarString(_caso_emergencia);
         this.tel_emergencia = validacion.validarCelular(_tel_emergencia);
         this.parentezco = _parentezco;

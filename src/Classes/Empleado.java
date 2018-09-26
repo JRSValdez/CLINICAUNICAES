@@ -28,12 +28,12 @@ public class Empleado extends Paciente {
         this.nombre = validacion.validarString(_nombre);
         this.apellido = validacion.validarString(_apellido);
         this.facultad = _facultad;
-        this.fecha_nac = _fecha_nac;
+        //this.fecha_nac = _fecha_nac;
         this.celular = _celular;
         this.telefono = _telefono;
         this.sexo = _sexo;
         this.departamento = _departamento;
-        this.zona = _zona;
+       // this.zona = _zona;
         this.caso_emergencia = _caso_emergencia;
         this.tel_emergencia = _tel_emergencia;
         this.parentezco = _parentezco;
