@@ -52,6 +52,46 @@ public class ConexionDB {
         }
     }
     
+    //////////////////////////////////////////////////////////////////
+    ////////////////////// GETS //////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    
+    public Paciente getPaciente(int _idPaciente) throws SQLException{
+        Paciente paciente = new Paciente();
+        Statement stmt = conn.createStatement();
+        String query = "SELECT P.IDPACIENTE, P.PAC_CARNE, TP.TIPOPAC, C.CARRERA, " +
+                        " P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, P.PAC_SEXO, P.PAC_CELULAR, P.PAC_TELEFONO, " +
+                        " (trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, " +
+                        " P.PAC_DIRECCION, D.DEPARTAMENTO,  P.PAC_RESPONSABLE, P.PAC_RES_TEL, PA.PARENTESCO " +
+                    "FROM PACIENTES P " +
+                    "    INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                    "    INNER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
+                    "    INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
+                    "    INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
+                    "    INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
+                    "    WHERE P.IDPACIENTE = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idPaciente);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        while (rs.next())
+        {
+            paciente.idPaciente = rs.getInt(1);
+            paciente.carne = rs.getString(2);
+            paciente.carrera = rs.getString(4);
+            paciente.nombre = rs.getString(5);
+            paciente.sexo = rs.getString(6);
+            paciente.celular = rs.getString(7);
+            paciente.telefono = rs.getString(8);
+            paciente.edad = rs.getString(9);
+            paciente.direccion = rs.getString(10);
+            paciente.departamento = rs.getString(11);
+            //faltan mas xD
+        }
+        
+        return paciente;
+    }
+    
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException{
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
@@ -59,8 +99,10 @@ public class ConexionDB {
                     " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
                     " DC.PESO, DC.TALLA, DC.PULSO, DC.MOTIVO FROM CONSULTA C " +
                     " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
-                    " WHERE C.IDCONSULTA = 1";
-        ResultSet rs = stmt.executeQuery(query);
+                    " WHERE C.IDCONSULTA = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idConsulta);
+        ResultSet rs = preparedStatement.executeQuery();
         while (rs.next())
         {
             consulta.idConsulta = rs.getInt(1);
@@ -80,37 +122,6 @@ public class ConexionDB {
             consulta.motivo = rs.getString(15);
         }
         return consulta;
-    }
-    
-    public int aggConsulta(Consulta _consulta){
-        int idConsulta = 0;
-        
-        //Ejecutar el procedimiento almacenado para det consulta
-        
-        return idConsulta;
-    }
-    
-    public int iniciar_sesion(Paciente _paciente){
-        
-        String user = _paciente.apellido;
-        String contra = _paciente.celular;
-    
-           
-        //llamar procedimeinto almacenado
-        
-        return 0;
-    }
-    
-    public void aggEstudiante(Estudiante _estudiante){
-        //agregar a la base mediante un proc almecenado
-    }
-    
-    public void aggEmpleado(Empleado _estudiante){
-        //agregar a la base mediante un proc almecenado
-    }
-    
-    public void aggProSocial(ProSocial _estudiante){
-        //agregar a la base mediante un proc almecenado
     }
     
     public Object[] getCIE10Cats(String _cat) throws SQLException{
@@ -166,6 +177,43 @@ public class ConexionDB {
             return null;
         }
     }
+    
+    
+    ////////////////////// ADDS //////////////////////
+    
+    public int aggConsulta(Consulta _consulta){
+        int idConsulta = 0;
+        
+        //Ejecutar el procedimiento almacenado para det consulta
+        
+        return idConsulta;
+    }
+    
+    public void aggEstudiante(Estudiante _estudiante){
+        //agregar a la base mediante un proc almecenado
+    }
+    
+    public void aggEmpleado(Empleado _estudiante){
+        //agregar a la base mediante un proc almecenado
+    }
+    
+    public void aggProSocial(ProSocial _estudiante){
+        //agregar a la base mediante un proc almecenado
+    }
+    
+    ////////////// OTROS /////////////////
+    
+    public int iniciar_sesion(Paciente _paciente){
+        
+        String user = _paciente.apellido;
+        String contra = _paciente.celular;
+    
+           
+        //llamar procedimeinto almacenado
+        
+        return 0;
+    }
+    
     
     //////////////////////////////////////////////////////////////////////
     //////////////////////////  LLENAR JTABLES ///////////////////////////

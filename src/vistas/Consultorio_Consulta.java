@@ -7,6 +7,7 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Consulta;
+import Classes.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     int conA = 0, conD = 0;
     ConexionDB conn = new ConexionDB();
     Consulta consulta;
+    Paciente paciente;
     
     String[] idCatsAntecedentes;
     String[] idCatsDiagnosticos;
@@ -40,12 +42,19 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "D"));
     }
     
-    public Consultorio_Consulta(Consulta _consulta) throws SQLException{
+    public Consultorio_Consulta(Consulta _consulta, Paciente _paciente) throws SQLException{
         initComponents();
         this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));
         this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "D"));
         this.consulta = _consulta;
-        this.lblNombre.setText(_consulta.ef_cabeza);
+        this.paciente = _paciente;
+        this.llenarCampos();
+    }
+    
+    public void llenarCampos(){
+        this.lblDireccion.setText(this.paciente.direccion);
+        this.lblNombre.setText(this.paciente.nombre);
+        this.lblEdad.setText(this.paciente.edad);
     }
     
     @SuppressWarnings("unchecked")

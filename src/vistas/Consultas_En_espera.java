@@ -1,5 +1,7 @@
 package vistas;
 import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -11,6 +13,10 @@ public class Consultas_En_espera extends javax.swing.JFrame {
 
     int xx,xy,xs,ys;
     ConexionDB conn = new ConexionDB();
+    
+    Consulta consulta;
+    Paciente paciente;
+    
     public Consultas_En_espera() throws SQLException {
         initComponents();
         this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
@@ -287,8 +293,11 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         // ////////////// ATENDER CONSULTA SELECCIONADA ////////////////////
         if (this.tbConsultasEspera.getSelectedRows().length == 1)
         {
+            int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
             try {
-                Consultorio_Consulta form = new Consultorio_Consulta(this.conn.getConsulta(1));
+                this.consulta = this.conn.getConsulta(idConsulta);
+                this.paciente = this.conn.getPaciente(consulta.idPaciente);
+                Consultorio_Consulta form = new Consultorio_Consulta(consulta, paciente);
                 form.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
