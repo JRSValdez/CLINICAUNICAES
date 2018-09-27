@@ -3,6 +3,7 @@
  */
 package Classes;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -198,7 +199,40 @@ public class ConexionDB {
         return idConsulta;
     }
     
- 
+    public String aggDetConsulta(Consulta _consulta) throws SQLException{
+        
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDCONSULTA", _consulta.idConsulta);
+        cst.setString("pEF_CABEZA", _consulta.ef_cabeza);
+        cst.setString("pEF_CUELLO", _consulta.ef_cuello);
+        cst.setString("pEF_TORAX", _consulta.ef_torax);
+        cst.setString("pEF_ABDOMEN", _consulta.ef_abdomen);
+        cst.setString("pEF_EXTREMIDADES", _consulta.ef_extremidades);
+        cst.setString("pPESO", _consulta.peso);
+        cst.setString("pTALLA", _consulta.talla);
+        cst.setString("pPULSO", _consulta.pulso);
+        cst.setString("pFREC_C", _consulta.frec_card);
+        cst.setString("pPRES_ART", _consulta.pres_art);
+        cst.setString("pMOTIVO", _consulta.motivo);
+        cst.setString("pRECOMENDACIONES", _consulta.recomendaciones);
+        
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        
+        // Ejecuta el procedimiento almacenado
+        cst.execute();
+        
+        // Se obtienen la salida del procedimineto almacenado
+        String mensaje = cst.getString("MENSAJE");
+        
+        if(!mensaje.equals("ERROR")){
+            // agregar receta y detalle de receta
+        }
+        System.out.println(mensaje);        
+        return mensaje;
+    }
+    
     //////////////////////////////////////////////////////////////////
     ////////////////////// OTROS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////

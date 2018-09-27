@@ -19,6 +19,8 @@ public class Consulta {
     public Date fecha;
     public int idUsuario;
     
+    public Receta receta;
+    
     public String motivo;
     public String ef_cabeza;
     public String ef_cuello;
@@ -30,5 +32,21 @@ public class Consulta {
     public String pulso;
     public String frec_card;
     public String pres_art;
+    public String recomendaciones;
     
+    private String validacion;
+    private Validar val = new Validar();
+    
+    public String validarConsulta(){
+        val.validacionesMalas = "";
+        this.motivo = val.validarString(this.motivo, " motivo ");
+        
+        this.peso = val.validarString(this.peso, " peso ");
+        this.talla = val.validarString(this.talla, " talla ");
+        this.pulso = val.validarString(this.pulso, " pulso ");
+        this.frec_card = val.validarString(this.frec_card, " Frecuencia Cardiaca ");
+        this.pres_art = val.validarString(this.pres_art, " Presion Arterial ");
+        
+        return val.validacionesMalas;
+    }
 }
