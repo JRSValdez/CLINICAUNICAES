@@ -2,8 +2,11 @@
 package vistas;
 
 import Classes.ConexionDB;
+<<<<<<< HEAD
 import Classes.Consulta;
 import Classes.Paciente;
+=======
+>>>>>>> 4ab7aa8a16e88213fcb03d958f03bd08e30f4603
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -12,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,14 +27,28 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     int xx, xy;
     int xs, ys, sbx,sby;
+<<<<<<< HEAD
     ConexionDB conn;
     public Home_Recepcion() {
+=======
+    
+    ConexionDB conn = new ConexionDB();
+    
+    int[] idFacult;
+    
+    public Home_Recepcion() throws SQLException {
+>>>>>>> 4ab7aa8a16e88213fcb03d958f03bd08e30f4603
         initComponents();
         conn = new ConexionDB();
         //FECHA DEL SISTEMA
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
+        
+        this.llenarFacultad();
+        this.cboDepartamento.setModel(conn.Obt_Depart());
+        this.cboParentezco.setModel(conn.Obt_Parentesco());
+        
         
         this.jTbusqueda.setSelectionForeground(Color.white);
         this.jTFarmacia.setSelectionForeground(Color.white);
@@ -131,59 +150,59 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         lblHeader58 = new javax.swing.JLabel();
-        jTextField32 = new javax.swing.JTextField();
+        txtDocumento = new javax.swing.JTextField();
         lblHeader23 = new javax.swing.JLabel();
-        jTextField33 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         lblHeader28 = new javax.swing.JLabel();
-        jTextField34 = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
         lblHeader59 = new javax.swing.JLabel();
         rdbMasculino1 = new javax.swing.JRadioButton();
         rdbFemenino1 = new javax.swing.JRadioButton();
         lblHeader60 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         lblHeader61 = new javax.swing.JLabel();
-        jTextField36 = new javax.swing.JTextField();
+        txtCelular = new javax.swing.JTextField();
         lblHeader62 = new javax.swing.JLabel();
-        jTextField37 = new javax.swing.JTextField();
+        txtFechaNac = new javax.swing.JTextField();
         jPanel36 = new javax.swing.JPanel();
         lblHeader63 = new javax.swing.JLabel();
-        jTextArea4 = new javax.swing.JTextArea();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
+        txtDireccion = new javax.swing.JTextArea();
+        rbzonaUrb = new javax.swing.JRadioButton();
+        rbzonaRur = new javax.swing.JRadioButton();
         lblHeader64 = new javax.swing.JLabel();
-        jTextField38 = new javax.swing.JTextField();
+        txtEmergencia = new javax.swing.JTextField();
         lblHeader65 = new javax.swing.JLabel();
-        jTextField39 = new javax.swing.JTextField();
+        txtTelefonoEmerg = new javax.swing.JTextField();
         lblHeader66 = new javax.swing.JLabel();
-        jComboBox15 = new javax.swing.JComboBox<>();
+        cboParentezco = new javax.swing.JComboBox<>();
         lblHeader67 = new javax.swing.JLabel();
-        jComboBox17 = new javax.swing.JComboBox<>();
+        cboDepartamento = new javax.swing.JComboBox<>();
         jPanelEstNuevo2 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         lblHeader22 = new javax.swing.JLabel();
         lblHeader25 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jRadioButton8 = new javax.swing.JRadioButton();
+        cboFacultadAcadem = new javax.swing.JComboBox<>();
+        cboActAcademico = new javax.swing.JComboBox<>();
+        rbAcademico = new javax.swing.JRadioButton();
         jPanelEstNuevo4 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         lblHeader32 = new javax.swing.JLabel();
         lblHeader33 = new javax.swing.JLabel();
         lblHeader34 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        txtCarnet = new javax.swing.JTextField();
+        cboFacultadEstud = new javax.swing.JComboBox<>();
+        cboCarreraEstud = new javax.swing.JComboBox<>();
+        tbEstudiante = new javax.swing.JRadioButton();
         jPanelEstNuevo3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         lblHeader27 = new javax.swing.JLabel();
         lblHeader29 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jRadioButton9 = new javax.swing.JRadioButton();
+        txtnombreEmp = new javax.swing.JTextField();
+        cboActEmpleado = new javax.swing.JComboBox<>();
+        rbProyeccionSocial = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        btnAgregarPaciente = new javax.swing.JLabel();
         Tab_Sols = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
@@ -672,7 +691,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConPacNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAggConPacNuevo.setText("Agregar Estudiante y Consulta");
         btnAggConPacNuevo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggConPacNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggConPacNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggConPacNuevo.setFocusable(false);
         btnAggConPacNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggConPacNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1055,7 +1074,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConsPacExistente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAggConsPacExistente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAggConsPacExistente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggConsPacExistente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggConsPacExistente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggConsPacExistente.setFocusable(false);
         btnAggConsPacExistente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggConsPacExistente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1109,7 +1128,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnConsultasEspera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         btnConsultasEspera.setText("EN ESPERA");
         btnConsultasEspera.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnConsultasEspera.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultasEspera.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultasEspera.setFocusable(false);
         btnConsultasEspera.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnConsultasEspera.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1124,7 +1143,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
         jLabel7.setText("ATENDIDAS HOY");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1134,7 +1153,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel8.setText("HISTORIAL");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1217,25 +1236,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader58.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader58.setText("DOCUMENTO:");
 
-        jTextField32.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField32.setText("XXXXXXXXXXXXX");
-        jTextField32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtDocumento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtDocumento.setText("XXXXXXXXXXXXX");
+        txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader23.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader23.setText("NOMBRES:");
 
-        jTextField33.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField33.setText("NOMBRE NOMBRE");
-        jTextField33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtNombre.setText("NOMBRE NOMBRE");
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader28.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader28.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader28.setText("APELLIDOS:");
 
-        jTextField34.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField34.setText("APELLIDO APELLIDO");
-        jTextField34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtApellido.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtApellido.setText("APELLIDO APELLIDO");
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader59.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader59.setForeground(new java.awt.Color(255, 255, 255));
@@ -1258,25 +1277,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader60.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader60.setText("TELÉFONO:");
 
-        jTextField35.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField35.setText("XXXX - XXXX");
-        jTextField35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtTelefono.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtTelefono.setText("XXXX - XXXX");
+        txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader61.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader61.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader61.setText("CELULAR:");
 
-        jTextField36.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField36.setText("XXXX - XXXX");
-        jTextField36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCelular.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtCelular.setText("XXXX - XXXX");
+        txtCelular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader62.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader62.setText("FECHA NACIMIENTO:");
 
-        jTextField37.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField37.setText("XX/XX/XXXX");
-        jTextField37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtFechaNac.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtFechaNac.setText("XX/XX/XXXX");
+        txtFechaNac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
@@ -1297,17 +1316,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField37)
-                        .addComponent(jTextField35)
+                        .addComponent(txtFechaNac)
+                        .addComponent(txtTelefono)
                         .addGroup(jPanel35Layout.createSequentialGroup()
                             .addComponent(rdbMasculino1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rdbFemenino1))
-                        .addComponent(jTextField34)
-                        .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtApellido)
+                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel35Layout.setVerticalGroup(
@@ -1316,15 +1335,15 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader58)
-                    .addComponent(jTextField32))
+                    .addComponent(txtDocumento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader23)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader28)
-                    .addComponent(jTextField34))
+                    .addComponent(txtApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader59)
@@ -1332,16 +1351,16 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(rdbFemenino1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader62))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHeader60)
-                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader61)
-                    .addComponent(jTextField36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1353,60 +1372,60 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader63.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader63.setText("DIRECCIÓN:");
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea4.setRows(2);
-        jTextArea4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtDireccion.setColumns(20);
+        txtDireccion.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtDireccion.setRows(2);
+        txtDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jRadioButton6.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup3.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton6.setSelected(true);
-        jRadioButton6.setText("Urbano");
-        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+        rbzonaUrb.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup3.add(rbzonaUrb);
+        rbzonaUrb.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbzonaUrb.setForeground(new java.awt.Color(255, 255, 255));
+        rbzonaUrb.setSelected(true);
+        rbzonaUrb.setText("Urbano");
+        rbzonaUrb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton6ActionPerformed(evt);
+                rbzonaUrbActionPerformed(evt);
             }
         });
 
-        jRadioButton7.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup3.add(jRadioButton7);
-        jRadioButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton7.setText("Rural");
+        rbzonaRur.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup3.add(rbzonaRur);
+        rbzonaRur.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbzonaRur.setForeground(new java.awt.Color(255, 255, 255));
+        rbzonaRur.setText("Rural");
 
         lblHeader64.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader64.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader64.setText("CASO EMERGENCIA:");
 
-        jTextField38.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField38.setText("NOMBRES APELLIDOS");
-        jTextField38.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtEmergencia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtEmergencia.setText("NOMBRES APELLIDOS");
+        txtEmergencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader65.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader65.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader65.setText("TELÉFONO:");
 
-        jTextField39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField39.setText("XXXX - XXXX");
-        jTextField39.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtTelefonoEmerg.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtTelefonoEmerg.setText("XXXX - XXXX");
+        txtTelefonoEmerg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader66.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader66.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader66.setText("PARENTEZCO:");
 
-        jComboBox15.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
-        jComboBox15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboParentezco.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboParentezco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
+        cboParentezco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader67.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader67.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader67.setText("DEPARTAMENTO:");
 
-        jComboBox17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox17.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
-        jComboBox17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboDepartamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
+        cboDepartamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
         jPanel36.setLayout(jPanel36Layout);
@@ -1420,15 +1439,15 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             .addGroup(jPanel36Layout.createSequentialGroup()
                                 .addComponent(lblHeader64, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel36Layout.createSequentialGroup()
                                 .addComponent(lblHeader66, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboParentezco, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel36Layout.createSequentialGroup()
                             .addComponent(lblHeader65, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTelefonoEmerg, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel36Layout.createSequentialGroup()
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblHeader63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1436,11 +1455,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel36Layout.createSequentialGroup()
-                                .addComponent(jRadioButton6)
+                                .addComponent(rbzonaUrb)
                                 .addGap(79, 79, 79)
-                                .addComponent(jRadioButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox17, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextArea4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))))
+                                .addComponent(rbzonaRur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cboDepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel36Layout.setVerticalGroup(
@@ -1449,26 +1468,26 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader67)
-                    .addComponent(jComboBox17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader63)
-                    .addComponent(jTextArea4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton7)
-                    .addComponent(jRadioButton6))
+                    .addComponent(rbzonaRur)
+                    .addComponent(rbzonaUrb))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader64)
-                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader65)
-                    .addComponent(jTextField39))
+                    .addComponent(txtTelefonoEmerg))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboParentezco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader66))
                 .addContainerGap())
         );
@@ -1512,13 +1531,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader25.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader25.setText("ACTIVIDAD:");
 
-        jComboBox3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        jComboBox3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadAcadem.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultadAcadem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
+        cboFacultadAcadem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jComboBox7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
-        jComboBox7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboActAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboActAcademico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
+        cboActAcademico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1531,8 +1550,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(lblHeader22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cboFacultadAcadem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboActAcademico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1540,22 +1559,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader25)
-                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboActAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader22)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultadAcadem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
         );
 
-        jRadioButton8.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup2.add(jRadioButton8);
-        jRadioButton8.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        jRadioButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton8.setText("PERSONAL ACADEMICO/ADMINISTRATIVO");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+        rbAcademico.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup2.add(rbAcademico);
+        rbAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        rbAcademico.setForeground(new java.awt.Color(255, 255, 255));
+        rbAcademico.setText("PERSONAL ACADEMICO/ADMINISTRATIVO");
+        rbAcademico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
+                rbAcademicoActionPerformed(evt);
             }
         });
 
@@ -1568,13 +1587,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jRadioButton8)
+                .addComponent(rbAcademico)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEstNuevo2Layout.setVerticalGroup(
             jPanelEstNuevo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevo2Layout.createSequentialGroup()
-                .addComponent(jRadioButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1602,17 +1621,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader34.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader34.setText("CARNET:");
 
-        jTextField12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField12.setText("CARNET");
-        jTextField12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtCarnet.setText("CARNET");
+        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jComboBox5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        jComboBox5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultadEstud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
+        cboFacultadEstud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jComboBox6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
-        jComboBox6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboCarreraEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboCarreraEstud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
+        cboCarreraEstud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -1626,9 +1645,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(lblHeader32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField12))
+                    .addComponent(cboFacultadEstud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboCarreraEstud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCarnet))
                 .addGap(0, 0, 0))
         );
         jPanel12Layout.setVerticalGroup(
@@ -1637,24 +1656,24 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader34)
-                    .addComponent(jTextField12))
+                    .addComponent(txtCarnet))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader32)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultadEstud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader33)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboCarreraEstud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jRadioButton5.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup2.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton5.setSelected(true);
-        jRadioButton5.setText("ESTUDIANTE");
+        tbEstudiante.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup2.add(tbEstudiante);
+        tbEstudiante.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        tbEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        tbEstudiante.setSelected(true);
+        tbEstudiante.setText("ESTUDIANTE");
 
         javax.swing.GroupLayout jPanelEstNuevo4Layout = new javax.swing.GroupLayout(jPanelEstNuevo4);
         jPanelEstNuevo4.setLayout(jPanelEstNuevo4Layout);
@@ -1665,13 +1684,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton5)
+                .addComponent(tbEstudiante)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelEstNuevo4Layout.setVerticalGroup(
             jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
-                .addComponent(jRadioButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tbEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1695,13 +1714,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader29.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader29.setText("EMPLEADO:");
 
-        jTextField13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField13.setText("Nombre Apellido");
-        jTextField13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtnombreEmp.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtnombreEmp.setText("Nombre Apellido");
+        txtnombreEmp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jComboBox8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
-        jComboBox8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboActEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboActEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
+        cboActEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1714,8 +1733,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(lblHeader27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField13)
-                    .addComponent(jComboBox8, 0, 187, Short.MAX_VALUE))
+                    .addComponent(txtnombreEmp)
+                    .addComponent(cboActEmpleado, 0, 187, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         jPanel11Layout.setVerticalGroup(
@@ -1724,19 +1743,19 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader29)
-                    .addComponent(jTextField13))
+                    .addComponent(txtnombreEmp))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader27)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboActEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53))
         );
 
-        jRadioButton9.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup2.add(jRadioButton9);
-        jRadioButton9.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jRadioButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton9.setText("PROYECCIÓN SOCIAL");
+        rbProyeccionSocial.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup2.add(rbProyeccionSocial);
+        rbProyeccionSocial.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        rbProyeccionSocial.setForeground(new java.awt.Color(255, 255, 255));
+        rbProyeccionSocial.setText("PROYECCIÓN SOCIAL");
 
         javax.swing.GroupLayout jPanelEstNuevo3Layout = new javax.swing.GroupLayout(jPanelEstNuevo3);
         jPanelEstNuevo3.setLayout(jPanelEstNuevo3Layout);
@@ -1747,13 +1766,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanelEstNuevo3Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jRadioButton9)
+                .addComponent(rbProyeccionSocial)
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanelEstNuevo3Layout.setVerticalGroup(
             jPanelEstNuevo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevo3Layout.createSequentialGroup()
-                .addComponent(jRadioButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rbProyeccionSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
@@ -1772,15 +1791,20 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
-        jLabel10.setText("Agregar Paciente");
-        jLabel10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel10.setFocusable(false);
-        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAgregarPaciente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAgregarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAgregarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
+        btnAgregarPaciente.setText("Agregar Paciente");
+        btnAgregarPaciente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregarPaciente.setFocusable(false);
+        btnAgregarPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAgregarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarPacienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1788,7 +1812,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addGap(334, 334, 334))
@@ -1798,7 +1822,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
+                    .addComponent(btnAgregarPaciente)
                     .addComponent(jLabel13))
                 .addContainerGap())
         );
@@ -2608,6 +2632,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_farmacia.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
         this.btn_sols.setBackground(Color.black);
+        
+        
     }//GEN-LAST:event_btn_homeActionPerformed
 
     private void btn_solsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solsActionPerformed
@@ -2647,6 +2673,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_home.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
         this.btn_sols.setBackground(Color.black);
+        
+        
+        
+        
+        
     }//GEN-LAST:event_btn_pacActionPerformed
 
     private void btn_consActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consActionPerformed
@@ -2694,9 +2725,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanelEstNuevo3MouseClicked
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+    private void rbAcademicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAcademicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
+    }//GEN-LAST:event_rbAcademicoActionPerformed
 
     private void btn_minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizeMouseClicked
         this.setExtendedState(0);
@@ -2714,10 +2745,18 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
-    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+    private void rbzonaUrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbzonaUrbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton6ActionPerformed
+    }//GEN-LAST:event_rbzonaUrbActionPerformed
 
+    public void llenarFacultad() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad((JComboBox) cboFacultadEstud);
+
+        this.idFacult = (int[]) array[1];
+        this.cboFacultadEstud.setModel((DefaultComboBoxModel) array[0]);
+    }
+        
     private void btnAggConsPacExistenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConsPacExistenteMouseClicked
         
     }//GEN-LAST:event_btnAggConsPacExistenteMouseClicked
@@ -2742,6 +2781,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnConsultasEsperaMouseClicked
+
+    private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
+
+        
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPacienteMouseClicked
     
     
     /**
@@ -2780,8 +2830,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home_Recepcion().setVisible(true);
+           public void run() {
+                try {
+                    new Home_Recepcion().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -2798,6 +2852,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JPanel Tab_home;
     private javax.swing.JLabel btnAggConPacNuevo;
     private javax.swing.JLabel btnAggConsPacExistente;
+    private javax.swing.JLabel btnAgregarPaciente;
     private javax.swing.JLabel btnConsultasEspera;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
@@ -2811,24 +2866,23 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.JComboBox<String> cboActAcademico;
+    private javax.swing.JComboBox<String> cboActEmpleado;
+    private javax.swing.JComboBox<String> cboCarreraEstud;
+    private javax.swing.JComboBox<String> cboDepartamento;
+    private javax.swing.JComboBox<String> cboFacultadAcadem;
+    private javax.swing.JComboBox<String> cboFacultadEstud;
+    private javax.swing.JComboBox<String> cboParentezco;
     private javax.swing.JPanel header;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox15;
     private javax.swing.JComboBox<String> jComboBox16;
-    private javax.swing.JComboBox<String> jComboBox17;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -2880,11 +2934,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelExistente2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2894,11 +2943,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JTable jTbusquedaMed;
     private javax.swing.JTable jTbusquedaPaciente;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
@@ -2915,14 +2961,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
-    private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField36;
-    private javax.swing.JTextField jTextField37;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblConsult_espera;
@@ -2986,9 +3024,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPac_espera;
     private javax.swing.JLabel lblSol_medicamento;
+    private javax.swing.JRadioButton rbAcademico;
+    private javax.swing.JRadioButton rbProyeccionSocial;
+    private javax.swing.JRadioButton rbzonaRur;
+    private javax.swing.JRadioButton rbzonaUrb;
     private javax.swing.JRadioButton rdbFemenino;
     private javax.swing.JRadioButton rdbFemenino1;
     private javax.swing.JRadioButton rdbMasculino;
     private javax.swing.JRadioButton rdbMasculino1;
+    private javax.swing.JRadioButton tbEstudiante;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCarnet;
+    private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextArea txtDireccion;
+    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JTextField txtEmergencia;
+    private javax.swing.JTextField txtFechaNac;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTelefonoEmerg;
+    private javax.swing.JTextField txtnombreEmp;
     // End of variables declaration//GEN-END:variables
 }
