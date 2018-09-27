@@ -1,6 +1,7 @@
 
 package vistas;
 
+import Classes.ConexionDB;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -9,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,13 +22,23 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     int xx, xy;
     int xs, ys, sbx,sby;
-    public Home_Recepcion() {
+    
+    ConexionDB conn = new ConexionDB();
+    
+    int[] idFacult;
+    
+    public Home_Recepcion() throws SQLException {
         initComponents();
         
         //FECHA DEL SISTEMA
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
+        
+        this.llenarFacultad();
+        this.cboDepartamento.setModel(conn.Obt_Depart());
+        this.cboParentezco.setModel(conn.Obt_Parentesco());
+        
         
         this.jTbusqueda.setSelectionForeground(Color.white);
         this.jTFarmacia.setSelectionForeground(Color.white);
@@ -2764,6 +2777,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbzonaUrbActionPerformed
 
+    public void llenarFacultad() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad((JComboBox) cboFacultadEstud);
+
+        this.idFacult = (int[]) array[1];
+        this.cboFacultadEstud.setModel((DefaultComboBoxModel) array[0]);
+    }
+        
     private void btnAggConsPacExistenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConsPacExistenteMouseClicked
         try {
             Consultorio_Consulta consulta;
@@ -2843,8 +2864,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home_Recepcion().setVisible(true);
+           public void run() {
+                try {
+                    new Home_Recepcion().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
