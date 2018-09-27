@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"unicaes","unicaes");
+            conn= DriverManager.getConnection(url,"clinica1","master");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -327,6 +327,74 @@ public class ConexionDB {
            }
         
         return new Object[]{model, idCats};
+    }
+    
+    public DefaultComboBoxModel Obt_Depart() throws SQLException {
+
+        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.removeAllElements();
+        ListaModelo.addElement("Seleccione una opción");
+
+        Statement stmt = conn.createStatement();
+
+        String query = "SELECT IDDEPARTAMENTO, DEPARTAMENTO FROM DEPARTAMENTO";
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
+            ListaModelo.addElement(rs.getString("DEPARTAMENTO"));
+
+        }
+        rs.close();
+
+        return ListaModelo;
+    }
+    
+     public DefaultComboBoxModel Obt_Parentesco() throws SQLException {
+
+        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.removeAllElements();
+        ListaModelo.addElement("Seleccione una opción");
+
+        Statement stmt = conn.createStatement();
+
+        String query = "SELECT IDPARENTESCO, PARENTESCO FROM PARENTESCO";
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
+            ListaModelo.addElement(rs.getString("PARENTESCO"));
+
+        }
+        rs.close();
+
+        return ListaModelo;
+    }
+     
+      public Object[] llenarFacultad(JComboBox _combo) throws SQLException{
+        DefaultComboBoxModel model;
+        
+        String query = "SELECT * FROM FACULTAD";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        int[] idFac =  new int[numRows];
+        String[] Facult = new String[numRows];
+        
+        model = (DefaultComboBoxModel) _combo.getModel();
+        model.removeAllElements();
+        int con = 0;
+          while (rs.next())
+           {
+              idFac[con]= rs.getInt(1);
+              Facult[con] = rs.getString(2);
+              model.addElement(rs.getString(2));
+              con++;
+           }
+        
+        return new Object[]{model, idFac};
     }
     
 }
