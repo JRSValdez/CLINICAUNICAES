@@ -1795,6 +1795,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregarPaciente.setFocusable(false);
         btnAgregarPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAgregarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarPacienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -2789,6 +2794,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnConsultasEsperaMouseClicked
+
+    private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
+
+        
+
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarPacienteMouseClicked
     
     
     /**
