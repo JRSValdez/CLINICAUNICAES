@@ -38,7 +38,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica1","master");
+            conn= DriverManager.getConnection(url,"clinica","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){

@@ -5,6 +5,7 @@
  */
 package W10Style;
 
+import java.sql.SQLException;
 import vistas.Home_Recepcion;
 
 /**
@@ -16,7 +17,7 @@ public class W10Style {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
       Home_Recepcion main = new Home_Recepcion();
       main.show();
     }

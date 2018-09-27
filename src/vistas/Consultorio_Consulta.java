@@ -1618,7 +1618,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
     private void btnAddRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddRecetaMouseClicked
         //Agregar un medicamento a la jtable de receta
-        try {
+//        try {
             float cantidad = Float.parseFloat(this.txtMedicamentoCantidad.getText());
             String dosis = this.txtMedicamentoDosis.getText();
             if (this.jtMedicamentos.getSelectedRows().length == 1 && cantidad > 0 && !"".equals(dosis))
@@ -1634,10 +1634,10 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                     this.jtReceta.setModel(this.aggRecetaJt(modelo, newRow));
                 }
             }
-        } catch (Exception e) {
-            // mostarra validaciones en un messsageBox
-            System.out.println("Ingrese correctamente" + e);
-        }
+//        } catch (Exception e) {
+//            // mostarra validaciones en un messsageBox
+//            System.out.println("Ingrese correctamente" + e);
+//        }
     }//GEN-LAST:event_btnAddRecetaMouseClicked
 
     public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String _idE, String _idC, String _enf, String _cat){

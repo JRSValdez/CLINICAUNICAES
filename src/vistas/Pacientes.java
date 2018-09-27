@@ -430,9 +430,9 @@ public class Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_BarraSuperiorMouseDragged
 
     private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
-        Home_Recepcion home = new Home_Recepcion();
-        home.show();
-        this.dispose();
+//        Home_Recepcion home = new Home_Recepcion();
+//        home.show();
+//        this.dispose();
     }//GEN-LAST:event_btn_homeActionPerformed
 
     /**

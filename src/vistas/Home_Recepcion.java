@@ -2,11 +2,8 @@
 package vistas;
 
 import Classes.ConexionDB;
-<<<<<<< HEAD
 import Classes.Consulta;
 import Classes.Paciente;
-=======
->>>>>>> 4ab7aa8a16e88213fcb03d958f03bd08e30f4603
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -27,17 +24,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     int xx, xy;
     int xs, ys, sbx,sby;
-<<<<<<< HEAD
-    ConexionDB conn;
-    public Home_Recepcion() {
-=======
-    
+
     ConexionDB conn = new ConexionDB();
     
     int[] idFacult;
     
     public Home_Recepcion() throws SQLException {
->>>>>>> 4ab7aa8a16e88213fcb03d958f03bd08e30f4603
         initComponents();
         conn = new ConexionDB();
         //FECHA DEL SISTEMA
