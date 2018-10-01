@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Classes;
 
 import java.util.Date;
@@ -20,6 +16,8 @@ public class Consulta {
     public int idUsuario;
     
     public Receta receta;
+    public Diagnostico diagnostico;
+    public Antecedente antecedente;
     
     public String motivo;
     public String ef_cabeza;
@@ -39,6 +37,7 @@ public class Consulta {
     
     public String validarConsulta(){
         val.validacionesMalas = "";
+        //se hace uso de la clase validacion para poder validar cada campo según el tipo de campo
         this.motivo = val.validarString(this.motivo, " motivo ");
         
         this.peso = val.validarString(this.peso, " peso ");

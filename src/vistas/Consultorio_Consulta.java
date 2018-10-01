@@ -5,8 +5,10 @@
  */
 package vistas;
 
+import Classes.Antecedente;
 import Classes.ConexionDB;
 import Classes.Consulta;
+import Classes.Diagnostico;
 import Classes.Paciente;
 import Classes.Receta;
 import java.awt.Color;
@@ -30,6 +32,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     Consulta consulta;
     Paciente paciente;
     Receta receta;
+    Diagnostico diagnostico;
+    Antecedente antecedente;
     
     String[] idCatsAntecedentes;
     String[] idCatsDiagnosticos;
@@ -52,11 +56,14 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "D"));
         this.consulta = _consulta;
         this.paciente = _paciente;
-        this.receta = new Receta();
         this.llenarCampos();
     }
     
     public void llenarCampos() throws SQLException{
+        this.antecedente = new Antecedente();
+        this.receta = new Receta();
+        this.diagnostico = new Diagnostico();
+        
         this.lblDireccion.setText(this.paciente.direccion);
         this.lblNombre.setText(this.paciente.nombre);
         this.lblMedicamentoPara.setText("Medicamentos para: " +this.paciente.nombre);
@@ -187,7 +194,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1010, 650));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1100, 710));
         setResizable(false);
         setSize(new java.awt.Dimension(1100, 710));
 
@@ -561,7 +567,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader56.setText("Categoría:");
 
         txtBuscarAntecedente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtBuscarAntecedente.setText("BUSQUEDA CATEGORÍA");
         txtBuscarAntecedente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1513,12 +1518,15 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
         
         consulta.receta = this.receta;
+        consulta.diagnostico = this.diagnostico;
+        consulta.antecedente = this.antecedente;
         
+        //verifica cada campo segun su tipo, si hay alguna validación mala la devolverá en la variable validacion
         String validacion = consulta.validarConsulta();
-        
+        // si la variable no tiene nada, las validaciones son correctas
         if(validacion.equals("")){
             try {
-                //Agregar consulta con procedimiento almecenado
+                //Se agrega la consulta a través de un método en la clase conexionDB
                 String mensaje = this.conn.aggDetConsulta(consulta);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
                 this.dispose();
@@ -1553,7 +1561,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtAntecedentes.getModel();
         if (this.verEnfRep(modelo, idE) == false){
-            this.jtAntecedentes.setModel(this.aggEnfermedadJt(modelo, idE, idC, enf, cat));
+            String[] row = new String[]{idC, cat,idE, enf};
+            this.antecedente.aggRow(row);
+            this.jtAntecedentes.setModel(this.aggEnfermedadJt(modelo, row));
         }
     }//GEN-LAST:event_btnAggAntecedenteMouseClicked
 
@@ -1586,7 +1596,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtDiagnosticos.getModel();
         if (this.verEnfRep(modelo, idE) == false){
-            this.jtDiagnosticos.setModel(this.aggEnfermedadJt(modelo, idE, idC, enf, cat));
+            String[] row = new String[]{idC, cat,idE, enf};
+            this.diagnostico.aggRow(row);
+            this.jtDiagnosticos.setModel(this.aggEnfermedadJt(modelo, row));
         }
     }//GEN-LAST:event_btnAggDiagnosticoMouseClicked
 
@@ -1624,7 +1636,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private void btnAddRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddRecetaMouseClicked
         //Agregar un medicamento a la jtable de receta
         try {
-            float cantidad = Float.parseFloat(this.txtMedicamentoCantidad.getText());
+            int cantidad = Integer.parseInt(this.txtMedicamentoCantidad.getText());
             String dosis = this.txtMedicamentoDosis.getText();
             if (this.jtMedicamentos.getSelectedRows().length == 1 && cantidad > 0 && !"".equals(dosis))
             {
@@ -1645,9 +1657,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddRecetaMouseClicked
 
-    public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String _idE, String _idC, String _enf, String _cat){
-        String[] newRow = new String[]{_idC, _cat, _idE, _enf};
-        _modelo.addRow(newRow);
+    public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String[] _row){
+        _modelo.addRow(_row);
         return _modelo;
     }
     

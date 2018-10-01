@@ -1,31 +1,29 @@
-
 package Classes;
 
 import java.util.Arrays;
 
 /**
  *
- * @author JRSVALDEZ
+ * @author JRSValdez
  */
-public class Receta {
+public class Antecedente {
     
-    public Object[] rowReceta;
+    public Object[] rowAntecedente;
     private int con = 0;
     
-    public Receta(){
-        this.rowReceta = new Object[15];
+    public Antecedente(){
+        this.rowAntecedente = new Object[15];
     }
     
     public void aggRow(String[] _row){
         if (con < 15){
-            this.rowReceta[con] = _row;
+            this.rowAntecedente[con] = _row;
             con++;
         }
     }
     
     public void limpiarRows(){
-        Arrays.fill(this.rowReceta, null);
+        Arrays.fill(this.rowAntecedente, null);
         con = 0;
     }
-    
 }

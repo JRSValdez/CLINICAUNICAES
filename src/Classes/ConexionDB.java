@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
@@ -130,7 +129,7 @@ public class ConexionDB {
     public Object[] getCIE10Cats(String _cat) throws SQLException{
         String query = "SELECT COD_CAT, CATEGORIA FROM CIE10_CATEGORIA WHERE CATEGORIA LIKE ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        preparedStatement.setString(1, "%" + _cat + "%");
+        preparedStatement.setString(1, "%" + _cat.toUpperCase() + "%");
         ResultSet rs = preparedStatement.executeQuery();
         
         rs.last();
@@ -194,13 +193,13 @@ public class ConexionDB {
     public int aggConsulta(Consulta _consulta){
         int idConsulta = 0;
         
-        //Ejecutar el procedimiento almacenado para det consulta
+        //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
         
         return idConsulta;
     }
     
     public String aggDetConsulta(Consulta _consulta) throws SQLException{
-        
+        // agregar la consulta con el detalle de consulta con el procedimiento almecenado
         CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _consulta.idConsulta);
@@ -215,7 +214,7 @@ public class ConexionDB {
         cst.setString("pFREC_C", _consulta.frec_card);
         cst.setString("pPRES_ART", _consulta.pres_art);
         cst.setString("pMOTIVO", _consulta.motivo);
-        cst.setString("pRECOMENDACIONES", _consulta.recomendaciones);
+        cst.setString("pRECOMENDACION", _consulta.recomendaciones);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -228,9 +227,110 @@ public class ConexionDB {
         
         if(!mensaje.equals("ERROR")){
             // agregar receta y detalle de receta
+            // agregar diagnostico y detalle de diagnostico
+            // agregar antecedente y detalle de antecedente
+            int idConsulta = _consulta.idConsulta;
+            
+            int idReceta = this.aggReceta(idConsulta);
+            
+            if(idReceta != 0){
+                //agregar detalle de receta
+                for(int i = 0; i < _consulta.receta.rowReceta.length; i++){
+                    if(_consulta.receta.rowReceta[i] != null){
+                        String row = this.aggDetReceta(idReceta, (String[]) _consulta.receta.rowReceta[i]);
+                        if((row.indexOf("ERROR:") > 0) || (row.equals("ERROR"))){
+                            return "ERROR: detalle de receta";
+                        }
+                    }
+                }
+                //agregar diagnosticos
+                for(int i = 0; i < _consulta.diagnostico.rowDiagnostico.length; i++){
+                    if(_consulta.diagnostico.rowDiagnostico[i] != null){
+                        String row = this.aggDiagnostico(idConsulta, (String[]) _consulta.diagnostico.rowDiagnostico[i]);
+                        if((row.indexOf("ERROR:") > 0) || (row.equals("ERROR"))){
+                            return "ERROR: diagnostico";
+                        }
+                    }
+                }
+                //agregar antecedentes
+                for(int i = 0; i < _consulta.antecedente.rowAntecedente.length; i++){
+                    if(_consulta.antecedente.rowAntecedente[i] != null){
+                        String row = this.aggAntecedente(idConsulta, (String[]) _consulta.antecedente.rowAntecedente[i]);
+                        if((row.indexOf("ERROR:") > 0) || (row.equals("ERROR"))){
+                            return "ERROR: antecedente";
+                        }
+                    }
+                }
+            }
         }
         System.out.println(mensaje);        
         return mensaje;
+    }
+    
+    public int aggReceta(int _idConsulta) throws SQLException{
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_RECETA(?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDCONSULTA", _idConsulta);
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("MENSAJE");
+        if(mensaje.equals("ERROR")){
+            return 0;
+        }
+        int idReceta = Integer.parseInt(mensaje.substring(9,10));
+        return idReceta;
+    }
+    
+    public String aggDetReceta(int _idReceta, String[] _row) throws SQLException{
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_RECETA(?,?,?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDRECETA", _idReceta);
+        cst.setInt("pIDMEDICAMENTO", Integer.parseInt(_row[0]));
+        cst.setInt("pCANTIDAD", Integer.parseInt(_row[3]));
+        cst.setString("pDOSIS",_row[2]);
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("MENSAJE");
+        if(mensaje.equals("EXITO")){
+            return mensaje;
+        }
+        return "ERROR: " + mensaje;
+    }
+    
+    public String aggDiagnostico(int _idConsulta, String[] _row) throws SQLException{
+         CallableStatement cst = this.conn.prepareCall("{call  AGG_DIAGNOSTICO(?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDCONSULTA", _idConsulta);
+        cst.setString("pCOD_ENF", _row[2]);
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("MENSAJE");
+        if(mensaje.equals("EXITO")){
+            return mensaje;
+        }
+        return "ERROR: " + mensaje;
+    }
+    
+    public String aggAntecedente(int _idConsulta, String[] _row) throws SQLException{
+         CallableStatement cst = this.conn.prepareCall("{call  AGG_ANTECEDENTE(?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDCONSULTA", _idConsulta);
+        cst.setString("pCOD_ENF", _row[2]);
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("MENSAJE");
+        if(mensaje.equals("EXITO")){
+            return mensaje;
+        }
+        return "ERROR: " + mensaje;
     }
     
     //////////////////////////////////////////////////////////////////
