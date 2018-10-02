@@ -500,7 +500,6 @@ public class ConexionDB {
 
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.removeAllElements();
-        ListaModelo.addElement("Seleccione una opción");
 
         Statement stmt = conn.createStatement();
 
@@ -520,7 +519,6 @@ public class ConexionDB {
 
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.removeAllElements();
-        ListaModelo.addElement("Seleccione una opción");
 
         Statement stmt = conn.createStatement();
 
@@ -536,33 +534,52 @@ public class ConexionDB {
         return ListaModelo;
     }
      
-      public Object[] llenarFacultad(JComboBox _combo) throws SQLException{
-        DefaultComboBoxModel model;
+     public DefaultComboBoxModel Obt_TipoPac() throws SQLException {
+
+        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.removeAllElements();
         
-        String query = "SELECT * FROM FACULTAD";
+
+        Statement stmt = conn.createStatement();
+
+        String query = "SELECT IDTIPOPAC, TIPOPAC FROM TIPO_PACIENTE";
+        ResultSet rs = stmt.executeQuery(query);
+
+        while (rs.next()) {
+            ListaModelo.addElement(rs.getString("TIPOPAC"));
+
+        }
+        rs.close();
+
+        return ListaModelo;
+    }
+     
+     public Object[] llenarFacultad() throws SQLException{
+        String query = "SELECT IDFACULTAD, FACTULTAD FROM FACULTAD";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
         ResultSet rs = preparedStatement.executeQuery();
         
         rs.last();
         int numRows = rs.getRow();
         rs.beforeFirst();
         
-        int[] idFac =  new int[numRows];
-        String[] Facult = new String[numRows];
-        
-        model = (DefaultComboBoxModel) _combo.getModel();
-        model.removeAllElements();
-        int con = 0;
-          while (rs.next())
-           {
-              idFac[con]= rs.getInt(1);
-              Facult[con] = rs.getString(2);
-              model.addElement(rs.getString(2));
-              con++;
-           }
-        
-        return new Object[]{model, idFac};
-    }
+        if(numRows > 0){
+            int[] idFacul = new int[numRows];
+           String[] facult = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idFacul[con] = rs.getInt(1);
+                facult[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idFacul,facult};
+        }
+        else{
+            return null;
+        }
+      }
       
        public Object[] llenarCarreras(int _idFac) throws SQLException{
         String query = "SELECT IDCARRERA, IDFACULTAD, CARRERA FROM CARRERA WHERE IDFACULTAD = ?";
