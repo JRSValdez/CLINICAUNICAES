@@ -1,12 +1,26 @@
 package vistas;
 
+import Classes.ConexionDB;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class Consultas_Ahora extends javax.swing.JFrame {
 
     int xx,xy,xs,ys;
-    public Consultas_Ahora() {
+    
+    ConexionDB conn = new ConexionDB();
+      
+    public Consultas_Ahora() throws SQLException {
         initComponents();
+        //CONS_FECHA: DD/MM/YY
+        
+        this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));
+        DefaultTableModel model  = (DefaultTableModel) tbConsultasAhora.getModel();
+        this.tbConsultasAhora.setSelectionForeground(Color.white);
     }
 
  
@@ -23,7 +37,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbConsultas = new javax.swing.JTable();
+        tbConsultasAhora = new javax.swing.JTable();
         btnRegresar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,16 +124,17 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas atendidas Hoy");
 
-        tbConsultas.setModel(new javax.swing.table.DefaultTableModel(
+        tbConsultasAhora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Apellido", "Fecha Nacimiento", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Motivo Consulta"
+                "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
             }
         ));
-        tbConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(tbConsultas);
+        tbConsultasAhora.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbConsultasAhora.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tbConsultasAhora);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -249,7 +264,11 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultas_Ahora().setVisible(true);
+                  try {
+                    new Consultas_Ahora().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_Ahora.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -265,6 +284,6 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
-    private javax.swing.JTable tbConsultas;
+    private javax.swing.JTable tbConsultasAhora;
     // End of variables declaration//GEN-END:variables
 }
