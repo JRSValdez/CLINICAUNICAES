@@ -214,7 +214,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome2ActionPerformed
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
 
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
