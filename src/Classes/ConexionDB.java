@@ -567,7 +567,6 @@ public class ConexionDB {
 
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.removeAllElements();
-        ListaModelo.addElement("Seleccione una opción");
 
         Statement stmt = conn.createStatement();
 
