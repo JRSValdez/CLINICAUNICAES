@@ -29,6 +29,8 @@ public class Paciente {
     public String responsable;
     public String responsable_tel;
     public String responsable_parentesco;
+    public String FechaNac;
+    public int tipoPaciente;
    
     void Paciente(int _idPaciente){
         

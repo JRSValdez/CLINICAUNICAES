@@ -2853,7 +2853,54 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
 
-        // TODO add your handling code here:
+        Paciente pac= new Paciente();
+      //valores estaticos
+pac.documento="002315484-8";
+pac.carne="2015-NB-604";
+pac.nombre ="Nayib";
+pac.apellido="Bukele";
+pac.sexo="M";
+pac.FechaNac="1986-10-23";
+pac.telefono="555-5555";
+pac.celular="72536251";
+pac.direccion="Direccion simulada, San Salvador";
+pac.tipoPaciente=1;
+pac.carrera=Integer.toString(1);
+pac.actividad=Integer.toString(1);
+pac.zona=1;
+pac.departamento=Integer.toString(4);
+pac.caso_emergencia="Juan Perez";
+pac.parentezco=Integer.toString(1);
+      
+/*
+pac.documento=this.txtDocumento.getText();
+pac.carne=this.txtCarnet.getText();
+pac.nombre =this.txtDocumento.getText();
+pac.apellido=this.txtDocumento.getText();
+pac.sexo=this.txtDocumento.getText();
+pac.FechaNac=this.txtDocumento.getText();
+pac.telefono=this.txtTelefono.getText();
+pac.celular=this.txtCelular.getText();
+pac.direccion=this.txtDireccion.getText();
+pac.tipoPaciente=1;
+pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
+pac.actividad=this.cboActAcademico.getSelectedIndex();
+pac.zona="Urbana";
+pac.departamento=Integer.toString(this.cboDepartamento.getSelectedIndex());
+pac.caso_emergencia=this.txtEmergencia.getText();
+pac.parentezco=this.cboParentezco.getSelectedIndex(); */
+
+String resultado="";
+        try {
+            resultado=conn.aggPaciente(pac);
+
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(this,ex.toString());
+        }
+        
+    JOptionPane.showConfirmDialog(this, resultado);
+        
+        
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 
     private void cboFacultadEstudItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadEstudItemStateChanged

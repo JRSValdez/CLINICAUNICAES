@@ -610,4 +610,34 @@ public class ConexionDB {
         return new Object[]{model, idFac};
     }
     
+    public String aggPaciente(Paciente pac) throws SQLException{
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        // Parametros de entrada
+        cst.setString("pdocumento", pac.documento);
+        cst.setInt("ptipoPac", pac.tipoPaciente);
+        cst.setString("pnombre", pac.nombre);
+        cst.setString("papellido", pac.apellido);
+         cst.setString("psexo", pac.sexo);
+         cst.setString("pfecha", pac.FechaNac);
+         cst.setString("ptelefono", pac.telefono);
+         cst.setString("pcelular", pac.celular);
+         cst.setInt("pdepartamento", Integer.parseInt(pac.departamento));
+         cst.setString("pdireccion", pac.direccion);
+         cst.setInt("pzona", pac.zona);
+         cst.setString("pemergencia", pac.caso_emergencia);
+         cst.setString("ptelEmergencia", pac.tel_emergencia);
+         cst.setInt("pparentezco", Integer.parseInt(pac.parentezco));
+         cst.setString("pCarnet", pac.carne);
+         cst.setInt("pcarrera",Integer.parseInt(pac.carrera));
+         
+         
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMsj");
+        
+        return mensaje;
+    }
+    
 }
