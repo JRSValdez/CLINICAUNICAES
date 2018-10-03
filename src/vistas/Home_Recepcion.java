@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 /**
  *
@@ -60,6 +62,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
+        pUpBuscarPaciente = new javax.swing.JPopupMenu();
+        itemApellido = new javax.swing.JMenuItem();
+        itemTelefono = new javax.swing.JMenuItem();
+        itemCarnet = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         SideBar = new javax.swing.JPanel();
         Botonera = new javax.swing.JPanel();
@@ -130,8 +136,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jComboBox12 = new javax.swing.JComboBox<>();
         jPanelExistente = new javax.swing.JPanel();
         lblHeader3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        txtBusquedaExistente = new javax.swing.JTextField();
+        btnBuscarPaciente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbusqueda = new javax.swing.JTable();
         btnAggConsPacExistente = new javax.swing.JLabel();
@@ -260,6 +266,33 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader1 = new javax.swing.JLabel();
         btn_minimize = new javax.swing.JLabel();
         btn_maximize = new javax.swing.JLabel();
+
+        itemApellido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_apellidos.png"))); // NOI18N
+        itemApellido.setText("por Apellidos");
+        itemApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemApellidoActionPerformed(evt);
+            }
+        });
+        pUpBuscarPaciente.add(itemApellido);
+
+        itemTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_telefono.png"))); // NOI18N
+        itemTelefono.setText("por Telefono/Celuclar");
+        itemTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTelefonoActionPerformed(evt);
+            }
+        });
+        pUpBuscarPaciente.add(itemTelefono);
+
+        itemCarnet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_carnet.png"))); // NOI18N
+        itemCarnet.setText("por Carnet/Documento");
+        itemCarnet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCarnetActionPerformed(evt);
+            }
+        });
+        pUpBuscarPaciente.add(itemCarnet);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 700));
@@ -1032,28 +1065,40 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader3.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader3.setText("PACIENTE EXISTENTE");
 
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField1.setText("2015SV601");
+        txtBusquedaExistente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtBusquedaExistente.setText("2015SV601");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarPacienteMouseClicked(evt);
+            }
+        });
 
         jTbusqueda.setBackground(new java.awt.Color(204, 204, 204));
         jTbusqueda.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTbusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"2015SV601", "Estudiante", "José Ricardo Sifontes Valdez", "ING Y ARQ", "Ing. Sistemas", "07-10-1997"}
+
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Facultad", "Carrera", "Fecha Nacimiento"
+                "ID", "Carnet", "Documento", "Actividad", "Nombre", "Carrera", "Fecha Nacimiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jTbusqueda.setGridColor(new java.awt.Color(255, 255, 153));
@@ -1063,6 +1108,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jTbusqueda.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTbusqueda);
         jTbusqueda.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (jTbusqueda.getColumnModel().getColumnCount() > 0) {
+            jTbusqueda.getColumnModel().getColumn(0).setMaxWidth(35);
+        }
 
         btnAggConsPacExistente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnAggConsPacExistente.setForeground(new java.awt.Color(255, 255, 255));
@@ -1089,9 +1137,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBusquedaExistente, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
+                        .addComponent(btnBuscarPaciente)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelExistenteLayout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -1104,9 +1152,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanelExistenteLayout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addGroup(jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBuscarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBusquedaExistente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblHeader3)))
                 .addGap(4, 4, 4)
                 .addGroup(jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2674,10 +2722,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_farmacia.setBackground(Color.black);
         this.btn_sols.setBackground(Color.black);
         
-        
-        
-        
-        
     }//GEN-LAST:event_btn_pacActionPerformed
 
     private void btn_consActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consActionPerformed
@@ -2762,7 +2806,28 @@ public class Home_Recepcion extends javax.swing.JFrame {
     }
     
     private void btnAggConsPacExistenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConsPacExistenteMouseClicked
-        
+        // ////////////// ATENDER CONSULTA SELECCIONADA ////////////////////
+        if (this.jTbusqueda.getSelectedRows().length == 1)
+        {
+            Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea agregar esta consulta?","Advertencia",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                int idPaciente = Integer.parseInt(this.jTbusqueda.getModel().getValueAt(this.jTbusqueda.getSelectedRow(), 0).toString());
+                Consulta consulta;
+                Paciente paciente;
+                try {
+                    int idConsulta = this.conn.aggConsulta(idPaciente, 7, 2);
+                    if(idConsulta > 0){
+                        JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
+                    } else JOptionPane.showMessageDialog(rootPane,"Error");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
+        }
     }//GEN-LAST:event_btnAggConsPacExistenteMouseClicked
 
     private void btnAggConPacNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConPacNuevoMouseClicked
@@ -2788,12 +2853,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
 
-        
-
-
-
-
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 
@@ -2802,42 +2861,69 @@ public class Home_Recepcion extends javax.swing.JFrame {
 //        int idF = this.idFacult[this.cboFacultadEstud.getSelectedIndex()];
 //        this.llenarCarreras(idF);
     }//GEN-LAST:event_cboFacultadEstudItemStateChanged
+
+    private void btnBuscarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarPacienteMouseClicked
+        // mostrar el pop up para ver que tipo de busqueda hará
+        this.pUpBuscarPaciente.show(evt.getComponent(), evt.getX(), evt.getY());
+    }//GEN-LAST:event_btnBuscarPacienteMouseClicked
+
+    private void itemApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemApellidoActionPerformed
+        //Buscar paciente por los apellidos
+        String apellidos = this.txtBusquedaExistente.getText();
+        if(!apellidos.equals("")){
+            try {
+                this.jTbusqueda.setModel(conn.getPacientes(this.jTbusqueda, "Apellido", apellidos));
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_itemApellidoActionPerformed
+
+    private void itemTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTelefonoActionPerformed
+        // Buscar paciente por número de telefono o celular
+        String telefono = this.txtBusquedaExistente.getText();
+        if(!telefono.equals("")){
+            try {
+                this.jTbusqueda.setModel(conn.getPacientes(this.jTbusqueda, "Telefono", telefono));
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_itemTelefonoActionPerformed
+
+    private void itemCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCarnetActionPerformed
+        // Buscar paciente por carner
+        String carnet = this.txtBusquedaExistente.getText();
+        if(!carnet.equals("") && carnet.length() >= 6){
+            try {
+                this.jTbusqueda.setModel(conn.getPacientes(this.jTbusqueda, "Carnet", carnet));
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_itemCarnetActionPerformed
     
     
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
+            UIManager.setLookAndFeel( "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            }
+            catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+            } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Home_Recepcion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+   
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
            public void run() {
@@ -2863,6 +2949,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel btnAggConPacNuevo;
     private javax.swing.JLabel btnAggConsPacExistente;
     private javax.swing.JLabel btnAgregarPaciente;
+    private javax.swing.JLabel btnBuscarPaciente;
     private javax.swing.JLabel btnConsultasEspera;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
@@ -2884,6 +2971,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboFacultadEstud;
     private javax.swing.JComboBox<String> cboParentezco;
     private javax.swing.JPanel header;
+    private javax.swing.JMenuItem itemApellido;
+    private javax.swing.JMenuItem itemCarnet;
+    private javax.swing.JMenuItem itemTelefono;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
@@ -2900,7 +2990,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2953,7 +3042,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JTable jTbusquedaMed;
     private javax.swing.JTable jTbusquedaPaciente;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
@@ -3034,6 +3122,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPac_espera;
     private javax.swing.JLabel lblSol_medicamento;
+    private javax.swing.JPopupMenu pUpBuscarPaciente;
     private javax.swing.JRadioButton rbAcademico;
     private javax.swing.JRadioButton rbProyeccionSocial;
     private javax.swing.JRadioButton rbzonaRur;
@@ -3044,6 +3133,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbMasculino1;
     private javax.swing.JRadioButton tbEstudiante;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtBusquedaExistente;
     private javax.swing.JTextField txtCarnet;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextArea txtDireccion;

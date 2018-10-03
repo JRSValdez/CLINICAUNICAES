@@ -80,6 +80,7 @@ public class ConexionDB {
         {
             paciente.idPaciente = rs.getInt(1);
             paciente.carne = rs.getString(2);
+            paciente.actividad = rs.getString(3);
             paciente.carrera = rs.getString(4);
             paciente.nombre = rs.getString(5);
             paciente.sexo = rs.getString(6);
@@ -88,7 +89,9 @@ public class ConexionDB {
             paciente.edad = rs.getString(9);
             paciente.direccion = rs.getString(10);
             paciente.departamento = rs.getString(11);
-            //faltan mas xD
+            paciente.responsable = rs.getString(12);
+            paciente.responsable_tel = rs.getString(13);
+            paciente.responsable_parentesco = rs.getString(14);
         }
         
         return paciente;
@@ -186,16 +189,42 @@ public class ConexionDB {
         return medicamento;
     }
     
+    public String[] getDashBoardRecepcion(){
+        
+        String queryPacientes = "SELECT COUNT(*) FROM ";
+        
+        return new String[]{};
+    }
+    
     //////////////////////////////////////////////////////////////////
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-    public int aggConsulta(Consulta _consulta){
-        int idConsulta = 0;
-        
+    public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
+     
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
+         CallableStatement cst = this.conn.prepareCall("{call  AGG_CONSULTA(?,?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDUSUARIO", _idUsuario);
+        cst.setInt("pIDPACIENTE", _idPaciente);
+        cst.setInt("pIDDOCTOR", _idDoctor);
         
-        return idConsulta;
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        
+        // Ejecuta el procedimiento almacenado
+        cst.execute();
+        
+        // Se obtienen la salida del procedimineto almacenado
+        String mensaje = cst.getString("MENSAJE");
+        System.out.println(mensaje);
+        if(!mensaje.equals("ERROR")){
+            int idConsulta = Integer.parseInt(mensaje.substring(10,11));
+            return idConsulta;
+        }
+        else{
+            return 0;
+        }
     }
     
     public String aggDetConsulta(Consulta _consulta) throws SQLException{
@@ -267,7 +296,7 @@ public class ConexionDB {
         return mensaje;
     }
     
-    public int aggReceta(int _idConsulta) throws SQLException{
+    private int aggReceta(int _idConsulta) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGG_RECETA(?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _idConsulta);
@@ -283,7 +312,7 @@ public class ConexionDB {
         return idReceta;
     }
     
-    public String aggDetReceta(int _idReceta, String[] _row) throws SQLException{
+    private String aggDetReceta(int _idReceta, String[] _row) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_RECETA(?,?,?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDRECETA", _idReceta);
@@ -301,7 +330,7 @@ public class ConexionDB {
         return "ERROR: " + mensaje;
     }
     
-    public String aggDiagnostico(int _idConsulta, String[] _row) throws SQLException{
+    private String aggDiagnostico(int _idConsulta, String[] _row) throws SQLException{
          CallableStatement cst = this.conn.prepareCall("{call  AGG_DIAGNOSTICO(?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _idConsulta);
@@ -317,7 +346,7 @@ public class ConexionDB {
         return "ERROR: " + mensaje;
     }
     
-    public String aggAntecedente(int _idConsulta, String[] _row) throws SQLException{
+    private String aggAntecedente(int _idConsulta, String[] _row) throws SQLException{
          CallableStatement cst = this.conn.prepareCall("{call  AGG_ANTECEDENTE(?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _idConsulta);
@@ -352,6 +381,57 @@ public class ConexionDB {
     //////////////////////////////////////////////////////////////////////
     //////////////////////////  LLENAR JTABLES, COMBOBOXs ///////////////////////////
     //////////////////////////////////////////////////////////////////////
+    
+    public DefaultTableModel getPacientes(JTable jTable1, String _filtro, String _parametro) throws SQLException{
+        Statement stmt = conn.createStatement();
+        _parametro = _parametro.toUpperCase();
+        String query = "SELECT P.IDPACIENTE, P.PAC_CARNE, P.PAC_DOCUMENTO, TP.TIPOPAC, " +
+                        " P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, C.CARRERA, " +
+                        " TO_CHAR(P.PAC_FECHA_NAC, 'dd-mm-yyyy') " + 
+                    "FROM PACIENTES P " +
+                    " INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                    " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC ";
+        switch(_filtro){
+            case "Apellido":
+                query += " WHERE P.PAC_APELLIDO LIKE ?";
+                break;
+            case "Telefono":
+                query += " WHERE P.PAC_TELEFONO LIKE ? OR P.PAC_CELULAR LIKE ?";
+                break;
+            case "Carnet":
+                query += " WHERE P.PAC_CARNE LIKE ?";
+                break;
+//            case "Fecha":
+//                query += " WHERE P.PAC_FECHA_NAC LIKE ?";
+//                break;
+            default:
+                query += " ";
+                break;
+        }
+        
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,"%"+_parametro+"%");
+        if(_filtro.equals("Telefono")){
+            preparedStatement.setString(2,"%"+_parametro+"%");
+        }
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[8];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<7;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
     
     public DefaultTableModel getConsultasEnEspera( JTable jTable1) throws SQLException{
         DefaultTableModel model;
@@ -483,7 +563,7 @@ public class ConexionDB {
         return ListaModelo;
     }
     
-     public DefaultComboBoxModel Obt_Parentesco() throws SQLException {
+    public DefaultComboBoxModel Obt_Parentesco() throws SQLException {
 
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.removeAllElements();
@@ -503,7 +583,7 @@ public class ConexionDB {
         return ListaModelo;
     }
      
-      public Object[] llenarFacultad(JComboBox _combo) throws SQLException{
+    public Object[] llenarFacultad(JComboBox _combo) throws SQLException{
         DefaultComboBoxModel model;
         
         String query = "SELECT * FROM FACULTAD";

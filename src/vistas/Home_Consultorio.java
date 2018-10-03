@@ -1,9 +1,13 @@
 
 package vistas;
 
+import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -18,15 +22,17 @@ public class Home_Consultorio extends javax.swing.JFrame {
 
     int xx, xy;
     int xs, ys, sbx,sby;
-    public Home_Consultorio() {
+    ConexionDB conn;
+    public Home_Consultorio() throws SQLException {
         initComponents();
-        
+        conn = new ConexionDB();
         //FECHA DEL SISTEMA
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
-        this.jTbusqueda.setSelectionForeground(Color.white);
+        this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
+        this.tbConsultasEspera.setSelectionForeground(Color.white);
         
         xs = this.Contenedor.getWidth();
         ys = this.Contenedor.getHeight();
@@ -73,7 +79,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanelExistente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTbusqueda = new javax.swing.JTable();
+        tbConsultasEspera = new javax.swing.JTable();
         lblHeader2 = new javax.swing.JLabel();
         Tab_Farmacia = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -201,7 +207,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -322,7 +328,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -362,7 +368,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -378,7 +384,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblConsult_espera)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -451,7 +457,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -466,7 +472,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         jLabel7.setText("POSPONER");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -476,7 +482,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel14.setText("Historial");
         jLabel14.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel14.setFocusable(false);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -486,7 +492,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
         jLabel15.setText("ATENDIDAS HOY");
         jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel15.setFocusable(false);
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -496,7 +502,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel8.setText("QUITAR");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -539,33 +545,40 @@ public class Home_Consultorio extends javax.swing.JFrame {
             }
         });
 
-        jTbusqueda.setBackground(new java.awt.Color(204, 204, 204));
-        jTbusqueda.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTbusqueda.setModel(new javax.swing.table.DefaultTableModel(
+        tbConsultasEspera.setBackground(new java.awt.Color(204, 204, 204));
+        tbConsultasEspera.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        tbConsultasEspera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"2015SV601", "Estudiante", "José Ricardo Sifontes Valdez", "ING Y ARQ", "Ing. Sistemas", "07-10-1997"}
+
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Facultad", "Carrera", "Fecha Nacimiento"
+                "ID", "Tipo Paciente", "Paciente", "Edad", "Fecha"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTbusqueda.setGridColor(new java.awt.Color(255, 255, 153));
-        jTbusqueda.setRowHeight(25);
-        jTbusqueda.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTbusqueda.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTbusqueda.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTbusqueda);
-        jTbusqueda.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (jTbusqueda.getColumnModel().getColumnCount() > 0) {
-            jTbusqueda.getColumnModel().getColumn(5).setHeaderValue("Fecha Nacimiento");
+        tbConsultasEspera.setGridColor(new java.awt.Color(255, 255, 153));
+        tbConsultasEspera.setRowHeight(25);
+        tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbConsultasEspera.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(tbConsultasEspera);
+        tbConsultasEspera.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        if (tbConsultasEspera.getColumnModel().getColumnCount() > 0) {
+            tbConsultasEspera.getColumnModel().getColumn(0).setMaxWidth(40);
         }
 
         lblHeader2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -662,18 +675,16 @@ public class Home_Consultorio extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblHeader48)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblHeader47)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(163, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,7 +730,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jTFarmacia.setRowHeight(25);
         jTFarmacia.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jTFarmacia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTFarmacia.setShowHorizontalLines(false);
         jTFarmacia.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTFarmacia);
 
@@ -874,7 +884,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -959,8 +969,17 @@ public class Home_Consultorio extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.decode("#660000"));
         this.btn_home.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
+        actualizarConsultasEspera();
     }//GEN-LAST:event_btn_consActionPerformed
 
+    private void actualizarConsultasEspera() {
+        try {
+            this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void btnHome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome2ActionPerformed
         this.Contenedor.setSelectedIndex(0);
         this.lblHeader.setText("HOME");
@@ -997,12 +1016,27 @@ public class Home_Consultorio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_maximizeMouseClicked
 
     private void btnAtenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderMouseClicked
-        try {
-            Consultorio_Consulta consulta;
-            consulta = new Consultorio_Consulta();
-            consulta.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
+         // ////////////// ATENDER CONSULTA SELECCIONADA ////////////////////
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+             Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea agregar esta consulta?","Advertencia",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
+                try {
+                    Consulta consulta = this.conn.getConsulta(idConsulta);
+                    Paciente paciente = this.conn.getPaciente(consulta.idPaciente);
+                    Consultorio_Consulta form = new Consultorio_Consulta(consulta, paciente);
+                    form.setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_btnAtenderMouseClicked
 
@@ -1033,26 +1067,15 @@ public class Home_Consultorio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Home_Consultorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home_Consultorio().setVisible(true);
+                try {
+                    new Home_Consultorio().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -1102,7 +1125,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTFarmacia;
-    private javax.swing.JTable jTbusqueda;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JLabel lblConsult_espera;
     private javax.swing.JLabel lblFecha;
@@ -1115,5 +1137,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader56;
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPac_atendidos;
+    private javax.swing.JTable tbConsultasEspera;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -7,20 +7,15 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 public class Consultas_En_espera extends javax.swing.JFrame {
 
     int xx,xy,xs,ys;
     ConexionDB conn = new ConexionDB();
     
-    Consulta consulta;
-    Paciente paciente;
-    
     public Consultas_En_espera() throws SQLException {
         initComponents();
         this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
-        DefaultTableModel model  = (DefaultTableModel) tbConsultasEspera.getModel();
         this.tbConsultasEspera.setSelectionForeground(Color.white);
     }
 
@@ -33,7 +28,6 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnPosponer = new javax.swing.JLabel();
         btnQuitar = new javax.swing.JLabel();
-        btnAtender = new javax.swing.JLabel();
         Barra_Superior = new javax.swing.JPanel();
         btnHome2 = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
@@ -73,40 +67,22 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnQuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnQuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btnAtender.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtender.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/atenderConsulta.png"))); // NOI18N
-        btnAtender.setText("ATENDER");
-        btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAtender.setFocusable(false);
-        btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAtenderMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(483, Short.MAX_VALUE)
+                .addContainerGap(469, Short.MAX_VALUE)
                 .addComponent(btnPosponer)
                 .addGap(28, 28, 28)
                 .addComponent(btnQuitar)
-                .addGap(27, 27, 27)
-                .addComponent(btnAtender)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAtender)
                     .addComponent(btnQuitar)
                     .addComponent(btnPosponer))
                 .addGap(15, 15, 15))
@@ -198,10 +174,21 @@ public class Consultas_En_espera extends javax.swing.JFrame {
             new String [] {
                 "ID", "Tipo Paciente", "Paciente", "Edad", "Fecha"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultasEspera);
+        if (tbConsultasEspera.getColumnModel().getColumnCount() > 0) {
+            tbConsultasEspera.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -211,10 +198,10 @@ public class Consultas_En_espera extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 522, Short.MAX_VALUE)
+                        .addGap(0, 472, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addGap(0, 400, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1154, Short.MAX_VALUE))
+                        .addGap(0, 366, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -289,24 +276,6 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
-    private void btnAtenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtenderMouseClicked
-        // ////////////// ATENDER CONSULTA SELECCIONADA ////////////////////
-        if (this.tbConsultasEspera.getSelectedRows().length == 1)
-        {
-            int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
-            try {
-                this.consulta = this.conn.getConsulta(idConsulta);
-                this.paciente = this.conn.getPaciente(consulta.idPaciente);
-                Consultorio_Consulta form = new Consultorio_Consulta(consulta, paciente);
-                form.setVisible(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_btnAtenderMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -351,7 +320,6 @@ public class Consultas_En_espera extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
-    private javax.swing.JLabel btnAtender;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btnPosponer;
     private javax.swing.JLabel btnQuitar;

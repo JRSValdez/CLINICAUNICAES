@@ -25,7 +25,10 @@ public class Paciente {
     public String caso_emergencia;
     public String tel_emergencia;
     public String parentezco;   
-    
+    public String actividad;
+    public String responsable;
+    public String responsable_tel;
+    public String responsable_parentesco;
    
     void Paciente(int _idPaciente){
         
