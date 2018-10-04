@@ -3111,7 +3111,7 @@ if(this.rbAcademico.isSelected()){
 }else{
     pac.tipoPaciente=1;
     pac.carne=this.txtCarnet.getText();
-    pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
+    pac.carreraP=this.idCarrera[this.cboCarreraEstud.getSelectedIndex()];
 }
     
 if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
@@ -3154,13 +3154,14 @@ String resultado="";
             this.txtTelefonoEmerg.setText("");
             this.txtNombre.setText("");
             this.txtnombreEmp.setText("");
+            this.txtTelefono.setText("");
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this,ex.toString());
         }
          
     JOptionPane.showMessageDialog(this, resultado);
 }else {
-  JOptionPane.showMessageDialog(this, "ERROR: Revise los campos");
+  JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
 
 

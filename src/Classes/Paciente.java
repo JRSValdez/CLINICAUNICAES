@@ -31,6 +31,7 @@ public class Paciente {
     public String responsable_parentesco;
     public String FechaNac;
     public int tipoPaciente;
+    public int carreraP;
    
     void Paciente(int _idPaciente){
         
