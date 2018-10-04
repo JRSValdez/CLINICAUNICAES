@@ -46,6 +46,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        
          //Pacientes
         this.llenarFacultad();
         this.llenarFacultadAcademi();
@@ -1647,6 +1652,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rbAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         rbAcademico.setForeground(new java.awt.Color(255, 255, 255));
         rbAcademico.setText("PERSONAL ACADEMICO/ADMINISTRATIVO");
+        rbAcademico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAcademicoMouseClicked(evt);
+            }
+        });
         rbAcademico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbAcademicoActionPerformed(evt);
@@ -1753,6 +1763,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         tbEstudiante.setForeground(new java.awt.Color(255, 255, 255));
         tbEstudiante.setSelected(true);
         tbEstudiante.setText("ESTUDIANTE");
+        tbEstudiante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEstudianteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEstNuevo4Layout = new javax.swing.GroupLayout(jPanelEstNuevo4);
         jPanelEstNuevo4.setLayout(jPanelEstNuevo4Layout);
@@ -1835,6 +1850,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rbProyeccionSocial.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         rbProyeccionSocial.setForeground(new java.awt.Color(255, 255, 255));
         rbProyeccionSocial.setText("PROYECCIÓN SOCIAL");
+        rbProyeccionSocial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbProyeccionSocialMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEstNuevo3Layout = new javax.swing.GroupLayout(jPanelEstNuevo3);
         jPanelEstNuevo3.setLayout(jPanelEstNuevo3Layout);
@@ -3127,6 +3147,37 @@ String resultado="";
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnHistorialConMouseClicked
+
+    private void tbEstudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEstudianteMouseClicked
+        
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        this.txtCarnet.setEnabled(true);
+        this.cboFacultadEs.setEnabled(true);
+        this.cboCarreraEstud.setEnabled(true);
+    }//GEN-LAST:event_tbEstudianteMouseClicked
+
+    private void rbAcademicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAcademicoMouseClicked
+        this.cboActAcademico.setEnabled(true);
+        this.cboFacultadAcadem.setEnabled(true);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        this.txtCarnet.setEnabled(false);
+        this.cboFacultadEs.setEnabled(false);
+        this.cboCarreraEstud.setEnabled(false);
+    }//GEN-LAST:event_rbAcademicoMouseClicked
+
+    private void rbProyeccionSocialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbProyeccionSocialMouseClicked
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(true);
+        this.cboActEmpleado.setEnabled(true);
+        this.txtCarnet.setEnabled(false);
+        this.cboFacultadEs.setEnabled(false);
+        this.cboCarreraEstud.setEnabled(false);
+    }//GEN-LAST:event_rbProyeccionSocialMouseClicked
     
     
     /**

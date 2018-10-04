@@ -2970,6 +2970,7 @@
                         <Property name="text" type="java.lang.String" value="PERSONAL ACADEMICO/ADMINISTRATIVO"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbAcademicoMouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbAcademicoActionPerformed"/>
                       </Events>
                     </Component>
@@ -3182,6 +3183,9 @@
                         <Property name="selected" type="boolean" value="true"/>
                         <Property name="text" type="java.lang.String" value="ESTUDIANTE"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbEstudianteMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3352,6 +3356,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="PROYECCI&#xd3;N SOCIAL"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbProyeccionSocialMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
