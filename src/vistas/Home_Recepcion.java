@@ -4,6 +4,7 @@ package vistas;
 import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Paciente;
+import Classes.Validar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -33,7 +34,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     int [] idFacultAcademic;
     int[] idFacultCon;
     int [] idCarrera;
-    
+    int[] idDepart;
+    int [] idTipoPac;
+    int [] idParentezco;
     
     public Home_Recepcion() throws SQLException {
         initComponents();
@@ -46,17 +49,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
          //Pacientes
         this.llenarFacultad();
         this.llenarFacultadAcademi();
-        this.cboDepartamento.setModel(conn.Obt_Depart());
-        this.cboParentezco.setModel(conn.Obt_Parentesco());
+        this.llenarDepartamento();
+        this.llenarParentezcoPac();
         this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(1));
-        this.cboActAcademico.setModel(conn.Obt_TipoPaciente());
-        this.cboActEmpleado.setModel(conn.Obt_TipoPaciente());
+        this.llenartipoPacAcad();
+        this.llenartipoPacEmp();
         
         //Consultas
-        this.cboDepartamentoConn.setModel(conn.Obt_Depart());
+       this.llenarDepartamentoConn();
         this.llenarFacultadConn();
         this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(1));
-        this.cboParentezcoConn.setModel(conn.Obt_Parentesco());
+        this.llenarParentezcoCons();
         
         
         this.jTbusqueda.setSelectionForeground(Color.white);
@@ -2821,6 +2824,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbzonaUrbActionPerformed
 
+    public void llenartipoPacAcad() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idTipoPac = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActAcademico.setModel(model);
+    }
+    public void llenartipoPacEmp() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idTipoPac = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActEmpleado.setModel(model);
+    }
     public void llenarFacultad() throws SQLException {
         // llenar el combobox de facultad
         Object[] array = this.conn.llenarFacultad();
@@ -2828,6 +2847,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.idFacult = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboFacultadEs.setModel(model);
+    }
+    public void llenarDepartamento() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Depart();
+
+        this.idDepart = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboDepartamento.setModel(model);
+    }
+    public void llenarDepartamentoConn() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Depart();
+
+        this.idDepart = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboDepartamentoConn.setModel(model);
     }
     
          public void llenarFacultadAcademi() throws SQLException {
@@ -2848,6 +2883,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.cboFacultadCo.setModel(model);
     }
     
+      public void llenarParentezcoCons() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Parentesco();
+
+        this.idParentezco = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboParentezcoConn.setModel(model);
+    }
+      public void llenarParentezcoPac() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Parentesco();
+
+        this.idParentezco = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboParentezco.setModel(model);
+    }
    
     public DefaultComboBoxModel llenarComboBoxCarrera(int _idCarr) throws SQLException{
         Object[] arrays = this.conn.llenarCarreras(_idCarr);
@@ -2906,8 +2957,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
 
-        Paciente pac= new Paciente();
-      //valores estaticos
+Paciente pac= new Paciente();
+//valores estaticos
+/*
 pac.documento="002315484-8";
 pac.carne="2015-NB-604";
 pac.nombre ="Nayib";
@@ -2924,10 +2976,13 @@ pac.zona=1;
 pac.departamento=Integer.toString(4);
 pac.caso_emergencia="Juan Perez";
 pac.parentezco=Integer.toString(1);
-      
-/*
+*/
+
+
+if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
+        && !this.txtDireccion.getText().trim().equals("")  ){
+    
 pac.documento=this.txtDocumento.getText();
-pac.carne=this.txtCarnet.getText();
 pac.nombre =this.txtDocumento.getText();
 pac.apellido=this.txtDocumento.getText();
 pac.sexo=this.txtDocumento.getText();
@@ -2935,14 +2990,38 @@ pac.FechaNac=this.txtDocumento.getText();
 pac.telefono=this.txtTelefono.getText();
 pac.celular=this.txtCelular.getText();
 pac.direccion=this.txtDireccion.getText();
-pac.tipoPaciente=1;
-pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
-pac.actividad=this.cboActAcademico.getSelectedIndex();
-pac.zona="Urbana";
-pac.departamento=Integer.toString(this.cboDepartamento.getSelectedIndex());
+pac.departamento=Integer.toString(this.idDepart[this.cboDepartamento.getSelectedIndex()]);
 pac.caso_emergencia=this.txtEmergencia.getText();
-pac.parentezco=this.cboParentezco.getSelectedIndex(); */
+pac.parentezco=Integer.toString(this.idParentezco[this.cboParentezco.getSelectedIndex()]); 
+pac.tel_emergencia=this.txtTelefonoEmerg.getText();
+if(this.rbzonaUrb.isSelected()){
+pac.zona=1;
+}else{
+pac.zona=2;
+}
 
+if(this.rdbFemenino1.isSelected()){
+pac.sexo="F";
+}else{
+pac.sexo="M";
+}
+}else {
+  JOptionPane.showMessageDialog(this, "ERROR: Revise los campos");
+        }
+
+if(this.rbAcademico.isSelected()){
+    pac.tipoPaciente=2;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+}else if(this.rbAcademico.isSelected()){
+    pac.tipoPaciente=3;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+}else{
+    pac.tipoPaciente=1;
+    pac.carne=this.txtCarnet.getText();
+    pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
+}
+    
+/*
 String resultado="";
         try {
             resultado=conn.aggPaciente(pac);
@@ -2950,9 +3029,9 @@ String resultado="";
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this,ex.toString());
         }
-        
-    JOptionPane.showConfirmDialog(this, resultado);
-        
+        */
+    
+    JOptionPane.showMessageDialog(this, pac.departamento);
         
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 

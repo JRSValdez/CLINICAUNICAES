@@ -17,8 +17,9 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     public Consultas_Ahora() throws SQLException {
         initComponents();
         //CONS_FECHA: DD/MM/YY
-        
+        /*
         this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));
+        */
         DefaultTableModel model  = (DefaultTableModel) tbConsultasAhora.getModel();
         this.tbConsultasAhora.setSelectionForeground(Color.white);
     }
