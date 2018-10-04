@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +25,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
     int xx, xy;
     int xs, ys, sbx,sby;
     ConexionDB conn;
+    
+    int[] idCatsMedicamentos;
+    
     public Home_Consultorio() throws SQLException {
         initComponents();
         conn = new ConexionDB();
@@ -38,6 +43,20 @@ public class Home_Consultorio extends javax.swing.JFrame {
         ys = this.Contenedor.getHeight();
         sbx = this.SideBar.getWidth();
         sby = this.SideBar.getHeight();
+        
+        //llenar medicamentos en farmacia
+        try {
+            this.jtMedicamentos.setSelectionForeground(Color.white);
+            this.jtMedicamentos.setModel(this.conn.getMedicamentos(jtMedicamentos));
+            
+            // llenar el combobox de categorias de medicamentos
+            Object[] array = this.conn.llenarCatsMedicamentos((JComboBox) cmbCatMedicamento);
+
+            this.idCatsMedicamentos = (int[]) array[1];
+            this.cmbCatMedicamento.setModel((DefaultComboBoxModel)array[0]);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -83,16 +102,19 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblHeader2 = new javax.swing.JLabel();
         Tab_Farmacia = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        lblHeader48 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jComboBox14 = new javax.swing.JComboBox<>();
-        lblHeader47 = new javax.swing.JLabel();
         lblHeader55 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        lblHeader68 = new javax.swing.JLabel();
+        txtBuscarMedicamento = new javax.swing.JTextField();
+        btnBuscarMedicamento = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblHeader69 = new javax.swing.JLabel();
+        cmbCatMedicamento = new javax.swing.JComboBox<>();
+        btnBuscarCatMedicamento = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         lblHeader56 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTFarmacia = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jtMedicamentos = new javax.swing.JTable();
         Barra_Superior = new javax.swing.JPanel();
         btnHome2 = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
@@ -634,35 +656,113 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(102, 0, 0));
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        lblHeader48.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader48.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader48.setText("MEDICAMENTO:");
-
-        jTextField22.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField22.setText("ACETAMINOFEN");
-        jTextField22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
-        jComboBox14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CATEGORÍA 1", "CATEGORÍA 2", "CATEGORÍA 3" }));
-        jComboBox14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
-        lblHeader47.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader47.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader47.setText("TIPO MEDICAMENTO:");
-
         lblHeader55.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader55.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader55.setText("BUSCAR MEDICAMENTO");
 
-        jLabel16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        jLabel16.setText("Buscar Medicamento");
-        jLabel16.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel16.setFocusable(false);
-        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jPanel4.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 153), 1, true));
+
+        lblHeader68.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader68.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader68.setText("BUSCAR POR NOMBRE MEDICAMENTO:");
+
+        txtBuscarMedicamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtBuscarMedicamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+
+        btnBuscarMedicamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarMedicamento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnBuscarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscarMedicamento.setText("BUSCAR");
+        btnBuscarMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBuscarMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarMedicamento.setFocusable(false);
+        btnBuscarMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBuscarMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscarMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMedicamentoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblHeader68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(152, 152, 152))
+                    .addComponent(txtBuscarMedicamento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscarMedicamento))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnBuscarMedicamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblHeader68)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBuscarMedicamento)))
+                .addGap(4, 4, 4))
+        );
+
+        jPanel5.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 153), 1, true));
+
+        lblHeader69.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader69.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader69.setText("BUSCAR POR CATEGORÍA:");
+
+        cmbCatMedicamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cmbCatMedicamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+
+        btnBuscarCatMedicamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarCatMedicamento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnBuscarCatMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscarCatMedicamento.setText("BUSCAR");
+        btnBuscarCatMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnBuscarCatMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCatMedicamento.setFocusable(false);
+        btnBuscarCatMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBuscarCatMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscarCatMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarCatMedicamentoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(lblHeader69)
+                        .addGap(0, 232, Short.MAX_VALUE))
+                    .addComponent(cmbCatMedicamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBuscarCatMedicamento))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnBuscarCatMedicamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(lblHeader69)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbCatMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -672,33 +772,22 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblHeader55)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lblHeader48)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblHeader47)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(lblHeader55)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader48)
-                    .addComponent(jTextField22)
-                    .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeader47))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel8.setBackground(new java.awt.Color(102, 0, 0));
@@ -708,30 +797,33 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblHeader56.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader56.setText("LISTA DE MEDICAMENTOS");
 
-        jTFarmacia.setBackground(new java.awt.Color(204, 204, 204));
-        jTFarmacia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTFarmacia.setModel(new javax.swing.table.DefaultTableModel(
+        jtMedicamentos.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jtMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"0101", "Acetaminofen", "Tabletas", "10", "XX/XX/XXXX"}
+
             },
             new String [] {
-                "ID", "Medicamento", "Presentacion", "Cantidad", "Vence"
+                "ID", "Categoría", "Medicamento", "Presentación", "Stock", "Fecha de vencimiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTFarmacia.setGridColor(new java.awt.Color(255, 255, 153));
-        jTFarmacia.setRowHeight(25);
-        jTFarmacia.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTFarmacia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTFarmacia.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(jTFarmacia);
+        jtMedicamentos.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jtMedicamentos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane9.setViewportView(jtMedicamentos);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -741,18 +833,18 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 352, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader56)
-                        .addGap(0, 353, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(lblHeader56)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -774,7 +866,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("FARMACIA", Tab_Farmacia);
@@ -1040,6 +1132,26 @@ public class Home_Consultorio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAtenderMouseClicked
 
+    private void btnBuscarMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedicamentoMouseClicked
+        try {
+            String med = this.txtBuscarMedicamento.getText();
+            this.jtMedicamentos.setModel(this.conn.getMedicamentobyNombre(jtMedicamentos, med));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBuscarMedicamentoMouseClicked
+
+    private void btnBuscarCatMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarCatMedicamentoMouseClicked
+        // LLenar el Jtable de medicamentos segun la categoria elegida en el combobox
+        try {
+            int idCat = this.idCatsMedicamentos[this.cmbCatMedicamento.getSelectedIndex()];
+            this.jtMedicamentos.setModel(this.conn.getMedicamentosbyCat(jtMedicamentos, idCat));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnBuscarCatMedicamentoMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -1089,6 +1201,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JPanel Tab_Farmacia;
     private javax.swing.JPanel Tab_home;
     private javax.swing.JLabel btnAtender;
+    private javax.swing.JLabel btnBuscarCatMedicamento;
+    private javax.swing.JLabel btnBuscarMedicamento;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
@@ -1098,12 +1212,11 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minimize;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cmbCatMedicamento;
     private javax.swing.JPanel header;
-    private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1119,25 +1232,27 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelExistente;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTFarmacia;
-    private javax.swing.JTextField jTextField22;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jtMedicamentos;
     private javax.swing.JLabel lblConsult_espera;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblHeader2;
-    private javax.swing.JLabel lblHeader47;
-    private javax.swing.JLabel lblHeader48;
     private javax.swing.JLabel lblHeader55;
     private javax.swing.JLabel lblHeader56;
+    private javax.swing.JLabel lblHeader68;
+    private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPac_atendidos;
     private javax.swing.JTable tbConsultasEspera;
+    private javax.swing.JTextField txtBuscarMedicamento;
     // End of variables declaration//GEN-END:variables
 
 }

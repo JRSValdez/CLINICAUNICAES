@@ -1148,14 +1148,14 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Medicamento", "Presentación", "Stock", "Fecha de vencimiento"
+                "ID", "Categoría", "Medicamento", "Presentación", "Stock", "Fecha de vencimiento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1171,7 +1171,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jScrollPane9.setViewportView(jtMedicamentos);
         if (jtMedicamentos.getColumnModel().getColumnCount() > 0) {
             jtMedicamentos.getColumnModel().getColumn(0).setMaxWidth(40);
-            jtMedicamentos.getColumnModel().getColumn(3).setMaxWidth(50);
+            jtMedicamentos.getColumnModel().getColumn(4).setMaxWidth(50);
         }
 
         btnAddReceta.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1612,7 +1612,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         // LLenar el Jtable de medicamentos segun la categoria elegida en el combobox
         try {
             int idCat = this.idCatsMedicamentos[this.cmbCatMedicamento.getSelectedIndex()];
-            this.jtMedicamentos.setModel(this.conn.getMedicamentos(jtMedicamentos, idCat));
+            this.jtMedicamentos.setModel(this.conn.getMedicamentosbyCat(jtMedicamentos, idCat));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1620,10 +1620,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarCatMedicamentoMouseClicked
 
     private void btnBuscarMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedicamentoMouseClicked
-        // LLenar el Jtable de medicamentos segun el nombre del medicamento
         try {
-            String idMed = this.txtBuscarMedicamento.getText();
-            this.jtMedicamentos.setModel(this.conn.getMedicamento(jtMedicamentos, idMed));
+            String med = this.txtBuscarMedicamento.getText();
+            this.jtMedicamentos.setModel(this.conn.getMedicamentobyNombre(jtMedicamentos, med));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1638,7 +1637,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             {
                 int fila = this.jtMedicamentos.getSelectedRow();
                 String idMed = this.jtMedicamentos.getValueAt(fila, 0).toString();
-                String med = this.jtMedicamentos.getValueAt(fila, 1).toString();
+                String med = this.jtMedicamentos.getValueAt(fila, 2).toString();
 
                 DefaultTableModel modelo = (DefaultTableModel) this.jtReceta.getModel();
                 if (this.verRecetaRep(modelo, idMed) == false){

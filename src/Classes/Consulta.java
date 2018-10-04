@@ -32,7 +32,6 @@ public class Consulta {
     public String pres_art;
     public String recomendaciones;
     
-    private String validacion;
     private Validar val = new Validar();
     
     public String validarConsulta(){
