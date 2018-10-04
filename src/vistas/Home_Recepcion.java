@@ -5,6 +5,7 @@ import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Medicamento;
 import Classes.Paciente;
+import Classes.Validar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -38,6 +39,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     
     int[] idBusquedaPresMed;
     int[] idBusquedaCatsMed;
+    int[] idDepart;
+    int [] idTipoPac;
+    int [] idParentezco;
     
     public Home_Recepcion() throws SQLException {
         initComponents();
@@ -47,20 +51,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
-        //Pacientes
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        
+         //Pacientes
         this.llenarFacultad();
-        this.llenarFacultadAcademic();
-        this.cboDepartamento.setModel(conn.Obt_Depart());
-        this.cboParentezco.setModel(conn.Obt_Parentesco());
-        this.cboCarreraEstud.setModel(this.llenarComboBoxsCarrera(3));
-        this.cboActAcademico.setModel(conn.Obt_TipoPac());
-        this.cboActEmpleado.setModel(conn.Obt_TipoPac());
+        this.llenarFacultadAcademi();
+        this.llenarDepartamento();
+        this.llenarParentezcoPac();
+        this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(1));
+        this.llenartipoPacAcad();
+        this.llenartipoPacEmp();
         
         //Consultas
-        this.cboDepartamentoCon.setModel(conn.Obt_Depart());
-        this.llenarFacultadCon();
-        this.cboCarreraCon.setModel(this.llenarComboBoxsCarrera(3));
-        this.cboParentezcoCon.setModel(conn.Obt_Parentesco());
+       this.llenarDepartamentoConn();
+        this.llenarFacultadConn();
+        this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(1));
+        this.llenarParentezcoCons();
         
             
         
@@ -157,11 +166,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader42 = new javax.swing.JLabel();
         jTextField21 = new javax.swing.JTextField();
         lblHeader43 = new javax.swing.JLabel();
-        cboParentezcoCon = new javax.swing.JComboBox<>();
+        cboParentezcoConn = new javax.swing.JComboBox<>();
         lblHeader54 = new javax.swing.JLabel();
-        cboDepartamentoCon = new javax.swing.JComboBox<>();
+        cboDepartamentoConn = new javax.swing.JComboBox<>();
         lblHeader53 = new javax.swing.JLabel();
-        cboFacultadCon = new javax.swing.JComboBox<>();
+        cboFacultadCo = new javax.swing.JComboBox<>();
         lblHeader57 = new javax.swing.JLabel();
         cboCarreraCon = new javax.swing.JComboBox<>();
         jPanelExistente = new javax.swing.JPanel();
@@ -173,8 +182,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConsPacExistente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnConsultasEspera = new javax.swing.JLabel();
-        btnAtendidas = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnHistorialCon = new javax.swing.JLabel();
+        btnConsultasAten = new javax.swing.JLabel();
         lblHeader2 = new javax.swing.JLabel();
         Tab_Pac = new javax.swing.JPanel();
         lblHeader14 = new javax.swing.JLabel();
@@ -449,7 +458,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -485,7 +494,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -580,7 +589,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 7, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -592,7 +601,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(lblSol_medicamento)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -623,7 +632,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -663,7 +672,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -979,28 +988,28 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader43.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader43.setText("PARENTEZCO:");
 
-        cboParentezcoCon.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboParentezcoCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
-        cboParentezcoCon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboParentezcoConn.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboParentezcoConn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
+        cboParentezcoConn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader54.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader54.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader54.setText("DEPARTAMENTO:");
 
-        cboDepartamentoCon.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboDepartamentoCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
-        cboDepartamentoCon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboDepartamentoConn.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboDepartamentoConn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
+        cboDepartamentoConn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader53.setText("FACULTAD:");
 
-        cboFacultadCon.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboFacultadCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        cboFacultadCon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-        cboFacultadCon.addItemListener(new java.awt.event.ItemListener() {
+        cboFacultadCo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultadCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
+        cboFacultadCo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadCo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboFacultadConItemStateChanged(evt);
+                cboFacultadCoItemStateChanged(evt);
             }
         });
 
@@ -1017,7 +1026,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel34Layout.setHorizontalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1028,7 +1037,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addComponent(lblHeader43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cboParentezcoCon, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboParentezcoConn, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel34Layout.createSequentialGroup()
                             .addComponent(lblHeader42, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -1043,7 +1052,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                                 .addComponent(jRadioButton1)
                                 .addGap(79, 79, 79)
                                 .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(cboDepartamentoCon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDepartamentoConn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1052,11 +1061,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(cboFacultadCon, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cboFacultadCo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cboCarreraCon, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1064,7 +1073,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader54)
-                    .addComponent(cboDepartamentoCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboDepartamentoConn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader38)
@@ -1076,7 +1085,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader53)
-                    .addComponent(cboFacultadCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultadCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboCarreraCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1091,7 +1100,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(jTextField21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboParentezcoCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboParentezcoConn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader43))
                 .addContainerGap())
         );
@@ -1110,7 +1119,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1252,51 +1261,56 @@ public class Home_Recepcion extends javax.swing.JFrame {
             }
         });
 
-        btnAtendidas.setForeground(new java.awt.Color(255, 255, 255));
-        btnAtendidas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnAtendidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
-        btnAtendidas.setText("ATENDIDAS HOY");
-        btnAtendidas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtendidas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAtendidas.setFocusable(false);
-        btnAtendidas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAtendidas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAtendidas.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnHistorialCon.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialCon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnHistorialCon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        btnHistorialCon.setText("HISTORIAL");
+        btnHistorialCon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialCon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHistorialCon.setFocusable(false);
+        btnHistorialCon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHistorialCon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialCon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAtendidasMouseClicked(evt);
+                btnHistorialConMouseClicked(evt);
             }
         });
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        jLabel8.setText("HISTORIAL");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel8.setFocusable(false);
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultasAten.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConsultasAten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
+        btnConsultasAten.setText("ATENDIDAS HOY");
+        btnConsultasAten.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultasAten.setFocusable(false);
+        btnConsultasAten.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultasAten.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultasAtenMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(350, Short.MAX_VALUE)
                 .addComponent(btnConsultasEspera)
-                .addGap(40, 40, 40)
-                .addComponent(btnAtendidas)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(btnConsultasAten)
+                .addGap(31, 31, 31)
+                .addComponent(btnHistorialCon)
+                .addContainerGap(350, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAtendidas)
-                    .addComponent(jLabel8)
+                    .addComponent(btnConsultasAten)
+                    .addComponent(btnHistorialCon)
                     .addComponent(btnConsultasEspera))
                 .addContainerGap())
         );
@@ -1356,7 +1370,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader58.setText("DOCUMENTO:");
 
         txtDocumento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtDocumento.setText("XXXXXXXXXXXXX");
+        txtDocumento.setToolTipText("ingrese DUi o NIT");
         txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1364,7 +1378,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader23.setText("NOMBRES:");
 
         txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtNombre.setText("NOMBRE NOMBRE");
+        txtNombre.setToolTipText("");
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader28.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1372,7 +1386,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader28.setText("APELLIDOS:");
 
         txtApellido.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtApellido.setText("APELLIDO APELLIDO");
         txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader59.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1397,7 +1410,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader60.setText("TELÉFONO:");
 
         txtTelefono.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtTelefono.setText("XXXX - XXXX");
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader61.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1405,7 +1417,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader61.setText("CELULAR:");
 
         txtCelular.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCelular.setText("XXXX - XXXX");
         txtCelular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1413,7 +1424,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader62.setText("FECHA NACIMIENTO:");
 
         txtFechaNac.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFechaNac.setText("XX/XX/XXXX");
         txtFechaNac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
@@ -1519,7 +1529,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader64.setText("CASO EMERGENCIA:");
 
         txtEmergencia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtEmergencia.setText("NOMBRES APELLIDOS");
         txtEmergencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader65.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1527,7 +1536,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader65.setText("TELÉFONO:");
 
         txtTelefonoEmerg.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtTelefonoEmerg.setText("XXXX - XXXX");
         txtTelefonoEmerg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader66.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1617,9 +1625,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1691,6 +1699,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rbAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         rbAcademico.setForeground(new java.awt.Color(255, 255, 255));
         rbAcademico.setText("PERSONAL ACADEMICO/ADMINISTRATIVO");
+        rbAcademico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAcademicoMouseClicked(evt);
+            }
+        });
         rbAcademico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbAcademicoActionPerformed(evt);
@@ -1741,7 +1754,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader34.setText("CARNET:");
 
         txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnet.setText("CARNET");
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         cboCarreraEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
@@ -1749,7 +1761,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         cboCarreraEstud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         cboFacultadEs.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboFacultadEs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
+        cboFacultadEs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria y Arquitectura" }));
         cboFacultadEs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
         cboFacultadEs.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1769,9 +1781,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(lblHeader32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboCarreraEstud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cboCarreraEstud, 0, 187, Short.MAX_VALUE)
                     .addComponent(txtCarnet)
-                    .addComponent(cboFacultadEs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(cboFacultadEs, 0, 187, Short.MAX_VALUE)))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1797,6 +1809,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         tbEstudiante.setForeground(new java.awt.Color(255, 255, 255));
         tbEstudiante.setSelected(true);
         tbEstudiante.setText("ESTUDIANTE");
+        tbEstudiante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEstudianteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEstNuevo4Layout = new javax.swing.GroupLayout(jPanelEstNuevo4);
         jPanelEstNuevo4.setLayout(jPanelEstNuevo4Layout);
@@ -1838,7 +1855,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader29.setText("EMPLEADO:");
 
         txtnombreEmp.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtnombreEmp.setText("Nombre Apellido");
         txtnombreEmp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         cboActEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1879,6 +1895,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rbProyeccionSocial.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         rbProyeccionSocial.setForeground(new java.awt.Color(255, 255, 255));
         rbProyeccionSocial.setText("PROYECCIÓN SOCIAL");
+        rbProyeccionSocial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbProyeccionSocialMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEstNuevo3Layout = new javax.swing.GroupLayout(jPanelEstNuevo3);
         jPanelEstNuevo3.setLayout(jPanelEstNuevo3Layout);
@@ -2749,7 +2770,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -2935,22 +2956,45 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbzonaUrbActionPerformed
 
+    public void llenartipoPacAcad() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idTipoPac = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActAcademico.setModel(model);
+    }
+    public void llenartipoPacEmp() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idTipoPac = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActEmpleado.setModel(model);
+    }
     public void llenarFacultad() throws SQLException {
         // llenar el combobox de facultad
         Object[] array = this.conn.llenarFacultad();
 
         this.idFacult = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboFacultadEs.setModel(model);
     }
-    
-     public void llenarFacultadAcademic() throws SQLException {
+    public void llenarDepartamento() throws SQLException {
         // llenar el combobox de facultad
-        Object[] array = this.conn.llenarFacultad();
+        Object[] array = this.conn.Obt_Depart();
 
-        this.idFacultAcademic = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
-        this.cboFacultadAcadem.setModel(model);
+        this.idDepart = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboDepartamento.setModel(model);
+    }
+    public void llenarDepartamentoConn() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Depart();
+
+        this.idDepart = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboDepartamentoConn.setModel(model);
     }
      
       public void llenarFacultadCon() throws SQLException {
@@ -2962,7 +3006,42 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.cboFacultadCon.setModel(model);
     } 
     
-     public DefaultComboBoxModel llenarComboBoxsCarrera(int _idCarr) throws SQLException{
+         public void llenarFacultadAcademi() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacultAcademic = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
+        this.cboFacultadAcadem.setModel(model);
+    }
+     
+      public void llenarFacultadConn() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacultCon = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
+        this.cboFacultadCo.setModel(model);
+    }
+    
+      public void llenarParentezcoCons() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Parentesco();
+
+        this.idParentezco = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboParentezcoConn.setModel(model);
+    }
+      public void llenarParentezcoPac() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Parentesco();
+
+        this.idParentezco = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboParentezco.setModel(model);
+    }
+   
+    public DefaultComboBoxModel llenarComboBoxCarrera(int _idCarr) throws SQLException{
         Object[] arrays = this.conn.llenarCarreras(_idCarr);
      
         this.idCarrera = (int[]) arrays[0];
@@ -3019,7 +3098,75 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
 
-        // TODO add your handling code here:
+Paciente pac= new Paciente();
+
+if(this.rbAcademico.isSelected()){
+    pac.tipoPaciente=2;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.carne="";
+}else if(this.rbProyeccionSocial.isSelected()){
+    pac.tipoPaciente=3;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.carne="";
+}else{
+    pac.tipoPaciente=1;
+    pac.carne=this.txtCarnet.getText();
+    pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
+}
+    
+if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
+        && !this.txtDireccion.getText().trim().equals("")  ){
+    
+pac.documento=this.txtDocumento.getText();
+pac.nombre =this.txtNombre.getText();
+pac.apellido=this.txtApellido.getText();
+pac.FechaNac=this.txtFechaNac.getText();
+pac.telefono=this.txtTelefono.getText();
+pac.celular=this.txtCelular.getText();
+pac.direccion=this.txtDireccion.getText();
+pac.departamento=Integer.toString(this.idDepart[this.cboDepartamento.getSelectedIndex()]);
+pac.caso_emergencia=this.txtEmergencia.getText();
+pac.parentezco=Integer.toString(this.idParentezco[this.cboParentezco.getSelectedIndex()]); 
+pac.tel_emergencia=this.txtTelefonoEmerg.getText();
+if(this.rbzonaUrb.isSelected()){
+pac.zona=1;
+}else{
+pac.zona=2;
+}
+
+if(this.rdbFemenino1.isSelected()){
+pac.sexo="F";
+}else{
+pac.sexo="M";
+}
+
+String resultado="";
+        try {
+            resultado=conn.aggPaciente(pac);
+
+            this.txtCarnet.setText("");
+            this.txtApellido.setText("");
+            this.txtCelular.setText("");
+            this.txtDireccion.setText("");
+            this.txtDocumento.setText("");
+            this.txtEmergencia.setText("");
+            this.txtFechaNac.setText("");
+            this.txtTelefonoEmerg.setText("");
+            this.txtNombre.setText("");
+            this.txtnombreEmp.setText("");
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(this,ex.toString());
+        }
+         
+    JOptionPane.showMessageDialog(this, resultado);
+}else {
+  JOptionPane.showMessageDialog(this, "ERROR: Revise los campos");
+        }
+
+
+     
+   
+        
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 
 
@@ -3068,32 +3215,33 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_ItemCarnetActionPerformed
+    }//GEN-LAST:event_itemCarnetActionPerformed
 
     private void cboFacultadEsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadEsItemStateChanged
         
         try {
 
             int idFac = this.idFacult[this.cboFacultadEs.getSelectedIndex()];
-            this.cboCarreraEstud.setModel(this.llenarComboBoxsCarrera(idFac));
+            this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(idFac));
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_cboFacultadEsItemStateChanged
 
-    private void cboFacultadConItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadConItemStateChanged
+    private void cboFacultadCoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadCoItemStateChanged
         
         try {
 
-            int idFac = this.idFacultCon[this.cboFacultadCon.getSelectedIndex()];
-            this.cboCarreraCon.setModel(this.llenarComboBoxsCarrera(idFac));
+            int idFac = this.idFacultCon[this.cboFacultadCo.getSelectedIndex()];
+            this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(idFac));
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_cboFacultadConItemStateChanged
+    }//GEN-LAST:event_cboFacultadCoItemStateChanged
 
-    private void btnAtendidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtendidasMouseClicked
-        
+    private void btnConsultasAtenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasAtenMouseClicked
+      
         Consultas_Ahora c;
         try {
             c = new Consultas_Ahora();
@@ -3101,84 +3249,51 @@ public class Home_Recepcion extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_btnConsultasAtenMouseClicked
+
+    private void btnHistorialConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialConMouseClicked
         
+      
+         Consultas_Historial h;
+        try {
+            h = new Consultas_Historial();
+            h.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHistorialConMouseClicked
+
+    private void tbEstudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEstudianteMouseClicked
         
-    }//GEN-LAST:event_btnAtendidasMouseClicked
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        this.txtCarnet.setEnabled(true);
+        this.cboFacultadEs.setEnabled(true);
+        this.cboCarreraEstud.setEnabled(true);
+    }//GEN-LAST:event_tbEstudianteMouseClicked
 
-    private void btnAggMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggMedicamentoMouseClicked
-        //Agregar un nuevo medicamento
-        try {
-            Medicamento med = new Medicamento();
-            med.medicamento = this.txtNombreMedicmento.getText();
-            med.cantidad = Integer.parseInt(this.txtCantMedicamento.getText());
-            med.idPresentacion = this.idPresentacion[this.cboPresentacionMed.getSelectedIndex()];
-            med.idUnidad = this.idUnidadesMed[this.cboUnidadesMed.getSelectedIndex()];
-            med.idTipoMed = this.idCatsMed[this.cboCategoriaMed.getSelectedIndex()];
-            med.fechaV = this.txtFechaV.getText();
-            
-            String validacion = med.validarMedicamento();
-            if(validacion.equals("")){
-                
-                String mensaje = this.conn.aggMedicamento(med);
-                JOptionPane.showMessageDialog(rootPane, mensaje);
-                this.llenarMedicamentosFarmacia();
-            } else {
-                //error de validación
-                JOptionPane.showMessageDialog(rootPane, validacion);
-                System.out.println(validacion);
-            }
-        } catch (SQLException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.toString());
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_btnAggMedicamentoMouseClicked
+    private void rbAcademicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAcademicoMouseClicked
+        this.cboActAcademico.setEnabled(true);
+        this.cboFacultadAcadem.setEnabled(true);
+        this.txtnombreEmp.setEnabled(false);
+        this.cboActEmpleado.setEnabled(false);
+        this.txtCarnet.setEnabled(false);
+        this.cboFacultadEs.setEnabled(false);
+        this.cboCarreraEstud.setEnabled(false);
+    }//GEN-LAST:event_rbAcademicoMouseClicked
 
-    private void btnBuscarMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedMouseClicked
-        //Buscar medicamento pestaña farmacia
-        this.pUpBuscarMedicamento.show(evt.getComponent(), evt.getX(), evt.getY());
-    }//GEN-LAST:event_btnBuscarMedMouseClicked
-
-    private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
-        // Buscar medicamento por nombre
-        try {
-            String nombre = this.txtBuscarNombreMed.getText();
-            this.jTFarmacia.setModel(this.conn.getMedicamentobyNombre(jTFarmacia, nombre));
-        } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_itemNombreMedActionPerformed
-
-    private void itemFechaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFechaVActionPerformed
-        // Buscar medicamento po fecha de vencimiento
-        try {
-            String fecha = this.txtBuscarFechaV.getText();
-            this.jTFarmacia.setModel(this.conn.getMedicamentosbyFechaV(jTFarmacia, fecha));
-        } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_itemFechaVActionPerformed
-
-    private void itemCatMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCatMedActionPerformed
-        // Buscar medicamento por categoría
-        try {
-            int idCat = this.idBusquedaCatsMed[this.cboBuscarCatMed.getSelectedIndex()];
-            this.jTFarmacia.setModel(this.conn.getMedicamentosbyCat(jTFarmacia, idCat));
-        } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_itemCatMedActionPerformed
-
-    private void itemPresMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPresMedActionPerformed
-        // Buscar medicamento por presentación
-        try {
-            int idPres = this.idBusquedaPresMed[this.cboBuscarPresentacionMed.getSelectedIndex()];
-            this.jTFarmacia.setModel(this.conn.getMedicamentosbyCat(jTFarmacia, idPres));
-        } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_itemPresMedActionPerformed
-  
+    private void rbProyeccionSocialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbProyeccionSocialMouseClicked
+        this.cboActAcademico.setEnabled(false);
+        this.cboFacultadAcadem.setEnabled(false);
+        this.txtnombreEmp.setEnabled(true);
+        this.cboActEmpleado.setEnabled(true);
+        this.txtCarnet.setEnabled(false);
+        this.cboFacultadEs.setEnabled(false);
+        this.cboCarreraEstud.setEnabled(false);
+    }//GEN-LAST:event_rbProyeccionSocialMouseClicked
+    
     
     /**
      * @param args the command line arguments
@@ -3230,7 +3345,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel btnAtendidas;
     private javax.swing.JLabel btnBuscarMed;
     private javax.swing.JLabel btnBuscarPaciente;
+    private javax.swing.JLabel btnConsultasAten;
     private javax.swing.JLabel btnConsultasEspera;
+    private javax.swing.JLabel btnHistorialCon;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
@@ -3245,20 +3362,16 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cboActAcademico;
     private javax.swing.JComboBox<String> cboActEmpleado;
-    private javax.swing.JComboBox<String> cboBuscarCatMed;
-    private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCarreraCon;
     private javax.swing.JComboBox<String> cboCarreraEstud;
     private javax.swing.JComboBox<String> cboCategoriaMed;
     private javax.swing.JComboBox<String> cboDepartamento;
-    private javax.swing.JComboBox<String> cboDepartamentoCon;
+    private javax.swing.JComboBox<String> cboDepartamentoConn;
     private javax.swing.JComboBox<String> cboFacultadAcadem;
-    private javax.swing.JComboBox<String> cboFacultadCon;
+    private javax.swing.JComboBox<String> cboFacultadCo;
     private javax.swing.JComboBox<String> cboFacultadEs;
     private javax.swing.JComboBox<String> cboParentezco;
-    private javax.swing.JComboBox<String> cboParentezcoCon;
-    private javax.swing.JComboBox<String> cboPresentacionMed;
-    private javax.swing.JComboBox<String> cboUnidadesMed;
+    private javax.swing.JComboBox<String> cboParentezcoConn;
     private javax.swing.JPanel header;
     private javax.swing.JMenuItem itemApellidos;
     private javax.swing.JMenuItem itemCatMed;
@@ -3266,6 +3379,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
     private javax.swing.JMenuItem itemTelefono;
+    private javax.swing.JComboBox<String> jComboBox13;
+    private javax.swing.JComboBox<String> jComboBox14;
+    private javax.swing.JComboBox<String> jComboBox18;
+    private javax.swing.JComboBox<String> jComboBox19;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -3283,7 +3400,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

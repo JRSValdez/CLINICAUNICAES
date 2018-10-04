@@ -1,5 +1,11 @@
 package vistas;
 
+import Classes.ConexionDB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+
 
 
 
@@ -7,8 +13,21 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
    int xx,xy;
    int xs, ys, sbx,sby;
-    public Consultas_Historial() {
+   
+    int[] idFacult;
+    int[] idCarrera;
+    int[] idAct;
+
+   ConexionDB conn = new ConexionDB();
+   
+    public Consultas_Historial() throws SQLException {
         initComponents();
+        
+        this.llenarFacultad(); 
+        this.llenarActividad();
+        this.cboCarrera.setModel(this.llenarComboBoxCarrera(1));
+        
+        
     }
 
 
@@ -16,6 +35,15 @@ public class Consultas_Historial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        opcNombre = new javax.swing.JMenuItem();
+        opcApellido = new javax.swing.JMenuItem();
+        opcCarnet = new javax.swing.JMenuItem();
+        opcFechaCon = new javax.swing.JMenuItem();
+        opcEdad = new javax.swing.JMenuItem();
+        opcActividad = new javax.swing.JMenuItem();
+        opcFacultad = new javax.swing.JMenuItem();
+        opcCarrera = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         Barra_Superior2 = new javax.swing.JPanel();
         btnHome4 = new javax.swing.JButton();
@@ -29,11 +57,9 @@ public class Consultas_Historial extends javax.swing.JFrame {
         lblHeader49 = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
         lblHeader50 = new javax.swing.JLabel();
-        txtCarnet = new javax.swing.JTextField();
         lblHeader51 = new javax.swing.JLabel();
         cboCarrera = new javax.swing.JComboBox<>();
         lblHeader52 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
         lblHeader53 = new javax.swing.JLabel();
         txtEdad = new javax.swing.JTextField();
         lblHeader54 = new javax.swing.JLabel();
@@ -41,11 +67,85 @@ public class Consultas_Historial extends javax.swing.JFrame {
         lblHeader25 = new javax.swing.JLabel();
         cboActividad = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JLabel();
+        txtCarnet = new javax.swing.JFormattedTextField();
+        txtFecha = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConsultas = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         btnAtras = new javax.swing.JLabel();
+
+        opcNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_apellidos.png"))); // NOI18N
+        opcNombre.setText("Nombre");
+        opcNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcNombreActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcNombre);
+
+        opcApellido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_apellidos.png"))); // NOI18N
+        opcApellido.setText("Apellido");
+        opcApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcApellidoActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcApellido);
+
+        opcCarnet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_carnet.png"))); // NOI18N
+        opcCarnet.setText("Carnet");
+        opcCarnet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcCarnetActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcCarnet);
+
+        opcFechaCon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_fecha.png"))); // NOI18N
+        opcFechaCon.setText("Fecha Consulta");
+        opcFechaCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcFechaConActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcFechaCon);
+
+        opcEdad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PopUp_edad.png"))); // NOI18N
+        opcEdad.setText("Edad");
+        opcEdad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcEdadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcEdad);
+
+        opcActividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_tipo.png"))); // NOI18N
+        opcActividad.setText("Actividad");
+        opcActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcActividadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcActividad);
+
+        opcFacultad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_Carrera.png"))); // NOI18N
+        opcFacultad.setText("Facultad");
+        opcFacultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcFacultadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcFacultad);
+
+        opcCarrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_Carrera.png"))); // NOI18N
+        opcCarrera.setText("Carrera");
+        opcCarrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcCarreraActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(opcCarrera);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,9 +244,6 @@ public class Consultas_Historial extends javax.swing.JFrame {
         lblHeader50.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader50.setText("CARNET:");
 
-        txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         lblHeader51.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader51.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader51.setText("CARRERA:");
@@ -157,10 +254,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
         lblHeader52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader52.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader52.setText("FECHA:");
-
-        txtFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        lblHeader52.setText("FECHA CONSULTA:");
 
         lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
@@ -176,6 +270,11 @@ public class Consultas_Historial extends javax.swing.JFrame {
         cboFacultad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         cboFacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
         cboFacultad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboFacultadItemStateChanged(evt);
+            }
+        });
 
         lblHeader25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader25.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,6 +292,25 @@ public class Consultas_Historial extends javax.swing.JFrame {
         btnBuscar.setFocusable(false);
         btnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
+
+        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtCarnet.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-AA-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,25 +325,22 @@ public class Consultas_Historial extends javax.swing.JFrame {
                             .addComponent(lblHeader49, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblHeader48, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtApellido)
+                            .addComponent(txtNombre)
+                            .addComponent(txtCarnet, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblHeader53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblHeader52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblHeader25))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblHeader25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblHeader53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHeader52, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                                    .addComponent(txtEdad))
+                                    .addComponent(txtEdad)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblHeader51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -237,13 +352,16 @@ public class Consultas_Historial extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addComponent(cboCarrera, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscar)))
-                        .addContainerGap(31, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                                .addComponent(btnBuscar)
+                                .addGap(149, 149, 149))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(0, 795, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,11 +370,12 @@ public class Consultas_Historial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader52)
-                            .addComponent(txtFecha)
-                            .addComponent(lblHeader54)
-                            .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblHeader52)
+                                .addComponent(lblHeader54)
+                                .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,7 +384,12 @@ public class Consultas_Historial extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblHeader53)
                                 .addComponent(txtEdad)))
-                        .addGap(56, 56, 56))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(cboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27))
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader48)
@@ -276,15 +400,10 @@ public class Consultas_Historial extends javax.swing.JFrame {
                             .addComponent(txtApellido))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblHeader25)
-                                .addComponent(cboActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblHeader50))
-                        .addContainerGap())
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblHeader25)
+                            .addComponent(lblHeader50)
+                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
@@ -295,7 +414,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Apellido", "Fecha Nacimiento", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Motivo Consulta"
+                "Carnet", "Actividad", "Nombre", "Apellido", "Edad", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Doctor", "Motivo Consulta"
             }
         ));
         tbConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -336,15 +455,14 @@ public class Consultas_Historial extends javax.swing.JFrame {
                         .addComponent(btnAtras)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(32, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +483,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1174, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,6 +517,141 @@ public class Consultas_Historial extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_Superior2MouseReleased
 
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+       this.jPopupMenu1.show(evt.getComponent(), evt.getX(), evt.getY()); 
+       
+       
+        
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
+    public void llenarFacultad() throws SQLException {
+
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacult = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboFacultad.setModel(model);
+    }
+    
+     public void llenarActividad() throws SQLException {
+
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idAct = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActividad.setModel(model);
+    }
+    
+    public DefaultComboBoxModel llenarComboBoxCarrera(int _idCarr) throws SQLException{
+        Object[] arrays = this.conn.llenarCarreras(_idCarr);
+     
+        this.idCarrera = (int[]) arrays[0];
+        
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[2] );
+        return model;
+    }
+    
+    
+    
+    private void opcCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcCarnetActionPerformed
+     
+        
+         try {
+            String carnet = this.txtCarnet.getText().toUpperCase();
+            this.tbConsultas.setModel(this.conn.getHistorialConCarnet(tbConsultas, carnet));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_opcCarnetActionPerformed
+
+    private void cboFacultadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadItemStateChanged
+        
+        try {
+
+            int idFac = this.idFacult[this.cboFacultad.getSelectedIndex()];
+            this.cboCarrera.setModel(this.llenarComboBoxCarrera(idFac));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cboFacultadItemStateChanged
+
+    private void opcCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcCarreraActionPerformed
+      
+        try {
+
+            int idCar = this.idCarrera[this.cboCarrera.getSelectedIndex()];
+        this.tbConsultas.setModel(this.conn.getHistorialConCarrera(tbConsultas, idCar));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_opcCarreraActionPerformed
+
+    private void opcFacultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcFacultadActionPerformed
+       
+        try {
+            int idFa = this.idFacult[this.cboFacultad.getSelectedIndex()];
+            this.tbConsultas.setModel(this.conn.getHistorialConFacult(tbConsultas, idFa));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_opcFacultadActionPerformed
+
+    private void opcActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcActividadActionPerformed
+        
+         
+        try {
+            int idA = this.idAct[this.cboActividad.getSelectedIndex()];
+            this.tbConsultas.setModel(this.conn.getHistorialConActividad(tbConsultas, idA));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_opcActividadActionPerformed
+
+    private void opcNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcNombreActionPerformed
+        
+         try {
+            String nombre = this.txtNombre.getText().toUpperCase();
+            this.tbConsultas.setModel(this.conn.getHistorialConNombre(tbConsultas, nombre));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_opcNombreActionPerformed
+
+    private void opcApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcApellidoActionPerformed
+       
+        try {
+            String apellido = this.txtApellido.getText().toUpperCase();
+            this.tbConsultas.setModel(this.conn.getHistorialConApellido(tbConsultas, apellido));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_opcApellidoActionPerformed
+
+    private void opcFechaConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcFechaConActionPerformed
+        
+        try {
+            String fecha = this.txtFecha.getText();
+            this.tbConsultas.setModel(this.conn.getHistorialConFecha(tbConsultas, fecha));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_opcFechaConActionPerformed
+
+    private void opcEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcEdadActionPerformed
+        
+        //pendiente
+        try {
+            String edad = this.txtEdad.getText();
+            this.tbConsultas.setModel(this.conn.getHistorialConEdad(tbConsultas, edad));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_opcEdadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -430,7 +683,11 @@ public class Consultas_Historial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultas_Historial().setVisible(true);
+                 try {
+                    new Consultas_Historial().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -449,6 +706,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeader25;
     private javax.swing.JLabel lblHeader4;
@@ -460,11 +718,19 @@ public class Consultas_Historial extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader52;
     private javax.swing.JLabel lblHeader53;
     private javax.swing.JLabel lblHeader54;
+    private javax.swing.JMenuItem opcActividad;
+    private javax.swing.JMenuItem opcApellido;
+    private javax.swing.JMenuItem opcCarnet;
+    private javax.swing.JMenuItem opcCarrera;
+    private javax.swing.JMenuItem opcEdad;
+    private javax.swing.JMenuItem opcFacultad;
+    private javax.swing.JMenuItem opcFechaCon;
+    private javax.swing.JMenuItem opcNombre;
     private javax.swing.JTable tbConsultas;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCarnet;
+    private javax.swing.JFormattedTextField txtCarnet;
     private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtFecha;
+    private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

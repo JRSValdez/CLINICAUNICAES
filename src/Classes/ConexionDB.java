@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica","unicaes");
+            conn= DriverManager.getConnection(url,"clinica1","master");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -740,34 +740,86 @@ public class ConexionDB {
         Statement stmt = conn.createStatement();
 
         String query = "SELECT IDDEPARTAMENTO, DEPARTAMENTO FROM DEPARTAMENTO";
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            ListaModelo.addElement(rs.getString("DEPARTAMENTO"));
-
+          PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+      
+           ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idDep = new int[numRows];
+           String[] depart = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idDep[con] = rs.getInt(1);
+                depart[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idDep,depart};
         }
-        rs.close();
-
-        return ListaModelo;
+        else{
+            return null;
+        }
     }
     
-    public DefaultComboBoxModel Obt_Parentesco() throws SQLException {
-
-        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
-        ListaModelo.removeAllElements();
+    public Object[] Obt_Parentesco() throws SQLException {
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDPARENTESCO, PARENTESCO FROM PARENTESCO";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idFacul = new int[numRows];
+           String[] facult = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idFacul[con] = rs.getInt(1);
+                facult[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idFacul,facult};
+        }
+        else{
+            return null;
+        }
+    }
+    
+        public Object[] Obt_TipoPaciente() throws SQLException {
 
         Statement stmt = conn.createStatement();
-
-        String query = "SELECT IDPARENTESCO, PARENTESCO FROM PARENTESCO";
-        ResultSet rs = stmt.executeQuery(query);
-
-        while (rs.next()) {
-            ListaModelo.addElement(rs.getString("PARENTESCO"));
-
+        String query = "SELECT IDTIPOPAC, TIPOPAC FROM TIPO_PACIENTE";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idTipoPac = new int[numRows];
+           String[] tipoPac = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idTipoPac[con] = rs.getInt(1);
+                tipoPac[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idTipoPac,tipoPac};
         }
-        rs.close();
-
-        return ListaModelo;
+        else{
+            return null;
+        }
     }
      
     public DefaultComboBoxModel Obt_TipoPac() throws SQLException {
