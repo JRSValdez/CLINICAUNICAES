@@ -1,5 +1,9 @@
 package vistas;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 
@@ -7,7 +11,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
    int xx,xy;
    int xs, ys, sbx,sby;
-    public Consultas_Historial() {
+    public Consultas_Historial() throws SQLException {
         initComponents();
     }
 
@@ -243,7 +247,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
-                        .addGap(0, 795, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +369,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,7 +434,11 @@ public class Consultas_Historial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Consultas_Historial().setVisible(true);
+                 try {
+                    new Consultas_Historial().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

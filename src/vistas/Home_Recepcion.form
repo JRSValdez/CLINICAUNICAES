@@ -1368,7 +1368,7 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -1380,7 +1380,7 @@
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="lblHeader43" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                  <Component id="cboParentezcoCon" min="-2" pref="246" max="-2" attributes="0"/>
+                                                  <Component id="cboParentezcoConn" min="-2" pref="246" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
@@ -1401,7 +1401,7 @@
                                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                                   <Component id="jRadioButton2" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="cboDepartamentoCon" max="32767" attributes="0"/>
+                                              <Component id="cboDepartamentoConn" max="32767" attributes="0"/>
                                               <Component id="jTextArea3" pref="244" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -1413,7 +1413,7 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                                                  <Component id="cboFacultadCon" min="-2" pref="246" max="-2" attributes="0"/>
+                                                  <Component id="cboFacultadCo" min="-2" pref="246" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <EmptySpace max="-2" attributes="0"/>
@@ -1422,7 +1422,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1432,7 +1432,7 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cboDepartamentoCon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cboDepartamentoConn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1447,7 +1447,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader53" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cboFacultadCon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cboFacultadCo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1466,7 +1466,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cboParentezcoCon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cboParentezcoConn" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblHeader43" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -1602,7 +1602,7 @@
                             <Property name="text" type="java.lang.String" value="PARENTEZCO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="cboParentezcoCon">
+                        <Component class="javax.swing.JComboBox" name="cboParentezcoConn">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -1640,7 +1640,7 @@
                             <Property name="text" type="java.lang.String" value="DEPARTAMENTO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="cboDepartamentoCon">
+                        <Component class="javax.swing.JComboBox" name="cboDepartamentoConn">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -1676,7 +1676,7 @@
                             <Property name="text" type="java.lang.String" value="FACULTAD:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="cboFacultadCon">
+                        <Component class="javax.swing.JComboBox" name="cboFacultadCo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -1697,7 +1697,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboFacultadConItemStateChanged"/>
+                            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboFacultadCoItemStateChanged"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1964,13 +1964,13 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="350" max="32767" attributes="0"/>
                               <Component id="btnConsultasEspera" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="btnAtendidas" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="btnConsultasAten" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="btnHistorialCon" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="350" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1979,8 +1979,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnAtendidas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnConsultasAten" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnHistorialCon" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnConsultasEspera" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -2011,7 +2011,29 @@
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnConsultasEsperaMouseClicked"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="btnAtendidas">
+                    <Component class="javax.swing.JLabel" name="btnHistorialCon">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/images/history.png"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="HISTORIAL"/>
+                        <Property name="verticalAlignment" type="int" value="3"/>
+                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                          <Color id="Cursor Por defecto"/>
+                        </Property>
+                        <Property name="focusable" type="boolean" value="false"/>
+                        <Property name="horizontalTextPosition" type="int" value="0"/>
+                        <Property name="verticalTextPosition" type="int" value="3"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnHistorialConMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="btnConsultasAten">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -2030,27 +2052,8 @@
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAtendidasMouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnConsultasAtenMouseClicked"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel8">
-                      <Properties>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/images/history.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="HISTORIAL"/>
-                        <Property name="verticalAlignment" type="int" value="3"/>
-                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor Por defecto"/>
-                        </Property>
-                        <Property name="focusable" type="boolean" value="false"/>
-                        <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="verticalTextPosition" type="int" value="3"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3034,9 +3037,9 @@
                                   </Group>
                                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cboCarreraEstud" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cboCarreraEstud" alignment="0" pref="187" max="32767" attributes="0"/>
                                       <Component id="txtCarnet" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cboFacultadEs" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cboFacultadEs" alignment="0" pref="187" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -3142,7 +3145,7 @@
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="Ingemier&#xed;a en Sistemas"/>
+                                <StringItem index="0" value="Ingenieria y Arquitectura"/>
                               </StringArray>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

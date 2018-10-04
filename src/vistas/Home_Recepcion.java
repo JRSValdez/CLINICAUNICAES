@@ -30,6 +30,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
     
     int[] idFacult;
+    int [] idFacultAcademic;
+    int[] idFacultCon;
+    int [] idCarrera;
+    
     
     public Home_Recepcion() throws SQLException {
         initComponents();
@@ -39,9 +43,20 @@ public class Home_Recepcion extends javax.swing.JFrame {
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
+         //Pacientes
         this.llenarFacultad();
+        this.llenarFacultadAcademi();
         this.cboDepartamento.setModel(conn.Obt_Depart());
         this.cboParentezco.setModel(conn.Obt_Parentesco());
+        this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(1));
+        this.cboActAcademico.setModel(conn.Obt_TipoPaciente());
+        this.cboActEmpleado.setModel(conn.Obt_TipoPaciente());
+        
+        //Consultas
+        this.cboDepartamentoConn.setModel(conn.Obt_Depart());
+        this.llenarFacultadConn();
+        this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(1));
+        this.cboParentezcoConn.setModel(conn.Obt_Parentesco());
         
         
         this.jTbusqueda.setSelectionForeground(Color.white);
@@ -52,8 +67,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         sbx = this.SideBar.getWidth();
         sby = this.SideBar.getHeight();
         
-        //visca
-        //llenar el combo
+       
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -127,13 +141,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader42 = new javax.swing.JLabel();
         jTextField21 = new javax.swing.JTextField();
         lblHeader43 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox<>();
+        cboParentezcoConn = new javax.swing.JComboBox<>();
         lblHeader54 = new javax.swing.JLabel();
-        jComboBox16 = new javax.swing.JComboBox<>();
+        cboDepartamentoConn = new javax.swing.JComboBox<>();
         lblHeader53 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cboFacultadCo = new javax.swing.JComboBox<>();
         lblHeader57 = new javax.swing.JLabel();
-        jComboBox12 = new javax.swing.JComboBox<>();
+        cboCarreraCon = new javax.swing.JComboBox<>();
         jPanelExistente = new javax.swing.JPanel();
         lblHeader3 = new javax.swing.JLabel();
         txtBusquedaExistente = new javax.swing.JTextField();
@@ -143,8 +157,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConsPacExistente = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnConsultasEspera = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnHistorialCon = new javax.swing.JLabel();
+        btnConsultasAten = new javax.swing.JLabel();
         lblHeader2 = new javax.swing.JLabel();
         Tab_Pac = new javax.swing.JPanel();
         lblHeader14 = new javax.swing.JLabel();
@@ -191,8 +205,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader33 = new javax.swing.JLabel();
         lblHeader34 = new javax.swing.JLabel();
         txtCarnet = new javax.swing.JTextField();
-        cboFacultadEstud = new javax.swing.JComboBox<>();
         cboCarreraEstud = new javax.swing.JComboBox<>();
+        cboFacultadEs = new javax.swing.JComboBox<>();
         tbEstudiante = new javax.swing.JRadioButton();
         jPanelEstNuevo3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -383,7 +397,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -419,7 +433,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -514,7 +528,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 7, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -526,7 +540,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(lblSol_medicamento)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -557,7 +571,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -597,7 +611,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -913,40 +927,45 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader43.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader43.setText("PARENTEZCO:");
 
-        jComboBox11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
-        jComboBox11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboParentezcoConn.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboParentezcoConn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padre", "Madre", "Abuelo/a", "Hermano/a", "Tío/a", "Encargado/a" }));
+        cboParentezcoConn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader54.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader54.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader54.setText("DEPARTAMENTO:");
 
-        jComboBox16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox16.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
-        jComboBox16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboDepartamentoConn.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboDepartamentoConn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
+        cboDepartamentoConn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader53.setText("FACULTAD:");
 
-        jComboBox9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        jComboBox9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadCo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultadCo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
+        cboFacultadCo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadCo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboFacultadCoItemStateChanged(evt);
+            }
+        });
 
         lblHeader57.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader57.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader57.setText("CARRERA:");
 
-        jComboBox12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
-        jComboBox12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboCarreraCon.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboCarreraCon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
+        cboCarreraCon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel34Layout = new javax.swing.GroupLayout(jPanel34);
         jPanel34.setLayout(jPanel34Layout);
         jPanel34Layout.setHorizontalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -957,7 +976,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addComponent(lblHeader43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboParentezcoConn, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel34Layout.createSequentialGroup()
                             .addComponent(lblHeader42, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -972,7 +991,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                                 .addComponent(jRadioButton1)
                                 .addGap(79, 79, 79)
                                 .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox16, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboDepartamentoConn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -981,11 +1000,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cboFacultadCo, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                                .addComponent(cboCarreraCon, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -993,7 +1012,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader54)
-                    .addComponent(jComboBox16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboDepartamentoConn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader38)
@@ -1005,10 +1024,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader53)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultadCo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboCarreraCon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader57))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1020,7 +1039,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(jTextField21))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboParentezcoConn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader43))
                 .addContainerGap())
         );
@@ -1039,7 +1058,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1181,46 +1200,56 @@ public class Home_Recepcion extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
-        jLabel7.setText("ATENDIDAS HOY");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel7.setFocusable(false);
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialCon.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialCon.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnHistorialCon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        btnHistorialCon.setText("HISTORIAL");
+        btnHistorialCon.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialCon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHistorialCon.setFocusable(false);
+        btnHistorialCon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHistorialCon.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialCon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistorialConMouseClicked(evt);
+            }
+        });
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        jLabel8.setText("HISTORIAL");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel8.setFocusable(false);
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultasAten.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConsultasAten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
+        btnConsultasAten.setText("ATENDIDAS HOY");
+        btnConsultasAten.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnConsultasAten.setFocusable(false);
+        btnConsultasAten.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultasAten.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAten.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultasAtenMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(350, Short.MAX_VALUE)
                 .addComponent(btnConsultasEspera)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel7)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(btnConsultasAten)
+                .addGap(31, 31, 31)
+                .addComponent(btnHistorialCon)
+                .addContainerGap(350, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
+                    .addComponent(btnConsultasAten)
+                    .addComponent(btnHistorialCon)
                     .addComponent(btnConsultasEspera))
                 .addContainerGap())
         );
@@ -1541,9 +1570,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1668,18 +1697,18 @@ public class Home_Recepcion extends javax.swing.JFrame {
         txtCarnet.setText("CARNET");
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        cboFacultadEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboFacultadEstud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        cboFacultadEstud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-        cboFacultadEstud.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboFacultadEstudItemStateChanged(evt);
-            }
-        });
-
-        cboCarreraEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboCarreraEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         cboCarreraEstud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
         cboCarreraEstud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+
+        cboFacultadEs.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboFacultadEs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria y Arquitectura" }));
+        cboFacultadEs.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboFacultadEs.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboFacultadEsItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -1692,11 +1721,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(lblHeader33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHeader32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboFacultadEstud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboCarreraEstud, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCarnet))
-                .addGap(0, 0, 0))
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cboCarreraEstud, 0, 187, Short.MAX_VALUE)
+                    .addComponent(txtCarnet)
+                    .addComponent(cboFacultadEs, 0, 187, Short.MAX_VALUE)))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1705,10 +1733,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader34)
                     .addComponent(txtCarnet))
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader32)
-                    .addComponent(cboFacultadEstud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFacultadEs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader33)
@@ -1740,8 +1768,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
                 .addComponent(tbEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelEstNuevo3.setBackground(new java.awt.Color(102, 0, 0));
@@ -1756,7 +1784,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         lblHeader27.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader27.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader27.setText("ÁREA");
+        lblHeader27.setText("ACTIVIDAD:");
 
         lblHeader29.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader29.setForeground(new java.awt.Color(255, 255, 255));
@@ -1815,7 +1843,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanelEstNuevo3Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(rbProyeccionSocial)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanelEstNuevo3Layout.setVerticalGroup(
             jPanelEstNuevo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2634,7 +2662,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -2795,14 +2823,39 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
     public void llenarFacultad() throws SQLException {
         // llenar el combobox de facultad
-        Object[] array = this.conn.llenarFacultad((JComboBox) cboFacultadEstud);
+        Object[] array = this.conn.llenarFacultad();
 
-        this.idFacult = (int[]) array[1];
-        this.cboFacultadEstud.setModel((DefaultComboBoxModel) array[0]);
+        this.idFacult = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboFacultadEs.setModel(model);
     }
     
-    public void llenarCarreras(int _idFacultad){
+         public void llenarFacultadAcademi() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacultAcademic = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
+        this.cboFacultadAcadem.setModel(model);
+    }
+     
+      public void llenarFacultadConn() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacultCon = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
+        this.cboFacultadCo.setModel(model);
+    }
+    
+   
+    public DefaultComboBoxModel llenarComboBoxCarrera(int _idCarr) throws SQLException{
+        Object[] arrays = this.conn.llenarCarreras(_idCarr);
+     
+        this.idCarrera = (int[]) arrays[0];
         
+        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[2] );
+        return model;
     }
     
     private void btnAggConsPacExistenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConsPacExistenteMouseClicked
@@ -2949,6 +3002,52 @@ String resultado="";
             }
         }
     }//GEN-LAST:event_itemCarnetActionPerformed
+
+    private void cboFacultadEsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadEsItemStateChanged
+        
+        try {
+
+            int idFac = this.idFacult[this.cboFacultadEs.getSelectedIndex()];
+            this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(idFac));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_cboFacultadEsItemStateChanged
+
+    private void cboFacultadCoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadCoItemStateChanged
+        
+        try {
+
+            int idFac = this.idFacultCon[this.cboFacultadCo.getSelectedIndex()];
+            this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(idFac));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cboFacultadCoItemStateChanged
+
+    private void btnConsultasAtenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasAtenMouseClicked
+      
+        Consultas_Ahora c;
+        try {
+            c = new Consultas_Ahora();
+            c.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsultasAtenMouseClicked
+
+    private void btnHistorialConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialConMouseClicked
+        
+      
+         Consultas_Historial h;
+        try {
+            h = new Consultas_Historial();
+            h.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHistorialConMouseClicked
     
     
     /**
@@ -2997,7 +3096,9 @@ String resultado="";
     private javax.swing.JLabel btnAggConsPacExistente;
     private javax.swing.JLabel btnAgregarPaciente;
     private javax.swing.JLabel btnBuscarPaciente;
+    private javax.swing.JLabel btnConsultasAten;
     private javax.swing.JLabel btnConsultasEspera;
+    private javax.swing.JLabel btnHistorialCon;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
@@ -3012,23 +3113,23 @@ String resultado="";
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cboActAcademico;
     private javax.swing.JComboBox<String> cboActEmpleado;
+    private javax.swing.JComboBox<String> cboCarreraCon;
     private javax.swing.JComboBox<String> cboCarreraEstud;
     private javax.swing.JComboBox<String> cboDepartamento;
+    private javax.swing.JComboBox<String> cboDepartamentoConn;
     private javax.swing.JComboBox<String> cboFacultadAcadem;
-    private javax.swing.JComboBox<String> cboFacultadEstud;
+    private javax.swing.JComboBox<String> cboFacultadCo;
+    private javax.swing.JComboBox<String> cboFacultadEs;
     private javax.swing.JComboBox<String> cboParentezco;
+    private javax.swing.JComboBox<String> cboParentezcoConn;
     private javax.swing.JPanel header;
     private javax.swing.JMenuItem itemApellido;
     private javax.swing.JMenuItem itemCarnet;
     private javax.swing.JMenuItem itemTelefono;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox16;
     private javax.swing.JComboBox<String> jComboBox18;
     private javax.swing.JComboBox<String> jComboBox19;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -3048,8 +3149,6 @@ String resultado="";
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
