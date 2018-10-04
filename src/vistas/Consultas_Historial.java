@@ -16,15 +16,17 @@ public class Consultas_Historial extends javax.swing.JFrame {
    
     int[] idFacult;
     int[] idCarrera;
+    int[] idAct;
 
    ConexionDB conn = new ConexionDB();
    
     public Consultas_Historial() throws SQLException {
         initComponents();
         
-        this.llenarFacultad();      
+        this.llenarFacultad(); 
+        this.llenarActividad();
         this.cboCarrera.setModel(this.llenarComboBoxCarrera(1));
-        this.cboActividad.setModel(conn.Obt_TipoPaciente());
+        
         
     }
 
@@ -111,6 +113,11 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
         opcEdad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/PopUp_edad.png"))); // NOI18N
         opcEdad.setText("Edad");
+        opcEdad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcEdadActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(opcEdad);
 
         opcActividad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_tipo.png"))); // NOI18N
@@ -526,6 +533,15 @@ public class Consultas_Historial extends javax.swing.JFrame {
         this.cboFacultad.setModel(model);
     }
     
+     public void llenarActividad() throws SQLException {
+
+        Object[] array = this.conn.Obt_TipoPaciente();
+
+        this.idAct = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboActividad.setModel(model);
+    }
+    
     public DefaultComboBoxModel llenarComboBoxCarrera(int _idCarr) throws SQLException{
         Object[] arrays = this.conn.llenarCarreras(_idCarr);
      
@@ -583,8 +599,13 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
     private void opcActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcActividadActionPerformed
         
-      
-       //pendinente
+         
+        try {
+            int idA = this.idAct[this.cboActividad.getSelectedIndex()];
+            this.tbConsultas.setModel(this.conn.getHistorialConActividad(tbConsultas, idA));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_opcActividadActionPerformed
 
@@ -618,6 +639,18 @@ public class Consultas_Historial extends javax.swing.JFrame {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_opcFechaConActionPerformed
+
+    private void opcEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcEdadActionPerformed
+        
+        //pendiente
+        try {
+            String edad = this.txtEdad.getText();
+            this.tbConsultas.setModel(this.conn.getHistorialConEdad(tbConsultas, edad));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_opcEdadActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"unicaes","unicaes");
+            conn= DriverManager.getConnection(url,"clinica1","master");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -962,7 +962,42 @@ public class ConexionDB {
            }
            return model;
     }
-    
+          
+           public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE Edad LIKE  ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_Fecha);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+        
     public String aggPaciente(Paciente pac) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
