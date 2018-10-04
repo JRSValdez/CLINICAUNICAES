@@ -1317,7 +1317,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader58.setText("DOCUMENTO:");
 
         txtDocumento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtDocumento.setText("XXXXXXXXXXXXX");
+        txtDocumento.setToolTipText("ingrese DUi o NIT");
         txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader23.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1325,7 +1325,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader23.setText("NOMBRES:");
 
         txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtNombre.setText("NOMBRE NOMBRE");
+        txtNombre.setToolTipText("");
         txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader28.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1333,7 +1333,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader28.setText("APELLIDOS:");
 
         txtApellido.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtApellido.setText("APELLIDO APELLIDO");
         txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader59.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1358,7 +1357,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader60.setText("TELÉFONO:");
 
         txtTelefono.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtTelefono.setText("XXXX - XXXX");
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader61.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1366,7 +1364,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader61.setText("CELULAR:");
 
         txtCelular.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCelular.setText("XXXX - XXXX");
         txtCelular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader62.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1374,7 +1371,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader62.setText("FECHA NACIMIENTO:");
 
         txtFechaNac.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFechaNac.setText("XX/XX/XXXX");
         txtFechaNac.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
@@ -1480,7 +1476,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader64.setText("CASO EMERGENCIA:");
 
         txtEmergencia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtEmergencia.setText("NOMBRES APELLIDOS");
         txtEmergencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader65.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1488,7 +1483,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader65.setText("TELÉFONO:");
 
         txtTelefonoEmerg.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtTelefonoEmerg.setText("XXXX - XXXX");
         txtTelefonoEmerg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader66.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1707,7 +1701,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader34.setText("CARNET:");
 
         txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnet.setText("CARNET");
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         cboCarreraEstud.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
@@ -1809,7 +1802,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader29.setText("EMPLEADO:");
 
         txtnombreEmp.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtnombreEmp.setText("Nombre Apellido");
         txtnombreEmp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         cboActEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -2978,35 +2970,28 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private void btnAgregarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarPacienteMouseClicked
 
 Paciente pac= new Paciente();
-//valores estaticos
-/*
-pac.documento="002315484-8";
-pac.carne="2015-NB-604";
-pac.nombre ="Nayib";
-pac.apellido="Bukele";
-pac.sexo="M";
-pac.FechaNac="1986-10-23";
-pac.telefono="555-5555";
-pac.celular="72536251";
-pac.direccion="Direccion simulada, San Salvador";
-pac.tipoPaciente=1;
-pac.carrera=Integer.toString(1);
-pac.actividad=Integer.toString(1);
-pac.zona=1;
-pac.departamento=Integer.toString(4);
-pac.caso_emergencia="Juan Perez";
-pac.parentezco=Integer.toString(1);
-*/
 
-
+if(this.rbAcademico.isSelected()){
+    pac.tipoPaciente=2;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.carne="";
+}else if(this.rbProyeccionSocial.isSelected()){
+    pac.tipoPaciente=3;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.carne="";
+}else{
+    pac.tipoPaciente=1;
+    pac.carne=this.txtCarnet.getText();
+    pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
+}
+    
 if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
         && !this.txtDireccion.getText().trim().equals("")  ){
     
 pac.documento=this.txtDocumento.getText();
-pac.nombre =this.txtDocumento.getText();
-pac.apellido=this.txtDocumento.getText();
-pac.sexo=this.txtDocumento.getText();
-pac.FechaNac=this.txtDocumento.getText();
+pac.nombre =this.txtNombre.getText();
+pac.apellido=this.txtApellido.getText();
+pac.FechaNac=this.txtFechaNac.getText();
 pac.telefono=this.txtTelefono.getText();
 pac.celular=this.txtCelular.getText();
 pac.direccion=this.txtDireccion.getText();
@@ -3025,33 +3010,33 @@ pac.sexo="F";
 }else{
 pac.sexo="M";
 }
-}else {
-  JOptionPane.showMessageDialog(this, "ERROR: Revise los campos");
-        }
 
-if(this.rbAcademico.isSelected()){
-    pac.tipoPaciente=2;
-    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
-}else if(this.rbAcademico.isSelected()){
-    pac.tipoPaciente=3;
-    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
-}else{
-    pac.tipoPaciente=1;
-    pac.carne=this.txtCarnet.getText();
-    pac.carrera=Integer.toString(this.idCarrera[this.cboCarreraEstud.getSelectedIndex()]);
-}
-    
-/*
 String resultado="";
         try {
             resultado=conn.aggPaciente(pac);
 
+            this.txtCarnet.setText("");
+            this.txtApellido.setText("");
+            this.txtCelular.setText("");
+            this.txtDireccion.setText("");
+            this.txtDocumento.setText("");
+            this.txtEmergencia.setText("");
+            this.txtFechaNac.setText("");
+            this.txtTelefonoEmerg.setText("");
+            this.txtNombre.setText("");
+            this.txtnombreEmp.setText("");
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this,ex.toString());
         }
-        */
-    
-    JOptionPane.showMessageDialog(this, pac.departamento);
+         
+    JOptionPane.showMessageDialog(this, resultado);
+}else {
+  JOptionPane.showMessageDialog(this, "ERROR: Revise los campos");
+        }
+
+
+     
+   
         
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 
