@@ -3,13 +3,10 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Consulta;
-import Classes.Medicamento;
 import Classes.Paciente;
-import Classes.Validar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -346,11 +343,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         pUpBuscarMedicamento.add(itemNombreMed);
 
         itemFechaV.setText("por Fecha Vencimiento");
-        itemFechaV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemFechaVActionPerformed(evt);
-            }
-        });
         pUpBuscarMedicamento.add(itemFechaV);
 
         itemCatMed.setText("por Categorá");
@@ -1625,9 +1617,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2371,7 +2363,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAggMedicamento.setText("Agregar Medicamento");
         btnAggMedicamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggMedicamento.setFocusable(false);
         btnAggMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2405,7 +2397,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblHeader45)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addGap(0, 14, Short.MAX_VALUE))
                     .addComponent(lblHeader48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2511,9 +2503,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 363, Short.MAX_VALUE)
+                        .addGap(0, 350, Short.MAX_VALUE)
                         .addComponent(lblHeader56)
-                        .addGap(0, 363, Short.MAX_VALUE))
+                        .addGap(0, 350, Short.MAX_VALUE))
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -3003,7 +2995,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         this.idFacultCon = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) array[1] );
-        this.cboFacultadCon.setModel(model);
+        this.cboFacultadCo.setModel(model);
     } 
     
          public void llenarFacultadAcademi() throws SQLException {
@@ -3206,7 +3198,7 @@ String resultado="";
         }
     }//GEN-LAST:event_itemTelefonoActionPerformed
 
-    private void ItemCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemCarnetActionPerformed
+    private void ItemCarnetActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // Buscar paciente por carner
         String carnet = this.txtBusquedaExistente.getText();
         if(!carnet.equals("") && carnet.length() >= 6){
@@ -3216,7 +3208,7 @@ String resultado="";
                 Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_itemCarnetActionPerformed
+    }                                          
 
     private void cboFacultadEsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadEsItemStateChanged
         
@@ -3294,6 +3286,26 @@ String resultado="";
         this.cboFacultadEs.setEnabled(false);
         this.cboCarreraEstud.setEnabled(false);
     }//GEN-LAST:event_rbProyeccionSocialMouseClicked
+
+    private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemNombreMedActionPerformed
+
+    private void itemPresMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPresMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemPresMedActionPerformed
+
+    private void btnAggMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggMedicamentoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAggMedicamentoMouseClicked
+
+    private void itemCatMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCatMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemCatMedActionPerformed
+
+    private void btnBuscarMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarMedMouseClicked
     
     
     /**
@@ -3343,7 +3355,6 @@ String resultado="";
     private javax.swing.JLabel btnAggConsPacExistente;
     private javax.swing.JLabel btnAggMedicamento;
     private javax.swing.JLabel btnAgregarPaciente;
-    private javax.swing.JLabel btnAtendidas;
     private javax.swing.JLabel btnBuscarMed;
     private javax.swing.JLabel btnBuscarPaciente;
     private javax.swing.JLabel btnConsultasAten;
@@ -3363,6 +3374,8 @@ String resultado="";
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cboActAcademico;
     private javax.swing.JComboBox<String> cboActEmpleado;
+    private javax.swing.JComboBox<String> cboBuscarCatMed;
+    private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCarreraCon;
     private javax.swing.JComboBox<String> cboCarreraEstud;
     private javax.swing.JComboBox<String> cboCategoriaMed;
@@ -3373,6 +3386,8 @@ String resultado="";
     private javax.swing.JComboBox<String> cboFacultadEs;
     private javax.swing.JComboBox<String> cboParentezco;
     private javax.swing.JComboBox<String> cboParentezcoConn;
+    private javax.swing.JComboBox<String> cboPresentacionMed;
+    private javax.swing.JComboBox<String> cboUnidadesMed;
     private javax.swing.JPanel header;
     private javax.swing.JMenuItem itemApellidos;
     private javax.swing.JMenuItem itemCatMed;
@@ -3380,10 +3395,6 @@ String resultado="";
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
     private javax.swing.JMenuItem itemTelefono;
-    private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox14;
-    private javax.swing.JComboBox<String> jComboBox18;
-    private javax.swing.JComboBox<String> jComboBox19;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

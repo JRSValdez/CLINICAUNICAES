@@ -732,7 +732,7 @@ public class ConexionDB {
         return new Object[]{model, idUnidad};
     }
     
-    public DefaultComboBoxModel Obt_Depart() throws SQLException {
+    public Object[] Obt_Depart() throws SQLException {
 
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.removeAllElements();
@@ -895,5 +895,316 @@ public class ConexionDB {
         else{
             return null;
         }
-      } 
+  
+      }
+    public String aggPaciente(Paciente pac) throws SQLException{
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        // Parametros de entrada
+        cst.setString("pdocumento", pac.documento);
+        cst.setInt("ptipoPac", pac.tipoPaciente);
+        cst.setString("pnombre", pac.nombre);
+        cst.setString("papellido", pac.apellido);
+         cst.setString("psexo", pac.sexo);
+         cst.setString("pfecha", pac.FechaNac);
+         cst.setString("ptelefono", pac.telefono);
+         cst.setString("pcelular", pac.celular);
+         cst.setInt("pdepartamento", Integer.parseInt(pac.departamento));
+         cst.setString("pdireccion", pac.direccion);
+         cst.setInt("pzona", pac.zona);
+         cst.setString("pemergencia", pac.caso_emergencia);
+         cst.setString("ptelEmergencia", pac.tel_emergencia);
+         cst.setInt("pparentezco", Integer.parseInt(pac.parentezco));
+         cst.setString("pCarnet", pac.carne);
+         cst.setInt("pcarrera",pac.carreraP);
+         
+         
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMsj");
+        
+        return mensaje;
+    }
+    
+    public DefaultTableModel getHistorialConFacult(JTable jTable1, int _idFac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO, " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE f.IDFACULTAD = ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idFac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+       
+       public DefaultTableModel getHistorialConCarnet(JTable jTable1, String _idCarnet) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE , p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE p.PAC_CARNE LIKE ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_idCarnet);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+       
+       public DefaultTableModel getHistorialConCarrera(JTable jTable1, int _idCarrera) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE , p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE c.IDCARRERA  = ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idCarrera);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+       
+       public DefaultTableModel getHistorialConActividad(JTable jTable1, int _idPac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE p.IDTIPOPAC  = ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idPac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+       
+        public DefaultTableModel getHistorialConNombre(JTable jTable1, String _Pac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE p.PAC_NOMBRE  LIKE  ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_Pac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+        
+         public DefaultTableModel getHistorialConApellido(JTable jTable1, String _Pac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE p.PAC_APELLIDO  LIKE  ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_Pac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+         
+          public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE cc.CONS_FECHA  = ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_Fecha);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+          
+           public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
+                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
+                " WHERE Edad LIKE  ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_Fecha);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[11];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
 }
