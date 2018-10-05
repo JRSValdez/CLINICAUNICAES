@@ -25,7 +25,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
         
         this.llenarFacultad(); 
         this.llenarActividad();
-        this.cboCarrera.setModel(this.llenarComboBoxCarrera(1));
+        this.cboCarrera.setModel(this.llenarComboBoxCarrera(3));
         
         
     }
@@ -557,7 +557,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
      
         
          try {
-            String carnet = this.txtCarnet.getText().toUpperCase();
+            String carnet = this.txtCarnet.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConCarnet(tbConsultas, carnet));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -612,7 +612,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
     private void opcNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcNombreActionPerformed
         
          try {
-            String nombre = this.txtNombre.getText().toUpperCase();
+            String nombre = this.txtNombre.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConNombre(tbConsultas, nombre));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
@@ -623,7 +623,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
     private void opcApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcApellidoActionPerformed
        
         try {
-            String apellido = this.txtApellido.getText().toUpperCase();
+            String apellido = this.txtApellido.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConApellido(tbConsultas, apellido));
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);

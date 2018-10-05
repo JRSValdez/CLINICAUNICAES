@@ -3,6 +3,7 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Consulta;
+import Classes.Medicamento;
 import Classes.Paciente;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,14 +59,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.llenarFacultadAcademi();
         this.llenarDepartamento();
         this.llenarParentezcoPac();
-        this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(1));
+        this.cboCarreraEstud.setModel(this.llenarComboBoxCarrera(this.idFacult[this.cboFacultadEs.getSelectedIndex()]));
         this.llenartipoPacAcad();
         this.llenartipoPacEmp();
         
         //Consultas
        this.llenarDepartamentoConn();
         this.llenarFacultadConn();
-        this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(1));
+        this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(this.idFacult[this.cboFacultadEs.getSelectedIndex()]));
         this.llenarParentezcoCons();
         
             
@@ -343,6 +344,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         pUpBuscarMedicamento.add(itemNombreMed);
 
         itemFechaV.setText("por Fecha Vencimiento");
+        itemFechaV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemFechaVActionPerformed(evt);
+            }
+        });
         pUpBuscarMedicamento.add(itemFechaV);
 
         itemCatMed.setText("por Categorá");
@@ -450,7 +456,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -486,7 +492,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -581,7 +587,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 7, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -593,7 +599,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(lblSol_medicamento)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -624,7 +630,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -664,7 +670,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -1111,7 +1117,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1617,9 +1623,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2762,7 +2768,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -3093,15 +3099,15 @@ public class Home_Recepcion extends javax.swing.JFrame {
 Paciente pac= new Paciente();
 
 if(this.rbAcademico.isSelected()){
-    pac.tipoPaciente=2;
-    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
-    pac.carne="";
-}else if(this.rbProyeccionSocial.isSelected()){
     pac.tipoPaciente=3;
     pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
     pac.carne="";
+}else if(this.rbProyeccionSocial.isSelected()){
+    pac.tipoPaciente=4;
+    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.carne="";
 }else{
-    pac.tipoPaciente=1;
+    pac.tipoPaciente=2;
     pac.carne=this.txtCarnet.getText();
     pac.carreraP=this.idCarrera[this.cboCarreraEstud.getSelectedIndex()];
 }
@@ -3288,24 +3294,77 @@ String resultado="";
     }//GEN-LAST:event_rbProyeccionSocialMouseClicked
 
     private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
-        // TODO add your handling code here:
+        // Buscar medicamento por nombre
+        try {
+            String nombre = this.txtBuscarNombreMed.getText();
+            this.jTFarmacia.setModel(this.conn.getMedicamentobyNombre(jTFarmacia, nombre));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_itemNombreMedActionPerformed
 
     private void itemPresMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPresMedActionPerformed
-        // TODO add your handling code here:
+        // Buscar medicamento por presentación
+        try {
+            int idPres = this.idBusquedaPresMed[this.cboBuscarPresentacionMed.getSelectedIndex()];
+            this.jTFarmacia.setModel(this.conn.getMedicamentosbyCat(jTFarmacia, idPres));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_itemPresMedActionPerformed
 
     private void btnAggMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggMedicamentoMouseClicked
-        // TODO add your handling code here:
+        //Agregar un nuevo medicamento
+        try {
+            Medicamento med = new Medicamento();
+            med.medicamento = this.txtNombreMedicmento.getText();
+            med.cantidad = Integer.parseInt(this.txtCantMedicamento.getText());
+            med.idPresentacion = this.idPresentacion[this.cboPresentacionMed.getSelectedIndex()];
+            med.idUnidad = this.idUnidadesMed[this.cboUnidadesMed.getSelectedIndex()];
+            med.idTipoMed = this.idCatsMed[this.cboCategoriaMed.getSelectedIndex()];
+            med.fechaV = this.txtFechaV.getText();
+            
+            String validacion = med.validarMedicamento();
+            if(validacion.equals("")){
+                
+                String mensaje = this.conn.aggMedicamento(med);
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+                this.llenarMedicamentosFarmacia();
+            } else {
+                //error de validación
+                JOptionPane.showMessageDialog(rootPane, validacion);
+                System.out.println(validacion);
+            }
+        } catch (SQLException | NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.toString());
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAggMedicamentoMouseClicked
 
     private void itemCatMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCatMedActionPerformed
-        // TODO add your handling code here:
+        // Buscar medicamento por categoría
+        try {
+            int idCat = this.idBusquedaCatsMed[this.cboBuscarCatMed.getSelectedIndex()];
+            this.jTFarmacia.setModel(this.conn.getMedicamentosbyCat(jTFarmacia, idCat));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_itemCatMedActionPerformed
 
     private void btnBuscarMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedMouseClicked
-        // TODO add your handling code here:
+        //Buscar medicamento pestaña farmacia
+        this.pUpBuscarMedicamento.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_btnBuscarMedMouseClicked
+
+    private void itemFechaVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFechaVActionPerformed
+        // Buscar medicamento po fecha de vencimiento
+        try {
+            String fecha = this.txtBuscarFechaV.getText();
+            this.jTFarmacia.setModel(this.conn.getMedicamentosbyFechaV(jTFarmacia, fecha));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_itemFechaVActionPerformed
     
     
     /**
