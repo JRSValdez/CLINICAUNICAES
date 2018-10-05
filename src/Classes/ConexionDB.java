@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica1","master");
+            conn= DriverManager.getConnection(url,"clinica","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -66,8 +66,8 @@ public class ConexionDB {
                         " (trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, " +
                         " P.PAC_DIRECCION, D.DEPARTAMENTO,  P.PAC_RESPONSABLE, P.PAC_RES_TEL, PA.PARENTESCO " +
                     "FROM PACIENTES P " +
-                    " INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
-                    " INNER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
+                    " LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                    " LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
                     " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
                     " INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
                     " INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
@@ -100,7 +100,7 @@ public class ConexionDB {
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException{
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
-        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') FECHA, C.IDUSUARIO, DC.EF_CABEZA," +
+        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_DATE(C.CONS_FECHA, 'dd-mm-yyyy') FECHA, C.IDUSUARIO, DC.EF_CABEZA," +
                     " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
                     " DC.PESO, DC.TALLA, DC.PULSO, DC.MOTIVO FROM CONSULTA C " +
                     " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
@@ -406,12 +406,12 @@ public class ConexionDB {
     
     public DefaultTableModel getPacientes(JTable jTable1, String _filtro, String _parametro) throws SQLException{
         Statement stmt = conn.createStatement();
-        _parametro = _parametro.toUpperCase();
+        //_parametro = _parametro.toUpperCase();
         String query = "SELECT P.IDPACIENTE, P.PAC_CARNE, P.PAC_DOCUMENTO, TP.TIPOPAC, " +
                         " P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, C.CARRERA, " +
                         " TO_CHAR(P.PAC_FECHA_NAC, 'dd-mm-yyyy') " + 
                     "FROM PACIENTES P " +
-                    " INNER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                    " LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
                     " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC ";
         switch(_filtro){
             case "Apellido":
@@ -935,9 +935,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE f.IDFACULTAD = ?";
@@ -970,9 +970,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE p.PAC_CARNE LIKE ?";
@@ -1005,9 +1005,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE c.IDCARRERA  = ? ";
@@ -1040,9 +1040,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE p.IDTIPOPAC  = ? ";
@@ -1075,9 +1075,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE p.PAC_NOMBRE  LIKE  ? ";
@@ -1102,7 +1102,7 @@ public class ConexionDB {
            return model;
     }
         
-         public DefaultTableModel getHistorialConApellido(JTable jTable1, String _Pac) throws SQLException{
+    public DefaultTableModel getHistorialConApellido(JTable jTable1, String _Pac) throws SQLException{
         DefaultTableModel model;
         
         String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE, p.PAC_APELLIDO , " +
@@ -1110,9 +1110,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE p.PAC_APELLIDO  LIKE  ? ";
@@ -1145,9 +1145,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE cc.CONS_FECHA  = ? ";
@@ -1180,9 +1180,9 @@ public class ConexionDB {
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
                 " WHERE Edad LIKE  ? ";
