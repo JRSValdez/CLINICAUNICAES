@@ -189,13 +189,6 @@ public class ConexionDB {
         return medicamento;
     }
     
-    public String[] getDashBoardRecepcion(){
-        
-        String queryPacientes = "SELECT COUNT(*) FROM ";
-        
-        return new String[]{};
-    }
-    
     //////////////////////////////////////////////////////////////////
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
@@ -292,7 +285,10 @@ public class ConexionDB {
                 }
             }
         }
-        System.out.println(mensaje);        
+        System.out.println(mensaje);
+        if (mensaje.equals("EXITO")){
+            this.commit();
+        }
         return mensaje;
     }
     
@@ -399,6 +395,33 @@ public class ConexionDB {
         return 0;
     }
     
+    private void commit() throws SQLException{
+        String query = "COMMIT";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+    }
+    
+    public String[] getDashBoardRecepcion() throws SQLException{
+        String queryPacientes = "SELECT COUNT(*) FROM PACIENTES P " +
+                        " INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE " +
+                    " WHERE TO_DATE(C.CONS_FECHA, 'dd-mm-yyyy') = TO_DATE(CURRENT_DATE, 'dd-mm-yyyy')";
+        PreparedStatement preparedStatement = conn.prepareStatement(queryPacientes,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        String total = "";
+        while(rs.next()){
+            total = rs.getString(1);
+        }
+        
+        String queryConsEspera = "SELECT COUNT(*) FROM CONSULTA C WHERE C.ESTADO = 0";
+        PreparedStatement preparedStatement2 = conn.prepareStatement(queryConsEspera);
+        ResultSet rs2 = preparedStatement2.executeQuery();
+        String total2 = "";
+        while(rs2.next()){
+            total2 = rs2.getString(1);
+        }
+        
+        return new String[]{"0", total, total2};
+    }
     
     //////////////////////////////////////////////////////////////////////
     //////////////////////////  LLENAR JTABLES, COMBOBOXs ///////////////////////////
