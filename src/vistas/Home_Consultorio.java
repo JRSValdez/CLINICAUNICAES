@@ -57,6 +57,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -135,19 +137,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
         SideBar.setBackground(new java.awt.Color(255, 250, 118));
         SideBar.setMinimumSize(new java.awt.Dimension(270, 328));
         SideBar.setPreferredSize(new java.awt.Dimension(270, 328));
-        SideBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                SideBarMouseDragged(evt);
-            }
-        });
-        SideBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                SideBarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                SideBarMouseReleased(evt);
-            }
-        });
 
         Botonera.setBackground(new java.awt.Color(255, 250, 118));
         Botonera.setMinimumSize(new java.awt.Dimension(265, 306));
@@ -207,7 +196,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         BotoneraLayout.setVerticalGroup(
             BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BotoneraLayout.createSequentialGroup()
-                .addGap(203, 203, 203)
+                .addGap(212, 212, 212)
                 .addComponent(btn_home, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_cons, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1000,6 +989,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+   
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
         Object [] opciones ={"Aceptar","Cancelar"};
       int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
@@ -1012,22 +1002,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
       }else{
      }
     }//GEN-LAST:event_btn_closeMouseClicked
-
-    private void SideBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseReleased
-        //this.setOpacity((float)1.0);
-    }//GEN-LAST:event_SideBarMouseReleased
-
-    private void SideBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMousePressed
-        //this.setOpacity((float)0.8);
-        //xx=evt.getX();
-        //xy = evt.getY();
-    }//GEN-LAST:event_SideBarMousePressed
-
-    private void SideBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseDragged
-        //int x = evt.getXOnScreen();
-        //int y = evt.getYOnScreen();
-        //this.setLocation(x-xx, y-xy);
-    }//GEN-LAST:event_SideBarMouseDragged
 
     private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
         this.Contenedor.setSelectedIndex(0);

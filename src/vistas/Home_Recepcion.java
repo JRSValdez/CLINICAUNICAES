@@ -86,6 +86,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        //llenar contadores del dashboard
+        this.llenarDashboard();
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -124,7 +127,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        lblPac_espera = new javax.swing.JLabel();
+        lblPacAtendidos = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
@@ -606,10 +609,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel13.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        lblPac_espera.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        lblPac_espera.setForeground(new java.awt.Color(255, 255, 255));
-        lblPac_espera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPac_espera.setText("100");
+        lblPacAtendidos.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblPacAtendidos.setForeground(new java.awt.Color(255, 255, 255));
+        lblPacAtendidos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPacAtendidos.setText("100");
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estudiante.png"))); // NOI18N
 
@@ -625,7 +628,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPac_espera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPacAtendidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
@@ -641,7 +644,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPac_espera)
+                .addComponent(lblPacAtendidos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2792,6 +2795,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void llenarDashboard() throws SQLException{
+        String[] arrayDash = this.conn.getDashBoardRecepcion();
+        this.lblConsult_espera.setText(arrayDash[2]);
+        this.lblPacAtendidos.setText(arrayDash[1]);
+    }
+    
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
       Object [] opciones ={"Aceptar","Cancelar"};
       int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
@@ -3586,7 +3596,7 @@ String resultado="";
     private javax.swing.JLabel lblHeader71;
     private javax.swing.JLabel lblHeader8;
     private javax.swing.JLabel lblMedxVencer;
-    private javax.swing.JLabel lblPac_espera;
+    private javax.swing.JLabel lblPacAtendidos;
     private javax.swing.JLabel lblSol_medicamento;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
     private javax.swing.JPopupMenu pUpBuscarPaciente;
