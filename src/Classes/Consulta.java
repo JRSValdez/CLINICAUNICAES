@@ -12,7 +12,7 @@ public class Consulta {
     public int idConsulta;
     public int idDoctor;
     public int idPaciente;
-    public Date fecha;
+    public String fecha;
     public int idUsuario;
     
     public Receta receta;
@@ -47,4 +47,5 @@ public class Consulta {
         
         return val.validacionesMalas;
     }
+    
 }
