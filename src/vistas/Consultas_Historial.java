@@ -1,10 +1,18 @@
 package vistas;
 
 import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 
 
 
@@ -18,17 +26,39 @@ public class Consultas_Historial extends javax.swing.JFrame {
     int[] idCarrera;
     int[] idAct;
 
-   ConexionDB conn = new ConexionDB();
+   ConexionDB conn;
    
     public Consultas_Historial() throws SQLException {
         initComponents();
-        
+        this.conn = new ConexionDB();
         this.llenarFacultad(); 
         this.llenarActividad();
         this.cboCarrera.setModel(this.llenarComboBoxCarrera(3));
         
+        this.tbConsultas.setSelectionForeground(Color.WHITE);
         
-    }
+        //doble clic en una fila
+        this.tbConsultas.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    try {
+                        int idConsulta = Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
+                        Consulta consulta = conn.getConsulta(idConsulta);
+                        Paciente paciente = conn.getPaciente(consulta.idConsulta);
+                        Expediente_Paciente expediente = new Expediente_Paciente(consulta,paciente);
+                        expediente.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+    }   
 
 
     @SuppressWarnings("unchecked")
@@ -414,11 +444,24 @@ public class Consultas_Historial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Apellido", "Edad", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Doctor", "Motivo Consulta"
+                "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Carrera", "Telefono", "Fecha Consulta", "Doctor", "Motivo Consulta"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbConsultas.setRowHeight(25);
+        tbConsultas.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultas);
+        if (tbConsultas.getColumnModel().getColumnCount() > 0) {
+            tbConsultas.getColumnModel().getColumn(0).setMaxWidth(30);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -498,7 +541,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome4ActionPerformed
 
     private void btn_close2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_close2MouseClicked
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btn_close2MouseClicked
 
     private void Barra_Superior2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_Superior2MouseDragged

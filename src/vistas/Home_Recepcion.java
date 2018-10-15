@@ -38,8 +38,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     int[] idBusquedaPresMed;
     int[] idBusquedaCatsMed;
     int[] idDepart;
-    int [] idTipoPac;
-    int [] idParentezco;
+    int[] idTipoPac;
+    int[] idParentezco;
     
     public Home_Recepcion() throws SQLException {
         initComponents();
@@ -64,7 +64,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.llenartipoPacEmp();
         
         //Consultas
-       this.llenarDepartamentoConn();
+        this.llenarDepartamentoConn();
         this.llenarFacultadConn();
         this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(this.idFacult[this.cboFacultadEs.getSelectedIndex()]));
         this.llenarParentezcoCons();
@@ -293,7 +293,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jScrollPane9 = new javax.swing.JScrollPane();
         jTFarmacia = new javax.swing.JTable();
         jPanel15 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        btnEditMedicamento = new javax.swing.JLabel();
         lblHeader68 = new javax.swing.JLabel();
         txtBuscarNombreMed = new javax.swing.JTextField();
         lblHeader69 = new javax.swing.JLabel();
@@ -338,6 +338,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarPaciente.add(ItemCarnet);
 
+        itemNombreMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
         itemNombreMed.setText("por Nombre");
         itemNombreMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,6 +347,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemNombreMed);
 
+        itemFechaV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_fecha.png"))); // NOI18N
         itemFechaV.setText("por Fecha Vencimiento");
         itemFechaV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,6 +356,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemFechaV);
 
+        itemCatMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_Carrera.png"))); // NOI18N
         itemCatMed.setText("por Categorá");
         itemCatMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,6 +365,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemCatMed);
 
+        itemPresMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lista.png"))); // NOI18N
         itemPresMed.setText("por Presentación");
         itemPresMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1931,7 +1935,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel13.setText("Historial");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1942,7 +1946,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAgregarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAgregarPaciente.setText("Agregar Paciente");
         btnAgregarPaciente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAgregarPaciente.setFocusable(false);
         btnAgregarPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAgregarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2530,15 +2534,20 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel15.setBackground(new java.awt.Color(102, 0, 0));
         jPanel15.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        jLabel21.setText("EDITAR");
-        jLabel21.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel21.setFocusable(false);
-        jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel21.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditMedicamento.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditMedicamento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnEditMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        btnEditMedicamento.setText("EDITAR");
+        btnEditMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEditMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditMedicamento.setFocusable(false);
+        btnEditMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEditMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditMedicamentoMouseClicked(evt);
+            }
+        });
 
         lblHeader68.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader68.setForeground(new java.awt.Color(255, 255, 255));
@@ -2559,7 +2568,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnBuscarMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarMed.setText("BUSCAR");
         btnBuscarMed.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscarMed.setFocusable(false);
         btnBuscarMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarMed.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2608,7 +2617,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnBuscarMed)
                 .addGap(102, 102, 102)
-                .addComponent(jLabel21)
+                .addComponent(btnEditMedicamento)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
@@ -2617,7 +2626,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
+                        .addComponent(btnEditMedicamento)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -3122,33 +3131,33 @@ if(this.rbAcademico.isSelected()){
     pac.carreraP=this.idCarrera[this.cboCarreraEstud.getSelectedIndex()];
 }
     
-if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
-        && !this.txtDireccion.getText().trim().equals("")  ){
-    
-pac.documento=this.txtDocumento.getText();
-pac.nombre =this.txtNombre.getText();
-pac.apellido=this.txtApellido.getText();
-pac.FechaNac=this.txtFechaNac.getText();
-pac.telefono=this.txtTelefono.getText();
-pac.celular=this.txtCelular.getText();
-pac.direccion=this.txtDireccion.getText();
-pac.departamento=Integer.toString(this.idDepart[this.cboDepartamento.getSelectedIndex()]);
-pac.caso_emergencia=this.txtEmergencia.getText();
-pac.parentezco=Integer.toString(this.idParentezco[this.cboParentezco.getSelectedIndex()]); 
-pac.tel_emergencia=this.txtTelefonoEmerg.getText();
-if(this.rbzonaUrb.isSelected()){
-pac.zona=1;
-}else{
-pac.zona=2;
-}
+    if(!this.txtNombre.getText().trim().equals("") && !this.txtApellido.getText().trim().equals("") && !this.txtFechaNac.getText().trim().equals("")
+            && !this.txtDireccion.getText().trim().equals("")  ){
 
-if(this.rdbFemenino1.isSelected()){
-pac.sexo="F";
-}else{
-pac.sexo="M";
-}
+    pac.documento=this.txtDocumento.getText();
+    pac.nombre =this.txtNombre.getText();
+    pac.apellido=this.txtApellido.getText();
+    pac.FechaNac=this.txtFechaNac.getText();
+    pac.telefono=this.txtTelefono.getText();
+    pac.celular=this.txtCelular.getText();
+    pac.direccion=this.txtDireccion.getText();
+    pac.departamento=Integer.toString(this.idDepart[this.cboDepartamento.getSelectedIndex()]);
+    pac.caso_emergencia=this.txtEmergencia.getText();
+    pac.parentezco=Integer.toString(this.idParentezco[this.cboParentezco.getSelectedIndex()]); 
+    pac.tel_emergencia=this.txtTelefonoEmerg.getText();
+    if(this.rbzonaUrb.isSelected()){
+    pac.zona=1;
+    }else{
+    pac.zona=2;
+    }
 
-String resultado="";
+    if(this.rdbFemenino1.isSelected()){
+    pac.sexo="F";
+    }else{
+    pac.sexo="M";
+    }
+
+    String resultado="";
         try {
             resultado=conn.aggPaciente(pac);
 
@@ -3166,16 +3175,10 @@ String resultado="";
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this,ex.toString());
         }
-         
-    JOptionPane.showMessageDialog(this, resultado);
-}else {
-  JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
+            JOptionPane.showMessageDialog(this, resultado);
+        }else {
+            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
-
-
-     
-   
-        
     }//GEN-LAST:event_btnAgregarPacienteMouseClicked
 
 
@@ -3375,6 +3378,21 @@ String resultado="";
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_itemFechaVActionPerformed
+
+    private void btnEditMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMedicamentoMouseClicked
+        //Editar el medicamento seleccinoado del JTABLE
+        if (this.jTFarmacia.getSelectedRows().length == 1)
+        {
+            try {
+                int idMed = Integer.parseInt(this.jTFarmacia.getModel().getValueAt(this.jTFarmacia.getSelectedRow(), 0).toString());
+                Medicamento med = this.conn.getMedicamentobyID(idMed);
+                Editar_Medicamento form = new Editar_Medicamento(this,med);
+                form.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnEditMedicamentoMouseClicked
     
     
     /**
@@ -3428,6 +3446,7 @@ String resultado="";
     private javax.swing.JLabel btnBuscarPaciente;
     private javax.swing.JLabel btnConsultasAten;
     private javax.swing.JLabel btnConsultasEspera;
+    private javax.swing.JLabel btnEditMedicamento;
     private javax.swing.JLabel btnHistorialCon;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
@@ -3472,7 +3491,6 @@ String resultado="";
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
