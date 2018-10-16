@@ -561,10 +561,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_Barra_Superior2MouseReleased
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-       this.jPopupMenu1.show(evt.getComponent(), evt.getX(), evt.getY()); 
-       
-       
-        
+       this.jPopupMenu1.show(evt.getComponent(), evt.getX(), evt.getY());  
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     public void llenarFacultad() throws SQLException {

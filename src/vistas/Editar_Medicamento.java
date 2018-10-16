@@ -18,7 +18,8 @@ public class Editar_Medicamento extends javax.swing.JFrame {
     int xx,xy;
     int xs, ys, sbx,sby;
     
-    Home_Recepcion home;
+    Home_Recepcion home_recepcion = null;
+    Home_Root home_root = null;
     ConexionDB conn = new ConexionDB();
     Medicamento med;
     
@@ -30,12 +31,24 @@ public class Editar_Medicamento extends javax.swing.JFrame {
         try {
             initComponents();
             this.med = _med;
-            this.home = home;
+            this.home_recepcion = home;
             this.setValues();
         } catch (SQLException ex) {
             Logger.getLogger(Editar_Medicamento.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+     public Editar_Medicamento(Home_Root home,Medicamento _med) {
+        try {
+            initComponents();
+            this.med = _med;
+            this.home_root = home;
+            this.setValues();
+        } catch (SQLException ex) {
+            Logger.getLogger(Editar_Medicamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public Editar_Medicamento() {
         initComponents();
     }
@@ -364,7 +377,11 @@ public class Editar_Medicamento extends javax.swing.JFrame {
             if(validacion.equals("")){
                 String mensaje = this.conn.editarMedicamento(med);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
-                this.home.llenarMedicamentosFarmacia();
+                
+                if(this.home_recepcion == null){
+                    this.home_root.llenarMedicamentosFarmacia();
+                } else this.home_recepcion.llenarMedicamentosFarmacia();
+                
                 this.dispose();
             } else {
                 //error de validación
