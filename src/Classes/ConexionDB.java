@@ -273,6 +273,31 @@ public class ConexionDB {
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
+    public String aggUsuario(Usuario _usuario) throws SQLException{
+        
+        String user = _usuario.user;
+        String contra = _usuario.password1;
+        int tipo= _usuario.tipo_usr;
+         
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARUSUARIO(?,?,?,?)}");
+        
+    
+        cst.setString("pUsuario", _usuario.user);
+        cst.setString("pContra", _usuario.password1);
+        cst.setInt("pTipo", _usuario.tipo_usr);
+        
+           
+           
+        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMsj");
+        System.out.println(mensaje);
+        return mensaje;
+        
+        
+    }
+    
     public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
      
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
@@ -292,7 +317,7 @@ public class ConexionDB {
         String mensaje = cst.getString("MENSAJE");
         System.out.println(mensaje);
         if(!mensaje.equals("ERROR")){
-            int idConsulta = Integer.parseInt(mensaje.substring(10,11));
+            int idConsulta = Integer.parseInt(mensaje.substring(10,mensaje.length()));
             return idConsulta;
         }
         else{
@@ -464,15 +489,28 @@ public class ConexionDB {
     ////////////////////// OTROS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-    public int iniciar_sesion(Paciente _paciente){
+    public int iniciar_sesion(Usuario _usuario ) throws SQLException{
         
-        String user = _paciente.apellido;
-        String contra = _paciente.celular;
-    
+        String user = _usuario.user;
+        String contra = _usuario.password;
+        
+        
+         //llamar procedimeinto almacenado
+        CallableStatement cst = this.conn.prepareCall("{call  ValidacionUser(?,?,?)}");
+        cst.setString("pUsuario", _usuario.user);
+        cst.setString("pContra", _usuario.password);
+        
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("pMensaje", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMensaje");
+        if(!mensaje.equals("Error")){
            
-        //llamar procedimeinto almacenado
-        
-        return 0;
+            int tipo_usr=Integer.parseInt(mensaje.substring(7,8));
+            return tipo_usr;
+        } else return -1;
+       
     }
     
     public String editarMedicamento(Medicamento _med) throws SQLException {
@@ -1293,7 +1331,7 @@ public class ConexionDB {
            return model;
     }
          
-          public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
+    public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
         String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
@@ -1306,7 +1344,7 @@ public class ConexionDB {
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE cc.CONS_FECHA  = ? ";
+                " WHERE TO_CHAR(cc.CONS_FECHA , 'dd/mm/yy') = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);
@@ -1328,7 +1366,7 @@ public class ConexionDB {
            return model;
     }
           
-           public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
+    public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
         String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
@@ -1341,7 +1379,7 @@ public class ConexionDB {
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE Edad LIKE  ? ";
+                " WHERE (EXTRACT(YEAR FROM SYSDATE) -EXTRACT(YEAR FROM p.PAC_FECHA_NAC)) = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);

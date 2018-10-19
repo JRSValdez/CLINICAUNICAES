@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_consultas_fechas" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f58d9d76-78bb-4dc5-9b8b-6dbeeeea144d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="setAntecedentes" uuid="92834c57-a36a-4ea2-9551-eaa550659aaa">
+		<queryString>
+			<![CDATA[SELECT ENF.COD_CAT, ENF.ENFERMEDAD FROM ANTECEDENTES_X_CONS A
+    INNER JOIN CIE10_ENFERMEDAD ENF ON ENF.COD_ENF = A.COD_ENF
+    INNER JOIN CONSULTA C ON C.IDCONSULTA = A.IDCONSULTA
+WHERE C.IDPACIENTE = 9 AND C.IDCONSULTA = 9]]>
+		</queryString>
+		<field name="COD_CAT" class="java.lang.String"/>
+		<field name="ENFERMEDAD" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="idPaciente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+            C.IDCONSULTA, 
+            C.IDPACIENTE, DOC.IDDOCTOR,
+            P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE,
+            P.PAC_TELEFONO,
+            P.PAC_CARNE,
+            P.PAC_DOCUMENTO,
+            P.PAC_DIRECCION,
+            P.PAC_RESPONSABLE,
+            P.PAC_RES_TEL,
+            DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR,
+            TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') FECHA,
+            D.MOTIVO,
+            D.EF_ABDOMEN,
+            D.EF_CABEZA,
+            D.EF_CUELLO,
+            D.EF_EXTREMIDADES,
+            D.EF_TORAX,
+            D.FREC_CAR,
+            D.PESO,
+            D.PRES_ART,
+            D.PULSO,
+            D.TALLA,
+            D.MOTIVO,
+            D.RECOMENDACION,
+ENF.COD_CAT,
+            ENF.ENFERMEDAD
+FROM CONSULTA C
+    INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
+    INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
+    INNER JOIN PACIENTES P  ON P.IDPACIENTE = C.IDPACIENTE
+    INNER JOIN ANTECEDENTES_X_CONS ANT ON ANT.IDCONSULTA = C.IDCONSULTA
+    INNER JOIN CIE10_ENFERMEDAD ENF ON ENF.COD_ENF = ANT.COD_ENF
+WHERE C.IDPACIENTE = $P{idPaciente}]]>
+	</queryString>
+	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
+	<field name="IDPACIENTE" class="java.math.BigDecimal"/>
+	<field name="IDDOCTOR" class="java.math.BigDecimal"/>
+	<field name="PACIENTE" class="java.lang.String"/>
+	<field name="PAC_TELEFONO" class="java.lang.String"/>
+	<field name="PAC_CARNE" class="java.lang.String"/>
+	<field name="PAC_DOCUMENTO" class="java.lang.String"/>
+	<field name="PAC_DIRECCION" class="java.lang.String"/>
+	<field name="PAC_RESPONSABLE" class="java.lang.String"/>
+	<field name="PAC_RES_TEL" class="java.lang.String"/>
+	<field name="DOCTOR" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="MOTIVO" class="java.lang.String"/>
+	<field name="EF_ABDOMEN" class="java.lang.String"/>
+	<field name="EF_CABEZA" class="java.lang.String"/>
+	<field name="EF_CUELLO" class="java.lang.String"/>
+	<field name="EF_EXTREMIDADES" class="java.lang.String"/>
+	<field name="EF_TORAX" class="java.lang.String"/>
+	<field name="FREC_CAR" class="java.lang.String"/>
+	<field name="PESO" class="java.lang.String"/>
+	<field name="PRES_ART" class="java.lang.String"/>
+	<field name="PULSO" class="java.lang.String"/>
+	<field name="TALLA" class="java.lang.String"/>
+	<field name="RECOMENDACION" class="java.lang.String"/>
+	<field name="COD_CAT" class="java.lang.String"/>
+	<field name="ENFERMEDAD" class="java.lang.String"/>
+	<variable name="IDCONSULTA_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{IDCONSULTA}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="127" y="12" width="263" height="33" uuid="c09a559f-dcb9-4d50-84db-f3079ab5caaf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[EXPEDIENTE MÉDICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="180" y="45" width="157" height="22" uuid="d6e9400b-de47-4b58-b205-8661fd79e6ce"/>
+				<text><![CDATA[CLINICA UNICAES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="484" y="0" width="88" height="86" uuid="d4e0e970-66c2-427a-a459-2c473520fe8e"/>
+				<imageExpression><![CDATA["C:\\Users\\JRSVa\\Desktop\\SISTEMAS XVIII\\Tec. Producción\\CLINICAUNICAES\\src\\Reportes\\unicaes_logo_small.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="84" width="124" height="22" uuid="0564bdb0-a09c-4344-82c6-9b7fe7af52e9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[EXPEDIENTE DE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="124" y="84" width="199" height="20" uuid="f4b789cb-fb26-497d-aa6c-ba256bc97140"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PACIENTE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="287" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="9" width="127" height="20" uuid="5bd5b95a-8ef3-4cce-8c3e-b9d51deb5836"/>
+				<text><![CDATA[FECHA DE CONSULTA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="127" y="9" width="100" height="20" uuid="abb46b3c-fb6e-460f-bed3-28a9877c7dfd"/>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="237" y="9" width="76" height="20" uuid="3f7930af-7ada-4eb6-805a-e98f91f31362"/>
+				<text><![CDATA[ID PACIENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="313" y="9" width="51" height="20" uuid="2c33f676-6c76-4969-8210-b13db46561cc"/>
+				<textFieldExpression><![CDATA[$F{IDPACIENTE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="387" y="9" width="76" height="20" uuid="7ac84e4b-d89d-4add-bc4a-ac64a7972128"/>
+				<text><![CDATA[ID CONSULTA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="465" y="9" width="100" height="20" uuid="39ab483b-0d79-434f-9504-429cfc13c60f"/>
+				<textFieldExpression><![CDATA[$F{IDCONSULTA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="212" y="90" width="84" height="20" uuid="9348bc44-9eb9-42cf-abaf-612f998365cf"/>
+				<text><![CDATA[PESO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="97" y="36" width="100" height="20" uuid="8f2b30e0-650f-484e-a346-88de52b3ca2a"/>
+				<textFieldExpression><![CDATA[$F{DOCTOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="82" y="113" width="45" height="20" uuid="27471b26-3e2d-4e3c-a25e-ee2437c22f7d"/>
+				<text><![CDATA[PULSO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="36" width="119" height="20" uuid="87adf0c2-0dfa-48da-97db-6d45bb672cf2"/>
+				<text><![CDATA[MOTIVO DE CONSUTA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="93" width="99" height="20" uuid="7e49b325-f6b5-416f-8d0b-b73b61e769bb"/>
+				<text><![CDATA[FREC. CARDÍACA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="168" width="45" height="20" uuid="b5d6d854-8f84-4e4b-93f5-dbec78f1c5c2"/>
+				<text><![CDATA[CABEZA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="89" height="20" uuid="18aa8235-7782-4587-80f4-ec6ddc276aee"/>
+				<text><![CDATA[ATENDIDO POR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="201" width="84" height="20" uuid="9a538ac9-14a8-491a-bfaa-1f89f6c6db31"/>
+				<text><![CDATA[ABDOMEN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="262" width="120" height="20" uuid="52b6bb9a-b34a-4cfd-97d5-0a73ae36d4d1"/>
+				<text><![CDATA[ENFERMEDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="90" width="45" height="20" uuid="28656b0d-8c83-41d3-9de0-9089ca7b89f8"/>
+				<text><![CDATA[TALLA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="113" width="99" height="20" uuid="c0da983e-2881-4737-81dc-adb89f4a2400"/>
+				<text><![CDATA[PRES. ARTERIAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="168" width="84" height="20" uuid="bd5bb296-73a9-4980-8f6b-672fa73e8476"/>
+				<text><![CDATA[TORAX:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="215" y="242" width="124" height="22" uuid="68583144-53e8-4922-a7e4-a0b056730540"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ANTECEDENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="212" y="68" width="124" height="22" uuid="d5c533d2-81e1-447e-bff5-fe2d78f5ff71"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[SIGNOS VITALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="201" width="45" height="20" uuid="fc1ab95c-7bb0-4b6e-8621-a03d06238279"/>
+				<text><![CDATA[CUELLO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="212" y="113" width="84" height="20" uuid="5f42556b-8954-4927-bc72-840ca99502c2"/>
+				<text><![CDATA[TEMPERATURA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="262" width="120" height="20" uuid="4aac6d5f-3541-4fbd-aadc-e93aaf662857"/>
+				<text><![CDATA[CODIGO CATEGORÍA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="215" y="143" width="124" height="22" uuid="f11ff007-b806-478d-a688-a21e4b57fea2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[EXAMEN FÍSICO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="36" width="200" height="44" uuid="90e0906b-8d38-4b8c-9351-2f7cfeddc042"/>
+				<textFieldExpression><![CDATA[$F{MOTIVO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="454" y="168" width="99" height="20" uuid="8461b5d7-bee9-4868-840f-1f0580da6ec2"/>
+				<text><![CDATA[EXTREMIDADES:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="16" y="139" width="542" height="1" uuid="ef479815-7d2a-4634-b82d-95de48c09bac"/>
+			</line>
+			<line>
+				<reportElement x="16" y="238" width="542" height="1" uuid="4818c1d2-69ac-4898-8f5f-4bbff67dc06c"/>
+			</line>
+			<line>
+				<reportElement x="13" y="64" width="542" height="1" uuid="c7985ff9-6639-4e88-b0ca-4a9dd5da9a0c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="0" width="100" height="20" uuid="106c8416-f1cb-45d3-8553-436e1655785c"/>
+				<textFieldExpression><![CDATA[$F{COD_CAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="369" height="20" uuid="832373ac-17a0-4a5f-8942-d320d94b6000"/>
+				<textFieldExpression><![CDATA[$F{ENFERMEDAD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="35b7d2d9-1ddb-44cf-9afe-1c56dc6ada05"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="185cc857-5c33-4ae2-9709-a51337c4ee7f"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="5e9e167a-961d-4a74-8b1a-821ff220175b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="19" width="572" height="1" uuid="76548215-f0d5-4466-bae6-bc3b25d409c7"/>
+			</break>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

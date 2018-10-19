@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    <Component class="javax.swing.ButtonGroup" name="rdbFiltros1">
     </Component>
     <Container class="javax.swing.JPopupMenu" name="pUpBuscarMedicamento">
 
@@ -58,6 +58,10 @@
         </MenuItem>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.ButtonGroup" name="rdbFiltros2">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -665,15 +669,15 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace pref="22" max="32767" attributes="0"/>
                               <Component id="jPanel32" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="32767" attributes="0"/>
+                              <EmptySpace pref="29" max="32767" attributes="0"/>
                               <Component id="jPanel33" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" pref="47" max="32767" attributes="0"/>
+                              <EmptySpace pref="40" max="32767" attributes="0"/>
                               <Component id="jPanel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" pref="21" max="32767" attributes="0"/>
                               <Component id="jPanel34" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2403,7 +2407,7 @@
                           <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <EmptySpace pref="28" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2427,7 +2431,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace pref="27" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblHeader18" max="32767" attributes="0"/>
                                   <Component id="lblHeader15" alignment="0" max="32767" attributes="0"/>
@@ -2435,16 +2439,18 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField8" min="-2" pref="236" max="-2" attributes="0"/>
-                                  <Component id="jTextField23" min="-2" pref="236" max="-2" attributes="0"/>
-                                  <Component id="jTextField7" alignment="0" min="-2" pref="236" max="-2" attributes="0"/>
+                                  <Component id="txtUsuario" min="-2" pref="236" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtPassword2" alignment="1" min="-2" pref="244" max="-2" attributes="0"/>
+                                      <Component id="txtPassword1" alignment="1" min="-2" pref="244" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblHeader36" max="32767" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jComboBox10" min="-2" pref="238" max="-2" attributes="0"/>
+                                      <Component id="cboTipoUsuario" min="-2" pref="238" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblHeader38" min="-2" max="-2" attributes="0"/>
@@ -2452,9 +2458,9 @@
                                       <Component id="jComboBox14" min="-2" pref="238" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="jLabel10" min="-2" pref="194" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="btnAggUsuario" min="-2" pref="194" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -2472,9 +2478,9 @@
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblHeader15" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblHeader36" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cboTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -2484,21 +2490,21 @@
                                           </Group>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lblHeader16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtPassword1" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblHeader18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtPassword2" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Component id="jLabel10" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnAggUsuario" min="-2" pref="54" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="13" max="32767" attributes="0"/>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2526,26 +2532,12 @@
                         <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField7">
+                    <Component class="javax.swing.JTextField" name="txtUsuario">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="NOMBRE NOMBRE"/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder>
-                              <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
-                            </LineBorder>
-                          </Border>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField8">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Comic Sans MS" size="14" style="0"/>
-                        </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
@@ -2566,15 +2558,16 @@
                         <Property name="text" type="java.lang.String" value="TIPO:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="jComboBox10">
+                    <Component class="javax.swing.JComboBox" name="cboTipoUsuario">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="2">
-                            <StringItem index="0" value="Recepci&#xf3;n"/>
+                          <StringArray count="3">
+                            <StringItem index="0" value="Administrador"/>
                             <StringItem index="1" value="Doctor"/>
+                            <StringItem index="2" value="Recepci&#xf3;n"/>
                           </StringArray>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -2589,7 +2582,7 @@
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel10">
+                    <Component class="javax.swing.JLabel" name="btnAggUsuario">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
@@ -2615,20 +2608,9 @@
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField23">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Comic Sans MS" size="14" style="0"/>
-                        </Property>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                            <LineBorder>
-                              <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
-                            </LineBorder>
-                          </Border>
-                        </Property>
-                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAggUsuarioMouseClicked"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblHeader18">
                       <Properties>
@@ -2687,6 +2669,34 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="txtPassword2">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Comic Sans MS" size="14" style="0"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="ff" red="ff" type="rgb"/>
+                            </LineBorder>
+                          </Border>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JPasswordField" name="txtPassword1">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Comic Sans MS" size="14" style="0"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="ff" red="ff" type="rgb"/>
+                            </LineBorder>
+                          </Border>
+                        </Property>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2948,7 +2958,7 @@
                               <Component id="jPanel35" max="32767" attributes="0"/>
                               <Component id="jPanel42" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="68" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3033,79 +3043,83 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox10" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader59" min="-2" pref="120" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader34" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader35" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox5" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader41" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader32" min="-2" pref="85" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader33" min="-2" pref="85" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox9" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader54" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jComboBox16" max="32767" attributes="0"/>
-                                              <Component id="jComboBox9" max="32767" attributes="0"/>
-                                              <Component id="jComboBox8" max="32767" attributes="0"/>
-                                              <Component id="jComboBox7" max="32767" attributes="0"/>
-                                              <Component id="jComboBox6" pref="312" max="32767" attributes="0"/>
-                                              <Component id="jComboBox5" max="32767" attributes="0"/>
-                                              <Component id="jComboBox17" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox6" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader42" min="-2" pref="120" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbUbicacion" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader59" min="-2" pref="120" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbDoctor" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="lblHeader34" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbSexo" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader35" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbActividad" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader41" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbFacultad" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader32" min="-2" pref="85" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbCarrera" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader33" min="-2" pref="85" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbDepartamento" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader54" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="cmbDepartamento" max="32767" attributes="0"/>
+                                                      <Component id="cmbActividad" max="32767" attributes="0"/>
+                                                      <Component id="cmbSexo" max="32767" attributes="0"/>
+                                                      <Component id="cmbDcotor" max="32767" attributes="0"/>
+                                                      <Component id="cmbCarrera" pref="357" max="32767" attributes="0"/>
+                                                      <Component id="cmbFacultad" max="32767" attributes="0"/>
+                                                      <Component id="cmbUbicacion" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox7" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader49" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="rdbCategoria" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader42" min="-2" pref="114" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                          <Component id="lblHeader49" min="-2" pref="120" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="txtCodCat" max="32767" attributes="0"/>
+                                                      <Component id="txtCodDiag" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField21" max="32767" attributes="0"/>
-                                              <Component id="jTextField25" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -3118,76 +3132,85 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel41" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader34" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader35" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox8" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader41" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader32" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader33" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader54" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jCheckBox9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader59" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBox17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jCheckBox10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="lblHeader42" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckBox6" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jTextField21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader49" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="3" attributes="0">
+                                                              <Component id="lblHeader34" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="cmbDcotor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                                  <Component id="lblHeader35" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                                  <Component id="cmbSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="rdbSexo" min="-2" pref="33" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Component id="rdbDoctor" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="lblHeader41" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cmbActividad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Component id="rdbActividad" min="-2" pref="33" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lblHeader32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbFacultad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="rdbFacultad" min="-2" pref="33" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lblHeader33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbCarrera" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="rdbCarrera" min="-2" pref="33" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lblHeader54" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbDepartamento" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="jCheckBox7" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rdbDepartamento" min="-2" pref="33" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="rdbUbicacion" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblHeader59" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cmbUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="rdbCategoria" min="-2" pref="27" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jRadioButton11" min="-2" pref="27" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblHeader42" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCodCat" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lblHeader49" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCodDiag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -3206,7 +3229,7 @@
                             <Property name="text" type="java.lang.String" value="FACULTAD:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox5">
+                        <Component class="javax.swing.JComboBox" name="cmbFacultad">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3241,7 +3264,7 @@
                             <Property name="text" type="java.lang.String" value="CARRERA:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox6">
+                        <Component class="javax.swing.JComboBox" name="cmbCarrera">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3263,27 +3286,6 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox3">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader34">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3295,7 +3297,7 @@
                             <Property name="text" type="java.lang.String" value="DOCTOR:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox7">
+                        <Component class="javax.swing.JComboBox" name="cmbDcotor">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3319,13 +3321,6 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox4">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader35">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3337,7 +3332,7 @@
                             <Property name="text" type="java.lang.String" value="SEXO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox8">
+                        <Component class="javax.swing.JComboBox" name="cmbSexo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3360,13 +3355,6 @@
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox5">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader41">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3378,7 +3366,7 @@
                             <Property name="text" type="java.lang.String" value="ACTIVIDAD:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox9">
+                        <Component class="javax.swing.JComboBox" name="cmbActividad">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3406,40 +3394,26 @@
                         <Component class="javax.swing.JLabel" name="lblHeader42">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Comic Sans MS" size="14" style="0"/>
+                              <Font name="Comic Sans MS" size="12" style="0"/>
                             </Property>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="MOTIVO:"/>
+                            <Property name="text" type="java.lang.String" value="CAT. ENFERMEDAD"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox6">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField21">
+                        <Component class="javax.swing.JTextField" name="txtCodCat">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="MOTIVO"/>
+                            <Property name="text" type="java.lang.String" value="CODIGO CATEGOR&#xcd;A"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
                                   <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
                                 </LineBorder>
                               </Border>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox7">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -3454,12 +3428,12 @@
                             <Property name="text" type="java.lang.String" value="DIAGN&#xd3;STICO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField25">
+                        <Component class="javax.swing.JTextField" name="txtCodDiag">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="DIAGNOSTICO"/>
+                            <Property name="text" type="java.lang.String" value="C&#xd3;DIGO ENFERMEDAD"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -3492,14 +3466,7 @@
                             <Property name="text" type="java.lang.String" value="DEPARTAMENTO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox9">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox16">
+                        <Component class="javax.swing.JComboBox" name="cmbDepartamento">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3535,14 +3502,7 @@
                             <Property name="text" type="java.lang.String" value="UBICACI&#xd3;N:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox10">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox17">
+                        <Component class="javax.swing.JComboBox" name="cmbUbicacion">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3564,6 +3524,96 @@
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbSexo">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbDoctor">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbActividad">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbFacultad">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbCarrera">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbDepartamento">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbCategoria">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbUbicacion">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="jRadioButton11">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros1"/>
+                            </Property>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="sansserif" size="14" style="0"/>
+                            </Property>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -3598,18 +3648,18 @@
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jTextField27" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jComboBox15" alignment="0" pref="250" max="32767" attributes="0"/>
-                                              <Component id="jTextField26" max="32767" attributes="0"/>
+                                              <Component id="txtFechaFinal" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cmbPeriodo" alignment="0" pref="250" max="32767" attributes="0"/>
+                                              <Component id="txtFechaInicio" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="218" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="242" max="32767" attributes="0"/>
                                           <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="219" max="32767" attributes="0"/>
+                                          <EmptySpace pref="243" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -3625,17 +3675,17 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lblHeader50" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lblHeader52" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jTextField27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtFechaFinal" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lblHeader53" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jComboBox15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cmbPeriodo" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -3671,7 +3721,7 @@
                             <Property name="text" type="java.lang.String" value="FECHA FINAL:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField26">
+                        <Component class="javax.swing.JTextField" name="txtFechaInicio">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3686,7 +3736,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField27">
+                        <Component class="javax.swing.JTextField" name="txtFechaFinal">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -3712,14 +3762,14 @@
                             <Property name="text" type="java.lang.String" value="PERIODO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="jComboBox15">
+                        <Component class="javax.swing.JComboBox" name="cmbPeriodo">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="3">
-                                <StringItem index="0" value="DI&#xc1;RIO"/>
+                                <StringItem index="0" value="DIARIO"/>
                                 <StringItem index="1" value="MENSUAL"/>
                                 <StringItem index="2" value="ANUAL"/>
                               </StringArray>
@@ -3760,7 +3810,7 @@
                             <Property name="text" type="java.lang.String" value="GENERAR REPORTE"/>
                             <Property name="verticalAlignment" type="int" value="3"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
+                              <Color id="Hand Cursor"/>
                             </Property>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -3852,41 +3902,39 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox11" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader60" max="32767" attributes="0"/>
+                                                  <Component id="rdbIdPac" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                  <Component id="lblHeader60" min="-2" pref="109" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox8" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader51" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox12" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader61" min="-2" pref="97" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jCheckBox13" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="lblHeader62" min="-2" pref="97" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="rdbCarnet" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="rdbNombres" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="rdbApellidos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="lblHeader51" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                                      <Component id="lblHeader61" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                                      <Component id="lblHeader62" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField28" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jTextField30" alignment="0" pref="255" max="32767" attributes="0"/>
-                                              <Component id="jTextField31" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jTextField32" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="txtNombres" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtApellidos" alignment="0" pref="223" max="32767" attributes="0"/>
+                                              <Component id="txtIdPac" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtCarnet" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -3903,36 +3951,38 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox11" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader60" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="rdbIdPac" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lblHeader60" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtIdPac" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="lblHeader62" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox13" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader62" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField32" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="rdbCarnet" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox12" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblHeader61" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtNombres" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="rdbNombres" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox8" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblHeader51" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jTextField30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="rdbApellidos" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -3953,20 +4003,6 @@
                             <Property name="text" type="java.lang.String" value="APELLIDOS:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox8">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox11">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader60">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -3976,13 +4012,6 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="ID PACIENTE:"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox12">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader61">
@@ -3996,7 +4025,7 @@
                             <Property name="text" type="java.lang.String" value="NOMBRES:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField28">
+                        <Component class="javax.swing.JTextField" name="txtNombres">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -4011,7 +4040,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField30">
+                        <Component class="javax.swing.JTextField" name="txtApellidos">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -4038,7 +4067,7 @@
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField31">
+                        <Component class="javax.swing.JTextField" name="txtIdPac">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -4072,13 +4101,6 @@
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox13">
-                          <Properties>
-                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
-                            </Property>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader62">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -4090,7 +4112,7 @@
                             <Property name="text" type="java.lang.String" value="CARNET:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField32">
+                        <Component class="javax.swing.JTextField" name="txtCarnet">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
@@ -4102,6 +4124,34 @@
                                   <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
                                 </LineBorder>
                               </Border>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbIdPac">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros2"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbCarnet">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros2"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbNombres">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros2"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="rdbApellidos">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="rdbFiltros2"/>
                             </Property>
                           </Properties>
                         </Component>
