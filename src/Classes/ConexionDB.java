@@ -1056,6 +1056,144 @@ public class ConexionDB {
         }
   
       }
+    
+    public DefaultTableModel getExpedienteRootByCarnet(JTable jTable1, String _idCarnet) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" + _idCarnet + "%");
+        preparedStatement.setString(2, "%" + _idCarnet + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByID(JTable jTable1, int _idPac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.IDPACIENTE = ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idPac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByApellidos(JTable jTable1, String _apellido) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_APELLIDO LIKE ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" +_apellido + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByNombres(JTable jTable1, String _nombre) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_NOMBRE LIKE ? ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" +_nombre + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
     public String aggPaciente(Paciente pac) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada

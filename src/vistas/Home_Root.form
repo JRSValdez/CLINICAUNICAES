@@ -143,7 +143,7 @@
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="SideBar" pref="661" max="32767" attributes="0"/>
+                          <Component id="SideBar" pref="666" max="32767" attributes="0"/>
                           <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -722,9 +722,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblDoctores" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                                           <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel50" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -891,9 +891,9 @@
                                       </Group>
                                       <Component id="jLabel54" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace pref="42" max="32767" attributes="0"/>
+                                          <EmptySpace pref="40" max="32767" attributes="0"/>
                                           <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1741,7 +1741,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblHeader45" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="37" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="lblHeader48" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -2407,7 +2407,7 @@
                           <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <EmptySpace pref="14" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2431,7 +2431,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                              <EmptySpace pref="16" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblHeader18" max="32767" attributes="0"/>
                                   <Component id="lblHeader15" alignment="0" max="32767" attributes="0"/>
@@ -2445,7 +2445,7 @@
                                       <Component id="txtPassword1" alignment="1" min="-2" pref="244" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace pref="19" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblHeader36" max="32767" attributes="0"/>
@@ -2958,7 +2958,7 @@
                               <Component id="jPanel35" max="32767" attributes="0"/>
                               <Component id="jPanel42" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace pref="48" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -3096,7 +3096,7 @@
                                                       <Component id="cmbActividad" max="32767" attributes="0"/>
                                                       <Component id="cmbSexo" max="32767" attributes="0"/>
                                                       <Component id="cmbDcotor" max="32767" attributes="0"/>
-                                                      <Component id="cmbCarrera" pref="357" max="32767" attributes="0"/>
+                                                      <Component id="cmbCarrera" pref="334" max="32767" attributes="0"/>
                                                       <Component id="cmbFacultad" max="32767" attributes="0"/>
                                                       <Component id="cmbUbicacion" max="32767" attributes="0"/>
                                                   </Group>
@@ -3185,7 +3185,7 @@
                                       </Group>
                                       <Component id="rdbDepartamento" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                  <EmptySpace type="unrelated" pref="11" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="rdbUbicacion" min="-2" pref="33" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
@@ -3657,9 +3657,9 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="242" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="233" max="32767" attributes="0"/>
                                           <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="243" max="32767" attributes="0"/>
+                                          <EmptySpace pref="234" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -3816,6 +3816,9 @@
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel8MouseClicked"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -3860,9 +3863,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jPanelEstNuevo6" max="32767" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jPanelEstNuevo7" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanelEstNuevo6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jPanelEstNuevo7" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -3905,7 +3908,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="rdbIdPac" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -3921,23 +3924,23 @@
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="lblHeader51" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
                                                       <Component id="lblHeader61" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
-                                                      <Component id="lblHeader62" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                                                      <Component id="lblHeader62" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtNombres" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtApellidos" alignment="0" pref="223" max="32767" attributes="0"/>
+                                              <Component id="txtApellidos" alignment="0" pref="200" max="32767" attributes="0"/>
                                               <Component id="txtIdPac" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtCarnet" alignment="1" max="32767" attributes="0"/>
+                                              <Component id="txtCarnetRoot" alignment="1" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnBuscarExpediente" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
@@ -3963,7 +3966,7 @@
                                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="lblHeader62" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCarnet" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtCarnetRoot" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="rdbCarnet" min="-2" pref="23" max="-2" attributes="0"/>
@@ -3985,7 +3988,7 @@
                                       <Component id="rdbApellidos" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarExpediente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -4030,7 +4033,6 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="NOMBRE NOMBRE"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -4045,7 +4047,6 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="APELLIDO APELLIDO"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -4072,7 +4073,6 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="ID"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -4082,7 +4082,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel13">
+                        <Component class="javax.swing.JLabel" name="btnBuscarExpediente">
                           <Properties>
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -4094,12 +4094,15 @@
                             <Property name="text" type="java.lang.String" value="BUSCAR EXPEDIENTE"/>
                             <Property name="verticalAlignment" type="int" value="3"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
+                              <Color id="Hand Cursor"/>
                             </Property>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBuscarExpedienteMouseClicked"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblHeader62">
                           <Properties>
@@ -4109,15 +4112,14 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="CARNET:"/>
+                            <Property name="text" type="java.lang.String" value="CARNET/DOC:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtCarnet">
+                        <Component class="javax.swing.JTextField" name="txtCarnetRoot">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="XXXXXXX"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -4132,6 +4134,7 @@
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="rdbFiltros2"/>
                             </Property>
+                            <Property name="selected" type="boolean" value="true"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JRadioButton" name="rdbCarnet">
@@ -4178,19 +4181,19 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="101" max="32767" attributes="0"/>
                                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="102" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane14" pref="0" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -4199,10 +4202,10 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane14" min="-2" pref="93" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane14" pref="0" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -4232,12 +4235,15 @@
                             <Property name="text" type="java.lang.String" value="GENERAR REPORTE"/>
                             <Property name="verticalAlignment" type="int" value="3"/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
+                              <Color id="Hand Cursor"/>
                             </Property>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="horizontalTextPosition" type="int" value="0"/>
                             <Property name="verticalTextPosition" type="int" value="3"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel15MouseClicked"/>
+                          </Events>
                         </Component>
                         <Container class="javax.swing.JScrollPane" name="jScrollPane14">
                           <AuxValues>
@@ -4246,33 +4252,25 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="jTbusqueda2">
+                            <Component class="javax.swing.JTable" name="jtBuscarExpediente">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                                 </Property>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Comic Sans MS" size="14" style="0"/>
+                                  <Font name="Comic Sans MS" size="12" style="0"/>
                                 </Property>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="4" rowCount="1">
-                                    <Column editable="true" title="ID" type="java.lang.String">
-                                      <Data value="12"/>
-                                    </Column>
-                                    <Column editable="true" title="Carnet" type="java.lang.Object">
-                                      <Data value=" 2015SV601"/>
-                                    </Column>
-                                    <Column editable="true" title="Nombre" type="java.lang.String">
-                                      <Data value="Jos&#xe9; Ricardo Sifontes Valdez"/>
-                                    </Column>
-                                    <Column editable="true" title="Edad" type="java.lang.Object">
-                                      <Data value="20"/>
-                                    </Column>
+                                  <Table columnCount="4" rowCount="0">
+                                    <Column editable="true" title="ID" type="java.lang.String"/>
+                                    <Column editable="true" title="Carnet" type="java.lang.Object"/>
+                                    <Column editable="true" title="Nombre" type="java.lang.String"/>
+                                    <Column editable="true" title="Fecha Cons." type="java.lang.Object"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                    <Column maxWidth="35" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
                                       <Renderer/>

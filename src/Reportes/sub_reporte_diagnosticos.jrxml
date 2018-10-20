@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_reporte_antecedentes" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="e3d32ad4-11ef-4b06-a345-d9e0169a21c6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idConsulta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[3]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *  FROM DIAGNOSTICO_X_CONS ANT
+    INNER JOIN CIE10_ENFERMEDAD ENF ON ANT.COD_ENF = ENF.COD_ENF
+WHERE ANT.IDCONSULTA = $P{idConsulta}]]>
+	</queryString>
+	<field name="IDDIAGNOSTICO" class="java.math.BigDecimal"/>
+	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
+	<field name="COD_ENF" class="java.lang.String"/>
+	<field name="COD_CAT" class="java.lang.String"/>
+	<field name="ENFERMEDAD" class="java.lang.String"/>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="2" width="100" height="15" uuid="90841dc6-2464-4452-8744-de01ec4e1dde"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD CATEGORÍA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="2" width="117" height="15" uuid="d1ecba25-3049-4e34-9d81-21e933e93db3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD ENFERMEDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="100" height="15" uuid="62cbce24-e6e3-47c5-944f-d38f3c532564"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENFERMEDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement x="237" y="0" width="309" height="11" uuid="fed81931-0b03-4340-bf90-9f9e97483628"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ENFERMEDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="0" width="100" height="11" uuid="1afcfcec-6c7b-441d-9996-0a34b3990457"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_ENF}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="13" width="568" height="1" forecolor="#999999" uuid="00514f4d-91ce-4196-95e1-22a3056ad5a9"/>
+			</line>
+			<textField>
+				<reportElement x="4" y="1" width="100" height="11" uuid="af90c0a7-25d3-4a91-9117-477958fa0cb2"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_CAT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
