@@ -273,18 +273,20 @@ public class ConexionDB {
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-    public String aggUsuario(Usuario _usuario) throws SQLException{
+     public String aggUsuario(Usuario _usuario) throws SQLException{
         
         String user = _usuario.user;
         String contra = _usuario.password1;
         int tipo= _usuario.tipo_usr;
+        int empleado= _usuario.empleado;
          
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGARUSUARIO(?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARUSUARIO(?,?,?,?,?)}");
         
     
         cst.setString("pUsuario", _usuario.user);
         cst.setString("pContra", _usuario.password1);
         cst.setInt("pTipo", _usuario.tipo_usr);
+        cst.setInt("pEmp",_usuario.empleado);
         
            
            
@@ -980,6 +982,61 @@ public class ConexionDB {
             return null;
         }
     }
+        
+        public Object[] Obt_Empleado() throws SQLException {
+
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDEMP,EMP_NOMBRE || ' ' || EMP_APELLIDO NOMBRE FROM EMPLEADO";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idEmp = new int[numRows];
+           String[] Emp = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idEmp[con] = rs.getInt(1);
+                Emp[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idEmp,Emp};
+        }
+        else{
+            return null;
+        }
+    }
+        
+         public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA,u.USR_TIPO, emp.EMP_NOMBRE || ' ' || emp.EMP_APELLIDO NOMBRE " +
+                   " FROM USUARIO u " +
+                   " INNER JOIN EMPLEADO emp on u.IDEMP= emp.IDEMP " +
+                   " WHERE u.ELIMINADO= 0";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[5];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<5;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
      
     public DefaultComboBoxModel Obt_TipoPac() throws SQLException {
 

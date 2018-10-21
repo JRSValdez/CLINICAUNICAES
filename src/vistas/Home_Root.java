@@ -44,6 +44,8 @@ public class Home_Root extends javax.swing.JFrame {
     int[] idBusquedaPresMed;
     int[] idBusquedaCatsMed;
     
+    int[] idEmp;
+    
     public Home_Root() throws SQLException {
         initComponents();
         
@@ -59,6 +61,10 @@ public class Home_Root extends javax.swing.JFrame {
         sby = this.SideBar.getHeight();
         
         this.llenarMedicamentosFarmacia();
+        
+        this.llenarEmp();
+        this.tbUsuarios.setSelectionForeground(Color.WHITE);
+        this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -176,7 +182,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader18 = new javax.swing.JLabel();
         lblHeader14 = new javax.swing.JLabel();
         lblHeader38 = new javax.swing.JLabel();
-        jComboBox14 = new javax.swing.JComboBox<>();
+        cboEmpleado = new javax.swing.JComboBox<>();
         txtPassword2 = new javax.swing.JPasswordField();
         txtPassword1 = new javax.swing.JPasswordField();
         jPanel5 = new javax.swing.JPanel();
@@ -185,7 +191,7 @@ public class Home_Root extends javax.swing.JFrame {
         jPanel13 = new javax.swing.JPanel();
         lblHeader57 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTFarmacia1 = new javax.swing.JTable();
+        tbUsuarios = new javax.swing.JTable();
         Tab_reports = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
@@ -1339,7 +1345,7 @@ public class Home_Root extends javax.swing.JFrame {
         btnEditMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnEditMedicamento.setText("EDITAR");
         btnEditMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEditMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditMedicamento.setFocusable(false);
         btnEditMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1368,7 +1374,7 @@ public class Home_Root extends javax.swing.JFrame {
         btnBuscarMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarMed.setText("BUSCAR");
         btnBuscarMed.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarMed.setFocusable(false);
         btnBuscarMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarMed.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1526,9 +1532,9 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader38.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader38.setText("EMPLEADO:");
 
-        jComboBox14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado 1", "Empleado 2", "Empleado 3", " " }));
-        jComboBox14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado 1", "Empleado 2", "Empleado 3", " " }));
+        cboEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         txtPassword2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtPassword2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
@@ -1561,7 +1567,7 @@ public class Home_Root extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(lblHeader38)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addComponent(btnAggUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -1586,7 +1592,7 @@ public class Home_Root extends javax.swing.JFrame {
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblHeader38)
-                                .addComponent(jComboBox14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblHeader16)
                                 .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1651,14 +1657,14 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader57.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader57.setText("LISTA DE USUARIOS");
 
-        jTFarmacia1.setBackground(new java.awt.Color(204, 204, 204));
-        jTFarmacia1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTFarmacia1.setModel(new javax.swing.table.DefaultTableModel(
+        tbUsuarios.setBackground(new java.awt.Color(204, 204, 204));
+        tbUsuarios.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"123", "Doctor", "José Ricardo Sifontes Valdez", "Activo"}
             },
             new String [] {
-                "ID", "Tipo", "Empleado", "Estado"
+                "ID", "Usuario", "Contraseña", "Tipo_Usuario"
             }
         ) {
             Class[] types = new Class [] {
@@ -1669,14 +1675,14 @@ public class Home_Root extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTFarmacia1.setColumnSelectionAllowed(true);
-        jTFarmacia1.setGridColor(new java.awt.Color(255, 255, 153));
-        jTFarmacia1.setRowHeight(25);
-        jTFarmacia1.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTFarmacia1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTFarmacia1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane5.setViewportView(jTFarmacia1);
-        jTFarmacia1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbUsuarios.setColumnSelectionAllowed(true);
+        tbUsuarios.setGridColor(new java.awt.Color(255, 255, 153));
+        tbUsuarios.setRowHeight(25);
+        tbUsuarios.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbUsuarios.getTableHeader().setReorderingAllowed(false);
+        jScrollPane5.setViewportView(tbUsuarios);
+        tbUsuarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -2029,7 +2035,7 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         jLabel8.setText("GENERAR REPORTE");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2162,7 +2168,7 @@ public class Home_Root extends javax.swing.JFrame {
         btnBuscarExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarExpediente.setText("BUSCAR EXPEDIENTE");
         btnBuscarExpediente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarExpediente.setFocusable(false);
         btnBuscarExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarExpediente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2277,7 +2283,7 @@ public class Home_Root extends javax.swing.JFrame {
         btnGenReporteExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnGenReporteExpediente.setText("GENERAR REPORTE");
         btnGenReporteExpediente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGenReporteExpediente.setFocusable(false);
         btnGenReporteExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGenReporteExpediente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -3902,14 +3908,14 @@ public class Home_Root extends javax.swing.JFrame {
     }//GEN-LAST:event_itemPresMedActionPerformed
 
     private void btnAggUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUsuarioMouseClicked
-        //validar antes de creaar usuario
-        
-      Usuario us= new Usuario();
+         
+       Usuario us= new Usuario();
       
        us.user= this.txtUsuario.getText();
        us.password1= new String(txtPassword1.getPassword());
        us.password2= new String(txtPassword2.getPassword());
-       us.tipo_usr= this.cboTipoUsuario.getSelectedIndex() + 1;
+       us.tipo_usr= this.cboTipoUsuario.getSelectedIndex();
+       us.empleado=this.idEmp[this.cboEmpleado.getSelectedIndex()];
       
         
        if(us.ValidarAgg().equals("Exito")){
@@ -3934,12 +3940,22 @@ public class Home_Root extends javax.swing.JFrame {
         }else {
             JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
+       
     }//GEN-LAST:event_btnAggUsuarioMouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
        
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    public void llenarEmp() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Empleado();
+
+        this.idEmp = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboEmpleado.setModel(model);
+    }
+    
     private void btnBuscarExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarExpedienteMouseClicked
        if(this.rdbCarnet.isSelected()){
            // Buscar medicamento por carnet
@@ -4111,6 +4127,7 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboBuscarCatMed;
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCategoriaMed;
+    private javax.swing.JComboBox<String> cboEmpleado;
     private javax.swing.JComboBox<String> cboPresentacionMed;
     private javax.swing.JComboBox<String> cboTipoUsuario;
     private javax.swing.JComboBox<String> cboUnidadesMed;
@@ -4129,7 +4146,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemPresMed;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
-    private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -4228,7 +4244,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTFarmacia;
-    private javax.swing.JTable jTFarmacia1;
     private javax.swing.JTable jTFarmacia2;
     private javax.swing.JTable jTactividades;
     private javax.swing.JTable jTactividades1;
@@ -4327,6 +4342,7 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbNombres;
     private javax.swing.JRadioButton rdbSexo;
     private javax.swing.JRadioButton rdbUbicacion;
+    private javax.swing.JTable tbUsuarios;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtBuscarFechaV;
     private javax.swing.JTextField txtBuscarNombreMed;

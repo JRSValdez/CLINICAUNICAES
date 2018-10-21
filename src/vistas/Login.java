@@ -296,21 +296,21 @@ public class Login extends javax.swing.JFrame implements Runnable {
            try {
                int tipo= cn.iniciar_sesion(us);
                //Administrador
-               if (tipo==1){
+               if (tipo==0){
                    Home_Root h= new Home_Root();
                    h.setVisible(true);
                    this.dispose();
                }
                
                 //Recepcion
-               else if (tipo==2){
+               else if (tipo==1){
                    Home_Recepcion hr= new Home_Recepcion();
                    hr.setVisible(true);
                    this.dispose();
                }
                
                 //Doctor
-               else if (tipo==3){
+               else if (tipo==2){
                    Home_Consultorio hc= new Home_Consultorio();
                    hc.setVisible(true);
                    this.dispose();
