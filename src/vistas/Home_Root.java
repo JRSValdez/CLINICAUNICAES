@@ -246,7 +246,7 @@ public class Home_Root extends javax.swing.JFrame {
         rdbApellidos = new javax.swing.JRadioButton();
         jPanelEstNuevo7 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        btnGenReporteExpediente = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
         jtBuscarExpediente = new javax.swing.JTable();
         Tab_Config = new javax.swing.JPanel();
@@ -1214,7 +1214,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblHeader45)
-                        .addGap(0, 34, Short.MAX_VALUE))
+                        .addGap(0, 37, Short.MAX_VALUE))
                     .addComponent(lblHeader48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2272,18 +2272,18 @@ public class Home_Root extends javax.swing.JFrame {
         jLabel46.setText("RESULTADOS BUSQUEDA");
         jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
-        jLabel15.setText("GENERAR REPORTE");
-        jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel15.setFocusable(false);
-        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnGenReporteExpediente.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenReporteExpediente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnGenReporteExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
+        btnGenReporteExpediente.setText("GENERAR REPORTE");
+        btnGenReporteExpediente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenReporteExpediente.setFocusable(false);
+        btnGenReporteExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGenReporteExpediente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGenReporteExpediente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel15MouseClicked(evt);
+                btnGenReporteExpedienteMouseClicked(evt);
             }
         });
 
@@ -2329,7 +2329,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
+                .addComponent(btnGenReporteExpediente)
                 .addGap(131, 131, 131))
         );
         jPanelEstNuevo7Layout.setVerticalGroup(
@@ -2339,7 +2339,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel15)
+                .addComponent(btnGenReporteExpediente)
                 .addContainerGap())
         );
 
@@ -3988,7 +3988,7 @@ public class Home_Root extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btnBuscarExpedienteMouseClicked
 
-    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+    private void btnGenReporteExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteExpedienteMouseClicked
         //REPORTE DE EXPEDIENTE SELECCIONADO
         if (this.jtBuscarExpediente.getSelectedRows().length == 1)
         {
@@ -3998,7 +3998,7 @@ public class Home_Root extends javax.swing.JFrame {
             parameters.put ("idConsulta", idConsulta);
             JasperReport reporte; //Creo el objeto reporte
              // Ubicacion del Reporte
-            String path = "C:\\Users\\JRSVALDEZ\\Desktop\\SISTEMAS VIII\\Tec. de Producción\\CLINICAUNICAESgh\\src\\Reportes\\reporte_expediente.jasper"; //"../Reportes/reporte_expediente.jasper";
+            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; //"../Reportes/reporte_expediente.jasper";
             try {
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
                 JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -4009,7 +4009,7 @@ public class Home_Root extends javax.swing.JFrame {
                 Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jLabel15MouseClicked
+    }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
     
     public void setPanelEnabled(JPanel panel, Boolean isEnabled) {
     panel.setEnabled(isEnabled);
@@ -4095,6 +4095,7 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel btnBuscarExpediente;
     private javax.swing.JLabel btnBuscarMed;
     private javax.swing.JLabel btnEditMedicamento;
+    private javax.swing.JLabel btnGenReporteExpediente;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_config;
@@ -4132,7 +4133,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

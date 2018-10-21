@@ -1069,7 +1069,7 @@ public class ConexionDB {
                         "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
                         "    FROM  CONSULTA C " +
                         " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? ";
+                        " WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" + _idCarnet + "%");
@@ -1104,7 +1104,7 @@ public class ConexionDB {
                         "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
                         "    FROM  CONSULTA C " +
                         " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.IDPACIENTE = ? ";
+                        " WHERE P.IDPACIENTE = ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idPac);
@@ -1138,7 +1138,7 @@ public class ConexionDB {
                         "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
                         "    FROM  CONSULTA C " +
                         " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_APELLIDO LIKE ? ";
+                        " WHERE P.PAC_APELLIDO LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" +_apellido + "%");
@@ -1172,7 +1172,7 @@ public class ConexionDB {
                         "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
                         "    FROM  CONSULTA C " +
                         " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_NOMBRE LIKE ? ";
+                        " WHERE P.PAC_NOMBRE LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" +_nombre + "%");
