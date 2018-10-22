@@ -654,9 +654,9 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDoctores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                        .addGap(0, 30, Short.MAX_VALUE)
+                        .addGap(0, 34, Short.MAX_VALUE)
                         .addComponent(jLabel49)
-                        .addGap(0, 30, Short.MAX_VALUE))
+                        .addGap(0, 34, Short.MAX_VALUE))
                     .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -742,9 +742,9 @@ public class Home_Root extends javax.swing.JFrame {
                         .addComponent(lblConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                        .addContainerGap(40, Short.MAX_VALUE)
+                        .addContainerGap(42, Short.MAX_VALUE)
                         .addComponent(jLabel55)
-                        .addGap(0, 30, Short.MAX_VALUE)))
+                        .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -950,7 +950,7 @@ public class Home_Root extends javax.swing.JFrame {
 
         txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
         try {
-            txtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            txtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -1079,7 +1079,7 @@ public class Home_Root extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tbDoctor.setColumnSelectionAllowed(true);
+        tbDoctor.setCellSelectionEnabled(false);
         tbDoctor.setGridColor(new java.awt.Color(255, 255, 153));
         tbDoctor.setRowHeight(25);
         tbDoctor.setSelectionBackground(new java.awt.Color(0, 0, 0));
@@ -1096,9 +1096,9 @@ public class Home_Root extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGap(0, 365, Short.MAX_VALUE)
+                        .addGap(0, 378, Short.MAX_VALUE)
                         .addComponent(lblHeader58)
-                        .addGap(0, 389, Short.MAX_VALUE))
+                        .addGap(0, 402, Short.MAX_VALUE))
                     .addComponent(jScrollPane6))
                 .addContainerGap())
         );
@@ -1139,11 +1139,11 @@ public class Home_Root extends javax.swing.JFrame {
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap(427, Short.MAX_VALUE)
+                .addContainerGap(430, Short.MAX_VALUE)
                 .addComponent(jLabel27)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29)
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addContainerGap(431, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1162,7 +1162,7 @@ public class Home_Root extends javax.swing.JFrame {
             .addGroup(Tab_DoctoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Tab_DoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 975, Short.MAX_VALUE)
+                    .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1712,10 +1712,10 @@ public class Home_Root extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tbUsuarios.setColumnSelectionAllowed(true);
         tbUsuarios.setGridColor(new java.awt.Color(255, 255, 153));
         tbUsuarios.setRowHeight(25);
         tbUsuarios.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbUsuarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbUsuarios.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbUsuarios);
@@ -2007,7 +2007,7 @@ public class Home_Root extends javax.swing.JFrame {
                             .addComponent(lblHeader54)
                             .addComponent(cmbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(rdbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rdbUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -3648,7 +3648,7 @@ public class Home_Root extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                        .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
                         .addGap(45, 45, 45))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
