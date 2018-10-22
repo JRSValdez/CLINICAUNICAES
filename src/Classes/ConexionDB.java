@@ -299,6 +299,41 @@ public class ConexionDB {
         
         
     }
+     
+      public String aggDoctor(Doctor _doctor) throws SQLException{
+        
+        String nombre = _doctor.nombre;
+        String apellido = _doctor.apellido;
+        int especialidad= _doctor.idEspecialidad;
+        String telefono= _doctor.telefono;
+        String fecha= _doctor.fechaNac;
+        String sexo= _doctor.sexo;
+        String documento= _doctor.documento;
+        int usuario= _doctor.idUsuario;
+        
+         
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARDOCTOR(?,?,?,?,?,?,?,?,?)}");
+        
+    
+        cst.setString("pNombre", _doctor.nombre);
+        cst.setString("pApellido", _doctor.apellido);
+        cst.setInt("pIdEspecialidad", _doctor.idEspecialidad);
+        cst.setString("pTel", _doctor.telefono);
+        cst.setString("pFechaNac", _doctor.fechaNac);
+        cst.setString("pSexo",_doctor.sexo);
+        cst.setString("pDoc",_doctor.documento);
+        cst.setInt("pIdUsuario",_doctor.idUsuario);
+            
+           
+        cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("Msj");
+        System.out.println(mensaje);
+        return mensaje;
+        
+        
+    }
     
     public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
      
@@ -1011,6 +1046,96 @@ public class ConexionDB {
             return null;
         }
     }
+        
+         public Object[] Obt_Usuario() throws SQLException {
+          //DOCTOR AGG
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDUSUARIO,USUARIO FROM USUARIO";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idUsr = new int[numRows];
+           String[] Usr = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idUsr[con] = rs.getInt(1);
+                Usr[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idUsr,Usr};
+        }
+        else{
+            return null;
+        }
+    }
+         
+            public Object[] Obt_Especialidad() throws SQLException {
+       //DOCTOR AGG
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDESPECIALIDAD,ESPECIALIDAD FROM ESPECIALIDAD";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idEsp = new int[numRows];
+           String[] Esp = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idEsp[con] = rs.getInt(1);
+                Esp[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idEsp,Esp};
+        }
+        else{
+            return null;
+        }
+          
+ }
+            
+        public DefaultTableModel getDocs( JTable jTable1) throws SQLException{
+              
+         //DOCTOR
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
+                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad, "+
+                    "u.USUARIO"+
+                   " FROM DOCTOR d " +
+                   " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
+                   " INNER JOIN USUARIO u on d.IDUSUARIO= u.IDUSUARIO " +
+                   " WHERE d.ELIMINADO= 0";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[8];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<8;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
         
          public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
         DefaultTableModel model;

@@ -3,6 +3,7 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Medicamento;
+import Classes.Doctor;
 import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Component;
@@ -46,6 +47,9 @@ public class Home_Root extends javax.swing.JFrame {
     
     int[] idEmp;
     
+    int[] idEsp;
+    int[] idUsr;
+    
     public Home_Root() throws SQLException {
         initComponents();
         
@@ -65,6 +69,10 @@ public class Home_Root extends javax.swing.JFrame {
         this.llenarEmp();
         this.tbUsuarios.setSelectionForeground(Color.WHITE);
         this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
+        
+        this.llenarEsp();
+        this.llenarUsr();
+        this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -121,23 +129,25 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader26 = new javax.swing.JLabel();
         lblHeader31 = new javax.swing.JLabel();
         lblHeader37 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jTextField18 = new javax.swing.JTextField();
+        txtDocumento = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        rbM = new javax.swing.JRadioButton();
+        rbF = new javax.swing.JRadioButton();
         lblHeader39 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
         lblHeader40 = new javax.swing.JLabel();
         lblHeader43 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox<>();
+        cboEspecialidad = new javax.swing.JComboBox<>();
         lblHeader44 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        btnAggDoctor = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JFormattedTextField();
+        txtTelefono = new javax.swing.JFormattedTextField();
+        lblHeader64 = new javax.swing.JLabel();
+        cboUsuario = new javax.swing.JComboBox<>();
         jPanel16 = new javax.swing.JPanel();
         lblHeader58 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTFarmacia2 = new javax.swing.JTable();
+        tbDoctor = new javax.swing.JTable();
         jPanel18 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -880,42 +890,32 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader37.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader37.setText("J.V.P.M");
 
-        jTextField10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField10.setText("XXXXXXXX");
-        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtDocumento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtDocumento.setText("XXXXXXXX");
+        txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jTextField16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField16.setText("NOMBRE NOMBRE");
-        jTextField16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jTextField17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField17.setText("APELLIDO APELLIDO");
-        jTextField17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtApellido.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jRadioButton6.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup1.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton6.setSelected(true);
-        jRadioButton6.setText("Masculino");
+        rbM.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup1.add(rbM);
+        rbM.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbM.setForeground(new java.awt.Color(255, 255, 255));
+        rbM.setSelected(true);
+        rbM.setText("Masculino");
 
-        jRadioButton7.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup1.add(jRadioButton7);
-        jRadioButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton7.setText("Femenino");
-
-        jTextField18.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField18.setText("XXXX - XXXX");
-        jTextField18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        rbF.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup1.add(rbF);
+        rbF.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbF.setForeground(new java.awt.Color(255, 255, 255));
+        rbF.setText("Femenino");
 
         lblHeader39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader39.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader39.setText("FECHA NACIMIENTO:");
-
-        jTextField19.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField19.setText("XXXX - XXXX");
-        jTextField19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader40.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader40.setForeground(new java.awt.Color(255, 255, 255));
@@ -925,96 +925,133 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader43.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader43.setText("ESPECIALIDAD:");
 
-        jComboBox11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General", "Pedíatra" }));
-        jComboBox11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cboEspecialidad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General", "Pedíatra" }));
+        cboEspecialidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader44.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader44.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader44.setText("DOCTOR NUEVO");
 
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
-        jLabel9.setText("Agregar Doctor");
-        jLabel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel9.setFocusable(false);
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggDoctor.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnAggDoctor.setForeground(new java.awt.Color(255, 255, 255));
+        btnAggDoctor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnAggDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
+        btnAggDoctor.setText("Agregar Doctor");
+        btnAggDoctor.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnAggDoctor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAggDoctor.setFocusable(false);
+        btnAggDoctor.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnAggDoctor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAggDoctorMouseClicked(evt);
+            }
+        });
+
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
+        try {
+            txtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
+        try {
+            txtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        lblHeader64.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader64.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader64.setText("USUARIO:");
+
+        cboUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario" }));
+        cboUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanelEstNuevoLayout = new javax.swing.GroupLayout(jPanelEstNuevo);
         jPanelEstNuevo.setLayout(jPanelEstNuevoLayout);
         jPanelEstNuevoLayout.setHorizontalGroup(
             jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblHeader37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                        .addComponent(jRadioButton6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
+                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblHeader37, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader31, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader26, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHeader39, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(lblHeader43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblHeader40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField19, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHeader44)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtDocumento)
+                            .addComponent(txtNombre)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
+                                .addComponent(rbM)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbF)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
+                                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblHeader39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblHeader43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblHeader40, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboEspecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtFecha)
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
+                                .addComponent(lblHeader64, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cboUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAggDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblHeader44)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
             jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
                 .addComponent(lblHeader44)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader37)
-                    .addComponent(jTextField10)
+                    .addComponent(txtDocumento)
                     .addComponent(lblHeader39)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader21)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblHeader43)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader26)
-                    .addComponent(jTextField17)
-                    .addComponent(lblHeader40)
-                    .addComponent(jTextField18))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader31)
-                            .addComponent(jRadioButton6)
-                            .addComponent(jRadioButton7)))
+                            .addComponent(lblHeader21)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHeader43)
+                            .addComponent(cboEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHeader26)
+                            .addComponent(txtApellido)
+                            .addComponent(lblHeader40)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4))
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
+                        .addGap(16, 16, 16)
+                        .addComponent(btnAggDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeader31)
+                    .addComponent(rbM)
+                    .addComponent(rbF)
+                    .addComponent(lblHeader64)
+                    .addComponent(cboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jPanel16.setBackground(new java.awt.Color(102, 0, 0));
@@ -1024,32 +1061,32 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader58.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader58.setText("LISTA DE DOCTORES");
 
-        jTFarmacia2.setBackground(new java.awt.Color(204, 204, 204));
-        jTFarmacia2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTFarmacia2.setModel(new javax.swing.table.DefaultTableModel(
+        tbDoctor.setBackground(new java.awt.Color(204, 204, 204));
+        tbDoctor.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        tbDoctor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"2015", "General", "Nombre Apellido", "M", "XXX-XXXX", "33"}
+                {"2015", "General", "Nombre Apellido", "M", null, "XXX-XXXX", "33", null}
             },
             new String [] {
-                "ID", "Especialidad", "Nombre", "Sexo", "Teléfono", "Edad"
+                "ID", "Nombre", "Especialidad", "Sexo", "JVPM", "Teléfono", "Edad", "Usuario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTFarmacia2.setColumnSelectionAllowed(true);
-        jTFarmacia2.setGridColor(new java.awt.Color(255, 255, 153));
-        jTFarmacia2.setRowHeight(25);
-        jTFarmacia2.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jTFarmacia2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTFarmacia2.getTableHeader().setReorderingAllowed(false);
-        jScrollPane6.setViewportView(jTFarmacia2);
-        jTFarmacia2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        tbDoctor.setColumnSelectionAllowed(true);
+        tbDoctor.setGridColor(new java.awt.Color(255, 255, 153));
+        tbDoctor.setRowHeight(25);
+        tbDoctor.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbDoctor.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbDoctor.getTableHeader().setReorderingAllowed(false);
+        jScrollPane6.setViewportView(tbDoctor);
+        tbDoctor.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1125,7 +1162,7 @@ public class Home_Root extends javax.swing.JFrame {
             .addGroup(Tab_DoctoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Tab_DoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 975, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1134,12 +1171,12 @@ public class Home_Root extends javax.swing.JFrame {
             Tab_DoctoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_DoctoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("DOCTORES", Tab_Doctores);
@@ -3956,6 +3993,24 @@ public class Home_Root extends javax.swing.JFrame {
         this.cboEmpleado.setModel(model);
     }
     
+       public void llenarEsp() throws SQLException {
+        
+        Object[] array = this.conn.Obt_Especialidad();
+
+        this.idEsp = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboEspecialidad.setModel(model);
+    }
+    
+    public void llenarUsr() throws SQLException {
+       
+        Object[] array = this.conn.Obt_Usuario();
+
+        this.idUsr = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboUsuario.setModel(model);
+    }
+    
     private void btnBuscarExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarExpedienteMouseClicked
        if(this.rdbCarnet.isSelected()){
            // Buscar medicamento por carnet
@@ -4026,6 +4081,50 @@ public class Home_Root extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
+
+    private void btnAggDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggDoctorMouseClicked
+        
+        Doctor dc = new Doctor();
+
+        dc.nombre = this.txtNombre.getText();
+        dc.apellido = this.txtApellido.getText();
+        dc.idEspecialidad = this.idEsp[this.cboEspecialidad.getSelectedIndex()];
+        dc.telefono = this.txtTelefono.getText();
+        dc.fechaNac = this.txtFecha.getText();
+        dc.documento = this.txtDocumento.getText();
+        dc.idUsuario = this.idUsr[this.cboUsuario.getSelectedIndex()];
+
+        if (this.rbM.isSelected()) {
+            dc.sexo = "M";
+
+        } else {
+            dc.sexo = "F";
+        }
+
+        if (dc.Validar().equals("Exito")) {
+
+            String resultado = "";
+
+            try {
+
+                resultado = conn.aggDoctor(dc);
+                this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
+                this.txtNombre.setText("");
+                this.txtApellido.setText("");
+                this.txtTelefono.setText("");
+                this.txtFecha.setText("");
+                this.txtDocumento.setText("");
+
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
+            JOptionPane.showMessageDialog(this, resultado);
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
+        }
+       
+        
+    }//GEN-LAST:event_btnAggDoctorMouseClicked
     
     public void setPanelEnabled(JPanel panel, Boolean isEnabled) {
     panel.setEnabled(isEnabled);
@@ -4106,6 +4205,7 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JPanel Tab_Usuarios;
     private javax.swing.JPanel Tab_home;
     private javax.swing.JPanel Tab_reports;
+    private javax.swing.JLabel btnAggDoctor;
     private javax.swing.JLabel btnAggMedicamento;
     private javax.swing.JLabel btnAggUsuario;
     private javax.swing.JLabel btnBuscarExpediente;
@@ -4128,9 +4228,11 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCategoriaMed;
     private javax.swing.JComboBox<String> cboEmpleado;
+    private javax.swing.JComboBox<String> cboEspecialidad;
     private javax.swing.JComboBox<String> cboPresentacionMed;
     private javax.swing.JComboBox<String> cboTipoUsuario;
     private javax.swing.JComboBox<String> cboUnidadesMed;
+    private javax.swing.JComboBox<String> cboUsuario;
     private javax.swing.JComboBox<String> cmbActividad;
     private javax.swing.JComboBox<String> cmbCarrera;
     private javax.swing.JComboBox<String> cmbDcotor;
@@ -4144,7 +4246,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemFechaV;
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
-    private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -4187,7 +4288,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -4230,8 +4330,6 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelEstNuevo6;
     private javax.swing.JPanel jPanelEstNuevo7;
     private javax.swing.JRadioButton jRadioButton11;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -4244,21 +4342,15 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTFarmacia;
-    private javax.swing.JTable jTFarmacia2;
     private javax.swing.JTable jTactividades;
     private javax.swing.JTable jTactividades1;
     private javax.swing.JTable jTcarreras;
     private javax.swing.JTable jTcategorias;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTable jTfacultades;
     private javax.swing.JTable jTunidades;
@@ -4317,6 +4409,7 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader61;
     private javax.swing.JLabel lblHeader62;
     private javax.swing.JLabel lblHeader63;
+    private javax.swing.JLabel lblHeader64;
     private javax.swing.JLabel lblHeader68;
     private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblHeader7;
@@ -4328,6 +4421,8 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPacientes;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
+    private javax.swing.JRadioButton rbF;
+    private javax.swing.JRadioButton rbM;
     private javax.swing.JRadioButton rdbActividad;
     private javax.swing.JRadioButton rdbApellidos;
     private javax.swing.JRadioButton rdbCarnet;
@@ -4342,7 +4437,9 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbNombres;
     private javax.swing.JRadioButton rdbSexo;
     private javax.swing.JRadioButton rdbUbicacion;
+    private javax.swing.JTable tbDoctor;
     private javax.swing.JTable tbUsuarios;
+    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtBuscarFechaV;
     private javax.swing.JTextField txtBuscarNombreMed;
@@ -4350,14 +4447,18 @@ public class Home_Root extends javax.swing.JFrame {
     private javax.swing.JTextField txtCarnetRoot;
     private javax.swing.JTextField txtCodCat;
     private javax.swing.JTextField txtCodDiag;
+    private javax.swing.JTextField txtDocumento;
+    private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JTextField txtFechaFinal;
     private javax.swing.JTextField txtFechaInicio;
     private javax.swing.JFormattedTextField txtFechaV;
     private javax.swing.JTextField txtIdPac;
+    private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreMedicmento;
     private javax.swing.JTextField txtNombres;
     private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JPasswordField txtPassword2;
+    private javax.swing.JFormattedTextField txtTelefono;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
