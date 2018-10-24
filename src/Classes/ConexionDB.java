@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"unicaes","unicaes");
+            conn= DriverManager.getConnection(url,"clinica","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -127,9 +127,9 @@ public class ConexionDB {
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException{
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
-        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, C.CONS_FECHA, C.IDUSUARIO, DC.EF_CABEZA," +
+        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy'), C.IDUSUARIO, DC.EF_CABEZA," +
                     " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
-                    " DC.PESO, DC.TALLA, DC.PULSO, DC.MOTIVO FROM CONSULTA C " +
+                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO FROM CONSULTA C " +
                     " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
                     " WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -151,7 +151,9 @@ public class ConexionDB {
             consulta.pres_art = rs.getString(12);
             consulta.peso = rs.getString(13);
             consulta.talla = rs.getString(14);
-            consulta.motivo = rs.getString(15);
+            consulta.pulso = rs.getString(15);
+            consulta.temperatura = rs.getString(16);
+            consulta.motivo = rs.getString(17);
             
             consulta.antecedente = this.getAntecedentes(consulta.idConsulta);
             consulta.diagnostico = this.getDiagnosticos(consulta.idConsulta);
@@ -434,6 +436,31 @@ public class ConexionDB {
         return mensaje;
     }
     
+    public String aggSignosVitales(Consulta _consulta) throws SQLException{
+        // agregar la consulta con el detalle de consulta con el procedimiento almecenado
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_SIGNOS_VITALES(?,?,?,?,?,?,?,?,?)}");
+        // Parametros de entrada
+        cst.setInt("pIDCONSULTA", _consulta.idConsulta);
+        cst.setString("pPESO", _consulta.peso);
+        cst.setString("pTALLA", _consulta.talla);
+        cst.setString("pPULSO", _consulta.pulso);
+        cst.setString("pFREC_C", _consulta.frec_card);
+        cst.setString("pPRES_ART", _consulta.pres_art);
+        cst.setString("pMOTIVO", _consulta.motivo);
+        cst.setString("pTEMP", _consulta.temperatura);
+        
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        
+        // Ejecuta el procedimiento almacenado
+        cst.execute();
+        
+        // Se obtienen la salida del procedimineto almacenado
+        String mensaje = cst.getString("MENSAJE");
+        
+        return mensaje;
+    }
+    
     private int aggReceta(int _idConsulta) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGG_RECETA(?,?)}");
         // Parametros de entrada
@@ -600,6 +627,32 @@ public class ConexionDB {
     //////////////////////////  LLENAR JTABLES, COMBOBOXs ///////////////////////////
     //////////////////////////////////////////////////////////////////////
     
+    public Object[] llenarDoctores(JComboBox _combo) throws SQLException{
+        DefaultComboBoxModel model;
+        
+        String query = "SELECT IDDOCTOR, DOC_NOMBRE || ' ' || DOC_APELLIDO DOCTOR FROM DOCTOR";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        int[] idDoctor =  new int[numRows];
+        
+        model = (DefaultComboBoxModel) _combo.getModel();
+        model.removeAllElements();
+        int con = 0;
+          while (rs.next())
+           {
+              idDoctor[con]= rs.getInt(1);
+              model.addElement(rs.getString(2));
+              con++;
+           }
+        
+        return new Object[]{model, idDoctor};
+    }
+    
     public DefaultTableModel getPacientes(JTable jTable1, String _filtro, String _parametro) throws SQLException{
         Statement stmt = conn.createStatement();
         //_parametro = _parametro.toUpperCase();
@@ -656,7 +709,7 @@ public class ConexionDB {
         Statement stmt = conn.createStatement() ;
         String query = "SELECT C.IDCONSULTA, TP.TIPOPAC ACTIVIDAD, P.PAC_NOMBRE || P.PAC_APELLIDO PACIENTE, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " C.CONS_FECHA FECHA "+
+                " TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') "+
                 " FROM CONSULTA C "+ 
                 " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE "+
                 " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC "+

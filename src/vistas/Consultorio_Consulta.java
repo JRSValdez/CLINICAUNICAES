@@ -65,6 +65,16 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.lblMedicamentoPara.setText("Medicamentos para: " +this.paciente.nombre);
         this.lblNombrePac.setText("Paciente: " +this.paciente.nombre);
         this.lblEdad.setText(this.paciente.edad);
+        
+        this.txtMotivoConsulta.setText(this.consulta.motivo);
+        this.txtPeso.setText(this.consulta.peso);
+        this.txtTalla.setText(this.consulta.talla);
+        this.txtPulso.setText(this.consulta.pulso);
+        this.txtFrecCardiaca.setText(this.consulta.frec_card);
+        this.txtPresionArterial.setText(this.consulta.pres_art);
+        this.txtTemperatura.setText(this.consulta.temperatura);
+        
+        
         this.llenarCatsMedicamento();
         
         this.jtAntecedentes.setSelectionForeground(Color.white);
@@ -1038,10 +1048,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(lblHeader15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader57)
-                    .addComponent(txtBuscarDiagnostico)
-                    .addComponent(btnBuscarDiagnostico))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarDiagnostico, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHeader57)
+                        .addComponent(txtBuscarDiagnostico)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbDiagnosticoCats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1072,7 +1083,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

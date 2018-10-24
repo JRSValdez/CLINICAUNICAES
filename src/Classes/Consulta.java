@@ -28,6 +28,7 @@ public class Consulta {
     public String peso;
     public String talla;
     public String pulso;
+    public String temperatura;
     public String frec_card;
     public String pres_art;
     public String recomendaciones;
@@ -47,5 +48,4 @@ public class Consulta {
         
         return val.validacionesMalas;
     }
-    
 }
