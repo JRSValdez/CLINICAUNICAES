@@ -273,6 +273,68 @@ public class ConexionDB {
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
+     public String aggUsuario(Usuario _usuario) throws SQLException{
+        
+        String user = _usuario.user;
+        String contra = _usuario.password1;
+        int tipo= _usuario.tipo_usr;
+        int empleado= _usuario.empleado;
+         
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARUSUARIO(?,?,?,?,?)}");
+        
+    
+        cst.setString("pUsuario", _usuario.user);
+        cst.setString("pContra", _usuario.password1);
+        cst.setInt("pTipo", _usuario.tipo_usr);
+        cst.setInt("pEmp",_usuario.empleado);
+        
+           
+           
+        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMsj");
+        System.out.println(mensaje);
+        return mensaje;
+        
+        
+    }
+     
+      public String aggDoctor(Doctor _doctor) throws SQLException{
+        
+        String nombre = _doctor.nombre;
+        String apellido = _doctor.apellido;
+        int especialidad= _doctor.idEspecialidad;
+        String telefono= _doctor.telefono;
+        String fecha= _doctor.fechaNac;
+        String sexo= _doctor.sexo;
+        String documento= _doctor.documento;
+        int usuario= _doctor.idUsuario;
+        
+         
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARDOCTOR(?,?,?,?,?,?,?,?,?)}");
+        
+    
+        cst.setString("pNombre", _doctor.nombre);
+        cst.setString("pApellido", _doctor.apellido);
+        cst.setInt("pIdEspecialidad", _doctor.idEspecialidad);
+        cst.setString("pTel", _doctor.telefono);
+        cst.setString("pFechaNac", _doctor.fechaNac);
+        cst.setString("pSexo",_doctor.sexo);
+        cst.setString("pDoc",_doctor.documento);
+        cst.setInt("pIdUsuario",_doctor.idUsuario);
+            
+           
+        cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("Msj");
+        System.out.println(mensaje);
+        return mensaje;
+        
+        
+    }
+    
     public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
      
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
@@ -292,7 +354,7 @@ public class ConexionDB {
         String mensaje = cst.getString("MENSAJE");
         System.out.println(mensaje);
         if(!mensaje.equals("ERROR")){
-            int idConsulta = Integer.parseInt(mensaje.substring(10,11));
+            int idConsulta = Integer.parseInt(mensaje.substring(10,mensaje.length()));
             return idConsulta;
         }
         else{
@@ -464,15 +526,28 @@ public class ConexionDB {
     ////////////////////// OTROS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-    public int iniciar_sesion(Paciente _paciente){
+    public int iniciar_sesion(Usuario _usuario ) throws SQLException{
         
-        String user = _paciente.apellido;
-        String contra = _paciente.celular;
-    
+        String user = _usuario.user;
+        String contra = _usuario.password;
+        
+        
+         //llamar procedimeinto almacenado
+        CallableStatement cst = this.conn.prepareCall("{call  ValidacionUser(?,?,?)}");
+        cst.setString("pUsuario", _usuario.user);
+        cst.setString("pContra", _usuario.password);
+        
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("pMensaje", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("pMensaje");
+        if(!mensaje.equals("Error")){
            
-        //llamar procedimeinto almacenado
-        
-        return 0;
+            int tipo_usr=Integer.parseInt(mensaje.substring(7,8));
+            return tipo_usr;
+        } else return -1;
+       
     }
     
     public String editarMedicamento(Medicamento _med) throws SQLException {
@@ -942,6 +1017,151 @@ public class ConexionDB {
             return null;
         }
     }
+        
+        public Object[] Obt_Empleado() throws SQLException {
+
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDEMP,EMP_NOMBRE || ' ' || EMP_APELLIDO NOMBRE FROM EMPLEADO";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idEmp = new int[numRows];
+           String[] Emp = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idEmp[con] = rs.getInt(1);
+                Emp[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idEmp,Emp};
+        }
+        else{
+            return null;
+        }
+    }
+        
+         public Object[] Obt_Usuario() throws SQLException {
+          //DOCTOR AGG
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDUSUARIO,USUARIO FROM USUARIO";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idUsr = new int[numRows];
+           String[] Usr = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idUsr[con] = rs.getInt(1);
+                Usr[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idUsr,Usr};
+        }
+        else{
+            return null;
+        }
+    }
+         
+            public Object[] Obt_Especialidad() throws SQLException {
+       //DOCTOR AGG
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDESPECIALIDAD,ESPECIALIDAD FROM ESPECIALIDAD";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idEsp = new int[numRows];
+           String[] Esp = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idEsp[con] = rs.getInt(1);
+                Esp[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idEsp,Esp};
+        }
+        else{
+            return null;
+        }
+          
+ }
+            
+        public DefaultTableModel getDocs( JTable jTable1) throws SQLException{
+              
+         //DOCTOR
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
+                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad, "+
+                    "u.USUARIO"+
+                   " FROM DOCTOR d " +
+                   " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
+                   " INNER JOIN USUARIO u on d.IDUSUARIO= u.IDUSUARIO " +
+                   " WHERE d.ELIMINADO= 0";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[8];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<8;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
+        
+         public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA,u.USR_TIPO, emp.EMP_NOMBRE || ' ' || emp.EMP_APELLIDO NOMBRE " +
+                   " FROM USUARIO u " +
+                   " INNER JOIN EMPLEADO emp on u.IDEMP= emp.IDEMP " +
+                   " WHERE u.ELIMINADO= 0";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[5];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<5;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
      
     public DefaultComboBoxModel Obt_TipoPac() throws SQLException {
 
@@ -1018,6 +1238,144 @@ public class ConexionDB {
         }
   
       }
+    
+    public DefaultTableModel getExpedienteRootByCarnet(JTable jTable1, String _idCarnet) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? AND C.ESTADO != 0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" + _idCarnet + "%");
+        preparedStatement.setString(2, "%" + _idCarnet + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByID(JTable jTable1, int _idPac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.IDPACIENTE = ? AND C.ESTADO != 0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idPac);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByApellidos(JTable jTable1, String _apellido) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_APELLIDO LIKE ? AND C.ESTADO != 0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" +_apellido + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    public DefaultTableModel getExpedienteRootByNombres(JTable jTable1, String _nombre) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT " +
+                        "    C.IDCONSULTA, " +
+                        "    CASE P.PAC_CARNE " +
+                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
+                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
+                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
+                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
+                        "    FROM  CONSULTA C " +
+                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                        " WHERE P.PAC_NOMBRE LIKE ? AND C.ESTADO != 0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, "%" +_nombre + "%");
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[4];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
     public String aggPaciente(Paciente pac) throws SQLException{
         CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
@@ -1293,7 +1651,7 @@ public class ConexionDB {
            return model;
     }
          
-          public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
+    public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
         String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
@@ -1306,7 +1664,7 @@ public class ConexionDB {
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE cc.CONS_FECHA  = ? ";
+                " WHERE TO_CHAR(cc.CONS_FECHA , 'dd/mm/yy') = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);
@@ -1328,7 +1686,7 @@ public class ConexionDB {
            return model;
     }
           
-           public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
+    public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
         String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
@@ -1341,7 +1699,7 @@ public class ConexionDB {
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE Edad LIKE  ? ";
+                " WHERE (EXTRACT(YEAR FROM SYSDATE) -EXTRACT(YEAR FROM p.PAC_FECHA_NAC)) = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);

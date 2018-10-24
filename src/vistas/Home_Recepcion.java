@@ -3073,7 +3073,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 Consulta consulta;
                 Paciente paciente;
                 try {
-                    int idConsulta = this.conn.aggConsulta(idPaciente, 1, 1);
+                    int idConsulta = this.conn.aggConsulta(idPaciente, 2, 1);
                     if(idConsulta > 0){
                         JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
                     } else JOptionPane.showMessageDialog(rootPane,"Error");

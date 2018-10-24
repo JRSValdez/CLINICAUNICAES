@@ -5,6 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import Classes.ConexionDB;
+import Classes.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 
@@ -137,10 +142,14 @@ public class Login extends javax.swing.JFrame implements Runnable {
 
         txtUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        txtPassword.setText("jPasswordField1");
         txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/entrar.png"))); // NOI18N
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
         btnOlvido_pass.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnOlvido_pass.setForeground(new java.awt.Color(255, 255, 255));
@@ -274,6 +283,53 @@ public class Login extends javax.swing.JFrame implements Runnable {
     private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+       Usuario us= new Usuario();
+        
+       
+       us.user= this.txtUser.getText();
+       us.password= this.txtPassword.getText();
+       
+       if(us.Validar().equals("Exito")){
+           
+           try {
+               int tipo= cn.iniciar_sesion(us);
+               //Administrador
+               if (tipo==0){
+                   Home_Root h= new Home_Root();
+                   h.setVisible(true);
+                   this.dispose();
+               }
+               
+                //Recepcion
+               else if (tipo==1){
+                   Home_Recepcion hr= new Home_Recepcion();
+                   hr.setVisible(true);
+                   this.dispose();
+               }
+               
+                //Doctor
+               else if (tipo==2){
+                   Home_Consultorio hc= new Home_Consultorio();
+                   hc.setVisible(true);
+                   this.dispose();
+               }
+               
+              
+           else{
+                 JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecta "
+                    , "Mensaje de bienvenida",
+                    JOptionPane.INFORMATION_MESSAGE);
+                   }
+           } catch (SQLException ex) {
+               Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
+       }
+       
+     
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments

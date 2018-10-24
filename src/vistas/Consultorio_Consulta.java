@@ -547,7 +547,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addComponent(panelSignosV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnHistorial)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PACIENTE Y SIGNOS VITALES", TAB_SIGNOS);
@@ -723,7 +723,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ANTECEDENTES", TAB_ANTECEDENTES);
@@ -860,9 +860,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         TAB_EXAMEN_FILayout.setVerticalGroup(
             TAB_EXAMEN_FILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_EXAMEN_FILayout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("EXAMEN FÍSICO", TAB_EXAMEN_FI);
@@ -1038,11 +1038,10 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(lblHeader15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscarDiagnostico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblHeader57)
-                        .addComponent(txtBuscarDiagnostico)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeader57)
+                    .addComponent(txtBuscarDiagnostico)
+                    .addComponent(btnBuscarDiagnostico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbDiagnosticoCats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1073,7 +1072,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
