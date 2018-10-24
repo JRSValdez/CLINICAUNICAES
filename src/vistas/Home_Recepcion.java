@@ -143,29 +143,29 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConPacNuevo = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         lblHeader37 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        txtCarnetC = new javax.swing.JTextField();
         lblHeader21 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
+        txtNombreC = new javax.swing.JTextField();
         lblHeader26 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        txtApellidoC = new javax.swing.JTextField();
         lblHeader31 = new javax.swing.JLabel();
         rdbMasculino = new javax.swing.JRadioButton();
         rdbFemenino = new javax.swing.JRadioButton();
         lblHeader40 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
+        txtTelefonoC = new javax.swing.JTextField();
         lblHeader52 = new javax.swing.JLabel();
-        jTextField31 = new javax.swing.JTextField();
+        txtCelularC = new javax.swing.JTextField();
         lblHeader39 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        txtFechanacC = new javax.swing.JTextField();
         jPanel34 = new javax.swing.JPanel();
         lblHeader38 = new javax.swing.JLabel();
-        jTextArea3 = new javax.swing.JTextArea();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtDireccionC = new javax.swing.JTextArea();
+        rbUrbanoC = new javax.swing.JRadioButton();
+        rbRuralC = new javax.swing.JRadioButton();
         lblHeader41 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        txtEmergenciaC = new javax.swing.JTextField();
         lblHeader42 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
+        txtTelEmergenciaC = new javax.swing.JTextField();
         lblHeader43 = new javax.swing.JLabel();
         cboParentezcoConn = new javax.swing.JComboBox<>();
         lblHeader54 = new javax.swing.JLabel();
@@ -463,7 +463,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -499,7 +499,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -594,7 +594,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 7, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -606,7 +606,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(lblSol_medicamento)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -637,7 +637,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -677,7 +677,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -816,25 +816,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader37.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader37.setText("CARNET:");
 
-        jTextField10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField10.setText("CARNET");
-        jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCarnetC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtCarnetC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader21.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader21.setText("NOMBRES:");
 
-        jTextField16.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField16.setText("NOMBRE NOMBRE");
-        jTextField16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtNombreC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtNombreC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader26.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader26.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader26.setText("APELLIDOS:");
 
-        jTextField17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField17.setText("APELLIDO APELLIDO");
-        jTextField17.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtApellidoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtApellidoC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader31.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader31.setForeground(new java.awt.Color(255, 255, 255));
@@ -856,25 +853,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader40.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader40.setText("TELÉFONO:");
 
-        jTextField18.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField18.setText("XXXX - XXXX");
-        jTextField18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtTelefonoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtTelefonoC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader52.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader52.setText("CELULAR:");
 
-        jTextField31.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField31.setText("XXXX - XXXX");
-        jTextField31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCelularC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtCelularC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader39.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader39.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader39.setText("FECHA NACIMIENTO:");
 
-        jTextField19.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField19.setText("XX/XX/XXXX");
-        jTextField19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtFechanacC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtFechanacC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -895,17 +889,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCarnetC, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField19)
-                        .addComponent(jTextField18)
+                        .addComponent(txtFechanacC)
+                        .addComponent(txtTelefonoC)
                         .addGroup(jPanel33Layout.createSequentialGroup()
                             .addComponent(rdbMasculino)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rdbFemenino))
-                        .addComponent(jTextField17)
-                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtApellidoC)
+                        .addComponent(txtCelularC, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
@@ -914,15 +908,15 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader37)
-                    .addComponent(jTextField10))
+                    .addComponent(txtCarnetC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader21)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader26)
-                    .addComponent(jTextField17))
+                    .addComponent(txtApellidoC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader31)
@@ -930,16 +924,16 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(rdbFemenino))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechanacC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader39))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHeader40)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefonoC, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader52)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCelularC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -951,43 +945,41 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader38.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader38.setText("DIRECCIÓN:");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextArea3.setRows(2);
-        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtDireccionC.setColumns(20);
+        txtDireccionC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtDireccionC.setRows(2);
+        txtDireccionC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        jRadioButton1.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup3.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton1.setText("Urbano");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rbUrbanoC.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup3.add(rbUrbanoC);
+        rbUrbanoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbUrbanoC.setForeground(new java.awt.Color(255, 255, 255));
+        rbUrbanoC.setText("Urbano");
+        rbUrbanoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rbUrbanoCActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(102, 0, 0));
-        buttonGroup3.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Rural");
+        rbRuralC.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup3.add(rbRuralC);
+        rbRuralC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbRuralC.setForeground(new java.awt.Color(255, 255, 255));
+        rbRuralC.setText("Rural");
 
         lblHeader41.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader41.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader41.setText("CASO EMERGENCIA:");
 
-        jTextField20.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField20.setText("NOMBRES APELLIDOS");
-        jTextField20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtEmergenciaC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtEmergenciaC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader42.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader42.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader42.setText("TELÉFONO:");
 
-        jTextField21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField21.setText("XXXX - XXXX");
-        jTextField21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtTelEmergenciaC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txtTelEmergenciaC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader43.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader43.setForeground(new java.awt.Color(255, 255, 255));
@@ -1038,7 +1030,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addComponent(lblHeader41, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmergenciaC, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel34Layout.createSequentialGroup()
                                 .addComponent(lblHeader43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
@@ -1046,7 +1038,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGroup(jPanel34Layout.createSequentialGroup()
                             .addComponent(lblHeader42, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTelEmergenciaC, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblHeader38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1054,11 +1046,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel34Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbUrbanoC)
                                 .addGap(79, 79, 79)
-                                .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(rbRuralC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(cboDepartamentoConn, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextArea3, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
+                            .addComponent(txtDireccionC, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)))
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHeader53)
@@ -1082,11 +1074,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader38)
-                    .addComponent(jTextArea3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccionC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                    .addComponent(rbRuralC)
+                    .addComponent(rbUrbanoC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader53)
@@ -1098,11 +1090,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader41)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmergenciaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader42)
-                    .addComponent(jTextField21))
+                    .addComponent(txtTelEmergenciaC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboParentezcoConn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1124,7 +1116,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1630,9 +1622,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1935,7 +1927,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel13.setText("Historial");
         jLabel13.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1946,7 +1938,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAgregarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAgregarPaciente.setText("Agregar Paciente");
         btnAgregarPaciente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregarPaciente.setFocusable(false);
         btnAgregarPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAgregarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2539,7 +2531,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnEditMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnEditMedicamento.setText("EDITAR");
         btnEditMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnEditMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditMedicamento.setFocusable(false);
         btnEditMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2568,7 +2560,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnBuscarMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarMed.setText("BUSCAR");
         btnBuscarMed.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarMed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarMed.setFocusable(false);
         btnBuscarMed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarMed.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2780,7 +2772,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -2965,9 +2957,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.Contenedor.setMinimumSize(new Dimension(a, this.Contenedor.getWidth()));
     }//GEN-LAST:event_btn_maximizeMouseClicked
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbUrbanoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbUrbanoCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbUrbanoCActionPerformed
 
     private void rbzonaUrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbzonaUrbActionPerformed
         // TODO add your handling code here:
@@ -3081,7 +3073,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 Consulta consulta;
                 Paciente paciente;
                 try {
-                    int idConsulta = this.conn.aggConsulta(idPaciente, 7, 2);
+                    int idConsulta = this.conn.aggConsulta(idPaciente, 1, 1);
                     if(idConsulta > 0){
                         JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
                     } else JOptionPane.showMessageDialog(rootPane,"Error");
@@ -3093,13 +3085,84 @@ public class Home_Recepcion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAggConsPacExistenteMouseClicked
 
     private void btnAggConPacNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConPacNuevoMouseClicked
+       
+       
+       Paciente pac =new Paciente();
+        pac.tipoPaciente=2;
+    pac.carne=this.txtCarnetC.getText();
+    pac.carreraP=this.idCarrera[this.cboCarreraCon.getSelectedIndex()];
+    
+    if(!this.txtNombreC.getText().trim().equals("") && !this.txtApellidoC.getText().trim().equals("") && !this.txtFechanacC.getText().trim().equals("")
+            && !this.txtDireccionC.getText().trim().equals("")  ){
+
+    pac.documento="";
+    pac.nombre =this.txtNombreC.getText();
+    pac.apellido=this.txtApellidoC.getText();
+    pac.FechaNac=this.txtFechanacC.getText();
+    pac.telefono=this.txtTelefonoC.getText();
+    pac.celular=this.txtCelularC.getText();
+    pac.direccion=this.txtDireccionC.getText();
+    pac.departamento=Integer.toString(this.idDepart[this.cboDepartamentoConn.getSelectedIndex()]);
+    pac.caso_emergencia=this.txtEmergenciaC.getText();
+    pac.parentezco=Integer.toString(this.idParentezco[this.cboParentezcoConn.getSelectedIndex()]); 
+    pac.tel_emergencia=this.txtTelEmergenciaC.getText();
+    if(this.rbUrbanoC.isSelected()){
+    pac.zona=1;
+    }else{
+    pac.zona=2;
+    }
+
+    if(this.rdbFemenino.isSelected()){
+    pac.sexo="F";
+    }else{
+    pac.sexo="M";
+    }
+
+    String resultado="";
         try {
-            Consultorio_Consulta consulta;
-            consulta = new Consultorio_Consulta();
-            consulta.setVisible(true);
+            resultado=conn.aggPaciente(pac);
+String mensaje[]=resultado.split(",");
+            this.txtCarnetC.setText("");
+            this.txtApellidoC.setText("");
+            this.txtCelularC.setText("");
+            this.txtDireccionC.setText("");
+            this.txtEmergenciaC.setText("");
+            this.txtFechanacC.setText("");
+            this.txtTelEmergenciaC.setText("");
+            this.txtNombreC.setText("");
+            this.txtTelefonoC.setText("");
+            
+            Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea agregar esta consulta?","Advertencia",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                
+                
+                int idPaciente = Integer.parseInt(mensaje[1]);
+                Consulta consulta;
+                Paciente paciente;
+                try {
+                    int idConsulta = this.conn.aggConsulta(idPaciente, 1, 1);
+                    if(idConsulta > 0){
+                        JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
+                    } else JOptionPane.showMessageDialog(rootPane,"Error");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showConfirmDialog(this,ex.toString());
         }
+            JOptionPane.showMessageDialog(this, resultado);
+        }else {
+            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
+        }
+    
+      
+            
+        
     }//GEN-LAST:event_btnAggConPacNuevoMouseClicked
 
     private void btnConsultasEsperaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasEsperaMouseClicked
@@ -3527,8 +3590,6 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JPanel jPanelExistente;
     private javax.swing.JPanel jPanelExistente1;
     private javax.swing.JPanel jPanelExistente2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -3537,20 +3598,11 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JTable jTbusqueda;
     private javax.swing.JTable jTbusquedaMed;
     private javax.swing.JTable jTbusquedaPaciente;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
-    private javax.swing.JTextField jTextField19;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblConsult_espera;
@@ -3620,6 +3672,8 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JPopupMenu pUpBuscarPaciente;
     private javax.swing.JRadioButton rbAcademico;
     private javax.swing.JRadioButton rbProyeccionSocial;
+    private javax.swing.JRadioButton rbRuralC;
+    private javax.swing.JRadioButton rbUrbanoC;
     private javax.swing.JRadioButton rbzonaRur;
     private javax.swing.JRadioButton rbzonaUrb;
     private javax.swing.JRadioButton rdbFemenino;
@@ -3628,20 +3682,29 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JRadioButton rdbMasculino1;
     private javax.swing.JRadioButton tbEstudiante;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtApellidoC;
     private javax.swing.JTextField txtBuscarFechaV;
     private javax.swing.JTextField txtBuscarNombreMed;
     private javax.swing.JTextField txtBusquedaExistente;
     private javax.swing.JFormattedTextField txtCantMedicamento;
     private javax.swing.JTextField txtCarnet;
+    private javax.swing.JTextField txtCarnetC;
     private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextField txtCelularC;
     private javax.swing.JTextArea txtDireccion;
+    private javax.swing.JTextArea txtDireccionC;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtEmergencia;
+    private javax.swing.JTextField txtEmergenciaC;
     private javax.swing.JTextField txtFechaNac;
     private javax.swing.JFormattedTextField txtFechaV;
+    private javax.swing.JTextField txtFechanacC;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombreC;
     private javax.swing.JTextField txtNombreMedicmento;
+    private javax.swing.JTextField txtTelEmergenciaC;
     private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtTelefonoC;
     private javax.swing.JTextField txtTelefonoEmerg;
     private javax.swing.JTextField txtnombreEmp;
     // End of variables declaration//GEN-END:variables

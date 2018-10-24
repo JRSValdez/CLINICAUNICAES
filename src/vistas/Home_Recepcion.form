@@ -176,7 +176,7 @@
                   <Component id="Barra_Superior" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="SideBar" pref="706" max="32767" attributes="0"/>
+                      <Component id="SideBar" pref="711" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="Contenedor" max="32767" attributes="0"/>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -214,7 +214,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Botonera" pref="694" max="32767" attributes="0"/>
+                      <Component id="Botonera" pref="689" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -240,7 +240,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btn_sols" alignment="0" pref="253" max="32767" attributes="0"/>
+                              <Component id="btn_sols" alignment="0" pref="245" max="32767" attributes="0"/>
                               <Component id="btn_cons" alignment="1" max="32767" attributes="0"/>
                               <Component id="btn_farmacia" alignment="1" max="32767" attributes="0"/>
                               <Component id="btn_home" alignment="1" max="32767" attributes="0"/>
@@ -290,7 +290,7 @@
                       </Border>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Por defecto"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -318,7 +318,7 @@
                       </Border>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Por defecto"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -346,7 +346,7 @@
                       </Border>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Por defecto"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -374,7 +374,7 @@
                       </Border>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Por defecto"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -402,7 +402,7 @@
                       </Border>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Por defecto"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -422,7 +422,7 @@
             <Property name="tabPlacement" type="int" value="3"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[1000, 700]"/>
@@ -655,7 +655,7 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -671,7 +671,7 @@
                                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="lblSol_medicamento" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                                  <EmptySpace pref="23" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -739,7 +739,7 @@
                                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel18" alignment="1" pref="236" max="32767" attributes="0"/>
+                                      <Component id="jLabel18" alignment="1" pref="228" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -819,7 +819,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="lblConsult_espera" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel19" alignment="0" pref="242" max="32767" attributes="0"/>
+                                      <Component id="jLabel19" alignment="0" pref="238" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
@@ -1028,7 +1028,7 @@
                                   <Component id="jPanel33" min="-2" pref="471" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jPanel34" pref="481" max="32767" attributes="0"/>
+                              <Component id="jPanel34" pref="460" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1086,7 +1086,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
@@ -1133,18 +1133,18 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextField16" min="-2" pref="236" max="-2" attributes="0"/>
-                                      <Component id="jTextField10" min="-2" pref="236" max="-2" attributes="0"/>
+                                      <Component id="txtNombreC" min="-2" pref="236" max="-2" attributes="0"/>
+                                      <Component id="txtCarnetC" min="-2" pref="236" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jTextField19" max="32767" attributes="0"/>
-                                          <Component id="jTextField18" max="32767" attributes="0"/>
+                                          <Component id="txtFechanacC" max="32767" attributes="0"/>
+                                          <Component id="txtTelefonoC" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="rdbMasculino" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Component id="rdbFemenino" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jTextField17" max="32767" attributes="0"/>
-                                          <Component id="jTextField31" min="-2" pref="236" max="-2" attributes="0"/>
+                                          <Component id="txtApellidoC" max="32767" attributes="0"/>
+                                          <Component id="txtCelularC" min="-2" pref="236" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -1157,17 +1157,17 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader37" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField10" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="txtCarnetC" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader21" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNombreC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader26" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField17" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="txtApellidoC" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1177,18 +1177,18 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTextField19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFechanacC" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblHeader39" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblHeader40" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField18" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="txtTelefonoC" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader52" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCelularC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
@@ -1207,12 +1207,11 @@
                             <Property name="text" type="java.lang.String" value="CARNET:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField10">
+                        <Component class="javax.swing.JTextField" name="txtCarnetC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="CARNET"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1233,12 +1232,11 @@
                             <Property name="text" type="java.lang.String" value="NOMBRES:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField16">
+                        <Component class="javax.swing.JTextField" name="txtNombreC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="NOMBRE NOMBRE"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1259,12 +1257,11 @@
                             <Property name="text" type="java.lang.String" value="APELLIDOS:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField17">
+                        <Component class="javax.swing.JTextField" name="txtApellidoC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="APELLIDO APELLIDO"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1330,12 +1327,11 @@
                             <Property name="text" type="java.lang.String" value="TEL&#xc9;FONO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField18">
+                        <Component class="javax.swing.JTextField" name="txtTelefonoC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="XXXX - XXXX"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1356,12 +1352,11 @@
                             <Property name="text" type="java.lang.String" value="CELULAR:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField31">
+                        <Component class="javax.swing.JTextField" name="txtCelularC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="XXXX - XXXX"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1382,12 +1377,11 @@
                             <Property name="text" type="java.lang.String" value="FECHA NACIMIENTO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField19">
+                        <Component class="javax.swing.JTextField" name="txtFechanacC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="XX/XX/XXXX"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1427,7 +1421,7 @@
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="lblHeader41" pref="148" max="32767" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jTextField20" min="-2" pref="246" max="-2" attributes="0"/>
+                                                  <Component id="txtEmergenciaC" min="-2" pref="246" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="lblHeader43" max="32767" attributes="0"/>
@@ -1438,7 +1432,7 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblHeader42" min="-2" pref="148" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTextField21" min="-2" pref="246" max="-2" attributes="0"/>
+                                              <Component id="txtTelEmergenciaC" min="-2" pref="246" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -1449,12 +1443,12 @@
                                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="rbUrbanoC" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-                                                  <Component id="jRadioButton2" max="32767" attributes="0"/>
+                                                  <Component id="rbRuralC" max="32767" attributes="0"/>
                                               </Group>
                                               <Component id="cboDepartamentoConn" max="32767" attributes="0"/>
-                                              <Component id="jTextArea3" pref="244" max="32767" attributes="0"/>
+                                              <Component id="txtDireccionC" pref="244" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -1489,12 +1483,12 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader38" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextArea3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtDireccionC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbRuralC" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbUrbanoC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1509,12 +1503,12 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader41" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtEmergenciaC" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblHeader42" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField21" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="txtTelEmergenciaC" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1538,7 +1532,7 @@
                             <Property name="text" type="java.lang.String" value="DIRECCI&#xd3;N:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextArea" name="jTextArea3">
+                        <Component class="javax.swing.JTextArea" name="txtDireccionC">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1554,7 +1548,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                        <Component class="javax.swing.JRadioButton" name="rbUrbanoC">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="66" type="rgb"/>
@@ -1571,10 +1565,10 @@
                             <Property name="text" type="java.lang.String" value="Urbano"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbUrbanoCActionPerformed"/>
                           </Events>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                        <Component class="javax.swing.JRadioButton" name="rbRuralC">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="66" type="rgb"/>
@@ -1602,12 +1596,11 @@
                             <Property name="text" type="java.lang.String" value="CASO EMERGENCIA:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField20">
+                        <Component class="javax.swing.JTextField" name="txtEmergenciaC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="NOMBRES APELLIDOS"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1628,12 +1621,11 @@
                             <Property name="text" type="java.lang.String" value="TEL&#xc9;FONO:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField21">
+                        <Component class="javax.swing.JTextField" name="txtTelEmergenciaC">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Comic Sans MS" size="14" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="XXXX - XXXX"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder>
@@ -1878,7 +1870,7 @@
                           <Image iconType="3" name="/images/buscar.png"/>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -1987,7 +1979,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
@@ -2053,7 +2045,7 @@
                         <Property name="text" type="java.lang.String" value="EN ESPERA"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -2075,7 +2067,7 @@
                         <Property name="text" type="java.lang.String" value="HISTORIAL"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -2097,7 +2089,7 @@
                         <Property name="text" type="java.lang.String" value="ATENDIDAS HOY"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -2223,9 +2215,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel35" pref="478" max="32767" attributes="0"/>
+                              <Component id="jPanel35" pref="467" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="jPanel36" pref="474" max="32767" attributes="0"/>
+                              <Component id="jPanel36" pref="464" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -3458,7 +3450,7 @@
                         <Property name="text" type="java.lang.String" value="Historial"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Hand Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -3486,7 +3478,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Hand Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
@@ -3690,7 +3682,7 @@
                           <Image iconType="3" name="/images/buscar.png"/>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -3780,7 +3772,7 @@
                           <Image iconType="3" name="/images/accept.png"/>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -3879,7 +3871,7 @@
                           <Image iconType="3" name="/images/buscar.png"/>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -4409,7 +4401,7 @@
                           </Border>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Default Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="4"/>
@@ -4706,7 +4698,7 @@
                         <Property name="text" type="java.lang.String" value="EDITAR"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Hand Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -4784,7 +4776,7 @@
                         <Property name="text" type="java.lang.String" value="BUSCAR"/>
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Hand Cursor"/>
+                          <Color id="Cursor Por defecto"/>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -4923,7 +4915,7 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
               <Events>
@@ -4947,7 +4939,7 @@
                   <Image iconType="3" name="/images/close.png"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
               <Events>
@@ -4971,7 +4963,7 @@
                   <Image iconType="3" name="/images/minimize.png"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
               <Events>
@@ -4984,7 +4976,7 @@
                   <Image iconType="3" name="/images/maximize.png"/>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor Por defecto"/>
                 </Property>
               </Properties>
               <Events>

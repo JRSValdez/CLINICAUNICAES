@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica","unicaes");
+            conn= DriverManager.getConnection(url,"unicaes","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -1362,5 +1362,150 @@ public class ConexionDB {
            }
            return model;
     }
+           
+           
+           
+           
+  public DefaultTableModel getFacultades(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT * FROM facultad ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[2];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }         
+           
+    public DefaultTableModel getCatMedicamento(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT * FROM tipo_medicamento ";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[2];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }         
+    
+    public DefaultTableModel getCarreras(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT Carrera.idCarrera,Carrera,Factultad FROM carrera inner join facultad on facultad.idfacultad=carrera.idfacultad";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[3];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }         
+    
+    public DefaultTableModel getEspecialidad(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT * FROM especialidad";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[2];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    
+    public DefaultTableModel getUnidMedida(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT * FROM unidad_Med";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[3];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    
+    public DefaultTableModel getActividad(JTable jTable1) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT * FROM tipo_paciente";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[2];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+    
+    
     
 }
