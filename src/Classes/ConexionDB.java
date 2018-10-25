@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica","unicaes");
+            conn= DriverManager.getConnection(url,"unicaes","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -1919,6 +1919,29 @@ public class ConexionDB {
            return model;
     }
     
-    
+    public Doctor DesactDoctor(int _idDoctor) throws SQLException {
+        
+        String query = "UPDATE DOCTOR SET ELIMINADO=1 WHERE IDDOCTOR=? ";
+            
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idDoctor);
+        ResultSet rs = preparedStatement.executeQuery();
+        Doctor res = new Doctor();
+      
+        return res;
+    }
+
+
+      public Usuario DesactUsuario(int _idUsuario) throws SQLException {
+       
+        String query = "UPDATE USUARIO SET ELIMINADO=1 WHERE IDUSUARIO= ? ";
+            
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idUsuario);
+        ResultSet rs = preparedStatement.executeQuery();
+        Usuario res = new Usuario();
+      
+        return res;
+    }
     
 }
