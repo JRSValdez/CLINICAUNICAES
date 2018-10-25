@@ -5,6 +5,7 @@ import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Medicamento;
 import Classes.Paciente;
+import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -26,7 +27,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     int xx, xy;
     int xs, ys, sbx,sby;
 
-    ConexionDB conn = new ConexionDB();
+    ConexionDB conn;
+    Usuario user;
     
     int[] idFacult;
     int [] idFacultAcademic;
@@ -43,9 +45,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
     int[] idParentezco;
     int[] idDoctor;
     
-    public Home_Recepcion() throws SQLException {
+    public Home_Recepcion(){
+        initComponents();
+    }
+    
+    public Home_Recepcion(Usuario _user) throws SQLException {
         initComponents();
         conn = new ConexionDB();
+        user = _user;
         //FECHA DEL SISTEMA
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
@@ -3527,11 +3534,7 @@ if(this.rbAcademico.isSelected()){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
            public void run() {
-                try {
-                    new Home_Recepcion().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-                }
+               new Home_Recepcion().setVisible(true);
             }
         });
     }

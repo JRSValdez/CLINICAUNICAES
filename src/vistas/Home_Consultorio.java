@@ -4,6 +4,7 @@ package vistas;
 import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Paciente;
+import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
@@ -25,12 +26,17 @@ public class Home_Consultorio extends javax.swing.JFrame {
     int xx, xy;
     int xs, ys, sbx,sby;
     ConexionDB conn;
-    
+    Usuario user;
     int[] idCatsMedicamentos;
     
-    public Home_Consultorio() throws SQLException {
+    public Home_Consultorio(){
+        initComponents();
+    }
+    
+    public Home_Consultorio(Usuario _user) throws SQLException {
         initComponents();
         conn = new ConexionDB();
+        user = _user;
         //FECHA DEL SISTEMA
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
@@ -1158,11 +1164,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new Home_Consultorio().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new Home_Consultorio().setVisible(true);
             }
         });
     }

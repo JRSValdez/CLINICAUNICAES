@@ -570,9 +570,10 @@ public class ConexionDB {
         cst.execute();
         
         String mensaje = cst.getString("pMensaje");
+        System.out.println(mensaje);
         if(!mensaje.equals("Error")){
-           
-            int tipo_usr=Integer.parseInt(mensaje.substring(7,8));
+            int tipo_usr=Integer.parseInt(mensaje.substring(7,mensaje.length()));
+            
             return tipo_usr;
         } else return -1;
        
@@ -1718,7 +1719,7 @@ public class ConexionDB {
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE TO_CHAR(cc.CONS_FECHA , 'dd/mm/yy') = ? ";
+                " WHERE TO_CHAR(cc.CONS_FECHA , 'dd-mm-yyyy') = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);

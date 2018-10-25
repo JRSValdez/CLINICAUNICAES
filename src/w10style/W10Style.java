@@ -8,6 +8,7 @@ package W10Style;
 import java.sql.SQLException;
 import javax.swing.UIManager;
 import vistas.Home_Recepcion;
+import vistas.Login;
 
 /**
  *
@@ -22,22 +23,19 @@ public class W10Style {
     public static void main(String[] args) throws SQLException {
         
         try {
-
             UIManager.setLookAndFeel( "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-            }
-            catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            Login main = new Login();
+            main.show();
+        }
+        catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
         java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
         java.util.logging.Logger.getLogger(W10Style.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-      Home_Recepcion main = new Home_Recepcion();
-      main.show();
     }
     
 }
