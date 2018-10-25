@@ -567,7 +567,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -581,6 +581,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbConsultasEspera.setColumnSelectionAllowed(true);
         tbConsultasEspera.setGridColor(new java.awt.Color(255, 255, 153));
         tbConsultasEspera.setRowHeight(25);
         tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));

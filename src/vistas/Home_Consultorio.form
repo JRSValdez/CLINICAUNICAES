@@ -957,7 +957,7 @@
                                 <Column editable="false" title="Tipo Paciente" type="java.lang.String"/>
                                 <Column editable="false" title="Paciente" type="java.lang.Object"/>
                                 <Column editable="false" title="Edad" type="java.lang.String"/>
-                                <Column editable="false" title="Fecha" type="java.lang.String"/>
+                                <Column editable="false" title="Fecha" type="java.lang.Object"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -989,6 +989,7 @@
                                 </Column>
                               </TableColumnModel>
                             </Property>
+                            <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                             <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="99" green="ff" red="ff" type="rgb"/>
                             </Property>

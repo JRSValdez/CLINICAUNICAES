@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vistas;
 
 import Classes.Carrera;
 import Classes.CarreraJpaController;
 import Classes.ConexionDB;
-import Classes.Doctor;
 import Classes.Especialidad;
 import Classes.EspecialidadJpaController;
 import Classes.Facultad;
@@ -20,20 +15,25 @@ import Classes.TipoPaciente;
 import Classes.TipoPacienteJpaController;
 import Classes.UnidadMed;
 import Classes.UnidadMedJpaController;
-import Classes.Usuario;
 import Classes.entityMain;
+import Classes.Doctor;
+import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -49,12 +49,11 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author JRSValdez
+ * @author JRSVALDEZ
  */
-public class Home_Root extends javax.swing.JFrame {
+public class Home_Root_corrupted extends javax.swing.JFrame {
 
-    
-int xx, xy;
+    int xx, xy;
     int xs, ys, sbx,sby;
     
     ConexionDB conn = new ConexionDB();
@@ -72,7 +71,7 @@ int xx, xy;
     int[] idEsp;
     int[] idUsr;
     
-    public Home_Root() throws SQLException {
+    public Home_Root_corrupted() throws SQLException {
         initComponents();
         
         //FECHA DEL SISTEMA
@@ -108,18 +107,17 @@ int xx, xy;
         this.llenarUsr();
         this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        rdbFiltros1 = new javax.swing.ButtonGroup();
         pUpBuscarMedicamento = new javax.swing.JPopupMenu();
         itemNombreMed = new javax.swing.JMenuItem();
         itemFechaV = new javax.swing.JMenuItem();
         itemCatMed = new javax.swing.JMenuItem();
         itemPresMed = new javax.swing.JMenuItem();
-        rdbFiltros1 = new javax.swing.ButtonGroup();
-        buttonGroup1 = new javax.swing.ButtonGroup();
         rdbFiltros2 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
@@ -418,15 +416,18 @@ int xx, xy;
         pUpBuscarMedicamento.add(itemPresMed);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
         setMinimumSize(new java.awt.Dimension(1280, 700));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 700));
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
         jPanel1.setMaximumSize(null);
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 700));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 700));
 
         SideBar.setBackground(new java.awt.Color(255, 250, 118));
         SideBar.setMinimumSize(new java.awt.Dimension(270, 328));
+        SideBar.setPreferredSize(new java.awt.Dimension(270, 328));
         SideBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 SideBarMouseDragged(evt);
@@ -443,6 +444,7 @@ int xx, xy;
 
         Botonera.setBackground(new java.awt.Color(255, 250, 118));
         Botonera.setMinimumSize(new java.awt.Dimension(265, 306));
+        Botonera.setPreferredSize(new java.awt.Dimension(265, 306));
 
         btn_users.setBackground(new java.awt.Color(0, 0, 0));
         btn_users.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -529,11 +531,11 @@ int xx, xy;
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_users, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_users, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_docs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_reports, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_reports, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_config, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -552,7 +554,7 @@ int xx, xy;
                 .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_config, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout SideBarLayout = new javax.swing.GroupLayout(SideBar);
@@ -568,7 +570,7 @@ int xx, xy;
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -687,9 +689,9 @@ int xx, xy;
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDoctores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                        .addGap(0, 34, Short.MAX_VALUE)
+                        .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(jLabel49)
-                        .addGap(0, 34, Short.MAX_VALUE))
+                        .addGap(0, 30, Short.MAX_VALUE))
                     .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -733,7 +735,7 @@ int xx, xy;
                         .addGap(0, 34, Short.MAX_VALUE)
                         .addComponent(jLabel52)
                         .addGap(0, 34, Short.MAX_VALUE))
-                    .addComponent(jLabel53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                    .addComponent(jLabel53, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel33Layout.setVerticalGroup(
@@ -775,9 +777,9 @@ int xx, xy;
                         .addComponent(lblConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                        .addContainerGap(42, Short.MAX_VALUE)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addComponent(jLabel55)
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                        .addGap(0, 30, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -817,7 +819,7 @@ int xx, xy;
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblMedicamentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(jLabel57, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel34Layout.createSequentialGroup()
                         .addContainerGap(40, Short.MAX_VALUE)
                         .addComponent(jLabel58)
@@ -833,7 +835,7 @@ int xx, xy;
                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMedicamentos)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -841,15 +843,15 @@ int xx, xy;
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 77, Short.MAX_VALUE)
+                .addGap(18, 21, Short.MAX_VALUE)
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -868,9 +870,9 @@ int xx, xy;
         Tab_homeLayout.setHorizontalGroup(
             Tab_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_homeLayout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(56, 56, 56))
             .addGroup(Tab_homeLayout.createSequentialGroup()
@@ -894,7 +896,7 @@ int xx, xy;
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("HOME", null, Tab_home, "");
@@ -902,6 +904,7 @@ int xx, xy;
         Tab_Doctores.setBackground(new java.awt.Color(102, 0, 0));
         Tab_Doctores.setForeground(new java.awt.Color(255, 255, 255));
         Tab_Doctores.setMinimumSize(new java.awt.Dimension(990, 660));
+        Tab_Doctores.setPreferredSize(new java.awt.Dimension(990, 660));
 
         jPanelEstNuevo.setBackground(new java.awt.Color(102, 0, 0));
         jPanelEstNuevo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
@@ -933,12 +936,14 @@ int xx, xy;
         txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         rbM.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup1.add(rbM);
         rbM.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbM.setForeground(new java.awt.Color(255, 255, 255));
         rbM.setSelected(true);
         rbM.setText("Masculino");
 
         rbF.setBackground(new java.awt.Color(102, 0, 0));
+        buttonGroup1.add(rbF);
         rbF.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbF.setForeground(new java.awt.Color(255, 255, 255));
         rbF.setText("Femenino");
@@ -1109,12 +1114,14 @@ int xx, xy;
                 return types [columnIndex];
             }
         });
+        tbDoctor.setCellSelectionEnabled(false);
         tbDoctor.setGridColor(new java.awt.Color(255, 255, 153));
         tbDoctor.setRowHeight(25);
         tbDoctor.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbDoctor.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbDoctor.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(tbDoctor);
+        tbDoctor.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1124,9 +1131,9 @@ int xx, xy;
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGap(0, 518, Short.MAX_VALUE)
+                        .addGap(0, 378, Short.MAX_VALUE)
                         .addComponent(lblHeader58)
-                        .addGap(0, 542, Short.MAX_VALUE))
+                        .addGap(0, 402, Short.MAX_VALUE))
                     .addComponent(jScrollPane6))
                 .addContainerGap())
         );
@@ -1167,11 +1174,11 @@ int xx, xy;
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
-                .addContainerGap(570, Short.MAX_VALUE)
+                .addContainerGap(430, Short.MAX_VALUE)
                 .addComponent(jLabel27)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel29)
-                .addContainerGap(571, Short.MAX_VALUE))
+                .addContainerGap(431, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1204,7 +1211,7 @@ int xx, xy;
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("DOCTORES", Tab_Doctores);
@@ -1285,7 +1292,7 @@ int xx, xy;
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(lblHeader45)
-                        .addGap(0, 170, Short.MAX_VALUE))
+                        .addGap(0, 37, Short.MAX_VALUE))
                     .addComponent(lblHeader48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1387,9 +1394,9 @@ int xx, xy;
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 503, Short.MAX_VALUE)
+                        .addGap(0, 363, Short.MAX_VALUE)
                         .addComponent(lblHeader56)
-                        .addGap(0, 503, Short.MAX_VALUE))
+                        .addGap(0, 363, Short.MAX_VALUE))
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -1545,6 +1552,7 @@ int xx, xy;
 
         Tab_Usuarios.setBackground(new java.awt.Color(102, 0, 0));
         Tab_Usuarios.setMinimumSize(new java.awt.Dimension(990, 660));
+        Tab_Usuarios.setPreferredSize(new java.awt.Dimension(990, 660));
 
         jPanel9.setBackground(new java.awt.Color(102, 0, 0));
         jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
@@ -1611,7 +1619,7 @@ int xx, xy;
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHeader18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHeader15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1622,7 +1630,7 @@ int xx, xy;
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtPassword2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(lblHeader36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1746,6 +1754,7 @@ int xx, xy;
         tbUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbUsuarios.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbUsuarios);
+        tbUsuarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -1791,7 +1800,7 @@ int xx, xy;
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("USUARIOS", Tab_Usuarios);
@@ -1800,6 +1809,7 @@ int xx, xy;
         Tab_reports.setForeground(new java.awt.Color(255, 255, 255));
         Tab_reports.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Tab_reports.setMinimumSize(new java.awt.Dimension(990, 660));
+        Tab_reports.setPreferredSize(new java.awt.Dimension(990, 660));
 
         jPanel35.setBackground(new java.awt.Color(102, 0, 0));
         jPanel35.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
@@ -1970,7 +1980,7 @@ int xx, xy;
                                     .addComponent(cmbActividad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbDcotor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCarrera, 0, 496, Short.MAX_VALUE)
+                                    .addComponent(cmbCarrera, 0, 334, Short.MAX_VALUE)
                                     .addComponent(cmbFacultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbUbicacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo4Layout.createSequentialGroup()
@@ -2128,9 +2138,9 @@ int xx, xy;
                         .addComponent(jLabel8)
                         .addContainerGap())
                     .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
-                        .addGap(0, 312, Short.MAX_VALUE)
+                        .addGap(0, 233, Short.MAX_VALUE)
                         .addComponent(jLabel42)
-                        .addContainerGap(312, Short.MAX_VALUE))))
+                        .addContainerGap(234, Short.MAX_VALUE))))
         );
         jPanelEstNuevo5Layout.setVerticalGroup(
             jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2282,7 +2292,7 @@ int xx, xy;
                         .addGap(18, 18, 18)
                         .addGroup(jPanelEstNuevo6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombres)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(txtIdPac)
                             .addComponent(txtCarnetRoot, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanelEstNuevo6Layout.createSequentialGroup()
@@ -2379,15 +2389,18 @@ int xx, xy;
         jtBuscarExpediente.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jtBuscarExpediente.getTableHeader().setReorderingAllowed(false);
         jScrollPane14.setViewportView(jtBuscarExpediente);
+        if (jtBuscarExpediente.getColumnModel().getColumnCount() > 0) {
+            jtBuscarExpediente.getColumnModel().getColumn(0).setMaxWidth(35);
+        }
 
         javax.swing.GroupLayout jPanelEstNuevo7Layout = new javax.swing.GroupLayout(jPanelEstNuevo7);
         jPanelEstNuevo7.setLayout(jPanelEstNuevo7Layout);
         jPanelEstNuevo7Layout.setHorizontalGroup(
             jPanelEstNuevo7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevo7Layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addComponent(jLabel46)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -2453,7 +2466,7 @@ int xx, xy;
                 .addGroup(Tab_reportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("REPORTES", null, Tab_reports, "");
@@ -2502,6 +2515,7 @@ int xx, xy;
         jTcategorias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTcategorias.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTcategorias);
+        jTcategorias.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -2578,11 +2592,6 @@ int xx, xy;
         btnElimCategoria.setFocusable(false);
         btnElimCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnElimCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnElimCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnElimCategoriaMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -2686,6 +2695,7 @@ int xx, xy;
         jTfacultades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTfacultades.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(jTfacultades);
+        jTfacultades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -2865,6 +2875,7 @@ int xx, xy;
         jTcarreras.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTcarreras.getTableHeader().setReorderingAllowed(false);
         jScrollPane8.setViewportView(jTcarreras);
+        jTcarreras.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -3062,6 +3073,7 @@ int xx, xy;
         jTespecialidades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTespecialidades.getTableHeader().setReorderingAllowed(false);
         jScrollPane9.setViewportView(jTespecialidades);
+        jTespecialidades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -3170,7 +3182,7 @@ int xx, xy;
                                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnAggEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                                     .addComponent(txtespecialidad))
-                                .addGap(0, 311, Short.MAX_VALUE))
+                                .addGap(0, 30, Short.MAX_VALUE))
                             .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3237,6 +3249,7 @@ int xx, xy;
         jTunidades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTunidades.getTableHeader().setReorderingAllowed(false);
         jScrollPane10.setViewportView(jTunidades);
+        jTunidades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -3433,12 +3446,13 @@ int xx, xy;
         jTactividades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTactividades.getTableHeader().setReorderingAllowed(false);
         jScrollPane11.setViewportView(jTactividades);
+        jTactividades.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
         jPanel29Layout.setHorizontalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 582, Short.MAX_VALUE)
             .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel29Layout.createSequentialGroup()
                     .addContainerGap()
@@ -3545,7 +3559,7 @@ int xx, xy;
                                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnAggActividad, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                                     .addComponent(txtActividad))
-                                .addGap(0, 145, Short.MAX_VALUE))
+                                .addGap(0, 7, Short.MAX_VALUE))
                             .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -3607,7 +3621,7 @@ int xx, xy;
                 .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(269, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                     .addContainerGap(1255, Short.MAX_VALUE)
@@ -3623,7 +3637,7 @@ int xx, xy;
             Tab_ConfigLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_ConfigLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE)
                 .addContainerGap())
         );
         Tab_ConfigLayout.setVerticalGroup(
@@ -3631,7 +3645,7 @@ int xx, xy;
             .addGroup(Tab_ConfigLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("CONFIGURACIONES", Tab_Config);
@@ -3742,10 +3756,10 @@ int xx, xy;
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
                         .addGap(45, 45, 45))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                        .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -3766,6 +3780,23 @@ int xx, xy;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void llenarFacultad() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacult = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboFacultad.setModel(model);
+    }
+    
+public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.llenarFacultad();
+
+        this.idFacult = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        cbo.setModel(model);
+    }
 
     public void llenarMedicamentosFarmacia() throws SQLException{
         this.jTFarmacia.setSelectionForeground(Color.white);
@@ -3793,33 +3824,98 @@ int xx, xy;
         this.cboUnidadesMed.setModel((DefaultComboBoxModel) arrays3[0]);
     }
     
-     public void llenarEmp() throws SQLException {
-        // llenar el combobox de facultad
-        Object[] array = this.conn.Obt_Empleado();
-
-        this.idEmp = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboEmpleado.setModel(model);
-    }
-    
-       public void llenarEsp() throws SQLException {
-        
-        Object[] array = this.conn.Obt_Especialidad();
-
-        this.idEsp = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboEspecialidad.setModel(model);
-    }
-    
-    public void llenarUsr() throws SQLException {
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
+       Object [] opciones ={"Aceptar","Cancelar"};
+      int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
+      JOptionPane.YES_NO_OPTION,
+      JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+      if (eleccion == JOptionPane.YES_OPTION)
+      {
+       System.exit(0);
        
-        Object[] array = this.conn.Obt_Usuario();
+      }else{
+     }
+    }//GEN-LAST:event_btn_closeMouseClicked
 
-        this.idUsr = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboUsuario.setModel(model);
-    }
-    
+    private void SideBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseReleased
+        //this.setOpacity((float)1.0);
+    }//GEN-LAST:event_SideBarMouseReleased
+
+    private void SideBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMousePressed
+        //this.setOpacity((float)0.8);
+        //xx=evt.getX();
+        //xy = evt.getY();
+    }//GEN-LAST:event_SideBarMousePressed
+
+    private void SideBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseDragged
+        //int x = evt.getXOnScreen();
+        //int y = evt.getYOnScreen();
+        //this.setLocation(x-xx, y-xy);
+    }//GEN-LAST:event_SideBarMouseDragged
+
+    private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
+        this.Contenedor.setSelectedIndex(0);
+        this.lblHeader.setText("HOME");
+        
+        this.btn_home.setBackground(Color.decode("#660000"));
+        this.btn_farmacia.setBackground(Color.black);
+        this.btn_docs.setBackground(Color.black);
+        this.btn_users.setBackground(Color.black);
+        this.btn_config.setBackground(Color.black);
+        this.btn_reports.setBackground(Color.black);
+    }//GEN-LAST:event_btn_homeActionPerformed
+
+    private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x-xx, y-xy);
+    }//GEN-LAST:event_Barra_SuperiorMouseDragged
+
+    private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
+        this.setOpacity((float)0.8);
+        xx=evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_Barra_SuperiorMousePressed
+
+    private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
+        this.setOpacity((float)1.0);
+    }//GEN-LAST:event_Barra_SuperiorMouseReleased
+
+    private void btn_docsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_docsActionPerformed
+        this.Contenedor.setSelectedIndex(1);
+        this.lblHeader.setText("DOCTORES");
+        
+        this.btn_docs.setBackground(Color.decode("#660000"));
+        this.btn_home.setBackground(Color.black);
+        this.btn_farmacia.setBackground(Color.black);
+        this.btn_users.setBackground(Color.black);
+        this.btn_reports.setBackground(Color.black);
+        this.btn_config.setBackground(Color.black);
+    }//GEN-LAST:event_btn_docsActionPerformed
+
+    private void btn_farmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_farmaciaActionPerformed
+        this.Contenedor.setSelectedIndex(2);
+        this.lblHeader.setText("FARMACIA");
+        
+        this.btn_farmacia.setBackground(Color.decode("#660000"));
+        this.btn_docs.setBackground(Color.black);
+        this.btn_users.setBackground(Color.black);
+        this.btn_reports.setBackground(Color.black);
+        this.btn_config.setBackground(Color.black);
+    }//GEN-LAST:event_btn_farmaciaActionPerformed
+
+    private void btnHome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome2ActionPerformed
+        this.Contenedor.setSelectedIndex(0);
+        this.lblHeader.setText("HOME");
+        
+        this.btn_home.setBackground(Color.decode("#660000"));
+        this.btn_farmacia.setBackground(Color.black);
+        this.btn_docs.setBackground(Color.black);
+        this.btn_users.setBackground(Color.black);
+        this.btn_reports.setBackground(Color.black);
+        this.btn_config.setBackground(Color.black);
+    }//GEN-LAST:event_btnHome2ActionPerformed
+
     private void btn_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usersActionPerformed
         this.Contenedor.setSelectedIndex(3);
         this.lblHeader.setText("USUARIOS");
@@ -3831,41 +3927,6 @@ int xx, xy;
         this.btn_reports.setBackground(Color.black);
         this.btn_config.setBackground(Color.black);
     }//GEN-LAST:event_btn_usersActionPerformed
-
-    private void btn_farmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_farmaciaActionPerformed
-        this.Contenedor.setSelectedIndex(2);
-        this.lblHeader.setText("FARMACIA");
-
-        this.btn_farmacia.setBackground(Color.decode("#660000"));
-        this.btn_docs.setBackground(Color.black);
-        this.btn_users.setBackground(Color.black);
-        this.btn_reports.setBackground(Color.black);
-        this.btn_config.setBackground(Color.black);
-    }//GEN-LAST:event_btn_farmaciaActionPerformed
-
-    private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
-        this.Contenedor.setSelectedIndex(0);
-        this.lblHeader.setText("HOME");
-
-        this.btn_home.setBackground(Color.decode("#660000"));
-        this.btn_farmacia.setBackground(Color.black);
-        this.btn_docs.setBackground(Color.black);
-        this.btn_users.setBackground(Color.black);
-        this.btn_config.setBackground(Color.black);
-        this.btn_reports.setBackground(Color.black);
-    }//GEN-LAST:event_btn_homeActionPerformed
-
-    private void btn_docsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_docsActionPerformed
-        this.Contenedor.setSelectedIndex(1);
-        this.lblHeader.setText("DOCTORES");
-
-        this.btn_docs.setBackground(Color.decode("#660000"));
-        this.btn_home.setBackground(Color.black);
-        this.btn_farmacia.setBackground(Color.black);
-        this.btn_users.setBackground(Color.black);
-        this.btn_reports.setBackground(Color.black);
-        this.btn_config.setBackground(Color.black);
-    }//GEN-LAST:event_btn_docsActionPerformed
 
     private void btn_reportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportsActionPerformed
         this.Contenedor.setSelectedIndex(4);
@@ -3879,6 +3940,19 @@ int xx, xy;
         this.btn_config.setBackground(Color.black);
     }//GEN-LAST:event_btn_reportsActionPerformed
 
+    private void btn_maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_maximizeMouseClicked
+        this.setExtendedState(6);
+        int l = this.getHeight();
+        int a = this.getWidth() - this.SideBar.getWidth();
+        this.Contenedor.setMinimumSize(new Dimension(a, this.Contenedor.getWidth()));
+        //this.SideBar.setPreferredSize(new Dimension(sbx,sby));
+    }//GEN-LAST:event_btn_maximizeMouseClicked
+
+    private void btn_minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizeMouseClicked
+        this.setExtendedState(0);
+        this.Contenedor.setMinimumSize(new Dimension(xs, ys));
+    }//GEN-LAST:event_btn_minimizeMouseClicked
+
     private void btn_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_configActionPerformed
         this.Contenedor.setSelectedIndex(5);
         this.lblHeader.setText("CONFIGURACIONES");
@@ -3891,64 +3965,21 @@ int xx, xy;
         this.btn_reports.setBackground(Color.black);
     }//GEN-LAST:event_btn_configActionPerformed
 
-    private void SideBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseDragged
-        //int x = evt.getXOnScreen();
-        //int y = evt.getYOnScreen();
-        //this.setLocation(x-xx, y-xy);
-    }//GEN-LAST:event_SideBarMouseDragged
+    private void jPanelEstNuevo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelEstNuevo4MouseClicked
 
-    private void SideBarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMousePressed
-        //this.setOpacity((float)0.8);
-        //xx=evt.getX();
-        //xy = evt.getY();
-    }//GEN-LAST:event_SideBarMousePressed
+    private void jPanelEstNuevo5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelEstNuevo5MouseClicked
 
-    private void SideBarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SideBarMouseReleased
-        //this.setOpacity((float)1.0);
-    }//GEN-LAST:event_SideBarMouseReleased
+    private void jPanelEstNuevo6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelEstNuevo6MouseClicked
 
-    private void btnAggDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggDoctorMouseClicked
-
-        Doctor dc = new Doctor();
-
-        dc.nombre = this.txtNombre.getText();
-        dc.apellido = this.txtApellido.getText();
-        dc.idEspecialidad = this.idEsp[this.cboEspecialidad.getSelectedIndex()];
-        dc.telefono = this.txtTelefono.getText();
-        dc.fechaNac = this.txtFecha.getText();
-        dc.documento = this.txtDocumento.getText();
-        dc.idUsuario = this.idUsr[this.cboUsuario.getSelectedIndex()];
-
-        if (this.rbM.isSelected()) {
-            dc.sexo = "M";
-
-        } else {
-            dc.sexo = "F";
-        }
-
-        if (dc.Validar().equals("Exito")) {
-
-            String resultado = "";
-
-            try {
-
-                resultado = conn.aggDoctor(dc);
-                this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
-                this.txtNombre.setText("");
-                this.txtApellido.setText("");
-                this.txtTelefono.setText("");
-                this.txtFecha.setText("");
-                this.txtDocumento.setText("");
-
-            } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(this, ex.toString());
-            }
-            JOptionPane.showMessageDialog(this, resultado);
-        } else {
-            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
-        }
-
-    }//GEN-LAST:event_btnAggDoctorMouseClicked
+    private void jPanelEstNuevo7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanelEstNuevo7MouseClicked
 
     private void btnAggMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggMedicamentoMouseClicked
         //Agregar un nuevo medicamento
@@ -3985,8 +4016,8 @@ int xx, xy;
             try {
                 int idMed = Integer.parseInt(this.jTFarmacia.getModel().getValueAt(this.jTFarmacia.getSelectedRow(), 0).toString());
                 Medicamento med = this.conn.getMedicamentobyID(idMed);
-                Editar_Medicamento form = new Editar_Medicamento(this,med);
-                form.setVisible(true);
+                //Editar_Medicamento form = new Editar_Medicamento(this,med);
+                //form.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -3997,528 +4028,6 @@ int xx, xy;
         //Buscar medicamento pestaña farmacia
         this.pUpBuscarMedicamento.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_btnBuscarMedMouseClicked
-
-    private void btnAggUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUsuarioMouseClicked
-
-        Usuario us= new Usuario();
-
-        us.user= this.txtUsuario.getText();
-        us.password1= new String(txtPassword1.getPassword());
-        us.password2= new String(txtPassword2.getPassword());
-        us.tipo_usr= this.cboTipoUsuario.getSelectedIndex();
-        us.empleado=this.idEmp[this.cboEmpleado.getSelectedIndex()];
-
-        if(us.ValidarAgg().equals("Exito")){
-
-            String resultado="";
-
-            try {
-
-                resultado= conn.aggUsuario(us);
-
-                this.txtUsuario.setText("");
-                this.txtPassword1.setText("");
-                this.txtPassword2.setText("");
-
-            } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(this,ex.toString());
-            }
-            JOptionPane.showMessageDialog(this, resultado);
-        }else {
-            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
-        }
-
-    }//GEN-LAST:event_btnAggUsuarioMouseClicked
-
-    private void jPanelEstNuevo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelEstNuevo4MouseClicked
-
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-
-    }//GEN-LAST:event_jLabel8MouseClicked
-
-    private void jPanelEstNuevo5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelEstNuevo5MouseClicked
-
-    private void btnBuscarExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarExpedienteMouseClicked
-        if(this.rdbCarnet.isSelected()){
-            // Buscar medicamento por carnet
-            if (this.txtCarnetRoot.getText().length() > 5){
-                try {
-                    String carnet = this.txtCarnetRoot.getText();
-                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByCarnet(jtBuscarExpediente, carnet));
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        if(this.rdbApellidos.isSelected()){
-            // Buscar medicamento por apellidos
-            if (this.txtApellidos.getText().length() > 3){
-                try {
-                    String apellido = this.txtApellidos.getText();
-                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByApellidos(jtBuscarExpediente, apellido));
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        if(this.rdbIdPac.isSelected()){
-            // Buscar medicamento por ID
-            if (this.txtIdPac.getText().length() > 0){
-                try {
-                    int id = Integer.parseInt(this.txtIdPac.getText());
-                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByID(jtBuscarExpediente, id));
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        if(this.rdbNombres.isSelected()){
-            // Buscar medicamento por Nombres
-            if (this.txtNombres.getText().length() > 2){
-                try {
-                    String nombre = this.txtNombres.getText();
-                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByNombres(jtBuscarExpediente, nombre));
-                } catch (SQLException ex) {
-                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-
-    }//GEN-LAST:event_btnBuscarExpedienteMouseClicked
-
-    private void jPanelEstNuevo6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelEstNuevo6MouseClicked
-
-    private void btnGenReporteExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteExpedienteMouseClicked
-        //REPORTE DE EXPEDIENTE SELECCIONADO
-        if (this.jtBuscarExpediente.getSelectedRows().length == 1)
-        {
-            int idConsulta = Integer.parseInt(this.jtBuscarExpediente.getModel().getValueAt(this.jtBuscarExpediente.getSelectedRow(), 0).toString());
-            Map parameters = new HashMap ();
-            //A nuestro informe de prueba le vamos a enviar la fecha de hoy
-            parameters.put ("idConsulta", idConsulta);
-            JasperReport reporte; //Creo el objeto reporte
-            // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; //"../Reportes/reporte_expediente.jasper";
-            try {
-                reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
-                JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-                JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
-                viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
-                viewer.setVisible(true); //Inicializamos la vista del Reporte
-            } catch (JRException ex) {
-                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
-
-    private void jPanelEstNuevo7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanelEstNuevo7MouseClicked
-
-    private void btnAggCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCategoriaMouseClicked
-        TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
-        TipoMedicamento tm=new TipoMedicamento();
-        tm.setTipoMed(this.txtCategoria.getText());
-        if(this.txtCategoria.getText().trim().length()>3){
-            try{
-                t.create(tm);
-                conn.getCatMedicamento(this.jTcategorias);
-                this.txtCategoria.setText("");
-                JOptionPane.showMessageDialog(null,"Categoria agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
-
-    }//GEN-LAST:event_btnAggCategoriaMouseClicked
-
-    private void btnEditCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditCategoriaMouseClicked
-        int totalfilas=this.jTcategorias.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTcategorias.getSelectedRow();
-            int id=Integer.parseInt(jTcategorias.getValueAt(nfila, 0).toString());
-            String nombreCat=jTcategorias.getValueAt(nfila, 1).toString();
-            String categoria="";
-            categoria=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreCat);
-
-            if((!categoria.equals("")) && (categoria.trim().length()>3)){
-                try{
-                    TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
-                    TipoMedicamento tpm=new TipoMedicamento();
-                    tpm.setIdtipoMed(id);
-                    tpm.setTipoMed(categoria);
-                    t.edit(tpm);
-                    conn.getCatMedicamento(this.jTcategorias);
-                    JOptionPane.showMessageDialog(null, "categoria Actualizada");
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage().toString());
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Error en la edición");
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditCategoriaMouseClicked
-
-    private void btnAggFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggFacultadMouseClicked
-        FacultadJpaController t=new FacultadJpaController(entityMain.getInstance());
-        Facultad fa=new Facultad();
-        fa.setFactultad(txtFacultad.getText());
-        if(this.txtFacultad.getText().trim().length()>3){
-            try{
-                t.create(fa);
-                conn.getFacultades(this.jTfacultades);
-                this.llenarFacultad();
-                JOptionPane.showMessageDialog(null,"Facultad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{ JOptionPane.showMessageDialog(null,"verifique el campo");}
-    }//GEN-LAST:event_btnAggFacultadMouseClicked
-
-    private void btnEditFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditFacultadMouseClicked
-        int totalfilas=this.jTfacultades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTfacultades.getSelectedRow();
-            int id=Integer.parseInt(jTfacultades.getValueAt(nfila, 0).toString());
-            String nombreFac="";
-            nombreFac=jTfacultades.getValueAt(nfila, 1).toString();
-            String facultad="";
-            facultad=JOptionPane.showInputDialog(null, "Modificar facultad:",nombreFac);
-
-            if((!facultad.equals("")) && (facultad.trim().length()>3)){
-                try{
-                    FacultadJpaController f=new FacultadJpaController(entityMain.getInstance());
-                    Facultad fac2=f.findFacultad(id);
-                    Facultad fac=new Facultad();
-                    fac.setIdfacultad(id);
-                    fac.setFactultad(facultad);
-                    fac.setCarreraList(fac2.getCarreraList());
-                    //   fac.setCarreraList(fac.getCarreraList());
-                    f.edit(fac);
-                    conn.getFacultades(this.jTfacultades);
-                    JOptionPane.showMessageDialog(null, "Facultad actualizada");
-
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Error en la edición");
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditFacultadMouseClicked
-
-    private void txtCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarreraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCarreraActionPerformed
-
-    private void btnAggCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCarreraMouseClicked
-        CarreraJpaController controlador=new CarreraJpaController(entityMain.getInstance());
-        // FacultadJpaController controlador=new FacultadJpaController(entityMain.getInstance());
-        List<Facultad> lf=new ArrayList<Facultad>();
-        Carrera ca=new Carrera();
-        Facultad fa=new Facultad();
-        ca.setCarrera(this.txtCarrera.getText());
-        fa.setIdfacultad(this.idFacult[this.cboFacultad.getSelectedIndex()]);
-        ca.setIdfacultad(fa);
-
-        if(this.txtCarrera.getText().trim().length()>3){
-            try{
-                controlador.create(ca);
-                conn.getCarreras(this.jTcarreras);
-                this.txtCarrera.setText("");
-                JOptionPane.showMessageDialog(null,"Carrera agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
-
-    }//GEN-LAST:event_btnAggCarreraMouseClicked
-
-    private void btnEditarCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCarreraMouseClicked
-        int totalfilas=this.jTcarreras.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTcarreras.getSelectedRow();
-            int id=Integer.parseInt(jTcarreras.getValueAt(nfila, 0).toString());
-            String carrera=jTcarreras.getValueAt(nfila, 1).toString();
-            String facultad=jTcarreras.getValueAt(nfila, 2).toString();
-            String [] array ={"",""};
-            JTextField txtCarrera2 = new JTextField();
-            JComboBox cboFacultad2 = new JComboBox();
-            txtCarrera2.setText(carrera);
-            try {
-                llenarFacultadEdit(cboFacultad2);
-                cboFacultad2.setSelectedItem(facultad);
-            } catch (SQLException ex) {
-                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            Object[] message = {
-                "Carrera:", txtCarrera2,
-                "Facultad:", cboFacultad2,
-            };
-            int option = JOptionPane.showConfirmDialog(null, message, "Editar carrera", JOptionPane.OK_CANCEL_OPTION);
-            if(option == JOptionPane.OK_OPTION){
-                array[0]=txtCarrera2.getText();
-                array[1]=cboFacultad2.getSelectedItem().toString();
-
-                if((array[0].trim().length()>3 && array[1].trim().length()>0)){
-                    try{
-                        CarreraJpaController t=new  CarreraJpaController(entityMain.getInstance());
-                        Carrera car=new  Carrera();
-                        car.setIdcarrera(id);
-                        car.setCarrera(array[0]);
-                        Facultad fa=new Facultad();
-                        car.setCarrera(txtCarrera2.getText());
-                        fa.setIdfacultad(this.idFacult[cboFacultad2.getSelectedIndex()]);
-                        car.setIdfacultad(fa);
-                        t.edit(car);
-                        conn.getCarreras(this.jTcarreras);
-                        JOptionPane.showMessageDialog(null, "Carrera Actualizada");
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e.getMessage().toString());
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error en la edición");
-                }
-
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditarCarreraMouseClicked
-
-    private void btnAggEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggEspecialidadMouseClicked
-        EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
-        Especialidad esp=new Especialidad();
-        esp.setEspecialidad(this.txtespecialidad.getText());
-        if(this.txtespecialidad.getText().trim().length()>3){
-            try{
-                t.create(esp);
-                conn.getEspecialidad(this.jTespecialidades);
-                this.txtespecialidad.setText("");
-                JOptionPane.showMessageDialog(null,"Especialidad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString()); }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
-    }//GEN-LAST:event_btnAggEspecialidadMouseClicked
-
-    private void btnEditEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditEspecialidadMouseClicked
-        int totalfilas=this.jTespecialidades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTespecialidades.getSelectedRow();
-            int id=Integer.parseInt(jTespecialidades.getValueAt(nfila, 0).toString());
-            String nombreEsp=jTespecialidades.getValueAt(nfila, 1).toString();
-            String especialidad="";
-            especialidad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreEsp);
-
-            if((especialidad.trim().length()>3)){
-                try{
-                    EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
-                    Especialidad esp=new Especialidad();
-                    esp.setIdespecialidad(id);
-                    esp.setEspecialidad(especialidad);
-                    t.edit(esp);
-                    conn.getEspecialidad(this.jTespecialidades);
-                    JOptionPane.showMessageDialog(null, "Especialidad Actualizada");
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage().toString());
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Error en la edición");
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditEspecialidadMouseClicked
-
-    private void btnAggUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUnidMedMouseClicked
-        UnidadMedJpaController t=new UnidadMedJpaController(entityMain.getInstance());
-        UnidadMed umed=new UnidadMed();
-        umed.setUnidad(this.txtUnidMed.getText());
-        umed.setUnidad(this.txtUnidAbrev.getText());
-        if(this.txtUnidMed.getText().trim().length()>3 && this.txtUnidAbrev.getText().trim().length()>3){
-            try{
-                t.create(umed);
-                conn.getUnidMedida(this.jTunidades);
-                this.txtUnidAbrev.setText("");
-                JOptionPane.showMessageDialog(null,"Unidad de Medida agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
-            }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
-    }//GEN-LAST:event_btnAggUnidMedMouseClicked
-
-    public void llenarFacultad() throws SQLException {
-        // llenar el combobox de facultad
-        Object[] array = this.conn.llenarFacultad();
-
-        this.idFacult = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboFacultad.setModel(model);
-    }
-    
-public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
-        // llenar el combobox de facultad
-        Object[] array = this.conn.llenarFacultad();
-
-        this.idFacult = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        cbo.setModel(model);
-    }
-    
-    private void btnEditUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditUnidMedMouseClicked
-        int totalfilas=this.jTunidades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTunidades.getSelectedRow();
-            int id=Integer.parseInt(jTunidades.getValueAt(nfila, 0).toString());
-            String nombreUnidad=jTunidades.getValueAt(nfila, 1).toString();
-            String Uabrev=jTunidades.getValueAt(nfila, 2).toString();
-            String [] array ={"",""};
-            JTextField unidad = new JTextField();
-            JTextField abrev = new JTextField();
-            unidad.setText(nombreUnidad);
-            abrev.setText(Uabrev);
-            Object[] message = {
-                "Unidad de Medida:", unidad,
-                "Abreviatura:", abrev,};
-            int option = JOptionPane.showConfirmDialog(null, message, "Editar unidad de medida", JOptionPane.OK_CANCEL_OPTION);
-            if(option == JOptionPane.OK_OPTION){
-                array[0]=unidad.getText();
-                array[1]=abrev.getText();
-
-                if((array[0].trim().length()>3 && array[1].trim().length()>0)){
-                    try{
-                        UnidadMedJpaController t=new  UnidadMedJpaController(entityMain.getInstance());
-                        UnidadMed med=new  UnidadMed();
-                        med.setIdunidadMed(id);
-                        med.setUnidad(array[0]);
-                        med.setAbreviatura(array[1]);
-                        t.edit(med);
-                        conn.getUnidMedida(this.jTunidades);
-                        JOptionPane.showMessageDialog(null, "Unidad de Medida Actualizada");
-                    }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e.getMessage().toString());
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(null, "Error en la edición");
-                }
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditUnidMedMouseClicked
-
-    private void btnAggActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggActividadMouseClicked
-        TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
-        TipoPaciente tpc=new TipoPaciente();
-        tpc.setTipopac(this.txtActividad.getText());
-        if(this.txtActividad.getText().trim().length()>3){
-            try{
-                t.create(tpc);
-                conn.getActividad(this.jTactividades);
-                this.txtActividad.setText("");
-                JOptionPane.showMessageDialog(null,"Actividad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
-            }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
-    }//GEN-LAST:event_btnAggActividadMouseClicked
-
-    private void btnEditActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditActividadMouseClicked
-        int totalfilas=this.jTactividades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTactividades.getSelectedRow();
-            int id=Integer.parseInt(jTactividades.getValueAt(nfila, 0).toString());
-            String nombreAct=jTactividades.getValueAt(nfila, 1).toString();
-            String Actividad="";
-            Actividad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreAct);
-
-            if((Actividad.trim().length()>3)){
-                try{
-                    TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
-                    TipoPaciente act=new TipoPaciente();
-                    act.setIdtipopac(id);
-                    act.setTipopac(Actividad);
-                    t.edit(act);
-                    conn.getActividad(this.jTactividades);
-                    JOptionPane.showMessageDialog(null, "Actividad actualizada");
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, e.getMessage().toString());
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "Error en la edición");
-            }
-
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-        }
-    }//GEN-LAST:event_btnEditActividadMouseClicked
-
-    private void btnHome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome2ActionPerformed
-        this.Contenedor.setSelectedIndex(0);
-        this.lblHeader.setText("HOME");
-
-        this.btn_home.setBackground(Color.decode("#660000"));
-        this.btn_farmacia.setBackground(Color.black);
-        this.btn_docs.setBackground(Color.black);
-        this.btn_users.setBackground(Color.black);
-        this.btn_reports.setBackground(Color.black);
-        this.btn_config.setBackground(Color.black);
-    }//GEN-LAST:event_btnHome2ActionPerformed
-
-    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
-        Object [] opciones ={"Aceptar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION)
-        {
-            System.exit(0);
-
-        }else{
-        }
-    }//GEN-LAST:event_btn_closeMouseClicked
-
-    private void btn_maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_maximizeMouseClicked
-        this.setExtendedState(6);
-        int l = this.getHeight();
-        int a = this.getWidth() - this.SideBar.getWidth();
-        this.Contenedor.setMinimumSize(new Dimension(a, this.Contenedor.getWidth()));
-        //this.SideBar.setPreferredSize(new Dimension(sbx,sby));
-    }//GEN-LAST:event_btn_maximizeMouseClicked
-
-    private void btn_minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minimizeMouseClicked
-        this.setExtendedState(0);
-        this.Contenedor.setMinimumSize(new Dimension(xs, ys));
-    }//GEN-LAST:event_btn_minimizeMouseClicked
-
-    private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-xy);
-    }//GEN-LAST:event_Barra_SuperiorMouseDragged
-
-    private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
-        this.setOpacity((float)0.8);
-        xx=evt.getX();
-        xy = evt.getY();
-    }//GEN-LAST:event_Barra_SuperiorMousePressed
-
-    private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
-        this.setOpacity((float)1.0);
-    }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
     private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
         // Buscar medicamento por nombre
@@ -4560,14 +4069,540 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         }
     }//GEN-LAST:event_itemPresMedActionPerformed
 
-    private void btnElimCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimCategoriaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnElimCategoriaMouseClicked
+    private void btnAggCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCategoriaMouseClicked
+        TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
+       TipoMedicamento tm=new TipoMedicamento();
+       tm.setTipoMed(this.txtCategoria.getText());
+       if(this.txtCategoria.getText().trim().length()>3){
+       try{
+          t.create(tm);
+          conn.getCatMedicamento(this.jTcategorias);
+          this.txtCategoria.setText("");
+          JOptionPane.showMessageDialog(null,"Categoria agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
+       }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
+        
+        
+    }//GEN-LAST:event_btnAggCategoriaMouseClicked
 
+    private void btnAggFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggFacultadMouseClicked
+       FacultadJpaController t=new FacultadJpaController(entityMain.getInstance());
+       Facultad fa=new Facultad();
+       fa.setFactultad(txtFacultad.getText());
+       if(this.txtFacultad.getText().trim().length()>3){
+       try{
+          t.create(fa);
+          conn.getFacultades(this.jTfacultades);
+          this.llenarFacultad();
+          JOptionPane.showMessageDialog(null,"Facultad agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
+       }else{ JOptionPane.showMessageDialog(null,"verifique el campo");}
+    }//GEN-LAST:event_btnAggFacultadMouseClicked
+
+    private void btnAggCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCarreraMouseClicked
+       CarreraJpaController controlador=new CarreraJpaController(entityMain.getInstance());
+      // FacultadJpaController controlador=new FacultadJpaController(entityMain.getInstance());
+        List<Facultad> lf=new ArrayList<Facultad>();
+        Carrera ca=new Carrera();
+        Facultad fa=new Facultad();
+        ca.setCarrera(this.txtCarrera.getText());
+        fa.setIdfacultad(this.idFacult[this.cboFacultad.getSelectedIndex()]);
+        ca.setIdfacultad(fa);
+        
+      if(this.txtCarrera.getText().trim().length()>3){
+      try{
+          controlador.create(ca);
+          conn.getCarreras(this.jTcarreras);
+          this.txtCarrera.setText("");
+          JOptionPane.showMessageDialog(null,"Carrera agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
+      }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
+      
+       
+    }//GEN-LAST:event_btnAggCarreraMouseClicked
+
+    private void txtCarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCarreraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCarreraActionPerformed
+
+    private void btnAggEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggEspecialidadMouseClicked
+       EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
+       Especialidad esp=new Especialidad();
+       esp.setEspecialidad(this.txtespecialidad.getText());
+       if(this.txtespecialidad.getText().trim().length()>3){
+       try{
+          t.create(esp);
+          conn.getEspecialidad(this.jTespecialidades);
+          this.txtespecialidad.setText("");
+          JOptionPane.showMessageDialog(null,"Especialidad agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString()); }
+       }else{
+       JOptionPane.showMessageDialog(null,"verifique el campo");}
+    }//GEN-LAST:event_btnAggEspecialidadMouseClicked
+
+    private void btnAggUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUnidMedMouseClicked
+        UnidadMedJpaController t=new UnidadMedJpaController(entityMain.getInstance());
+       UnidadMed umed=new UnidadMed();
+       umed.setUnidad(this.txtUnidMed.getText());
+       umed.setUnidad(this.txtUnidAbrev.getText());
+    if(this.txtUnidMed.getText().trim().length()>3 && this.txtUnidAbrev.getText().trim().length()>3){
+       try{
+          t.create(umed);
+          conn.getUnidMedida(this.jTunidades);
+          this.txtUnidAbrev.setText("");
+          JOptionPane.showMessageDialog(null,"Unidad de Medida agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
+       }
+               }else{
+       JOptionPane.showMessageDialog(null,"verifique el campo");}
+    }//GEN-LAST:event_btnAggUnidMedMouseClicked
+
+    private void btnAggActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggActividadMouseClicked
+       TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
+       TipoPaciente tpc=new TipoPaciente();
+       tpc.setTipopac(this.txtActividad.getText());
+       if(this.txtActividad.getText().trim().length()>3){
+       try{
+          t.create(tpc);
+          conn.getActividad(this.jTactividades);
+          this.txtActividad.setText("");
+          JOptionPane.showMessageDialog(null,"Actividad agregada correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
+       }
+       }else{
+       JOptionPane.showMessageDialog(null,"verifique el campo");}
+    }//GEN-LAST:event_btnAggActividadMouseClicked
+
+    private void btnEditCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditCategoriaMouseClicked
+      int totalfilas=this.jTcategorias.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTcategorias.getSelectedRow();
+        int id=Integer.parseInt(jTcategorias.getValueAt(nfila, 0).toString());
+        String nombreCat=jTcategorias.getValueAt(nfila, 1).toString();
+        String categoria="";
+        categoria=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreCat);
+        
+        if((!categoria.equals("")) && (categoria.trim().length()>3)){
+          try{
+              TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
+              TipoMedicamento tpm=new TipoMedicamento();
+              tpm.setIdtipoMed(id);
+              tpm.setTipoMed(categoria);
+              t.edit(tpm);
+              conn.getCatMedicamento(this.jTcategorias);
+              JOptionPane.showMessageDialog(null, "categoria Actualizada"); 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e.getMessage().toString()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditCategoriaMouseClicked
+
+    private void btnEditFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditFacultadMouseClicked
+        int totalfilas=this.jTfacultades.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTfacultades.getSelectedRow();
+        int id=Integer.parseInt(jTfacultades.getValueAt(nfila, 0).toString());
+        String nombreFac="";
+        nombreFac=jTfacultades.getValueAt(nfila, 1).toString();
+        String facultad="";
+        facultad=JOptionPane.showInputDialog(null, "Modificar facultad:",nombreFac);
+        
+        if((!facultad.equals("")) && (facultad.trim().length()>3)){
+          try{
+              FacultadJpaController f=new FacultadJpaController(entityMain.getInstance());
+              Facultad fac2=f.findFacultad(id);
+              Facultad fac=new Facultad();
+              fac.setIdfacultad(id);
+              fac.setFactultad(facultad);
+              fac.setCarreraList(fac2.getCarreraList());
+           //   fac.setCarreraList(fac.getCarreraList());
+              f.edit(fac);
+              conn.getFacultades(this.jTfacultades);
+              JOptionPane.showMessageDialog(null, "Facultad actualizada");
+ 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, "Error: "+e.getMessage()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditFacultadMouseClicked
+
+    private void btnEditarCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCarreraMouseClicked
+        int totalfilas=this.jTcarreras.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTcarreras.getSelectedRow();
+        int id=Integer.parseInt(jTcarreras.getValueAt(nfila, 0).toString());
+        String carrera=jTcarreras.getValueAt(nfila, 1).toString();
+        String facultad=jTcarreras.getValueAt(nfila, 2).toString();
+        String [] array ={"",""};
+JTextField txtCarrera2 = new JTextField();
+JComboBox cboFacultad2 = new JComboBox();
+txtCarrera2.setText(carrera);
+            try {
+                llenarFacultadEdit(cboFacultad2);
+                cboFacultad2.setSelectedItem(facultad);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ Object[] message = {
+ "Carrera:", txtCarrera2,
+ "Facultad:", cboFacultad2,
+ };
+ int option = JOptionPane.showConfirmDialog(null, message, "Editar carrera", JOptionPane.OK_CANCEL_OPTION);
+ if(option == JOptionPane.OK_OPTION){
+ array[0]=txtCarrera2.getText();
+ array[1]=cboFacultad2.getSelectedItem().toString();
+ 
+ 
+ if((array[0].trim().length()>3 && array[1].trim().length()>0)){
+          try{
+              CarreraJpaController t=new  CarreraJpaController(entityMain.getInstance());
+               Carrera car=new  Carrera();
+              car.setIdcarrera(id);
+              car.setCarrera(array[0]);
+              Facultad fa=new Facultad();
+        car.setCarrera(txtCarrera2.getText());
+        fa.setIdfacultad(this.idFacult[cboFacultad2.getSelectedIndex()]);
+              car.setIdfacultad(fa);
+              t.edit(car);
+              conn.getCarreras(this.jTcarreras);
+              JOptionPane.showMessageDialog(null, "Carrera Actualizada"); 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e.getMessage().toString()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+ 
+ }
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditarCarreraMouseClicked
+
+    private void btnEditEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditEspecialidadMouseClicked
+        int totalfilas=this.jTespecialidades.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTespecialidades.getSelectedRow();
+        int id=Integer.parseInt(jTespecialidades.getValueAt(nfila, 0).toString());
+        String nombreEsp=jTespecialidades.getValueAt(nfila, 1).toString();
+        String especialidad="";
+        especialidad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreEsp);
+        
+        if((especialidad.trim().length()>3)){
+          try{
+              EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
+              Especialidad esp=new Especialidad();
+              esp.setIdespecialidad(id);
+              esp.setEspecialidad(especialidad);
+              t.edit(esp);
+              conn.getEspecialidad(this.jTespecialidades);
+              JOptionPane.showMessageDialog(null, "Especialidad Actualizada"); 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e.getMessage().toString()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditEspecialidadMouseClicked
+
+    private void btnEditUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditUnidMedMouseClicked
+        int totalfilas=this.jTunidades.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTunidades.getSelectedRow();
+        int id=Integer.parseInt(jTunidades.getValueAt(nfila, 0).toString());
+        String nombreUnidad=jTunidades.getValueAt(nfila, 1).toString();
+        String Uabrev=jTunidades.getValueAt(nfila, 2).toString();
+        String [] array ={"",""};
+        JTextField unidad = new JTextField();
+        JTextField abrev = new JTextField();
+        unidad.setText(nombreUnidad);
+        abrev.setText(Uabrev);
+        Object[] message = {
+         "Unidad de Medida:", unidad,
+         "Abreviatura:", abrev,};
+ int option = JOptionPane.showConfirmDialog(null, message, "Editar unidad de medida", JOptionPane.OK_CANCEL_OPTION);
+ if(option == JOptionPane.OK_OPTION){
+    array[0]=unidad.getText();
+    array[1]=abrev.getText();
+ 
+ if((array[0].trim().length()>3 && array[1].trim().length()>0)){
+          try{
+              UnidadMedJpaController t=new  UnidadMedJpaController(entityMain.getInstance());
+               UnidadMed med=new  UnidadMed();
+              med.setIdunidadMed(id);
+              med.setUnidad(array[0]);
+              med.setAbreviatura(array[1]);
+              t.edit(med);
+              conn.getUnidMedida(this.jTunidades);
+              JOptionPane.showMessageDialog(null, "Unidad de Medida Actualizada"); 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e.getMessage().toString()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+ }
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditUnidMedMouseClicked
+
+    private void btnEditActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditActividadMouseClicked
+        int totalfilas=this.jTactividades.getSelectedRowCount();        
+        if(totalfilas==1){
+        int nfila=this.jTactividades.getSelectedRow();
+        int id=Integer.parseInt(jTactividades.getValueAt(nfila, 0).toString());
+        String nombreAct=jTactividades.getValueAt(nfila, 1).toString();
+        String Actividad="";
+        Actividad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreAct);
+        
+        if((Actividad.trim().length()>3)){
+          try{
+              TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
+              TipoPaciente act=new TipoPaciente();
+              act.setIdtipopac(id);
+              act.setTipopac(Actividad);
+              t.edit(act);
+              conn.getActividad(this.jTactividades);
+              JOptionPane.showMessageDialog(null, "Actividad actualizada"); 
+          }catch(Exception e){
+             JOptionPane.showMessageDialog(null, e.getMessage().toString()); 
+          }
+        }else{
+         JOptionPane.showMessageDialog(null, "Error en la edición");
+        }
+        
+        }else{
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_btnEditActividadMouseClicked
+    private void btnAggUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUsuarioMouseClicked
+         
+       Usuario us= new Usuario();
+      
+       us.user= this.txtUsuario.getText();
+       us.password1= new String(txtPassword1.getPassword());
+       us.password2= new String(txtPassword2.getPassword());
+       us.tipo_usr= this.cboTipoUsuario.getSelectedIndex();
+       us.empleado=this.idEmp[this.cboEmpleado.getSelectedIndex()];
+      
+        
+       if(us.ValidarAgg().equals("Exito")){
+           
+           
+         String resultado="";
+           
+         
+        try {
+             
+               resultado= conn.aggUsuario(us);
+               
+            this.txtUsuario.setText("");
+            this.txtPassword1.setText("");
+            this.txtPassword2.setText("");
+        
+               
+            } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(this,ex.toString());
+        }
+            JOptionPane.showMessageDialog(this, resultado);
+        }else {
+            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
+        }
+       
+    }//GEN-LAST:event_btnAggUsuarioMouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+       
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    public void llenarEmp() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Empleado();
+
+        this.idEmp = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboEmpleado.setModel(model);
+    }
+    
+       public void llenarEsp() throws SQLException {
+        
+        Object[] array = this.conn.Obt_Especialidad();
+
+        this.idEsp = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboEspecialidad.setModel(model);
+    }
+    
+    public void llenarUsr() throws SQLException {
+       
+        Object[] array = this.conn.Obt_Usuario();
+
+        this.idUsr = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboUsuario.setModel(model);
+    }
+    
+    private void btnBuscarExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarExpedienteMouseClicked
+       if(this.rdbCarnet.isSelected()){
+           // Buscar medicamento por carnet
+           if (this.txtCarnetRoot.getText().length() > 5){
+               try {
+                String carnet = this.txtCarnetRoot.getText();
+                this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByCarnet(jtBuscarExpediente, carnet));
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
+       }
+       if(this.rdbApellidos.isSelected()){
+           // Buscar medicamento por apellidos
+           if (this.txtApellidos.getText().length() > 3){
+                try {
+                    String apellido = this.txtApellidos.getText();
+                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByApellidos(jtBuscarExpediente, apellido));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+       }
+       if(this.rdbIdPac.isSelected()){
+           // Buscar medicamento por ID
+           if (this.txtIdPac.getText().length() > 0){
+                try {
+                    int id = Integer.parseInt(this.txtIdPac.getText());
+                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByID(jtBuscarExpediente, id));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
+       }
+       if(this.rdbNombres.isSelected()){
+           // Buscar medicamento por Nombres
+           if (this.txtNombres.getText().length() > 2){
+                try {
+                    String nombre = this.txtNombres.getText();
+                    this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByNombres(jtBuscarExpediente, nombre));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
+       }
+       
+    }//GEN-LAST:event_btnBuscarExpedienteMouseClicked
+
+    private void btnGenReporteExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteExpedienteMouseClicked
+        //REPORTE DE EXPEDIENTE SELECCIONADO
+        if (this.jtBuscarExpediente.getSelectedRows().length == 1)
+        {
+            int idConsulta = Integer.parseInt(this.jtBuscarExpediente.getModel().getValueAt(this.jtBuscarExpediente.getSelectedRow(), 0).toString());
+            Map parameters = new HashMap ();
+                //A nuestro informe de prueba le vamos a enviar la fecha de hoy
+            parameters.put ("idConsulta", idConsulta);
+            JasperReport reporte; //Creo el objeto reporte
+             // Ubicacion del Reporte
+            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; //"../Reportes/reporte_expediente.jasper";
+            try {
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+                JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+                JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+                viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+                viewer.setVisible(true); //Inicializamos la vista del Reporte
+            } catch (JRException ex) {
+                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
+
+    private void btnAggDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggDoctorMouseClicked
+        
+        Doctor dc = new Doctor();
+
+        dc.nombre = this.txtNombre.getText();
+        dc.apellido = this.txtApellido.getText();
+        dc.idEspecialidad = this.idEsp[this.cboEspecialidad.getSelectedIndex()];
+        dc.telefono = this.txtTelefono.getText();
+        dc.fechaNac = this.txtFecha.getText();
+        dc.documento = this.txtDocumento.getText();
+        dc.idUsuario = this.idUsr[this.cboUsuario.getSelectedIndex()];
+
+        if (this.rbM.isSelected()) {
+            dc.sexo = "M";
+
+        } else {
+            dc.sexo = "F";
+        }
+
+        if (dc.Validar().equals("Exito")) {
+
+            String resultado = "";
+
+            try {
+
+                resultado = conn.aggDoctor(dc);
+                this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
+                this.txtNombre.setText("");
+                this.txtApellido.setText("");
+                this.txtTelefono.setText("");
+                this.txtFecha.setText("");
+                this.txtDocumento.setText("");
+
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
+            JOptionPane.showMessageDialog(this, resultado);
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
+        }
+       
+        
+    }//GEN-LAST:event_btnAggDoctorMouseClicked
+    
+    public void setPanelEnabled(JPanel panel, Boolean isEnabled) {
+    panel.setEnabled(isEnabled);
+
+    Component[] components = panel.getComponents();
+
+    for(int i = 0; i < components.length; i++) {
+        if(components[i].getClass().getName().equals("javax.swing.JPanel")) {
+            setPanelEnabled((JPanel) components[i], isEnabled);
+        }
+
+        components[i].setEnabled(isEnabled);
+    }
+}
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -4576,14 +4611,44 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home_Root.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home_Root_corrupted.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home_Root.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home_Root_corrupted.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home_Root.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home_Root_corrupted.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home_Root.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home_Root_corrupted.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -4591,15 +4656,15 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Home_Root().setVisible(true);
+                    new Home_Root_corrupted().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JPanel Botonera;
     private javax.swing.JTabbedPane Contenedor;
@@ -4613,9 +4678,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel btnAggActividad;
     private javax.swing.JLabel btnAggCarrera;
     private javax.swing.JLabel btnAggCategoria;
-    private javax.swing.JLabel btnAggDoctor;
     private javax.swing.JLabel btnAggEspecialidad;
     private javax.swing.JLabel btnAggFacultad;
+    private javax.swing.JLabel btnAggDoctor;
     private javax.swing.JLabel btnAggMedicamento;
     private javax.swing.JLabel btnAggUnidMed;
     private javax.swing.JLabel btnAggUsuario;
@@ -4650,9 +4715,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JComboBox<String> cboBuscarCatMed;
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCategoriaMed;
+    private javax.swing.JComboBox<String> cboFacultad;
     private javax.swing.JComboBox<String> cboEmpleado;
     private javax.swing.JComboBox<String> cboEspecialidad;
-    private javax.swing.JComboBox<String> cboFacultad;
     private javax.swing.JComboBox<String> cboPresentacionMed;
     private javax.swing.JComboBox<String> cboTipoUsuario;
     private javax.swing.JComboBox<String> cboUnidadesMed;
@@ -4670,9 +4735,14 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JMenuItem itemFechaV;
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
+    private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -4748,9 +4818,26 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTFarmacia;
     private javax.swing.JTable jTactividades;
+    private javax.swing.JTable jTactividades1;
     private javax.swing.JTable jTcarreras;
     private javax.swing.JTable jTcategorias;
     private javax.swing.JTable jTespecialidades;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField25;
+    private javax.swing.JTextField jTextField26;
+    private javax.swing.JTextField jTextField27;
+    private javax.swing.JTextField jTextField28;
+    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private javax.swing.JTable jTfacultades;
     private javax.swing.JTable jTunidades;
     private javax.swing.JTable jtBuscarExpediente;
@@ -4839,22 +4926,22 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JRadioButton rdbUbicacion;
     private javax.swing.JTable tbDoctor;
     private javax.swing.JTable tbUsuarios;
-    private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtBuscarFechaV;
     private javax.swing.JTextField txtBuscarNombreMed;
     private javax.swing.JFormattedTextField txtCantMedicamento;
     private javax.swing.JTextField txtCarnetRoot;
-    private javax.swing.JTextField txtCarrera;
-    private javax.swing.JTextField txtCategoria;
     private javax.swing.JTextField txtCodCat;
     private javax.swing.JTextField txtCodDiag;
     private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtFacultad;
     private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JTextField txtFechaFinal;
     private javax.swing.JTextField txtFechaInicio;
+    private javax.swing.JTextField txtCarrera;
+    private javax.swing.JTextField txtCategoria;
+    private javax.swing.JTextField txtFacultad;
     private javax.swing.JFormattedTextField txtFechaV;
     private javax.swing.JTextField txtIdPac;
     private javax.swing.JTextField txtNombre;
@@ -4863,9 +4950,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPasswordField txtPassword1;
     private javax.swing.JPasswordField txtPassword2;
     private javax.swing.JFormattedTextField txtTelefono;
+    private javax.swing.JTextField txtUsuario;
     private javax.swing.JTextField txtUnidAbrev;
     private javax.swing.JTextField txtUnidMed;
-    private javax.swing.JTextField txtUsuario;
     private javax.swing.JTextField txtespecialidad;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

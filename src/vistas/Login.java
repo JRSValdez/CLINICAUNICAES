@@ -297,7 +297,7 @@ public class Login extends javax.swing.JFrame implements Runnable {
                int tipo= cn.iniciar_sesion(us);
                //Administrador
                if (tipo==0){
-                   Home_Root h= new Home_Root();
+                   Home_Root_corrupted h= new Home_Root_corrupted();
                    h.setVisible(true);
                    this.dispose();
                }

@@ -366,7 +366,7 @@ public class ConexionDB {
     
     public String aggDetConsulta(Consulta _consulta) throws SQLException{
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _consulta.idConsulta);
         cst.setString("pEF_CABEZA", _consulta.ef_cabeza);
@@ -379,6 +379,7 @@ public class ConexionDB {
         cst.setString("pPULSO", _consulta.pulso);
         cst.setString("pFREC_C", _consulta.frec_card);
         cst.setString("pPRES_ART", _consulta.pres_art);
+        cst.setString("pTEMP", _consulta.temperatura);
         cst.setString("pMOTIVO", _consulta.motivo);
         cst.setString("pRECOMENDACION", _consulta.recomendaciones);
         
@@ -473,7 +474,7 @@ public class ConexionDB {
         if(mensaje.equals("ERROR")){
             return 0;
         }
-        int idReceta = Integer.parseInt(mensaje.substring(9,10));
+        int idReceta = Integer.parseInt(mensaje.substring(9,mensaje.length()));
         return idReceta;
     }
     
@@ -508,7 +509,7 @@ public class ConexionDB {
         if(mensaje.equals("EXITO")){
             return mensaje;
         }
-        return "ERROR: " + mensaje;
+        return "ERROR";
     }
     
     private String aggAntecedente(int _idConsulta, String[] _row) throws SQLException{
@@ -524,7 +525,7 @@ public class ConexionDB {
         if(mensaje.equals("EXITO")){
             return mensaje;
         }
-        return "ERROR: " + mensaje;
+        return "ERROR";
     }
     
     public String aggMedicamento(Medicamento _med) throws SQLException{
@@ -737,7 +738,7 @@ public class ConexionDB {
         Statement stmt = conn.createStatement() ;
         String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
+                " f.FACTULTAD, TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy'), d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
                 " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
