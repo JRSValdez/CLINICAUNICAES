@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_expediente" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9dd8d743-3692-4563-a3de-620667b127eb">
 	<property name="ireport.zoom" value="1.1269722013523664"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="375"/>
 	<parameter name="idConsulta" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>
@@ -464,12 +464,6 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[DIAGNOSTICOS DEL PACIENTE]]></text>
 			</staticText>
-			<subreport>
-				<reportElement x="6" y="434" width="559" height="81" uuid="dc796257-f936-4160-8676-fc795ac24a1c"/>
-				<subreportParameter name="idConsulta"/>
-				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[".\\sub_reporte_diagnosticos.jasper"]]></subreportExpression>
-			</subreport>
 			<staticText>
 				<reportElement x="6" y="521" width="162" height="19" uuid="374e8415-cc89-42b3-84e1-a6f52ca8814d"/>
 				<textElement>
@@ -532,6 +526,14 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				<reportElement x="263" y="175" width="79" height="20" uuid="dc35ef51-8e7e-41a9-80b3-c42f85ad2c1a"/>
 				<textFieldExpression><![CDATA[$F{TEMP}]]></textFieldExpression>
 			</textField>
+			<subreport>
+				<reportElement x="6" y="440" width="559" height="66" uuid="0e44235e-8120-4c4a-9b10-10ff68bb7a5b"/>
+				<subreportParameter name="idConsulta">
+					<subreportParameterExpression><![CDATA[$P{idConsulta}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\sub_reporte_diagnosticos.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</pageHeader>
 	<pageFooter>

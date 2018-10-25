@@ -196,7 +196,7 @@ public class ConexionDB {
     
     private Receta getReceta(int _idConsulta) throws SQLException{
         String query = "SELECT M.IDMEDICAMENTO, M.MEDICAMENTO, D.CANTIDAD, D.DOSIS FROM RECETA R " +
-                        " INNER JOIN DET_RECETA D ON D.IDDET_RECETA = R.IDRECETA " +
+                        " INNER JOIN DET_RECETA D ON D.IDRECETA = R.IDRECETA " +
                         " INNER JOIN MEDICAMENTO M ON M.IDMEDICAMENTO = D.IDMEDICAMENTO " +
                     "WHERE R.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);

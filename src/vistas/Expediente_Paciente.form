@@ -259,11 +259,11 @@
                                           <Component id="lblHeader70" max="32767" attributes="0"/>
                                           <Component id="lblHeader68" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblCuello" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblTorax" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblCabeza" min="-2" pref="406" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="lblCuello" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblTorax" pref="412" max="32767" attributes="0"/>
+                                          <Component id="lblCabeza" alignment="1" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -273,8 +273,8 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblExtremidades" max="32767" attributes="0"/>
                                           <Component id="lblAbdomen" max="32767" attributes="0"/>
+                                          <Component id="lblExtremidades" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -336,9 +336,9 @@
                           <Component id="lblHeader68" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblHeader69" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCuello" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCuello" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -512,7 +512,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:"/>
+                <Property name="text" type="java.lang.String" value="CABEZA:CABEZA:CABEZA:CABEZA:CABEZA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTorax">
