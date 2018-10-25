@@ -32,7 +32,7 @@
             D.PRES_ART,
             D.PULSO,
             D.TALLA,
-            D.TEMPERATURA,
+            D.TEMP,
             D.MOTIVO,
             D.RECOMENDACION
 FROM CONSULTA C
@@ -66,7 +66,7 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 	<field name="PRES_ART" class="java.lang.String"/>
 	<field name="PULSO" class="java.lang.String"/>
 	<field name="TALLA" class="java.lang.String"/>
-	<field name="TEMPERATURA" class="java.lang.String"/>
+	<field name="TEMP" class="java.lang.String"/>
 	<field name="RECOMENDACION" class="java.lang.String"/>
 	<title>
 		<band height="85" splitType="Stretch">
@@ -169,7 +169,7 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[CARNET:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="69" y="72" width="100" height="20" uuid="e172d16b-0142-4d38-81e2-8012f7e7ff75"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -183,14 +183,14 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[DOCUMENTO:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="263" y="72" width="100" height="20" uuid="591a8cd8-4b91-4996-ad2a-fe867bfde12d"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PAC_DOCUMENTO}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="465" y="72" width="100" height="20" uuid="04998e12-1f54-463e-b584-21ac2885fc19"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -211,7 +211,7 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[CELULAR:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="465" y="89" width="100" height="20" uuid="e892741e-351d-4c7d-8f83-1a4983948152"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -246,14 +246,14 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[CEL/TEL:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="461" y="106" width="100" height="20" uuid="cb1cc6dc-ce6a-44ea-b9dc-b62fa3f9ff3e"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PAC_RESPONSABLE}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="461" y="123" width="100" height="20" uuid="d14de8f6-c625-49f5-a026-2c999b83b3fc"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -330,47 +330,40 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[FRECUENCIA CARDÍACA:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="69" y="175" width="60" height="20" uuid="2ddd93bf-e623-480b-a452-f48c5d41a072"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TALLA}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="69" y="195" width="60" height="20" uuid="bf8642b3-2c9f-47d0-a37f-ede3e5b21631"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PESO}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="472" y="195" width="100" height="20" uuid="90a34365-4b2a-4741-a6f5-d133c9b0fd44"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{FREC_CAR}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="472" y="175" width="100" height="20" uuid="40f78948-53b9-439b-b250-2dc6e99bd2f5"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PRES_ART}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="263" y="195" width="79" height="20" uuid="aa3bcea3-9470-4909-959e-d208d464682c"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{PULSO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="263" y="175" width="79" height="20" uuid="b080580d-2f12-4368-a01e-6d5a158d7fda"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{TEMPERATURA}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="6" y="237" width="63" height="20" uuid="20bfd80f-5800-4185-bbe5-771608666f5f"/>
@@ -414,35 +407,35 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[ABDOMEN:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="69" y="237" width="144" height="43" uuid="025ee230-772c-4c09-9181-50b7484c627f"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EF_CABEZA}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="69" y="280" width="144" height="39" uuid="7c881b0c-f0e5-46e8-b2b7-fc168e3fd4a1"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EF_CUELLO}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="293" y="237" width="149" height="43" uuid="21eb3d51-a409-4d8b-8920-5fbdc3dec3fb"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EF_TORAX}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="293" y="280" width="149" height="39" uuid="7c7465be-fe32-4fb2-8d24-39b0aa215201"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EF_ABDOMEN}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="463" y="257" width="107" height="62" uuid="19d6e039-f75c-46f8-bdbe-9b58a2a8981d"/>
 				<textElement>
 					<font fontName="Arial"/>
@@ -499,7 +492,7 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 				</textElement>
 				<text><![CDATA[RECOMENDACIONES:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="418" y="535" width="147" height="80" uuid="d8a3e5b5-7688-41ca-8194-ca99e535d348"/>
 				<textFieldExpression><![CDATA[$F{RECOMENDACION}]]></textFieldExpression>
 			</textField>
@@ -534,6 +527,10 @@ WHERE C.IDCONSULTA = $P{idConsulta}]]>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{EDAD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="263" y="175" width="79" height="20" uuid="dc35ef51-8e7e-41a9-80b3-c42f85ad2c1a"/>
+				<textFieldExpression><![CDATA[$F{TEMP}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
