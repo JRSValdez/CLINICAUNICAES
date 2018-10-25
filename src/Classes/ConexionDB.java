@@ -744,10 +744,10 @@ public class ConexionDB {
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
                 " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
                 " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDCONSULTA= p.IDPACIENTE "+
+                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE TO_DATE(cc.CONS_FECHA,'DD/MM/YY')=TO_DATE(SYSDATE,'DD/MM/YY')";
+                " WHERE TO_DATE(cc.CONS_FECHA,'DD-MM-YYYY')=TO_DATE(CURRENT_DATE,'DD-MM-YYYY')";
               
         ResultSet rs = stmt.executeQuery(query);
           
