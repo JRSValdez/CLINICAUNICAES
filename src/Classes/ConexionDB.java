@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"unicaes","unicaes");
+            conn= DriverManager.getConnection(url,"clinica","master");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -336,6 +336,42 @@ public class ConexionDB {
         
         
     }
+      
+       public String aggEmpleado(Empleado _Emp) throws SQLException{
+        
+        String nombre = _Emp.nombre;
+        String apellido = _Emp.apellido;
+        String telefono= _Emp.telefono;
+        String celular= _Emp.celular;
+        String fecha= _Emp.fechaNac;
+        String sexo= _Emp.sexo;
+        String documento= _Emp.documento;
+        
+        
+         
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGAREMPLEADO(?,?,?,?,?,?,?,?)}");
+        
+    
+        cst.setString("pNombre", _Emp.nombre);
+        cst.setString("pApellido", _Emp.apellido);
+        cst.setString("pTel", _Emp.telefono);
+        cst.setString("pCel", _Emp.celular);
+        cst.setString("pFechaNac", _Emp.fechaNac);
+        cst.setString("pSexo",_Emp.sexo);
+        cst.setString("pDoc",_Emp.documento);
+            
+           
+        cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
+        cst.execute();
+        
+        String mensaje = cst.getString("Msj");
+        System.out.println(mensaje);
+        return mensaje;
+        
+        
+    }
+      
+      
     
     public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
      
@@ -1192,6 +1228,66 @@ public class ConexionDB {
            return model;
         }
         
+        public DefaultTableModel getDocsDes( JTable jTable1) throws SQLException{
+              
+         //DOCTOR
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
+                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad, "+
+                    "u.USUARIO"+
+                   " FROM DOCTOR d " +
+                   " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
+                   " INNER JOIN USUARIO u on d.IDUSUARIO= u.IDUSUARIO " +
+                   " WHERE d.ELIMINADO=1";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[8];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<8;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
+        
+        public DefaultTableModel getEmpleado( JTable jTable1) throws SQLException{
+              
+         //EMPLEADO
+        DefaultTableModel model;
+        Statement stmt = conn.createStatement() ;
+        String query = "SELECT e.IDEMP, e.EMP_NOMBRE || ' ' || e.EMP_APELLIDO NOMBRE,e.EMP_TEL,e.EMP_CEL, " +
+                   "(trunc(months_between(sysdate,e.EMP_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,e.EMP_FECHA_NAC),12)) || ' meses') Edad, "+
+                    "e.EMP_SEXO, e.EMP_DOCUMENTO"+
+                   " FROM EMPLEADO e " +
+                   " WHERE e.ELIMINADO= 0";
+              
+        ResultSet rs = stmt.executeQuery(query);
+          
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[7];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<7;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+        }
+        
          public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
@@ -1944,4 +2040,28 @@ public class ConexionDB {
         return res;
     }
     
+       public Empleado DesactEmpleado(int _idEmp) throws SQLException {
+       
+        String query = "UPDATE EMPLEADO SET ELIMINADO=1 WHERE IDEMP= ? ";
+            
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idEmp);
+        ResultSet rs = preparedStatement.executeQuery();
+        Empleado emp = new Empleado();
+      
+        return emp;
+    }
+       
+       public Doctor ActDoctor(int _idDoctor) throws SQLException {
+        
+        String query = "UPDATE DOCTOR SET ELIMINADO=0 WHERE IDDOCTOR=? ";
+            
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idDoctor);
+        ResultSet rs = preparedStatement.executeQuery();
+        Doctor res = new Doctor();
+      
+        return res;
+    }
+      
 }
