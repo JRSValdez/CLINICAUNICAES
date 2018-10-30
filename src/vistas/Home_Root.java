@@ -22,10 +22,12 @@ import Classes.TipoPacienteJpaController;
 import Classes.UnidadMed;
 import Classes.UnidadMedJpaController;
 import Classes.Usuario;
+import Classes.alertas;
 import Classes.entityMain;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -117,6 +119,15 @@ int xx, xy;
         this.llenarUsr();
         this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
         this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
+        
+        this.jTAlertas.setModel(this.conn.obt_alertas(jTAlertas,1));
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
+        
+        this.lblDoctores.setText(Integer.toString(conn.ContarDoctores()));
+        this.lblMedicamentos.setText(Integer.toString(conn.ContarMedicamentos()));
+        this.lblPacientes.setText(Integer.toString(conn.ContarPacientes()));
+        this.lblConsultas.setText(Integer.toString(conn.ConsultasxMes()));
     }
 
     @SuppressWarnings("unchecked")
@@ -152,6 +163,11 @@ int xx, xy;
         lblFecha = new javax.swing.JLabel();
         jPanel31 = new javax.swing.JPanel();
         lblMedxVencer = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTAlertas = new javax.swing.JTable();
+        btnAlertaTotal = new javax.swing.JButton();
+        btnAlertaFecha = new javax.swing.JButton();
+        btnAlertaCant = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         lblDoctores = new javax.swing.JLabel();
@@ -691,21 +707,82 @@ int xx, xy;
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos proximo a vencerse");
 
+        jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (Dias)"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTAlertas);
+
+        btnAlertaTotal.setText("Todas");
+        btnAlertaTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaTotalActionPerformed(evt);
+            }
+        });
+
+        btnAlertaFecha.setText("Vencimiento");
+        btnAlertaFecha.setActionCommand("");
+        btnAlertaFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaFechaActionPerformed(evt);
+            }
+        });
+
+        btnAlertaCant.setText("Existencia");
+        btnAlertaCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaCantActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
         jPanel31.setLayout(jPanel31Layout);
         jPanel31Layout.setHorizontalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblMedxVencer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel31Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAlertaFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlertaTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlertaCant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblMedxVencer))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel31Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblMedxVencer)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel31Layout.createSequentialGroup()
+                        .addComponent(btnAlertaTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlertaFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlertaCant)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanel17.setBackground(new java.awt.Color(102, 0, 0));
@@ -882,7 +959,7 @@ int xx, xy;
                 .addComponent(jLabel58, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMedicamentos)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -890,15 +967,15 @@ int xx, xy;
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 77, Short.MAX_VALUE)
+                .addGap(18, 19, Short.MAX_VALUE)
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -917,9 +994,9 @@ int xx, xy;
         Tab_homeLayout.setHorizontalGroup(
             Tab_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_homeLayout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(56, 56, 56))
             .addGroup(Tab_homeLayout.createSequentialGroup()
@@ -943,7 +1020,7 @@ int xx, xy;
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("HOME", null, Tab_home, "");
@@ -5067,6 +5144,42 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         
     }//GEN-LAST:event_btnMostrarElimDocMouseClicked
 
+    private void btnAlertaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaTotalActionPerformed
+    try {
+        this.conn.obt_alertas(jTAlertas,1);
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaTotalActionPerformed
+
+    private void btnAlertaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaFechaActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,2);
+        this.btnAlertaFecha.setText("Vencimiento("+jTAlertas.getRowCount()+")");
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaFechaActionPerformed
+
+    private void btnAlertaCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaCantActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,3);
+        this.btnAlertaCant.setText("Existencia("+jTAlertas.getRowCount()+")");
+        this.btnAlertaCant.setFont(new Font("Arial", Font.BOLD, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaCantActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5105,8 +5218,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel SideBar;
     private javax.swing.JPanel Tab_Config;
     private javax.swing.JPanel Tab_Doctores;
-    private javax.swing.JPanel Tab_Empleado;
-    private javax.swing.JPanel Tab_Empleado1;
     private javax.swing.JPanel Tab_Empleado2;
     private javax.swing.JPanel Tab_Farmacia;
     private javax.swing.JPanel Tab_Usuarios;
@@ -5116,14 +5227,15 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel btnAggCarrera;
     private javax.swing.JLabel btnAggCategoria;
     private javax.swing.JLabel btnAggDoctor;
-    private javax.swing.JLabel btnAggEmp;
-    private javax.swing.JLabel btnAggEmp1;
     private javax.swing.JLabel btnAggEmp2;
     private javax.swing.JLabel btnAggEspecialidad;
     private javax.swing.JLabel btnAggFacultad;
     private javax.swing.JLabel btnAggMedicamento;
     private javax.swing.JLabel btnAggUnidMed;
     private javax.swing.JLabel btnAggUsuario;
+    private javax.swing.JButton btnAlertaCant;
+    private javax.swing.JButton btnAlertaFecha;
+    private javax.swing.JButton btnAlertaTotal;
     private javax.swing.JLabel btnBuscarExpediente;
     private javax.swing.JLabel btnBuscarMed;
     private javax.swing.JLabel btnEditActividad;
@@ -5180,8 +5292,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JMenuItem itemFechaV;
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel22;
@@ -5231,8 +5341,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
@@ -5254,6 +5362,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5261,6 +5370,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTAlertas;
     private javax.swing.JTable jTFarmacia;
     private javax.swing.JTable jTactividades;
     private javax.swing.JTable jTcarreras;
@@ -5285,18 +5395,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblHeader18;
     private javax.swing.JLabel lblHeader19;
     private javax.swing.JLabel lblHeader2;
-    private javax.swing.JLabel lblHeader20;
     private javax.swing.JLabel lblHeader21;
-    private javax.swing.JLabel lblHeader22;
-    private javax.swing.JLabel lblHeader23;
-    private javax.swing.JLabel lblHeader24;
-    private javax.swing.JLabel lblHeader25;
     private javax.swing.JLabel lblHeader26;
-    private javax.swing.JLabel lblHeader27;
-    private javax.swing.JLabel lblHeader28;
-    private javax.swing.JLabel lblHeader29;
     private javax.swing.JLabel lblHeader3;
-    private javax.swing.JLabel lblHeader30;
     private javax.swing.JLabel lblHeader31;
     private javax.swing.JLabel lblHeader32;
     private javax.swing.JLabel lblHeader33;
@@ -5334,16 +5435,11 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblHeader62;
     private javax.swing.JLabel lblHeader63;
     private javax.swing.JLabel lblHeader64;
-    private javax.swing.JLabel lblHeader65;
-    private javax.swing.JLabel lblHeader66;
-    private javax.swing.JLabel lblHeader67;
     private javax.swing.JLabel lblHeader68;
     private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblHeader7;
     private javax.swing.JLabel lblHeader70;
     private javax.swing.JLabel lblHeader71;
-    private javax.swing.JLabel lblHeader72;
-    private javax.swing.JLabel lblHeader73;
     private javax.swing.JLabel lblHeader74;
     private javax.swing.JLabel lblHeader75;
     private javax.swing.JLabel lblHeader76;
@@ -5359,12 +5455,8 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblPacientes;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
     private javax.swing.JRadioButton rbF;
-    private javax.swing.JRadioButton rbFem;
-    private javax.swing.JRadioButton rbFem1;
     private javax.swing.JRadioButton rbFem2;
     private javax.swing.JRadioButton rbM;
-    private javax.swing.JRadioButton rbMasc1;
-    private javax.swing.JRadioButton rbMasc2;
     private javax.swing.JRadioButton rbMasc3;
     private javax.swing.JRadioButton rdbActividad;
     private javax.swing.JRadioButton rdbApellidos;
@@ -5384,8 +5476,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JTable tbEmp;
     private javax.swing.JTable tbUsuarios;
     private javax.swing.JTextField txtActividad;
-    private javax.swing.JTextField txtAp;
-    private javax.swing.JTextField txtAp1;
     private javax.swing.JTextField txtAp2;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidos;
@@ -5395,26 +5485,18 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JTextField txtCarnetRoot;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtCategoria;
-    private javax.swing.JFormattedTextField txtCel;
-    private javax.swing.JFormattedTextField txtCel1;
     private javax.swing.JFormattedTextField txtCel2;
     private javax.swing.JTextField txtCodCat;
     private javax.swing.JTextField txtCodDiag;
-    private javax.swing.JTextField txtDo;
-    private javax.swing.JTextField txtDo1;
     private javax.swing.JTextField txtDo2;
     private javax.swing.JTextField txtDocumento;
     private javax.swing.JTextField txtFacultad;
-    private javax.swing.JFormattedTextField txtFecNac;
-    private javax.swing.JFormattedTextField txtFecNac1;
     private javax.swing.JFormattedTextField txtFecNac2;
     private javax.swing.JFormattedTextField txtFecha;
     private javax.swing.JTextField txtFechaFinal;
     private javax.swing.JTextField txtFechaInicio;
     private javax.swing.JFormattedTextField txtFechaV;
     private javax.swing.JTextField txtIdPac;
-    private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtNom1;
     private javax.swing.JTextField txtNom2;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreMedicmento;

@@ -9,6 +9,7 @@
     <class>Classes.Carrera</class>
     <class>Classes.Cie10Categoria</class>
     <class>Classes.TipoMedicamento</class>
+    <class>Classes.alertas</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
       <property name="javax.persistence.jdbc.user" value="unicaes"/>

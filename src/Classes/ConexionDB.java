@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar(){
         try {
             String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica","master");
+            conn= DriverManager.getConnection(url,"unicaes","unicaes");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -2063,5 +2063,107 @@ public class ConexionDB {
       
         return res;
     }
-      
+       
+       
+       public DefaultTableModel obt_alertas(JTable jTable1, int tipoA) throws SQLException {
+           DefaultTableModel model;
+        Statement stmt = conn.createStatement();
+        String query="";
+        switch(tipoA){
+            case 1:
+                 query= "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
+                + "where (cantidad<=5 or (trunc(fecha_v)-trunc(sysdate)<10) and (trunc(fecha_v)-trunc(sysdate)>0))  and eliminado=0";
+                break;
+            case 2:
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
+                + "where ((trunc(fecha_v)-trunc(sysdate)<10) and (trunc(fecha_v)-trunc(sysdate)>0))  and eliminado=0";
+                break;
+            case 3:
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
+                + "where (cantidad<=5 )and eliminado=0";
+                break;
+        }
+        
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[5];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+        
+  
+       
+        public int ContarDoctores() throws SQLException{
+        
+        String query = "select count(idDoctor) from Doctor where eliminado=0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int ndoctores=0;
+          while (rs.next())
+           {
+              ndoctores=rs.getInt(1);
+             
+           }
+           return ndoctores;
+    }
+       
+     public int ContarMedicamentos() throws SQLException{
+        
+        String query = "select count(idMedicamento) from Medicamento";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int nmedicamentos=0;
+          while (rs.next())
+           {
+              nmedicamentos=rs.getInt(1);
+             
+           }
+           return nmedicamentos;
+    }
+   
+public int ContarPacientes() throws SQLException{
+        
+        String query = "select count(idPaciente) from Pacientes";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int npacientes=0;
+          while (rs.next())
+           {
+              npacientes=rs.getInt(1);
+             
+           }
+           return npacientes;
+    }     
+     
+public int ConsultasxMes() throws SQLException{
+        
+        String query = "select count(idConsulta) from Consulta \n" +
+"where cons_fecha>TO_DATE(('01/'||Extract(month from sysdate)||'/'||Extract(year from sysdate)), 'dd/mm/yyyy')";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int nconsultas=0;
+          while (rs.next())
+           {
+              nconsultas=rs.getInt(1);
+             
+           }
+           return nconsultas;
+    }  
+
+
 }
