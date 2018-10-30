@@ -76,7 +76,7 @@
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnAtras" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,7 +144,7 @@
                                           </Group>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="rbPers_academ" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rbAcademico" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="rbProyec_social" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -182,7 +182,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblHeader52" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rbEstudiante" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rbPers_academ" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbAcademico" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="rbProyec_social" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -220,24 +220,20 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblHeader49" min="-2" pref="116" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtApellido" min="-2" pref="236" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblHeader48" min="-2" pref="116" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="txtNombre" min="-2" pref="236" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblHeader50" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblHeader49" min="-2" pref="116" max="-2" attributes="0"/>
+                                      <Component id="lblHeader50" min="-2" pref="116" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtCarnet" min="-2" pref="236" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblHeader51" min="-2" pref="116" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cboFacultad" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="txtCarnet" min="-2" pref="236" max="-2" attributes="0"/>
+                                      <Component id="txtApellido" min="-2" pref="236" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
@@ -252,22 +248,17 @@
                               <Component id="lblHeader48" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtNombre" alignment="3" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblHeader49" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtApellido" alignment="3" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblHeader50" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtCarnet" alignment="3" max="32767" attributes="0"/>
+                              <Component id="lblHeader50" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblHeader51" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cboFacultad" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -348,41 +339,6 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblHeader51">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Comic Sans MS" size="14" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="FACULTAD:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="cboFacultad">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Comic Sans MS" size="14" style="0"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="ING y ARQ"/>
-                        <StringItem index="1" value="CC HH"/>
-                        <StringItem index="2" value="CC SALUD"/>
-                      </StringArray>
-                    </Property>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                        <LineBorder>
-                          <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
-                        </LineBorder>
-                      </Border>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                  </AuxValues>
-                </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="lblHeader17">
@@ -409,6 +365,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proyecci&#xf3;n social"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbProyec_socialMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbFemenino">
               <Properties>
@@ -423,6 +382,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Femenino"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbFemeninoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblHeader52">
               <Properties>
@@ -473,6 +435,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Masculino"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbMasculinoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="rbEstudiante">
               <Properties>
@@ -487,8 +452,11 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Estudiante"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbEstudianteMouseClicked"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="rbPers_academ">
+            <Component class="javax.swing.JRadioButton" name="rbAcademico">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="66" type="rgb"/>
@@ -501,6 +469,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Personal academico"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rbAcademicoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="btnBuscar">
               <Properties>
@@ -508,6 +479,9 @@
                   <Image iconType="3" name="/images/buscar.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBuscarMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -650,11 +624,10 @@
                 <Component class="javax.swing.JTable" name="tbPacientes">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="0">
-                        <Column editable="true" title="CARNET" type="java.lang.Object"/>
-                        <Column editable="true" title="NOMBRES" type="java.lang.Object"/>
-                        <Column editable="true" title="APELLIDOS" type="java.lang.Object"/>
-                        <Column editable="true" title="PACIENTE" type="java.lang.Object"/>
+                      <Table columnCount="8" rowCount="0">
+                        <Column editable="true" title="CARNET/DOCUMENTO" type="java.lang.Object"/>
+                        <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
+                        <Column editable="true" title="TIPO_PACIENTE" type="java.lang.Object"/>
                         <Column editable="true" title="FACULTAD" type="java.lang.Object"/>
                         <Column editable="true" title="CARRERA" type="java.lang.Object"/>
                         <Column editable="true" title="TELEFONO" type="java.lang.Object"/>
@@ -664,11 +637,6 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>

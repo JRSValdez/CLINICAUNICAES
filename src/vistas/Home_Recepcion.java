@@ -2040,6 +2040,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel13.setFocusable(false);
         jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         btnAgregarPaciente.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnAgregarPaciente.setForeground(new java.awt.Color(255, 255, 255));
@@ -3607,6 +3612,12 @@ if(this.rbAcademico.isSelected()){
         Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_btnAlertaFechaActionPerformed
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+        Pacientes_Historial pac= new Pacientes_Historial();
+                   pac.setVisible(true);
+                 //  this.dispose();
+    }//GEN-LAST:event_jLabel13MouseClicked
     
     
     /**

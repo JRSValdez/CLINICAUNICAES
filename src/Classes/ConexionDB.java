@@ -2166,4 +2166,35 @@ public int ConsultasxMes() throws SQLException{
     }  
 
 
+ public DefaultTableModel getHistorialPaciente(JTable jTable1,String query) throws SQLException{
+        DefaultTableModel model;
+        if (query.equals("no")){
+        query = "Select pac_carne, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera,factultad,pac_telefono,cons_fecha,motivo "
+                + " from pacientes" +
+" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac" +
+" inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
+" inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
+" inner join Consulta on consulta.idpaciente=pacientes.idpaciente" +
+" inner join det_consulta on consulta.idconsulta=det_consulta.idConsulta"; }          
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();   
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[8];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+
+
+
+
 }

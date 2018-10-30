@@ -1,14 +1,25 @@
 package vistas;
 
 import java.awt.Dimension;
-
+import Classes.ConexionDB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Pacientes_Historial extends javax.swing.JFrame {
 
      int xx,xy;
    int xs, ys, sbx,sby;
-   
+   ConexionDB conn;
     public Pacientes_Historial() {
         initComponents();
+        conn = new ConexionDB();
+        
+         try {
+             this.tbPacientes.setModel(conn.getHistorialPaciente(tbPacientes,"no"));
+         } catch (SQLException ex) {
+             Logger.getLogger(Pacientes_Historial.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
     }
 
 
@@ -27,8 +38,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         txtApellido = new javax.swing.JTextField();
         lblHeader50 = new javax.swing.JLabel();
         txtCarnet = new javax.swing.JTextField();
-        lblHeader51 = new javax.swing.JLabel();
-        cboFacultad = new javax.swing.JComboBox<>();
         lblHeader17 = new javax.swing.JLabel();
         rbProyec_social = new javax.swing.JRadioButton();
         rbFemenino = new javax.swing.JRadioButton();
@@ -37,7 +46,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader53 = new javax.swing.JLabel();
         rbMasculino = new javax.swing.JRadioButton();
         rbEstudiante = new javax.swing.JRadioButton();
-        rbPers_academ = new javax.swing.JRadioButton();
+        rbAcademico = new javax.swing.JRadioButton();
         btnBuscar = new javax.swing.JLabel();
         Barra_Superior2 = new javax.swing.JPanel();
         btnHome4 = new javax.swing.JButton();
@@ -89,14 +98,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        lblHeader51.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader51.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader51.setText("FACULTAD:");
-
-        cboFacultad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboFacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
-        cboFacultad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -104,21 +105,17 @@ public class Pacientes_Historial extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblHeader48, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblHeader50, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHeader50, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblHeader51, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 62, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -128,19 +125,15 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader48)
                     .addComponent(txtNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader49)
                     .addComponent(txtApellido))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader50)
-                    .addComponent(txtCarnet))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHeader51)
-                    .addComponent(cboFacultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(txtCarnet)
+                    .addComponent(lblHeader50))
+                .addGap(27, 27, 27))
         );
 
         lblHeader17.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -151,11 +144,21 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         rbProyec_social.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbProyec_social.setForeground(new java.awt.Color(255, 255, 255));
         rbProyec_social.setText("Proyección social");
+        rbProyec_social.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbProyec_socialMouseClicked(evt);
+            }
+        });
 
         rbFemenino.setBackground(new java.awt.Color(102, 0, 0));
         rbFemenino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbFemenino.setForeground(new java.awt.Color(255, 255, 255));
         rbFemenino.setText("Femenino");
+        rbFemenino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbFemeninoMouseClicked(evt);
+            }
+        });
 
         lblHeader52.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader52.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,18 +175,38 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         rbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbMasculino.setForeground(new java.awt.Color(255, 255, 255));
         rbMasculino.setText("Masculino");
+        rbMasculino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbMasculinoMouseClicked(evt);
+            }
+        });
 
         rbEstudiante.setBackground(new java.awt.Color(102, 0, 0));
         rbEstudiante.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbEstudiante.setForeground(new java.awt.Color(255, 255, 255));
         rbEstudiante.setText("Estudiante");
+        rbEstudiante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbEstudianteMouseClicked(evt);
+            }
+        });
 
-        rbPers_academ.setBackground(new java.awt.Color(102, 0, 0));
-        rbPers_academ.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        rbPers_academ.setForeground(new java.awt.Color(255, 255, 255));
-        rbPers_academ.setText("Personal academico");
+        rbAcademico.setBackground(new java.awt.Color(102, 0, 0));
+        rbAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        rbAcademico.setForeground(new java.awt.Color(255, 255, 255));
+        rbAcademico.setText("Personal academico");
+        rbAcademico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbAcademicoMouseClicked(evt);
+            }
+        });
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,7 +240,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rbEstudiante)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbPers_academ)
+                                .addComponent(rbAcademico)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbProyec_social)))
                         .addGap(70, 70, 70))
@@ -246,7 +269,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader52)
                             .addComponent(rbEstudiante)
-                            .addComponent(rbPers_academ)
+                            .addComponent(rbAcademico)
                             .addComponent(rbProyec_social))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -327,7 +350,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CARNET", "NOMBRES", "APELLIDOS", "PACIENTE", "FACULTAD", "CARRERA", "TELEFONO", "FECHA CONSULTA", "MOTIVO CONSULTA"
+                "CARNET/DOCUMENTO", "NOMBRE", "TIPO_PACIENTE", "FACULTAD", "CARRERA", "TELEFONO", "FECHA CONSULTA", "MOTIVO CONSULTA"
             }
         ));
         jScrollPane1.setViewportView(tbPacientes);
@@ -381,7 +404,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAtras)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -421,6 +444,101 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     private void Barra_Superior2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_Superior2MouseReleased
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_Superior2MouseReleased
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        String nombre=this.txtNombre.getText();
+        String apellido=this.txtApellido.getText();
+        String carnet=this.txtCarnet.getText();
+        int tipo=0;
+        String sexo="";
+        String query="Select pac_carne, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera,factultad,pac_telefono,cons_fecha,motivo from pacientes" +
+" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac" +
+" inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
+" inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
+" inner join Consulta on consulta.idpaciente=pacientes.idpaciente" +
+" inner join det_consulta on consulta.idconsulta=det_consulta.idConsulta";
+        
+    if (nombre.trim().length()>0){
+    query=query+" where pac_nombre='"+nombre+"'";
+    }else{
+    query=query+" where pac_nombre like '%%'";
+    }
+    
+    if (apellido.trim().length()>0){
+    query=query+" and pac_apellido='"+apellido+"'";
+    }else{
+    query=query+" and pac_apellido like '%%'";
+    }
+    
+    if (carnet.trim().length()>0){
+    query=query+" and pac_carne='"+carnet+"'";
+    }else{
+    query=query+" and pac_carne like '%%'";
+    }
+    
+    if(this.rbMasculino.isSelected()){
+    sexo="M";
+    }else if(this.rbFemenino.isSelected()){
+        sexo="F";
+    }
+    
+    if (sexo.trim().length()>0){
+    query=query+" and pac_sexo='"+sexo+"'";
+    }else{
+    query=query+" and pac_sexo like '%%'";
+    }
+    
+    if(this.rbAcademico.isSelected()){
+    tipo=3;
+    query=query+" and pacientes.idtipopac="+tipo;
+}else if(this.rbProyec_social.isSelected()){
+    tipo=4;
+    query=query+" and pacientes.idtipopac="+tipo;
+}else if(this.rbEstudiante.isSelected()){
+    tipo=2;
+    query=query+" and pacientes.idtipopac="+tipo;
+}else{
+}
+        
+         try {
+             this.tbPacientes.setModel(conn.getHistorialPaciente(tbPacientes,query));
+         } catch (SQLException ex) {
+             Logger.getLogger(Pacientes_Historial.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void rbEstudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbEstudianteMouseClicked
+        if(this.rbEstudiante.isSelected()){
+            this.rbAcademico.setSelected(false);
+             this.rbProyec_social.setSelected(false);
+        }
+    }//GEN-LAST:event_rbEstudianteMouseClicked
+
+    private void rbAcademicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAcademicoMouseClicked
+        if(this.rbAcademico.isSelected()){
+            this.rbEstudiante.setSelected(false);
+             this.rbProyec_social.setSelected(false);
+        }
+    }//GEN-LAST:event_rbAcademicoMouseClicked
+
+    private void rbProyec_socialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbProyec_socialMouseClicked
+        if(this.rbProyec_social.isSelected()){
+            this.rbEstudiante.setSelected(false);
+             this.rbAcademico.setSelected(false);
+        }
+    }//GEN-LAST:event_rbProyec_socialMouseClicked
+
+    private void rbMasculinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbMasculinoMouseClicked
+         if(this.rbMasculino.isSelected()){
+            this.rbFemenino.setSelected(false);
+         }
+    }//GEN-LAST:event_rbMasculinoMouseClicked
+
+    private void rbFemeninoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbFemeninoMouseClicked
+        if(this.rbFemenino.isSelected()){
+            this.rbMasculino.setSelected(false);
+         }
+    }//GEN-LAST:event_rbFemeninoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -464,7 +582,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     private javax.swing.JLabel btnBuscar;
     private javax.swing.JButton btnHome4;
     private javax.swing.JLabel btn_close2;
-    private javax.swing.JComboBox<String> cboFacultad;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -478,13 +595,12 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader49;
     private javax.swing.JLabel lblHeader5;
     private javax.swing.JLabel lblHeader50;
-    private javax.swing.JLabel lblHeader51;
     private javax.swing.JLabel lblHeader52;
     private javax.swing.JLabel lblHeader53;
+    private javax.swing.JRadioButton rbAcademico;
     private javax.swing.JRadioButton rbEstudiante;
     private javax.swing.JRadioButton rbFemenino;
     private javax.swing.JRadioButton rbMasculino;
-    private javax.swing.JRadioButton rbPers_academ;
     private javax.swing.JRadioButton rbProyec_social;
     private javax.swing.JTable tbPacientes;
     private javax.swing.JTextField txtApellido;
