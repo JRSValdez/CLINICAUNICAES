@@ -7,6 +7,7 @@ import Classes.Paciente;
 import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -64,6 +65,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        this.jTAlertas.setModel(this.conn.obt_alertas(jTAlertas,1));
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
         
     }
     @SuppressWarnings("unchecked")
@@ -88,6 +92,11 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         lblMedxVencer = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTAlertas = new javax.swing.JTable();
+        btnAlertaTotal = new javax.swing.JButton();
+        btnAlertaFecha = new javax.swing.JButton();
+        btnAlertaCant = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         lblPac_atendidos = new javax.swing.JLabel();
@@ -224,7 +233,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -297,21 +306,72 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos proximo a vencerse");
 
+        jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (dìas)"
+            }
+        ));
+        jScrollPane2.setViewportView(jTAlertas);
+
+        btnAlertaTotal.setText("Total");
+        btnAlertaTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaTotalActionPerformed(evt);
+            }
+        });
+
+        btnAlertaFecha.setText("Vencimiento");
+        btnAlertaFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaFechaActionPerformed(evt);
+            }
+        });
+
+        btnAlertaCant.setText("Existencia");
+        btnAlertaCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaCantActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblMedxVencer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAlertaFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAlertaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAlertaCant, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblMedxVencer))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblMedxVencer)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(btnAlertaTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlertaFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlertaCant)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 0));
@@ -345,7 +405,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -385,7 +445,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -474,7 +534,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -489,7 +549,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         jLabel7.setText("POSPONER");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -499,7 +559,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         jLabel14.setText("Historial");
         jLabel14.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel14.setFocusable(false);
         jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -509,7 +569,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
         jLabel15.setText("ATENDIDAS HOY");
         jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel15.setFocusable(false);
         jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -519,7 +579,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel8.setText("QUITAR");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -671,7 +731,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnBuscarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarMedicamento.setText("BUSCAR");
         btnBuscarMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarMedicamento.setFocusable(false);
         btnBuscarMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -723,7 +783,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnBuscarCatMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarCatMedicamento.setText("BUSCAR");
         btnBuscarCatMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarCatMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCatMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarCatMedicamento.setFocusable(false);
         btnBuscarCatMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarCatMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -972,7 +1032,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -1133,6 +1193,42 @@ public class Home_Consultorio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarCatMedicamentoMouseClicked
 
+    private void btnAlertaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaTotalActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,1);
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaTotalActionPerformed
+
+    private void btnAlertaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaFechaActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,2);
+        this.btnAlertaFecha.setText("Vencimiento("+jTAlertas.getRowCount()+")");
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaFechaActionPerformed
+
+    private void btnAlertaCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaCantActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,3);
+        this.btnAlertaCant.setText("Existencia("+jTAlertas.getRowCount()+")");
+        this.btnAlertaCant.setFont(new Font("Arial", Font.BOLD, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaCantActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -1177,6 +1273,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JPanel Tab_Cons;
     private javax.swing.JPanel Tab_Farmacia;
     private javax.swing.JPanel Tab_home;
+    private javax.swing.JButton btnAlertaCant;
+    private javax.swing.JButton btnAlertaFecha;
+    private javax.swing.JButton btnAlertaTotal;
     private javax.swing.JLabel btnAtender;
     private javax.swing.JLabel btnBuscarCatMedicamento;
     private javax.swing.JLabel btnBuscarMedicamento;
@@ -1215,7 +1314,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanelExistente;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTAlertas;
     private javax.swing.JTable jtMedicamentos;
     private javax.swing.JLabel lblConsult_espera;
     private javax.swing.JLabel lblFecha;

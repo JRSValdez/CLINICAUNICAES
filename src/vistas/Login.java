@@ -29,6 +29,7 @@ public class Login extends javax.swing.JFrame {
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
+        this.txtUser.requestFocus();
     }
 
     @SuppressWarnings("unchecked")

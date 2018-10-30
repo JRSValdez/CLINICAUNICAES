@@ -8,6 +8,7 @@ import Classes.Paciente;
 import Classes.Usuario;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,7 +79,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.cboCarreraCon.setModel(this.llenarComboBoxCarrera(this.idFacult[this.cboFacultadEs.getSelectedIndex()]));
         this.llenarParentezcoCons();
         
-            
+        this.jTAlertas.setModel(conn.obt_alertas(jTAlertas,1));
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
         
         this.jTbusqueda.setSelectionForeground(Color.white);
         this.jTFarmacia.setSelectionForeground(Color.white);
@@ -151,6 +154,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         lblMedxVencer = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTAlertas = new javax.swing.JTable();
+        btnAlertaTotal = new javax.swing.JButton();
+        btnAlertaCant = new javax.swing.JButton();
+        btnAlertaFecha = new javax.swing.JButton();
         Tab_Cons = new javax.swing.JPanel();
         jPanelEstNuevo = new javax.swing.JPanel();
         lblHeader44 = new javax.swing.JLabel();
@@ -479,7 +487,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -515,7 +523,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -610,7 +618,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 7, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -622,7 +630,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
                 .addComponent(lblSol_medicamento)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -653,7 +661,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -693,7 +701,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -747,21 +755,74 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos proximo a vencerse");
 
+        jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Medicamento", "Cantidad", "fecha  vencimiento", "Vence (días)"
+            }
+        ));
+        jScrollPane2.setViewportView(jTAlertas);
+
+        btnAlertaTotal.setText("Todas");
+        btnAlertaTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaTotalActionPerformed(evt);
+            }
+        });
+
+        btnAlertaCant.setText("Existencia");
+        btnAlertaCant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaCantActionPerformed(evt);
+            }
+        });
+
+        btnAlertaFecha.setText("Vencimiento");
+        btnAlertaFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlertaFechaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblMedxVencer)
-                .addContainerGap(669, Short.MAX_VALUE))
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(lblMedxVencer)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAlertaCant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlertaTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAlertaFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                        .addGap(35, 35, 35))))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblMedxVencer)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(btnAlertaTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlertaCant)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAlertaFecha))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout Tab_homeLayout = new javax.swing.GroupLayout(Tab_home);
@@ -792,7 +853,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("HOME", null, Tab_home, "");
@@ -857,7 +918,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino);
         rdbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        rdbMasculino.setSelected(true);
         rdbMasculino.setText("Masculino");
 
         rdbFemenino.setBackground(new java.awt.Color(102, 0, 0));
@@ -979,7 +1039,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbUrbanoC);
         rbUrbanoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbUrbanoC.setForeground(new java.awt.Color(255, 255, 255));
-        rbUrbanoC.setSelected(true);
         rbUrbanoC.setText("Urbano");
         rbUrbanoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1142,7 +1201,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1434,6 +1493,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino1);
         rdbMasculino1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino1.setForeground(new java.awt.Color(255, 255, 255));
+        rdbMasculino1.setSelected(true);
         rdbMasculino1.setText("Masculino");
 
         rdbFemenino1.setBackground(new java.awt.Color(102, 0, 0));
@@ -1551,6 +1611,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbzonaUrb);
         rbzonaUrb.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbzonaUrb.setForeground(new java.awt.Color(255, 255, 255));
+        rbzonaUrb.setSelected(true);
         rbzonaUrb.setText("Urbano");
         rbzonaUrb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1665,9 +1726,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2820,7 +2881,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -3509,6 +3570,43 @@ if(this.rbAcademico.isSelected()){
             }
         }
     }//GEN-LAST:event_btnEditMedicamentoMouseClicked
+
+    private void btnAlertaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaTotalActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,1);
+        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+    }//GEN-LAST:event_btnAlertaTotalActionPerformed
+
+    private void btnAlertaCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaCantActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,3);
+        this.btnAlertaCant.setText("Existencia("+jTAlertas.getRowCount()+")");
+        this.btnAlertaCant.setFont(new Font("Arial", Font.BOLD, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaCantActionPerformed
+
+    private void btnAlertaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaFechaActionPerformed
+        try {
+        this.conn.obt_alertas(jTAlertas,2);
+        this.btnAlertaFecha.setText("Vencimiento("+jTAlertas.getRowCount()+")");
+        this.btnAlertaFecha.setFont(new Font("Arial", Font.BOLD, 12)); 
+        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAlertaFechaActionPerformed
     
     
     /**
@@ -3554,6 +3652,9 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JLabel btnAggConsPacExistente;
     private javax.swing.JLabel btnAggMedicamento;
     private javax.swing.JLabel btnAgregarPaciente;
+    private javax.swing.JButton btnAlertaCant;
+    private javax.swing.JButton btnAlertaFecha;
+    private javax.swing.JButton btnAlertaTotal;
     private javax.swing.JLabel btnBuscarMed;
     private javax.swing.JLabel btnBuscarPaciente;
     private javax.swing.JLabel btnConsultasAten;
@@ -3641,9 +3742,11 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JPanel jPanelExistente1;
     private javax.swing.JPanel jPanelExistente2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTAlertas;
     private javax.swing.JTable jTFarmacia;
     private javax.swing.JTable jTbusqueda;
     private javax.swing.JTable jTbusquedaMed;

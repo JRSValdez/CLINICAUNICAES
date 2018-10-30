@@ -699,7 +699,7 @@
                                 <Column editable="false" title="ID" type="java.lang.Object"/>
                                 <Column editable="false" title="Medicamento" type="java.lang.Object"/>
                                 <Column editable="false" title="Cantidad" type="java.lang.Object"/>
-                                <Column editable="false" title="Fecha Vencimiento" type="java.lang.Object"/>
+                                <Column editable="false" title="Fecha Vencimiento" type="java.lang.String"/>
                                 <Column editable="false" title="Vence (Dias)" type="java.lang.Object"/>
                               </Table>
                             </Property>
