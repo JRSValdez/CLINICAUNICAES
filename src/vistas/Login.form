@@ -371,7 +371,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Universidad Catolica de El Salvador"/>
+                <Property name="text" type="java.lang.String" value="Universidad Cat&#xf3;lica de El Salvador"/>
               </Properties>
             </Component>
           </SubComponents>

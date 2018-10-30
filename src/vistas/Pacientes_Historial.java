@@ -64,7 +64,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Busqueda Personalizada");
+        jLabel3.setText("Búsqueda Personalizada");
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
 

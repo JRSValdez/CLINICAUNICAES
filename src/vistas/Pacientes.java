@@ -229,7 +229,7 @@ public class Pacientes extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CLINICA UNIVERSITARIA");
+        jLabel5.setText("CLÍNICA UNIVERSITARIA");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/form_pacientes.png"))); // NOI18N
 

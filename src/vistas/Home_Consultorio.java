@@ -256,7 +256,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("UNIVERSIDAD CATOLICA DE EL SALVADOR");
+        jLabel4.setText("UNIVERSIDAD CATÓLICA DE EL SALVADOR");
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -304,7 +304,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
 
         lblMedxVencer.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
-        lblMedxVencer.setText("Medicamentos proximo a vencerse");
+        lblMedxVencer.setText("Medicamentos que requieren atención:");
 
         jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -355,7 +355,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                             .addComponent(btnAlertaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAlertaCant, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblMedxVencer))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,7 +516,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("HOME", null, Tab_home, "");

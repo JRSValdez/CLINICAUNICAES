@@ -273,7 +273,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         btnHistorial.setText("HISTORIAL PACIENTE");
         btnHistorial.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHistorial.setFocusable(false);
         btnHistorial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHistorial.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -544,7 +544,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_SIGNOSLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TAB_SIGNOSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelSignosV, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                    .addComponent(panelSignosV, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
                     .addComponent(panelDatosPac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -637,7 +637,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnAggAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAggAntecedente.setText("Agregar Antecedente");
         btnAggAntecedente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggAntecedente.setFocusable(false);
         btnAggAntecedente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggAntecedente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -650,7 +650,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnBuscarAntecedente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnBuscarAntecedente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchCat.png"))); // NOI18N
         btnBuscarAntecedente.setToolTipText("");
-        btnBuscarAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarAntecedente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarAntecedente.setFocusable(false);
         btnBuscarAntecedente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarAntecedente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -725,7 +725,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TAB_ANTECEDENTESLayout.setVerticalGroup(
@@ -771,7 +771,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
 
         lblHeader12.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader12.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader12.setText("TORAX:");
+        lblHeader12.setText("TÓRAX:");
 
         txt_Ef_Torax.setColumns(20);
         txt_Ef_Torax.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -845,7 +845,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                     .addComponent(lblHeader8)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader14)
@@ -864,7 +864,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_EXAMEN_FILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_EXAMEN_FILayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TAB_EXAMEN_FILayout.setVerticalGroup(
@@ -913,7 +913,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(lblHeader9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -989,7 +989,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnAggDiagnostico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAggDiagnostico.setText("Agregar Diagnóstico");
         btnAggDiagnostico.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggDiagnostico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggDiagnostico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggDiagnostico.setFocusable(false);
         btnAggDiagnostico.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggDiagnostico.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1002,7 +1002,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnBuscarDiagnostico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnBuscarDiagnostico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/searchCat.png"))); // NOI18N
         btnBuscarDiagnostico.setToolTipText("");
-        btnBuscarDiagnostico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarDiagnostico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarDiagnostico.setFocusable(false);
         btnBuscarDiagnostico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarDiagnostico.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1075,15 +1075,15 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE))
                 .addContainerGap())
         );
         TAB_DIAGNOSTICOLayout.setVerticalGroup(
             TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1150,7 +1150,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(lblHeader11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1195,7 +1195,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnAddReceta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
         btnAddReceta.setText("Añadir a receta");
         btnAddReceta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAddReceta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAddReceta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAddReceta.setFocusable(false);
         btnAddReceta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAddReceta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1237,7 +1237,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnBuscarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarMedicamento.setText("BUSCAR");
         btnBuscarMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarMedicamento.setFocusable(false);
         btnBuscarMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1289,7 +1289,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnBuscarCatMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarCatMedicamento.setText("BUSCAR");
         btnBuscarCatMedicamento.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnBuscarCatMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarCatMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarCatMedicamento.setFocusable(false);
         btnBuscarCatMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBuscarCatMedicamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1386,7 +1386,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnTerminarConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
         btnTerminarConsulta.setText("Guardar Expediente y Finalizar Consulta");
         btnTerminarConsulta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnTerminarConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTerminarConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTerminarConsulta.setFocusable(false);
         btnTerminarConsulta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnTerminarConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1402,7 +1402,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_TRATAMIENTOLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TAB_TRATAMIENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(TAB_TRATAMIENTOLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)

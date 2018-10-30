@@ -657,11 +657,11 @@ int xx, xy;
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("UNIVERSIDAD CATOLICA DE EL SALVADOR");
+        jLabel4.setText("UNIVERSIDAD CATÓLICA DE EL SALVADOR");
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("CLINICA UNIVERSITARIA");
+        jLabel5.setText("CLÍNICA UNIVERSITARIA");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cruz.png"))); // NOI18N
 
@@ -705,7 +705,7 @@ int xx, xy;
 
         lblMedxVencer.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
-        lblMedxVencer.setText("Medicamentos proximo a vencerse");
+        lblMedxVencer.setText("Medicamentos que requieren atención:");
 
         jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -715,7 +715,7 @@ int xx, xy;
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (Dias)"
+                "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (días)"
             }
         ) {
             Class[] types = new Class [] {
