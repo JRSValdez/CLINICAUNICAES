@@ -22,10 +22,8 @@ import Classes.TipoPacienteJpaController;
 import Classes.UnidadMed;
 import Classes.UnidadMedJpaController;
 import Classes.Usuario;
-import Classes.alertas;
 import Classes.entityMain;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -40,7 +38,6 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
@@ -72,6 +69,7 @@ int xx, xy;
     int[] idBusquedaCatsMed;
     
     int[] idEmp;
+    int[] idDoctores;
     
     int[] idEsp;
     int[] idUsr;
@@ -112,11 +110,11 @@ int xx, xy;
         
         
         this.llenarEmp();
+        this.llenarDoctores();
         this.tbUsuarios.setSelectionForeground(Color.WHITE);
         this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
         
         this.llenarEsp();
-        this.llenarUsr();
         this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
         this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
         
@@ -143,6 +141,7 @@ int xx, xy;
         buttonGroup1 = new javax.swing.ButtonGroup();
         rdbFiltros2 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        rdbUsuario = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         SideBar = new javax.swing.JPanel();
         Botonera = new javax.swing.JPanel();
@@ -204,8 +203,6 @@ int xx, xy;
         btnAggDoctor = new javax.swing.JLabel();
         txtFecha = new javax.swing.JFormattedTextField();
         txtTelefono = new javax.swing.JFormattedTextField();
-        lblHeader64 = new javax.swing.JLabel();
-        cboUsuario = new javax.swing.JComboBox<>();
         jPanel16 = new javax.swing.JPanel();
         lblHeader58 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -257,6 +254,10 @@ int xx, xy;
         cboEmpleado = new javax.swing.JComboBox<>();
         txtPassword2 = new javax.swing.JPasswordField();
         txtPassword1 = new javax.swing.JPasswordField();
+        lblHeader65 = new javax.swing.JLabel();
+        cboDoctores = new javax.swing.JComboBox<>();
+        rdbEmpleadoUser = new javax.swing.JRadioButton();
+        rdbDoctorUser = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnEliminarUsuario = new javax.swing.JLabel();
@@ -1126,14 +1127,6 @@ int xx, xy;
             ex.printStackTrace();
         }
 
-        lblHeader64.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader64.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader64.setText("USUARIO:");
-
-        cboUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuario" }));
-        cboUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         javax.swing.GroupLayout jPanelEstNuevoLayout = new javax.swing.GroupLayout(jPanelEstNuevo);
         jPanelEstNuevo.setLayout(jPanelEstNuevoLayout);
         jPanelEstNuevoLayout.setHorizontalGroup(
@@ -1156,23 +1149,17 @@ int xx, xy;
                                 .addComponent(rbM)
                                 .addGap(18, 18, 18)
                                 .addComponent(rbF)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblHeader39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHeader43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHeader40, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cboEspecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtFecha)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
-                                .addComponent(lblHeader64, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblHeader39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader40, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cboEspecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFecha)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(btnAggDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1212,9 +1199,7 @@ int xx, xy;
                 .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader31)
                     .addComponent(rbM)
-                    .addComponent(rbF)
-                    .addComponent(lblHeader64)
-                    .addComponent(cboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbF))
                 .addContainerGap())
         );
 
@@ -1702,7 +1687,6 @@ int xx, xy;
         lblHeader16.setText("CONTRASEÑA:");
 
         txtUsuario.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtUsuario.setText("NOMBRE NOMBRE");
         txtUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader36.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1741,7 +1725,6 @@ int xx, xy;
         lblHeader38.setText("EMPLEADO:");
 
         cboEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Empleado 1", "Empleado 2", "Empleado 3", " " }));
         cboEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         txtPassword2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1750,39 +1733,61 @@ int xx, xy;
         txtPassword1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtPassword1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
 
+        lblHeader65.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader65.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader65.setText("DOCTOR:");
+
+        cboDoctores.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        cboDoctores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+
+        rdbUsuario.add(rdbEmpleadoUser);
+        rdbEmpleadoUser.setSelected(true);
+
+        rdbUsuario.add(rdbDoctorUser);
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblHeader18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtPassword2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(lblHeader36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblHeader18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHeader16))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(lblHeader38)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword2)
+                            .addComponent(txtPassword1)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addComponent(lblHeader36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cboTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addComponent(lblHeader38)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                .addComponent(lblHeader65, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cboDoctores, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addComponent(btnAggUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHeader14)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdbEmpleadoUser)
+                            .addComponent(rdbDoctorUser))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblHeader14)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(73, 73, 73)
+                .addComponent(btnAggUsuario)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1803,15 +1808,25 @@ int xx, xy;
                                 .addComponent(cboEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblHeader16)
-                                .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader18)
-                            .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rdbEmpleadoUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblHeader18)
+                                    .addComponent(txtPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rdbDoctorUser, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblHeader65)
+                                        .addComponent(cboDoctores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAggUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(102, 0, 0));
@@ -1877,7 +1892,7 @@ int xx, xy;
                 {"123", "Doctor", "José Ricardo Sifontes Valdez", "Activo", null}
             },
             new String [] {
-                "ID", "Usuario", "Contraseña", "Tipo_Usuario", "Empleado"
+                "ID", "Usuario", "Contraseña", "Tipo", "Emp / Doc"
             }
         ) {
             Class[] types = new Class [] {
@@ -1894,6 +1909,10 @@ int xx, xy;
         tbUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbUsuarios.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbUsuarios);
+        if (tbUsuarios.getColumnModel().getColumnCount() > 0) {
+            tbUsuarios.getColumnModel().getColumn(0).setMaxWidth(35);
+            tbUsuarios.getColumnModel().getColumn(3).setMaxWidth(60);
+        }
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -3849,6 +3868,7 @@ int xx, xy;
         rbMasc3.setBackground(new java.awt.Color(102, 0, 0));
         rbMasc3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbMasc3.setForeground(new java.awt.Color(255, 255, 255));
+        rbMasc3.setSelected(true);
         rbMasc3.setText("Masculino");
 
         lblHeader80.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -4245,6 +4265,15 @@ int xx, xy;
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboEmpleado.setModel(model);
     }
+     
+      public void llenarDoctores() throws SQLException {
+        // llenar el combobox de facultad
+        Object[] array = this.conn.Obt_Doctores();
+
+        this.idDoctores = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cboDoctores.setModel(model);
+    }
     
        public void llenarEsp() throws SQLException {
         
@@ -4254,15 +4283,7 @@ int xx, xy;
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboEspecialidad.setModel(model);
     }
-    
-    public void llenarUsr() throws SQLException {
-       
-        Object[] array = this.conn.Obt_Usuario();
-
-        this.idUsr = (int[]) array[0];
-        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboUsuario.setModel(model);
-    }
+   
     
     private void btn_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usersActionPerformed
         this.Contenedor.setSelectedIndex(3);
@@ -4367,7 +4388,6 @@ int xx, xy;
         dc.telefono = this.txtTelefono.getText();
         dc.fechaNac = this.txtFecha.getText();
         dc.documento = this.txtDocumento.getText();
-        dc.idUsuario = this.idUsr[this.cboUsuario.getSelectedIndex()];
 
         if (this.rbM.isSelected()) {
             dc.sexo = "M";
@@ -4389,7 +4409,7 @@ int xx, xy;
                 this.txtTelefono.setText("");
                 this.txtFecha.setText("");
                 this.txtDocumento.setText("");
-
+                this.llenarDoctores();
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(this, ex.toString());
             }
@@ -4438,7 +4458,7 @@ int xx, xy;
                 Editar_Medicamento form = new Editar_Medicamento(this,med);
                 form.setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnEditMedicamentoMouseClicked
@@ -4461,10 +4481,15 @@ int xx, xy;
         if(us.ValidarAgg().equals("Exito")){
 
             String resultado="";
-
+            int idOwner = 0;
+            String tabla = "EMPLEADO";
+            if(this.rdbDoctorUser.isSelected()){
+                idOwner = this.idDoctores[this.cboDoctores.getSelectedIndex()];
+                tabla = "DOCTOR";
+            } else idOwner = this.idEmp[this.cboEmpleado.getSelectedIndex()];
             try {
 
-                resultado= conn.aggUsuario(us);
+                resultado= conn.aggUsuario(us, tabla, idOwner);
                 this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
                 this.txtUsuario.setText("");
                 this.txtPassword1.setText("");
@@ -4562,7 +4587,7 @@ int xx, xy;
                 viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
                 viewer.setVisible(true); //Inicializamos la vista del Reporte
             } catch (JRException ex) {
-                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
@@ -4708,7 +4733,7 @@ int xx, xy;
                 llenarFacultadEdit(cboFacultad2);
                 cboFacultad2.setSelectedItem(facultad);
             } catch (SQLException ex) {
-                Logger.getLogger(Home_Root_corrupted.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
             }
             Object[] message = {
                 "Carrera:", txtCarrera2,
@@ -5073,7 +5098,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
 
     private void btnAggEmp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggEmp2MouseClicked
         
-         Empleado em = new Empleado();
+        Empleado em = new Empleado();
 
         em.nombre = this.txtNom2.getText();
         em.apellido = this.txtAp2.getText();
@@ -5092,12 +5117,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         }
 
         if (em.Validar().equals("Exito")) {
-
             String resultado = "";
-
             try {
-
-                resultado = conn.aggEmpleado(em);
+                resultado = this.conn.aggEmpleado(em);
                 this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
                 this.txtNom2.setText("");
                 this.txtAp2.setText("");
@@ -5105,9 +5127,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
                 this.txtCel2.setText("");
                 this.txtFecNac2.setText("");
                 this.txtDo2.setText("");
-                
-
-
+                this.llenarEmp();
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(this, ex.toString());
             }
@@ -5283,13 +5303,13 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JComboBox<String> cboBuscarCatMed;
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCategoriaMed;
+    private javax.swing.JComboBox<String> cboDoctores;
     private javax.swing.JComboBox<String> cboEmpleado;
     private javax.swing.JComboBox<String> cboEspecialidad;
     private javax.swing.JComboBox<String> cboFacultad;
     private javax.swing.JComboBox<String> cboPresentacionMed;
     private javax.swing.JComboBox<String> cboTipoUsuario;
     private javax.swing.JComboBox<String> cboUnidadesMed;
-    private javax.swing.JComboBox<String> cboUsuario;
     private javax.swing.JComboBox<String> cmbActividad;
     private javax.swing.JComboBox<String> cmbCarrera;
     private javax.swing.JComboBox<String> cmbDcotor;
@@ -5445,7 +5465,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblHeader61;
     private javax.swing.JLabel lblHeader62;
     private javax.swing.JLabel lblHeader63;
-    private javax.swing.JLabel lblHeader64;
+    private javax.swing.JLabel lblHeader65;
     private javax.swing.JLabel lblHeader68;
     private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblHeader7;
@@ -5476,6 +5496,8 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JRadioButton rdbCategoria;
     private javax.swing.JRadioButton rdbDepartamento;
     private javax.swing.JRadioButton rdbDoctor;
+    private javax.swing.JRadioButton rdbDoctorUser;
+    private javax.swing.JRadioButton rdbEmpleadoUser;
     private javax.swing.JRadioButton rdbFacultad;
     private javax.swing.ButtonGroup rdbFiltros1;
     private javax.swing.ButtonGroup rdbFiltros2;
@@ -5483,6 +5505,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JRadioButton rdbNombres;
     private javax.swing.JRadioButton rdbSexo;
     private javax.swing.JRadioButton rdbUbicacion;
+    private javax.swing.ButtonGroup rdbUsuario;
     private javax.swing.JTable tbDoctor;
     private javax.swing.JTable tbEmp;
     private javax.swing.JTable tbUsuarios;

@@ -275,46 +275,27 @@ public class ConexionDB {
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-     public String aggUsuario(Usuario _usuario) throws SQLException{
+     public String aggUsuario(Usuario _usuario, String _tabla, int _idOwner) throws SQLException{
         
-        String user = _usuario.user;
-        String contra = _usuario.password1;
-        int tipo= _usuario.tipo_usr;
-        int empleado= _usuario.empleado;
-         
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGARUSUARIO(?,?,?,?,?)}");
-        
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_USUARIO(?,?,?,?,?,?)}");
     
-        cst.setString("pUsuario", _usuario.user);
-        cst.setString("pContra", _usuario.password1);
-        cst.setInt("pTipo", _usuario.tipo_usr);
-        cst.setInt("pEmp",_usuario.empleado);
-        
+        cst.setString("pUSUARIO", _usuario.user);
+        cst.setString("pCONTRA", _usuario.password1);
+        cst.setInt("pTIPO", _usuario.tipo_usr);
+        cst.setString("pTABLA",_tabla);
+        cst.setInt("pIDOWNER",_idOwner);
            
-           
-        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
         
-        String mensaje = cst.getString("pMsj");
+        String mensaje = cst.getString("MENSAJE");
         System.out.println(mensaje);
         return mensaje;
-        
-        
     }
      
       public String aggDoctor(Doctor _doctor) throws SQLException{
         
-        String nombre = _doctor.nombre;
-        String apellido = _doctor.apellido;
-        int especialidad= _doctor.idEspecialidad;
-        String telefono= _doctor.telefono;
-        String fecha= _doctor.fechaNac;
-        String sexo= _doctor.sexo;
-        String documento= _doctor.documento;
-        int usuario= _doctor.idUsuario;
-        
-         
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGARDOCTOR(?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("{call  AGREGARDOCTOR(?,?,?,?,?,?,?,?)}");
         
     
         cst.setString("pNombre", _doctor.nombre);
@@ -324,8 +305,6 @@ public class ConexionDB {
         cst.setString("pFechaNac", _doctor.fechaNac);
         cst.setString("pSexo",_doctor.sexo);
         cst.setString("pDoc",_doctor.documento);
-        cst.setInt("pIdUsuario",_doctor.idUsuario);
-            
            
         cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
         cst.execute();
@@ -1138,6 +1117,35 @@ public class ConexionDB {
         }
     }
         
+         public Object[] Obt_Doctores() throws SQLException {
+
+        Statement stmt = conn.createStatement();
+        String query = "SELECT IDDOCTOR,DOC_NOMBRE || ' ' || DOC_APELLIDO NOMBRE FROM DOCTOR";
+         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+        
+        if(numRows > 0){
+            int[] idDoc = new int[numRows];
+           String[] doc = new String[numRows];
+            int con = 0;
+            while (rs.next()){
+                
+                idDoc[con] = rs.getInt(1);
+                doc[con] = rs.getString(2);
+                con++;
+            }
+            return new Object[]{idDoc,doc};
+        }
+        else{
+            return null;
+        }
+    }
+        
          public Object[] Obt_Usuario() throws SQLException {
           //DOCTOR AGG
         Statement stmt = conn.createStatement();
@@ -1203,11 +1211,9 @@ public class ConexionDB {
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
         String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
-                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad, "+
-                    "u.USUARIO"+
+                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad "+
                    " FROM DOCTOR d " +
                    " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
-                   " INNER JOIN USUARIO u on d.IDUSUARIO= u.IDUSUARIO " +
                    " WHERE d.ELIMINADO= 0";
               
         ResultSet rs = stmt.executeQuery(query);
@@ -1218,7 +1224,7 @@ public class ConexionDB {
           
           while (rs.next())
            {
-              for (int i=0;i<8;i++)
+              for (int i=0;i<7;i++)
               {
                 Datos[i]=rs.getObject(i+1);
               }
@@ -1291,9 +1297,8 @@ public class ConexionDB {
          public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA,u.USR_TIPO, emp.EMP_NOMBRE || ' ' || emp.EMP_APELLIDO NOMBRE " +
+        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA,u.USR_TIPO " +
                    " FROM USUARIO u " +
-                   " INNER JOIN EMPLEADO emp on u.IDEMP= emp.IDEMP " +
                    " WHERE u.ELIMINADO= 0";
               
         ResultSet rs = stmt.executeQuery(query);
@@ -1304,7 +1309,7 @@ public class ConexionDB {
           
           while (rs.next())
            {
-              for (int i=0;i<5;i++)
+              for (int i=0;i<4;i++)
               {
                 Datos[i]=rs.getObject(i+1);
               }
