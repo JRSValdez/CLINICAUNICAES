@@ -303,7 +303,10 @@ public class Login extends javax.swing.JFrame {
        if(us.Validar().equals("Exito")){
            
            try {
-               int tipo= cn.iniciar_sesion(us);
+               int[] res = cn.iniciar_sesion(us);
+               int tipo= res[0];
+               us.idUsuario = res[1];
+               
                //Administrador
                if (tipo==0){
                    Home_Root h= new Home_Root(us);

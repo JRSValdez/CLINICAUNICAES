@@ -1527,6 +1527,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         consulta.ef_torax = this.txt_Ef_Torax.getText();
         consulta.ef_abdomen = this.txt_Ef_Abdomen.getText();
         consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
+        consulta.recomendaciones = this.txt_recomendaciones.getText();
         
         consulta.receta = this.receta;
         consulta.diagnostico = this.diagnostico;

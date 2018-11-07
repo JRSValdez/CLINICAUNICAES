@@ -74,6 +74,11 @@ int xx, xy;
     int[] idEsp;
     int[] idUsr;
     
+    int[] idDoctorReporte;
+    int[] idActividadReporte;
+    int[] idFacultadReporte;
+    int[] idCarreraReporte;
+    
     public Home_Root(){
         initComponents();
     }
@@ -126,6 +131,19 @@ int xx, xy;
         this.lblMedicamentos.setText(Integer.toString(conn.ContarMedicamentos()));
         this.lblPacientes.setText(Integer.toString(conn.ContarPacientes()));
         this.lblConsultas.setText(Integer.toString(conn.ConsultasxMes()));
+        
+        //---------------------reportes------------------------------------------
+        Object[] array = this.conn.Obt_TipoPaciente();
+        this.idActividadReporte = (int[]) array[0];
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
+        this.cmbActividad.setModel(model);
+        
+        Object[] arrays = this.conn.llenarCarreras(this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
+        this.idCarreraReporte = (int[]) arrays[0];
+        
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel( (Object[]) arrays[2] );
+        this.cmbCarrera.setModel(model2);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -302,10 +320,9 @@ int xx, xy;
         lblHeader52 = new javax.swing.JLabel();
         txtFechaInicio = new javax.swing.JTextField();
         txtFechaFinal = new javax.swing.JTextField();
-        lblHeader53 = new javax.swing.JLabel();
-        cmbPeriodo = new javax.swing.JComboBox<>();
         jLabel42 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnReporteConsultas = new javax.swing.JLabel();
+        rdbFechas = new javax.swing.JRadioButton();
         jPanel42 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jPanelEstNuevo6 = new javax.swing.JPanel();
@@ -1989,15 +2006,18 @@ int xx, xy;
         lblHeader32.setText("FACULTAD:");
 
         cmbFacultad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cmbFacultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
         cmbFacultad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        cmbFacultad.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbFacultadItemStateChanged(evt);
+            }
+        });
 
         lblHeader33.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader33.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader33.setText("CARRERA:");
 
         cmbCarrera.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cmbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingemiería en Sistemas" }));
         cmbCarrera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader34.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -2005,7 +2025,6 @@ int xx, xy;
         lblHeader34.setText("DOCTOR:");
 
         cmbDcotor.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cmbDcotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DOCTOR 1", "DOCTOR 2", "DOCTOR 3" }));
         cmbDcotor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader35.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -2021,7 +2040,6 @@ int xx, xy;
         lblHeader41.setText("ACTIVIDAD:");
 
         cmbActividad.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cmbActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Actividad 1", "Actividad 2", "Actividad 3", " " }));
         cmbActividad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         lblHeader42.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
@@ -2239,40 +2257,33 @@ int xx, xy;
         lblHeader52.setText("FECHA FINAL:");
 
         txtFechaInicio.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFechaInicio.setText("XX-XX-XXXX");
         txtFechaInicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         txtFechaFinal.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFechaFinal.setText("XX-XX-XXXX");
         txtFechaFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
-        lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader53.setText("PERIODO:");
-
-        cmbPeriodo.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DIARIO", "MENSUAL", "ANUAL" }));
-        cmbPeriodo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         jLabel42.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(255, 255, 255));
         jLabel42.setText("FECHA");
         jLabel42.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
-        jLabel8.setText("GENERAR REPORTE");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel8.setFocusable(false);
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnReporteConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteConsultas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnReporteConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
+        btnReporteConsultas.setText("GENERAR REPORTE");
+        btnReporteConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnReporteConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReporteConsultas.setFocusable(false);
+        btnReporteConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReporteConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                btnReporteConsultasMouseClicked(evt);
             }
         });
+
+        rdbFiltros1.add(rdbFechas);
+        rdbFechas.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanelEstNuevo5Layout = new javax.swing.GroupLayout(jPanelEstNuevo5);
         jPanelEstNuevo5.setLayout(jPanelEstNuevo5Layout);
@@ -2283,45 +2294,41 @@ int xx, xy;
                 .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
                         .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblHeader53, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblHeader50, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblHeader52, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbPeriodo, javax.swing.GroupLayout.Alignment.LEADING, 0, 250, Short.MAX_VALUE)
+                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txtFechaInicio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(btnReporteConsultas))
                     .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
-                        .addGap(0, 312, Short.MAX_VALUE)
-                        .addComponent(jLabel42)
-                        .addContainerGap(312, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(rdbFechas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelEstNuevo5Layout.setVerticalGroup(
             jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel42)
+                .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rdbFechas, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReporteConsultas)
                     .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader50)
                             .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader52)
-                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader53)
-                            .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel8)))
-                .addContainerGap())
+                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
@@ -2346,7 +2353,7 @@ int xx, xy;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelEstNuevo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanelEstNuevo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelEstNuevo5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2512,7 +2519,7 @@ int xx, xy;
         btnGenReporteExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnGenReporteExpediente.setText("GENERAR REPORTE");
         btnGenReporteExpediente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGenReporteExpediente.setFocusable(false);
         btnGenReporteExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGenReporteExpediente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2560,7 +2567,7 @@ int xx, xy;
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addComponent(btnGenReporteExpediente)
                 .addGap(131, 131, 131))
         );
@@ -2620,7 +2627,7 @@ int xx, xy;
                 .addGroup(Tab_reportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("REPORTES", null, Tab_reports, "");
@@ -4273,6 +4280,9 @@ int xx, xy;
         this.idDoctores = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboDoctores.setModel(model);
+        
+        this.idDoctorReporte = (int[]) array[0];
+        this.cmbDcotor.setModel(model);
     }
     
        public void llenarEsp() throws SQLException {
@@ -4509,10 +4519,6 @@ int xx, xy;
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanelEstNuevo4MouseClicked
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-
-    }//GEN-LAST:event_jLabel8MouseClicked
-
     private void jPanelEstNuevo5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo5MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanelEstNuevo5MouseClicked
@@ -4579,7 +4585,7 @@ int xx, xy;
             parameters.put ("idConsulta", idConsulta);
             JasperReport reporte; //Creo el objeto reporte
             // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; //"../Reportes/reporte_expediente.jasper";
+            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; 
             try {
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
                 JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
@@ -4841,6 +4847,9 @@ int xx, xy;
         this.idFacult = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboFacultad.setModel(model);
+        
+        this.idFacultadReporte = (int[]) array[0];
+        this.cmbFacultad.setModel(model);
     }
     
 public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
@@ -5211,6 +5220,70 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     }
     }//GEN-LAST:event_btnAlertaCantActionPerformed
 
+    private void btnReporteConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteConsultasMouseClicked
+        //REPORTE DE CONSULTAS
+        JasperReport reporte; 
+        Map parameters = new HashMap ();
+        String path = "";
+        
+        if(this.rdbDoctor.isSelected()){
+            parameters.put ("idDoctor", this.idDoctorReporte[this.cmbDcotor.getSelectedIndex()]);
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_doctor.jasper"; 
+        }
+        else if(this.rdbSexo.isSelected()){
+            System.out.println("Si llego weeeeee");
+            if(this.cmbSexo.getSelectedItem().equals("Masculino")){
+                parameters.put ("sexo", "M");
+            } else parameters.put ("sexo", "F");
+            path = ".\\src\\Reportes\\reporte_consultas_sexo.jasper"; 
+        }
+        else if(this.rdbActividad.isSelected()){
+            parameters.put ("tipopac", this.idActividadReporte[this.cmbActividad.getSelectedIndex()]);
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_actividad.jasper"; 
+        }
+        else if(this.rdbFacultad.isSelected()){
+            parameters.put ("facultad", this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_facultad.jasper"; 
+        }
+        else if(this.rdbCarrera.isSelected()){
+            parameters.put ("carrera", this.idCarreraReporte[this.cmbCarrera.getSelectedIndex()]);
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_carrera.jasper"; 
+        }
+        else if(this.rdbFechas.isSelected()){
+            parameters.put ("fecha1", this.txtFechaInicio.getText());
+            parameters.put ("fecha2", this.txtFechaFinal.getText());
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_fechas.jasper"; 
+        }
+        
+        
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); 
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); 
+            JasperViewer viewer = new JasperViewer(jprint,false);
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
+            viewer.setVisible(true); 
+        } catch (JRException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteConsultasMouseClicked
+
+    private void cmbFacultadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbFacultadItemStateChanged
+        try {
+            Object[] arrays = this.conn.llenarCarreras(this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
+            this.idCarreraReporte = (int[]) arrays[0];
+
+            DefaultComboBoxModel model2 = new DefaultComboBoxModel( (Object[]) arrays[2] );
+            this.cmbCarrera.setModel(model2);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_cmbFacultadItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -5288,6 +5361,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel btnGenReporteExpediente;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btnMostrarElimDoc;
+    private javax.swing.JLabel btnReporteConsultas;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_config;
     private javax.swing.JButton btn_docs;
@@ -5315,7 +5389,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JComboBox<String> cmbDcotor;
     private javax.swing.JComboBox<String> cmbDepartamento;
     private javax.swing.JComboBox<String> cmbFacultad;
-    private javax.swing.JComboBox<String> cmbPeriodo;
     private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JComboBox<String> cmbUbicacion;
     private javax.swing.JPanel header;
@@ -5342,7 +5415,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -5453,7 +5525,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblHeader50;
     private javax.swing.JLabel lblHeader51;
     private javax.swing.JLabel lblHeader52;
-    private javax.swing.JLabel lblHeader53;
     private javax.swing.JLabel lblHeader54;
     private javax.swing.JLabel lblHeader55;
     private javax.swing.JLabel lblHeader56;
@@ -5499,6 +5570,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JRadioButton rdbDoctorUser;
     private javax.swing.JRadioButton rdbEmpleadoUser;
     private javax.swing.JRadioButton rdbFacultad;
+    private javax.swing.JRadioButton rdbFechas;
     private javax.swing.ButtonGroup rdbFiltros1;
     private javax.swing.ButtonGroup rdbFiltros2;
     private javax.swing.JRadioButton rdbIdPac;

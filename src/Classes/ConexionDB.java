@@ -569,7 +569,7 @@ public class ConexionDB {
     ////////////////////// OTROS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
-    public int iniciar_sesion(Usuario _usuario ) throws SQLException{
+    public int[] iniciar_sesion(Usuario _usuario ) throws SQLException{
         
         String user = _usuario.user;
         String contra = _usuario.password;
@@ -587,10 +587,12 @@ public class ConexionDB {
         String mensaje = cst.getString("pMensaje");
         System.out.println(mensaje);
         if(!mensaje.equals("Error")){
-            int tipo_usr=Integer.parseInt(mensaje.substring(7,mensaje.length()));
+            String[] splitter = mensaje.split(",");
+            int tipo_usr=Integer.parseInt(splitter[1]);
+            int id_user = Integer.parseInt(splitter[2]);
             
-            return tipo_usr;
-        } else return -1;
+            return new int[]{tipo_usr,id_user};
+        } else return new int[]{-1};
        
     }
     
@@ -2076,15 +2078,15 @@ public class ConexionDB {
         String query="";
         switch(tipoA){
             case 1:
-                 query= "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
-                + "where (cantidad<=5 or (trunc(fecha_v)-trunc(sysdate)<10) and (trunc(fecha_v)-trunc(sysdate)>0))  and eliminado=0";
+                 query= "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
+                + "where (cantidad<=5 or (trunc(fecha_v)-trunc(current_date)<10) and (trunc(fecha_v)-trunc(current_date)>0))  and eliminado=0";
                 break;
             case 2:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
-                + "where ((trunc(fecha_v)-trunc(sysdate)<10) and (trunc(fecha_v)-trunc(sysdate)>0))  and eliminado=0";
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
+                + "where ((trunc(fecha_v)-trunc(current_date)<10) and (trunc(fecha_v)-trunc(current_date)>0))  and eliminado=0";
                 break;
             case 3:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(sysdate) as dias from medicamento "
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
                 + "where (cantidad<=5 )and eliminado=0";
                 break;
         }

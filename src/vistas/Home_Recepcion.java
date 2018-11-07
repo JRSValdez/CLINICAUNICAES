@@ -3266,7 +3266,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     int idConsulta = this.conn.aggConsulta(idPaciente, this.idDoctor[this.cmbDoctorActual.getSelectedIndex()], this.user.idUsuario);
                     if(idConsulta > 0){
                         JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
-                    } else JOptionPane.showMessageDialog(rootPane,"Error");
+                    } else JOptionPane.showMessageDialog(rootPane,"Error al agregar consulta " );
                 } catch (SQLException ex) {
                     Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
                 } 
