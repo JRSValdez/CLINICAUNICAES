@@ -1,10 +1,7 @@
 package vistas;
 import Classes.ConexionDB;
-import Classes.Consulta;
-import Classes.Paciente;
 import java.awt.Color;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

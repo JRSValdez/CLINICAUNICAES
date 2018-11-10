@@ -16,7 +16,7 @@ public class Usuario {
     public String password;
     public int tipo_usr;
     public int empleado;
-    
+    public int idDoctor;
    
     public String password1;
     public String password2;

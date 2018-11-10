@@ -25,13 +25,13 @@ public class Historial_Paciente extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Historial_Paciente(int _idPaciente) throws SQLException {
+    public Historial_Paciente(Paciente _paciente) throws SQLException {
         initComponents();
         this.tbConsultas.setSelectionForeground(Color.WHITE);
         conn = new ConexionDB();
         
-        this.tbConsultas.setModel(this.conn.getConsultasByID(tbConsultas, _idPaciente));
-        
+        this.tbConsultas.setModel(this.conn.getConsultasByID(tbConsultas, _paciente.idPaciente));
+        this.lblHistPaciente.setText("Historial del paciente: "+_paciente.nombre);
         //doble clic en una fila
         this.tbConsultas.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent mouseEvent) {
@@ -61,7 +61,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblHistPaciente = new javax.swing.JLabel();
         Barra_Superior2 = new javax.swing.JPanel();
         btnHome4 = new javax.swing.JButton();
         lblHeader4 = new javax.swing.JLabel();
@@ -79,9 +79,9 @@ public class Historial_Paciente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Historial de Paciente: \"Nombre paciente\"");
+        lblHistPaciente.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        lblHistPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        lblHistPaciente.setText("Historial de Paciente: \"Nombre paciente\"");
 
         Barra_Superior2.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -203,7 +203,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(lblHistPaciente)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -216,7 +216,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Barra_Superior2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblHistPaciente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -305,12 +305,12 @@ public class Historial_Paciente extends javax.swing.JFrame {
     private javax.swing.JLabel btnAtras;
     private javax.swing.JButton btnHome4;
     private javax.swing.JLabel btn_close2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeader4;
     private javax.swing.JLabel lblHeader5;
+    private javax.swing.JLabel lblHistPaciente;
     private javax.swing.JTable tbConsultas;
     // End of variables declaration//GEN-END:variables
 }

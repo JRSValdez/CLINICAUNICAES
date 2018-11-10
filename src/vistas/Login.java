@@ -305,10 +305,13 @@ public class Login extends javax.swing.JFrame {
            try {
                int[] res = cn.iniciar_sesion(us);
                int tipo= res[0];
-               us.idUsuario = res[1];
+               if(tipo > 0){
+                    us.idUsuario = res[1];
+                    us.idDoctor = res[2];
+               }
                
                //Administrador
-               if (tipo==0){
+               if(tipo==0){
                    Home_Root h= new Home_Root(us);
                    h.setVisible(true);
                    this.dispose();

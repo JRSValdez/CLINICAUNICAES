@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Consultorio_Consulta extends javax.swing.JFrame {
 
-    int xx, xy,xs, ys, sbx,sby;
+    int xx, xy,xs, ys, sbx,sby, idDoctor;
     int conA = 0, conD = 0;
     ConexionDB conn = new ConexionDB();
     Consulta consulta;
@@ -46,13 +46,15 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.llenarCatsMedicamento();
     }
     
-    public Consultorio_Consulta(Consulta _consulta, Paciente _paciente) throws SQLException{
+    public Consultorio_Consulta(Consulta _consulta, Paciente _paciente, int _idDoctor) throws SQLException{
         initComponents();
+        this.idDoctor = _idDoctor;
         this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));
         this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "D"));
         this.consulta = _consulta;
         this.paciente = _paciente;
         this.llenarCampos();
+        
     }
     
     public void llenarCampos() throws SQLException{
@@ -157,10 +159,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         txt_Ef_Cuello = new javax.swing.JTextArea();
         TAB_DIAGNOSTICO = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        lblHeader9 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        txt_recomendaciones = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
         lblHeader15 = new javax.swing.JLabel();
         lblHeader57 = new javax.swing.JLabel();
@@ -173,6 +171,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jtDiagnosticos = new javax.swing.JTable();
         btnAggDiagnostico = new javax.swing.JLabel();
         btnBuscarDiagnostico = new javax.swing.JLabel();
+        TAB_TRATAMIENTO1 = new javax.swing.JPanel();
+        btnTerminarConsulta1 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         TAB_TRATAMIENTO = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         lblHeader11 = new javax.swing.JLabel();
@@ -196,6 +197,17 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         cmbCatMedicamento = new javax.swing.JComboBox<>();
         btnBuscarCatMedicamento = new javax.swing.JLabel();
         btnTerminarConsulta = new javax.swing.JLabel();
+        TAB_TRATAMIENTO2 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        lblHeader16 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        txt_recomendaciones = new javax.swing.JTextArea();
+        jPanel12 = new javax.swing.JPanel();
+        lblHeader17 = new javax.swing.JLabel();
+        txtTratamiento = new javax.swing.JScrollPane();
+        txt_recomendaciones2 = new javax.swing.JTextArea();
+        btnTerminarConsulta2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1010, 650));
@@ -544,7 +556,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_SIGNOSLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TAB_SIGNOSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelSignosV, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                    .addComponent(panelSignosV, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
                     .addComponent(panelDatosPac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -557,7 +569,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addComponent(panelSignosV, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnHistorial)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PACIENTE Y SIGNOS VITALES", TAB_SIGNOS);
@@ -725,7 +737,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_ANTECEDENTESLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TAB_ANTECEDENTESLayout.setVerticalGroup(
@@ -733,7 +745,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_ANTECEDENTESLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ANTECEDENTES", TAB_ANTECEDENTES);
@@ -845,7 +857,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                     .addComponent(lblHeader8)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHeader14)
@@ -864,58 +876,21 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_EXAMEN_FILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_EXAMEN_FILayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TAB_EXAMEN_FILayout.setVerticalGroup(
             TAB_EXAMEN_FILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_EXAMEN_FILayout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("EXAMEN FÍSICO", TAB_EXAMEN_FI);
 
         TAB_DIAGNOSTICO.setBackground(new java.awt.Color(102, 0, 0));
         TAB_DIAGNOSTICO.setPreferredSize(new java.awt.Dimension(1000, 640));
-
-        jPanel8.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
-        jPanel8.setPreferredSize(new java.awt.Dimension(480, 150));
-
-        lblHeader9.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        lblHeader9.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader9.setText("RECOMENDACIONES");
-
-        txt_recomendaciones.setColumns(20);
-        txt_recomendaciones.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txt_recomendaciones.setRows(3);
-        txt_recomendaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        jScrollPane6.setViewportView(txt_recomendaciones);
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblHeader9)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(lblHeader9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         jPanel7.setBackground(new java.awt.Color(102, 0, 0));
         jPanel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
@@ -1074,22 +1049,36 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
                 .addContainerGap())
         );
         TAB_DIAGNOSTICOLayout.setVerticalGroup(
             TAB_DIAGNOSTICOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TAB_DIAGNOSTICOLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                .addGap(168, 168, 168))
         );
 
         jTabbedPane1.addTab("DIAGNÓSTICO", TAB_DIAGNOSTICO);
+
+        TAB_TRATAMIENTO1.setBackground(new java.awt.Color(102, 0, 0));
+        TAB_TRATAMIENTO1.setPreferredSize(new java.awt.Dimension(1000, 640));
+
+        btnTerminarConsulta1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnTerminarConsulta1.setForeground(new java.awt.Color(255, 255, 255));
+        btnTerminarConsulta1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTerminarConsulta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        btnTerminarConsulta1.setText("Guardar Expediente y Finalizar Consulta");
+        btnTerminarConsulta1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnTerminarConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnTerminarConsulta1.setFocusable(false);
+        btnTerminarConsulta1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnTerminarConsulta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTerminarConsulta1MouseClicked(evt);
+            }
+        });
 
         TAB_TRATAMIENTO.setBackground(new java.awt.Color(102, 0, 0));
         TAB_TRATAMIENTO.setPreferredSize(new java.awt.Dimension(1000, 640));
@@ -1150,8 +1139,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(lblHeader11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBackground(new java.awt.Color(102, 0, 0));
@@ -1352,7 +1341,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1402,7 +1391,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             .addGroup(TAB_TRATAMIENTOLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(TAB_TRATAMIENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1047, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1056, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(TAB_TRATAMIENTOLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1416,13 +1405,179 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTerminarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("TRATAMIENTO", TAB_TRATAMIENTO);
+        jTabbedPane2.addTab("MEDICAMENTOS", TAB_TRATAMIENTO);
+
+        TAB_TRATAMIENTO2.setBackground(new java.awt.Color(102, 0, 0));
+        TAB_TRATAMIENTO2.setPreferredSize(new java.awt.Dimension(1000, 640));
+
+        jPanel13.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel13.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
+
+        jPanel9.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
+        jPanel9.setPreferredSize(new java.awt.Dimension(480, 150));
+
+        lblHeader16.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lblHeader16.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader16.setText("RECOMENDACIONES");
+
+        txt_recomendaciones.setColumns(20);
+        txt_recomendaciones.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_recomendaciones.setRows(3);
+        txt_recomendaciones.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jScrollPane13.setViewportView(txt_recomendaciones);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblHeader16)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(lblHeader16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel12.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel12.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
+        jPanel12.setPreferredSize(new java.awt.Dimension(480, 150));
+
+        lblHeader17.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        lblHeader17.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader17.setText("TRATAMIENTO");
+
+        txt_recomendaciones2.setColumns(20);
+        txt_recomendaciones2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_recomendaciones2.setRows(3);
+        txt_recomendaciones2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        txtTratamiento.setViewportView(txt_recomendaciones2);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblHeader17)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtTratamiento, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(lblHeader17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
+        );
+
+        btnTerminarConsulta2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnTerminarConsulta2.setForeground(new java.awt.Color(255, 255, 255));
+        btnTerminarConsulta2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnTerminarConsulta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        btnTerminarConsulta2.setText("Guardar Expediente y Finalizar Consulta");
+        btnTerminarConsulta2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnTerminarConsulta2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnTerminarConsulta2.setFocusable(false);
+        btnTerminarConsulta2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnTerminarConsulta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTerminarConsulta2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout TAB_TRATAMIENTO2Layout = new javax.swing.GroupLayout(TAB_TRATAMIENTO2);
+        TAB_TRATAMIENTO2.setLayout(TAB_TRATAMIENTO2Layout);
+        TAB_TRATAMIENTO2Layout.setHorizontalGroup(
+            TAB_TRATAMIENTO2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TAB_TRATAMIENTO2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(TAB_TRATAMIENTO2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(TAB_TRATAMIENTO2Layout.createSequentialGroup()
+                        .addGap(0, 363, Short.MAX_VALUE)
+                        .addComponent(btnTerminarConsulta2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 363, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        TAB_TRATAMIENTO2Layout.setVerticalGroup(
+            TAB_TRATAMIENTO2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TAB_TRATAMIENTO2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(btnTerminarConsulta2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("TRATAMIENTO", TAB_TRATAMIENTO2);
+
+        javax.swing.GroupLayout TAB_TRATAMIENTO1Layout = new javax.swing.GroupLayout(TAB_TRATAMIENTO1);
+        TAB_TRATAMIENTO1.setLayout(TAB_TRATAMIENTO1Layout);
+        TAB_TRATAMIENTO1Layout.setHorizontalGroup(
+            TAB_TRATAMIENTO1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
+            .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
+                .addContainerGap(357, Short.MAX_VALUE)
+                .addComponent(btnTerminarConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(393, Short.MAX_VALUE))
+        );
+        TAB_TRATAMIENTO1Layout.setVerticalGroup(
+            TAB_TRATAMIENTO1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTerminarConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("RECETA", TAB_TRATAMIENTO1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1441,7 +1596,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                 .addGap(5, 5, 5)
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1516,41 +1671,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     }
     
     private void btnTerminarConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTerminarConsultaMouseClicked
-        consulta.motivo = this.txtMotivoConsulta.getText();
-        consulta.peso = this.txtPeso.getText();
-        consulta.frec_card = this.txtFrecCardiaca.getText();
-        consulta.pres_art = this.txtPresionArterial.getText();
-        consulta.pulso = this.txtPulso.getText();
-        consulta.talla = this.txtTalla.getText();
-        consulta.ef_cabeza = this.txt_Ef_Cabeza.getText();
-        consulta.ef_cuello = this.txt_Ef_Cuello.getText();
-        consulta.ef_torax = this.txt_Ef_Torax.getText();
-        consulta.ef_abdomen = this.txt_Ef_Abdomen.getText();
-        consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
-        consulta.recomendaciones = this.txt_recomendaciones.getText();
         
-        consulta.receta = this.receta;
-        consulta.diagnostico = this.diagnostico;
-        consulta.antecedente = this.antecedente;
-        
-        //verifica cada campo segun su tipo, si hay alguna validación mala la devolverá en la variable validacion
-        String validacion = consulta.validarConsulta();
-        // si la variable no tiene nada, las validaciones son correctas
-        if(validacion.equals("")){
-            try {
-                //Se agrega la consulta a través de un método en la clase conexionDB
-                String mensaje = this.conn.aggDetConsulta(consulta);
-                JOptionPane.showMessageDialog(rootPane, mensaje);
-                this.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } else {
-            //error de validación
-            JOptionPane.showMessageDialog(rootPane, validacion);
-            System.out.println(validacion);
-        }
         //agregar antecedentes, diagnosticos y receta con el Id obtenido de la consulta
     }//GEN-LAST:event_btnTerminarConsultaMouseClicked
 
@@ -1660,6 +1781,9 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
                     String[] newRow = new String[]{idMed, med, dosis, String.valueOf(cantidad)};
                     this.receta.aggRow(newRow);
                     this.jtReceta.setModel(this.aggRecetaJt(modelo, newRow));
+                    
+                    this.txtMedicamentoDosis.setText("");
+                    this.txtMedicamentoCantidad.setText("");
                 }
             }
         } catch (Exception e) {
@@ -1671,12 +1795,54 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private void btnHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialMouseClicked
         try {
             //Mostrar el historial de consultas del paciente que esta siendo atendido
-            Historial_Paciente historial = new Historial_Paciente(this.paciente.idPaciente);
+            Historial_Paciente historial = new Historial_Paciente(this.paciente);
             historial.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnHistorialMouseClicked
+
+    private void btnTerminarConsulta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTerminarConsulta1MouseClicked
+        consulta.motivo = this.txtMotivoConsulta.getText();
+        consulta.peso = this.txtPeso.getText();
+        consulta.frec_card = this.txtFrecCardiaca.getText();
+        consulta.pres_art = this.txtPresionArterial.getText();
+        consulta.pulso = this.txtPulso.getText();
+        consulta.talla = this.txtTalla.getText();
+        consulta.ef_cabeza = this.txt_Ef_Cabeza.getText();
+        consulta.ef_cuello = this.txt_Ef_Cuello.getText();
+        consulta.ef_torax = this.txt_Ef_Torax.getText();
+        consulta.ef_abdomen = this.txt_Ef_Abdomen.getText();
+        consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
+        consulta.recomendaciones = this.txt_recomendaciones.getText();
+        
+        consulta.receta = this.receta;
+        consulta.diagnostico = this.diagnostico;
+        consulta.antecedente = this.antecedente;
+        
+        //verifica cada campo segun su tipo, si hay alguna validación mala la devolverá en la variable validacion
+        String validacion = consulta.validarConsulta();
+        // si la variable no tiene nada, las validaciones son correctas
+        if(validacion.equals("")){
+            try {
+                //Se agrega la consulta a través de un método en la clase conexionDB
+                String mensaje = this.conn.aggDetConsulta(consulta, this.idDoctor);
+                JOptionPane.showMessageDialog(rootPane, mensaje);
+                this.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } else {
+            //error de validación
+            JOptionPane.showMessageDialog(rootPane, validacion);
+            System.out.println(validacion);
+        }
+    }//GEN-LAST:event_btnTerminarConsulta1MouseClicked
+
+    private void btnTerminarConsulta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTerminarConsulta2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTerminarConsulta2MouseClicked
 
     public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String[] _row){
         _modelo.addRow(_row);
@@ -1756,6 +1922,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JPanel TAB_EXAMEN_FI;
     private javax.swing.JPanel TAB_SIGNOS;
     private javax.swing.JPanel TAB_TRATAMIENTO;
+    private javax.swing.JPanel TAB_TRATAMIENTO1;
+    private javax.swing.JPanel TAB_TRATAMIENTO2;
     private javax.swing.JLabel btnAddReceta;
     private javax.swing.JLabel btnAggAntecedente;
     private javax.swing.JLabel btnAggDiagnostico;
@@ -1765,6 +1933,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel btnBuscarMedicamento;
     private javax.swing.JLabel btnHistorial;
     private javax.swing.JLabel btnTerminarConsulta;
+    private javax.swing.JLabel btnTerminarConsulta1;
+    private javax.swing.JLabel btnTerminarConsulta2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JComboBox<String> cmbAntecedentessEnf;
     private javax.swing.JComboBox<String> cmbAntecedentessEnfCat;
@@ -1774,24 +1944,27 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jtAntecedentes;
     private javax.swing.JTable jtDiagnosticos;
     private javax.swing.JTable jtMedicamentos;
@@ -1806,6 +1979,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader13;
     private javax.swing.JLabel lblHeader14;
     private javax.swing.JLabel lblHeader15;
+    private javax.swing.JLabel lblHeader16;
+    private javax.swing.JLabel lblHeader17;
     private javax.swing.JLabel lblHeader37;
     private javax.swing.JLabel lblHeader39;
     private javax.swing.JLabel lblHeader4;
@@ -1835,7 +2010,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader69;
     private javax.swing.JLabel lblHeader70;
     private javax.swing.JLabel lblHeader8;
-    private javax.swing.JLabel lblHeader9;
     private javax.swing.JLabel lblMedicamentoPara;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombrePac;
@@ -1853,11 +2027,13 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtPulso;
     private javax.swing.JTextField txtTalla;
     private javax.swing.JTextField txtTemperatura;
+    private javax.swing.JScrollPane txtTratamiento;
     private javax.swing.JTextArea txt_Ef_Abdomen;
     private javax.swing.JTextArea txt_Ef_Cabeza;
     private javax.swing.JTextArea txt_Ef_Cuello;
     private javax.swing.JTextArea txt_Ef_Extremidades;
     private javax.swing.JTextArea txt_Ef_Torax;
     private javax.swing.JTextArea txt_recomendaciones;
+    private javax.swing.JTextArea txt_recomendaciones2;
     // End of variables declaration//GEN-END:variables
 }

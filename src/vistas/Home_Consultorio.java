@@ -1162,7 +1162,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 try {
                     Consulta consulta = this.conn.getConsulta(idConsulta);
                     Paciente paciente = this.conn.getPaciente(consulta.idPaciente);
-                    Consultorio_Consulta form = new Consultorio_Consulta(consulta, paciente);
+                    Consultorio_Consulta form = new Consultorio_Consulta(consulta, paciente, this.user.idDoctor);
                     form.setVisible(true);
                 } catch (SQLException ex) {
                     Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);

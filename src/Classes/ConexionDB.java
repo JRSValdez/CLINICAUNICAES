@@ -352,14 +352,13 @@ public class ConexionDB {
       
       
     
-    public int aggConsulta(int _idPaciente, int _idDoctor, int _idUsuario) throws SQLException{
+    public int aggConsulta(int _idPaciente, int _idUsuario) throws SQLException{
      
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
-         CallableStatement cst = this.conn.prepareCall("{call  AGG_CONSULTA(?,?,?,?)}");
+         CallableStatement cst = this.conn.prepareCall("{call  AGG_CONSULTA(?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDUSUARIO", _idUsuario);
         cst.setInt("pIDPACIENTE", _idPaciente);
-        cst.setInt("pIDDOCTOR", _idDoctor);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -379,11 +378,12 @@ public class ConexionDB {
         }
     }
     
-    public String aggDetConsulta(Consulta _consulta) throws SQLException{
+    public String aggDetConsulta(Consulta _consulta, int _idDoctor) throws SQLException{
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _consulta.idConsulta);
+        cst.setInt("pIDDOCTOR", _idDoctor);
         cst.setString("pEF_CABEZA", _consulta.ef_cabeza);
         cst.setString("pEF_CUELLO", _consulta.ef_cuello);
         cst.setString("pEF_TORAX", _consulta.ef_torax);
@@ -590,8 +590,8 @@ public class ConexionDB {
             String[] splitter = mensaje.split(",");
             int tipo_usr=Integer.parseInt(splitter[1]);
             int id_user = Integer.parseInt(splitter[2]);
-            
-            return new int[]{tipo_usr,id_user};
+            int id_doc = Integer.parseInt(splitter[3]);
+            return new int[]{tipo_usr,id_user,id_doc};
         } else return new int[]{-1};
        
     }
@@ -726,7 +726,7 @@ public class ConexionDB {
     public DefaultTableModel getConsultasEnEspera( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT C.IDCONSULTA, TP.TIPOPAC ACTIVIDAD, P.PAC_NOMBRE || P.PAC_APELLIDO PACIENTE, " +
+        String query = "SELECT C.IDCONSULTA, TP.TIPOPAC ACTIVIDAD, P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') "+
                 " FROM CONSULTA C "+ 
