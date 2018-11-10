@@ -78,6 +78,7 @@ int xx, xy;
     int[] idActividadReporte;
     int[] idFacultadReporte;
     int[] idCarreraReporte;
+    int[] idDepartamentoReporte;
     
     public Home_Root(){
         initComponents();
@@ -143,6 +144,13 @@ int xx, xy;
         
         DefaultComboBoxModel model2 = new DefaultComboBoxModel( (Object[]) arrays[2] );
         this.cmbCarrera.setModel(model2);
+        
+        // llenar el combobox de departamento
+        Object[] arrayDep = this.conn.Obt_Depart();
+
+        this.idDepartamentoReporte = (int[]) arrayDep[0];
+        DefaultComboBoxModel modelDep = new DefaultComboBoxModel((Object[]) arrayDep[1]);
+        this.cmbDepartamento.setModel(modelDep);
         
     }
 
@@ -314,7 +322,7 @@ int xx, xy;
         rdbDepartamento = new javax.swing.JRadioButton();
         rdbCategoria = new javax.swing.JRadioButton();
         rdbUbicacion = new javax.swing.JRadioButton();
-        jRadioButton11 = new javax.swing.JRadioButton();
+        rdbDiagnostico = new javax.swing.JRadioButton();
         jPanelEstNuevo5 = new javax.swing.JPanel();
         lblHeader50 = new javax.swing.JLabel();
         lblHeader52 = new javax.swing.JLabel();
@@ -2103,8 +2111,8 @@ int xx, xy;
         rdbFiltros1.add(rdbUbicacion);
         rdbUbicacion.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
-        rdbFiltros1.add(jRadioButton11);
-        jRadioButton11.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        rdbFiltros1.add(rdbDiagnostico);
+        rdbDiagnostico.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanelEstNuevo4Layout = new javax.swing.GroupLayout(jPanelEstNuevo4);
         jPanelEstNuevo4.setLayout(jPanelEstNuevo4Layout);
@@ -2165,7 +2173,7 @@ int xx, xy;
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblHeader42, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton11)
+                                        .addComponent(rdbDiagnostico)
                                         .addGap(12, 12, 12)
                                         .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
@@ -2228,7 +2236,7 @@ int xx, xy;
                     .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
                         .addComponent(rdbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rdbDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
                         .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHeader42)
@@ -5259,6 +5267,35 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
             // Ubicacion del Reporte
             path = ".\\src\\Reportes\\reporte_consultas_fechas.jasper"; 
         }
+        else if(this.rdbDepartamento.isSelected()){
+            parameters.put ("departamento", this.idDepartamentoReporte[this.cmbDepartamento.getSelectedIndex()]);
+            // Ubicacion del Reporte
+            path = ".\\src\\Reportes\\reporte_consultas_departamento.jasper"; 
+        }
+        else if(this.rdbUbicacion.isSelected()){
+            parameters.put ("ubicacion", this.cmbDepartamento.getSelectedIndex() +1);
+            // Ubicacion del Reporte
+            //path = ".\\src\\Reportes\\reporte_consultas_ubicacion.jasper"; 
+        }
+        else if(this.rdbCategoria.isSelected()){
+            String cat = this.txtCodCat.getText();
+            if(cat.length() >= 2){
+                parameters.put ("categoria", cat);
+                // Ubicacion del Reporte
+                path = ".\\src\\Reportes\\reporte_consultas_categoria.jasper"; 
+            } else JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de categoría válido");
+            
+        }
+        else if(this.rdbDiagnostico.isSelected()){
+            String enf = this.txtCodDiag.getText();
+            if(enf.length() >= 2){
+                parameters.put ("enfermedad", enf);
+                // Ubicacion del Reporte
+                path = ".\\src\\Reportes\\reporte_consultas_enfermedad.jasper"; 
+            } else JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de enfermead válido");
+            
+        }
+        
         
         
         try {
@@ -5459,7 +5496,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel jPanelEstNuevo5;
     private javax.swing.JPanel jPanelEstNuevo6;
     private javax.swing.JPanel jPanelEstNuevo7;
-    private javax.swing.JRadioButton jRadioButton11;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -5566,6 +5602,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JRadioButton rdbCarrera;
     private javax.swing.JRadioButton rdbCategoria;
     private javax.swing.JRadioButton rdbDepartamento;
+    private javax.swing.JRadioButton rdbDiagnostico;
     private javax.swing.JRadioButton rdbDoctor;
     private javax.swing.JRadioButton rdbDoctorUser;
     private javax.swing.JRadioButton rdbEmpleadoUser;

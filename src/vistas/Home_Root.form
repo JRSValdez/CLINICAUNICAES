@@ -3264,7 +3264,7 @@
                                                           <Component id="lblHeader42" min="-2" pref="114" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="rdbDiagnostico" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                                           <Component id="lblHeader49" min="-2" pref="120" max="-2" attributes="0"/>
                                                       </Group>
@@ -3353,7 +3353,7 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="rdbCategoria" min="-2" pref="27" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jRadioButton11" min="-2" pref="27" max="-2" attributes="0"/>
+                                          <Component id="rdbDiagnostico" min="-2" pref="27" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -3748,7 +3748,7 @@
                             </Property>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="jRadioButton11">
+                        <Component class="javax.swing.JRadioButton" name="rdbDiagnostico">
                           <Properties>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="rdbFiltros1"/>
