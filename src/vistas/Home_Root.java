@@ -848,9 +848,9 @@ int xx, xy;
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDoctores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
-                        .addGap(0, 34, Short.MAX_VALUE)
+                        .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(jLabel49)
-                        .addGap(0, 34, Short.MAX_VALUE))
+                        .addGap(0, 30, Short.MAX_VALUE))
                     .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -936,9 +936,9 @@ int xx, xy;
                         .addComponent(lblConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
-                        .addContainerGap(42, Short.MAX_VALUE)
+                        .addContainerGap(40, Short.MAX_VALUE)
                         .addComponent(jLabel55)
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                        .addGap(0, 30, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -1175,7 +1175,7 @@ int xx, xy;
                                 .addComponent(rbM)
                                 .addGap(18, 18, 18)
                                 .addComponent(rbF)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelEstNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblHeader39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblHeader43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1185,7 +1185,7 @@ int xx, xy;
                             .addComponent(cboEspecialidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFecha)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAggDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelEstNuevoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1852,7 +1852,7 @@ int xx, xy;
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAggUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(102, 0, 0));
@@ -2243,7 +2243,7 @@ int xx, xy;
                             .addComponent(lblHeader54)
                             .addComponent(cmbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(rdbDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rdbUbicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2300,7 +2300,7 @@ int xx, xy;
         btnReporteConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnReporteConsultas.setText("GENERAR REPORTE");
         btnReporteConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnReporteConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReporteConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnReporteConsultas.setFocusable(false);
         btnReporteConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReporteConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2547,7 +2547,7 @@ int xx, xy;
         btnGenReporteExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnGenReporteExpediente.setText("GENERAR REPORTE");
         btnGenReporteExpediente.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGenReporteExpediente.setFocusable(false);
         btnGenReporteExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGenReporteExpediente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2655,7 +2655,7 @@ int xx, xy;
                 .addGroup(Tab_reportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("REPORTES", null, Tab_reports, "");
@@ -4854,8 +4854,8 @@ int xx, xy;
         UnidadMedJpaController t=new UnidadMedJpaController(entityMain.getInstance());
         UnidadMed umed=new UnidadMed();
         umed.setUnidad(this.txtUnidMed.getText());
-        umed.setUnidad(this.txtUnidAbrev.getText());
-        if(this.txtUnidMed.getText().trim().length()>3 && this.txtUnidAbrev.getText().trim().length()>3){
+        umed.setAbreviatura(this.txtUnidAbrev.getText());
+        if(this.txtUnidMed.getText().trim().length()>3 && this.txtUnidAbrev.getText().trim().length()>0){
             try{
                 t.create(umed);
                 conn.getUnidMedida(this.jTunidades);
