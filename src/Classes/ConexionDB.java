@@ -380,7 +380,7 @@ public class ConexionDB {
     
     public String aggDetConsulta(Consulta _consulta, int _idDoctor) throws SQLException{
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
         // Parametros de entrada
         cst.setInt("pIDCONSULTA", _consulta.idConsulta);
         cst.setInt("pIDDOCTOR", _idDoctor);
@@ -397,6 +397,7 @@ public class ConexionDB {
         cst.setString("pTEMP", _consulta.temperatura);
         cst.setString("pMOTIVO", _consulta.motivo);
         cst.setString("pRECOMENDACION", _consulta.recomendaciones);
+        cst.setString("pTRATAMIENTO", _consulta.tratamiento);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -754,17 +755,17 @@ public class ConexionDB {
     public DefaultTableModel getConsultasAhora( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
+        String query = "SELECT DISTINCT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD, TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy'), d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
                 " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " INNER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " INNER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
                 " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
                 " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
                 " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE TO_DATE(cc.CONS_FECHA,'DD-MM-YYYY')=TO_DATE(CURRENT_DATE,'DD-MM-YYYY')";
+                " WHERE TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy') =  TO_CHAR(CURRENT_DATE, 'dd-mm-yyyy') AND ESTADO = 1";
               
         ResultSet rs = stmt.executeQuery(query);
           
@@ -1602,7 +1603,7 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConFacult(JTable jTable1, int _idFac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1637,7 +1638,7 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConCarnet(JTable jTable1, String _idCarnet) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1672,7 +1673,7 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConCarrera(JTable jTable1, int _idCarrera) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1707,7 +1708,7 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConActividad(JTable jTable1, int _idPac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1742,7 +1743,7 @@ public class ConexionDB {
         public DefaultTableModel getHistorialConNombre(JTable jTable1, String _Pac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1777,7 +1778,7 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConApellido(JTable jTable1, String _Pac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1812,7 +1813,7 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 
@@ -1847,7 +1848,7 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 

@@ -240,7 +240,7 @@
                     <Property name="text" type="java.lang.String" value="HISTORIAL PACIENTE"/>
                     <Property name="verticalAlignment" type="int" value="3"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Hand Cursor"/>
                     </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -1868,13 +1868,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTabbedPane2" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTabbedPane2" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="351" max="32767" attributes="0"/>
+                                  <Component id="btnTerminarConsulta1" min="-2" pref="330" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="387" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="357" max="32767" attributes="0"/>
-                          <Component id="btnTerminarConsulta1" min="-2" pref="330" max="-2" attributes="0"/>
-                          <EmptySpace pref="393" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2811,7 +2813,7 @@
 
                                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                                   <SubComponents>
-                                    <Component class="javax.swing.JTextArea" name="txt_recomendaciones2">
+                                    <Component class="javax.swing.JTextArea" name="txt_tratamiento">
                                       <Properties>
                                         <Property name="columns" type="int" value="20"/>
                                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

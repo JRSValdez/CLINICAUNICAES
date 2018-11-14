@@ -426,7 +426,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHome4ActionPerformed
 
     private void btn_close2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_close2MouseClicked
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_btn_close2MouseClicked
 
     private void Barra_Superior2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_Superior2MouseDragged

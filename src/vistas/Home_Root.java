@@ -323,6 +323,7 @@ int xx, xy;
         rdbCategoria = new javax.swing.JRadioButton();
         rdbUbicacion = new javax.swing.JRadioButton();
         rdbDiagnostico = new javax.swing.JRadioButton();
+        btnVerCIE10 = new javax.swing.JLabel();
         jPanelEstNuevo5 = new javax.swing.JPanel();
         lblHeader50 = new javax.swing.JLabel();
         lblHeader52 = new javax.swing.JLabel();
@@ -2114,6 +2115,21 @@ int xx, xy;
         rdbFiltros1.add(rdbDiagnostico);
         rdbDiagnostico.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
 
+        btnVerCIE10.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerCIE10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnVerCIE10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnVerCIE10.setText("VER CIE10");
+        btnVerCIE10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnVerCIE10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerCIE10.setFocusable(false);
+        btnVerCIE10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnVerCIE10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnVerCIE10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerCIE10MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelEstNuevo4Layout = new javax.swing.GroupLayout(jPanelEstNuevo4);
         jPanelEstNuevo4.setLayout(jPanelEstNuevo4Layout);
         jPanelEstNuevo4Layout.setHorizontalGroup(
@@ -2163,7 +2179,7 @@ int xx, xy;
                                     .addComponent(cmbActividad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbDcotor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCarrera, 0, 496, Short.MAX_VALUE)
+                                    .addComponent(cmbCarrera, 0, 342, Short.MAX_VALUE)
                                     .addComponent(cmbFacultad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cmbUbicacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo4Layout.createSequentialGroup()
@@ -2177,9 +2193,11 @@ int xx, xy;
                                         .addGap(12, 12, 12)
                                         .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtCodCat)
-                                    .addComponent(txtCodDiag))))))
+                                    .addComponent(txtCodDiag, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnVerCIE10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelEstNuevo4Layout.setVerticalGroup(
@@ -2237,14 +2255,16 @@ int xx, xy;
                         .addComponent(rdbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rdbDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
-                        .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHeader42)
-                            .addComponent(txtCodCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeader49)
-                            .addComponent(txtCodDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnVerCIE10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelEstNuevo4Layout.createSequentialGroup()
+                            .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblHeader42)
+                                .addComponent(txtCodCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanelEstNuevo4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblHeader49)
+                                .addComponent(txtCodDiag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
 
@@ -2308,7 +2328,7 @@ int xx, xy;
                         .addGroup(jPanelEstNuevo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtFechaFinal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(txtFechaInicio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnReporteConsultas))
                     .addGroup(jPanelEstNuevo5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -2464,7 +2484,7 @@ int xx, xy;
                         .addGap(18, 18, 18)
                         .addGroup(jPanelEstNuevo6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombres)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                             .addComponent(txtIdPac)
                             .addComponent(txtCarnetRoot, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanelEstNuevo6Layout.createSequentialGroup()
@@ -2567,15 +2587,15 @@ int xx, xy;
         jPanelEstNuevo7Layout.setHorizontalGroup(
             jPanelEstNuevo7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEstNuevo7Layout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(jLabel46)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo7Layout.createSequentialGroup()
-                .addContainerGap(148, Short.MAX_VALUE)
+                .addContainerGap(162, Short.MAX_VALUE)
                 .addComponent(btnGenReporteExpediente)
                 .addGap(131, 131, 131))
         );
@@ -5321,6 +5341,15 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         }
     }//GEN-LAST:event_cmbFacultadItemStateChanged
 
+    private void btnVerCIE10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerCIE10MouseClicked
+    try {
+        Ver_CIE10 cie10 = new Ver_CIE10();
+        cie10.setVisible(true);
+    } catch (SQLException ex) {
+        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnVerCIE10MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -5399,6 +5428,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btnMostrarElimDoc;
     private javax.swing.JLabel btnReporteConsultas;
+    private javax.swing.JLabel btnVerCIE10;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_config;
     private javax.swing.JButton btn_docs;

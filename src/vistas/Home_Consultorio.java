@@ -110,8 +110,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnAtender = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        btnHistorialConsultas = new javax.swing.JLabel();
+        btnConsultasAhora = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanelExistente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -317,6 +317,10 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (dìas)"
             }
         ));
+        jTAlertas.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTAlertas.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTAlertas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTAlertas.setShowHorizontalLines(true);
         jScrollPane2.setViewportView(jTAlertas);
 
         btnAlertaTotal.setText("Total");
@@ -534,7 +538,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -549,37 +553,47 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         jLabel7.setText("POSPONER");
         jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.setFocusable(false);
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        jLabel14.setText("Historial");
-        jLabel14.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel14.setFocusable(false);
-        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialConsultas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnHistorialConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        btnHistorialConsultas.setText("Historial");
+        btnHistorialConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorialConsultas.setFocusable(false);
+        btnHistorialConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHistorialConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistorialConsultasMouseClicked(evt);
+            }
+        });
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
-        jLabel15.setText("ATENDIDAS HOY");
-        jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel15.setFocusable(false);
-        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultasAhora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConsultasAhora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
+        btnConsultasAhora.setText("ATENDIDAS HOY");
+        btnConsultasAhora.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultasAhora.setFocusable(false);
+        btnConsultasAhora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultasAhora.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultasAhoraMouseClicked(evt);
+            }
+        });
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jLabel8.setText("QUITAR");
         jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.setFocusable(false);
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -596,9 +610,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel8)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel15)
+                .addComponent(btnConsultasAhora)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel14)
+                .addComponent(btnHistorialConsultas)
                 .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -607,8 +621,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel14)
+                    .addComponent(btnConsultasAhora)
+                    .addComponent(btnHistorialConsultas)
                     .addComponent(jLabel7)
                     .addComponent(btnAtender))
                 .addGap(15, 15, 15))
@@ -647,11 +661,14 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbConsultasEspera.setColumnSelectionAllowed(true);
+        tbConsultasEspera.setCellSelectionEnabled(false);
         tbConsultasEspera.setGridColor(new java.awt.Color(255, 255, 153));
         tbConsultasEspera.setRowHeight(25);
+        tbConsultasEspera.setRowSelectionAllowed(true);
         tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbConsultasEspera.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbConsultasEspera.setShowHorizontalLines(true);
         tbConsultasEspera.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbConsultasEspera);
         tbConsultasEspera.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -669,9 +686,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExistenteLayout.createSequentialGroup()
-                .addContainerGap(368, Short.MAX_VALUE)
+                .addContainerGap(374, Short.MAX_VALUE)
                 .addComponent(lblHeader2)
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addContainerGap(375, Short.MAX_VALUE))
         );
         jPanelExistenteLayout.setVerticalGroup(
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1229,6 +1246,26 @@ public class Home_Consultorio extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnAlertaCantActionPerformed
 
+    private void btnHistorialConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialConsultasMouseClicked
+        Consultas_Historial h;
+        try {
+            h = new Consultas_Historial();
+            h.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHistorialConsultasMouseClicked
+
+    private void btnConsultasAhoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasAhoraMouseClicked
+        Consultas_Ahora c;
+        try {
+            c = new Consultas_Ahora();
+            c.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsultasAhoraMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -1279,6 +1316,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel btnAtender;
     private javax.swing.JLabel btnBuscarCatMedicamento;
     private javax.swing.JLabel btnBuscarMedicamento;
+    private javax.swing.JLabel btnConsultasAhora;
+    private javax.swing.JLabel btnHistorialConsultas;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
@@ -1291,8 +1330,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCatMedicamento;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
