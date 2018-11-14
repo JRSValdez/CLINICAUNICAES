@@ -129,7 +129,7 @@ public class ConexionDB {
         Statement stmt = conn.createStatement();
         String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy'), C.IDUSUARIO, DC.EF_CABEZA," +
                     " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
-                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO FROM CONSULTA C " +
+                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C " +
                     " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
                     " WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -154,6 +154,8 @@ public class ConexionDB {
             consulta.pulso = rs.getString(15);
             consulta.temperatura = rs.getString(16);
             consulta.motivo = rs.getString(17);
+            consulta.recomendaciones = rs.getString(18);
+            consulta.tratamiento = rs.getString(19);
             
             consulta.antecedente = this.getAntecedentes(consulta.idConsulta);
             consulta.diagnostico = this.getDiagnosticos(consulta.idConsulta);
@@ -451,6 +453,21 @@ public class ConexionDB {
             this.commit();
         }
         return mensaje;
+    }
+    
+    public String setEstadoConsulta(int _estado, int _idConsulta) throws SQLException{
+        if(_estado == 2 || _estado == 3){
+            String query= "UPDATE CONSULTA SET ESTADO = ? WHERE IDCONSULTA = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, _estado);
+            ps.setInt(2, _idConsulta);
+            int res = ps.executeUpdate();
+            if(res > 0){
+                return "Exito";
+            } else return "Error al modificar consulta";
+        } else {
+            return "Estado no valido";
+        }
     }
     
     public String aggSignosVitales(Consulta _consulta) throws SQLException{
@@ -755,7 +772,7 @@ public class ConexionDB {
     public DefaultTableModel getConsultasAhora( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT DISTINCT p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
                 "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
                 " f.FACTULTAD, TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy'), d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
                 " FROM Pacientes p "+ 

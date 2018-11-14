@@ -1,11 +1,18 @@
 package vistas;
 
 import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Consultas_Ahora extends javax.swing.JFrame {
@@ -20,6 +27,30 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));
         DefaultTableModel model  = (DefaultTableModel) tbConsultasAhora.getModel();
         this.tbConsultasAhora.setSelectionForeground(Color.white);
+        
+        
+        //doble clic en una fila
+        this.tbConsultasAhora.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    try {
+                        int idConsulta = Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
+                        Consulta consulta = conn.getConsulta(idConsulta);
+                        Paciente paciente = conn.getPaciente(consulta.idConsulta);
+                        Expediente_Paciente expediente = new Expediente_Paciente(consulta,paciente);
+                        expediente.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
     }
 
  
@@ -127,12 +158,16 @@ public class Consultas_Ahora extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
+                "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
             }
         ));
         tbConsultasAhora.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasAhora.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultasAhora);
+        if (tbConsultasAhora.getColumnModel().getColumnCount() > 0) {
+            tbConsultasAhora.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tbConsultasAhora.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

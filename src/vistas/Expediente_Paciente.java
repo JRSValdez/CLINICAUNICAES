@@ -48,6 +48,9 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         this.lblAbdomen.setText(this.consulta.ef_abdomen);
         this.lblExtremidades.setText(this.consulta.ef_extremidades);
         
+        this.txtAreaRecomendaciones.setText(this.consulta.recomendaciones);
+        this.txtAreaTratamiento.setText(this.consulta.tratamiento);
+        
         //lllenar JTBALES 
         DefaultTableModel modelAntecedentes = (DefaultTableModel) this.jtAntecedentes.getModel();
         for (int i = 0; i< this.consulta.antecedente.rowAntecedente.length; i++){
@@ -97,7 +100,6 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         lblHeader72 = new javax.swing.JLabel();
         lblCabeza = new javax.swing.JLabel();
         lblCuello = new javax.swing.JLabel();
-        lblTorax = new javax.swing.JLabel();
         lblAbdomen = new javax.swing.JLabel();
         lblExtremidades = new javax.swing.JLabel();
         lblPeso = new javax.swing.JLabel();
@@ -106,6 +108,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         lblPulso = new javax.swing.JLabel();
         lblFrecCar = new javax.swing.JLabel();
         lblPresArt = new javax.swing.JLabel();
+        lblTorax = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblHeader59 = new javax.swing.JLabel();
         lblHeader60 = new javax.swing.JLabel();
@@ -128,6 +131,13 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         lblHeader11 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jtReceta = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        lblHeader12 = new javax.swing.JLabel();
+        lblHeader13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaRecomendaciones = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaTratamiento = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -265,10 +275,6 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         lblCuello.setForeground(new java.awt.Color(255, 255, 255));
         lblCuello.setText("CABEZA:CABEZA:CABEZA:CABEZA:CABEZA");
 
-        lblTorax.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblTorax.setForeground(new java.awt.Color(255, 255, 255));
-        lblTorax.setText("CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:");
-
         lblAbdomen.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblAbdomen.setForeground(new java.awt.Color(255, 255, 255));
         lblAbdomen.setText("CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:");
@@ -300,6 +306,10 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         lblPresArt.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblPresArt.setForeground(new java.awt.Color(255, 255, 255));
         lblPresArt.setText("PESO:");
+
+        lblTorax.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblTorax.setForeground(new java.awt.Color(255, 255, 255));
+        lblTorax.setText("CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:CABEZA:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -341,12 +351,13 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblHeader69, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblHeader70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblHeader68, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(lblCuello, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblTorax, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-                                    .addComponent(lblCabeza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblHeader68, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(lblCuello, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblCabeza, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
+                                    .addComponent(lblTorax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblHeader71, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -679,7 +690,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader11)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -687,7 +698,59 @@ public class Expediente_Paciente extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(lblHeader11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel11.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        jPanel11.setPreferredSize(new java.awt.Dimension(480, 150));
+
+        lblHeader12.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblHeader12.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader12.setText("RECOMENDACIONES");
+
+        lblHeader13.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
+        lblHeader13.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader13.setText("TRATAMIENTO");
+
+        txtAreaRecomendaciones.setEditable(false);
+        txtAreaRecomendaciones.setColumns(20);
+        txtAreaRecomendaciones.setRows(5);
+        jScrollPane1.setViewportView(txtAreaRecomendaciones);
+
+        txtAreaTratamiento.setEditable(false);
+        txtAreaTratamiento.setColumns(20);
+        txtAreaTratamiento.setRows(5);
+        jScrollPane2.setViewportView(txtAreaTratamiento);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(lblHeader12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblHeader13)
+                .addGap(64, 64, 64))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeader12)
+                    .addComponent(lblHeader13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -704,22 +767,25 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -732,7 +798,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -803,11 +869,14 @@ public class Expediente_Paciente extends javax.swing.JFrame {
     private javax.swing.JLabel btn_close;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jtAntecedentes;
     private javax.swing.JTable jtDiagnosticos;
@@ -822,6 +891,8 @@ public class Expediente_Paciente extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrecCar1;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblHeader11;
+    private javax.swing.JLabel lblHeader12;
+    private javax.swing.JLabel lblHeader13;
     private javax.swing.JLabel lblHeader50;
     private javax.swing.JLabel lblHeader59;
     private javax.swing.JLabel lblHeader60;
@@ -850,5 +921,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
     private javax.swing.JLabel lblTemp;
     private javax.swing.JLabel lblTemp243;
     private javax.swing.JLabel lblTorax;
+    private javax.swing.JTextArea txtAreaRecomendaciones;
+    private javax.swing.JTextArea txtAreaTratamiento;
     // End of variables declaration//GEN-END:variables
 }

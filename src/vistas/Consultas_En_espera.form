@@ -92,11 +92,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="469" max="32767" attributes="0"/>
-                      <Component id="btnPosponer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="397" max="32767" attributes="0"/>
+                      <Component id="btnNoQuiso" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="btnQuitar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="469" max="32767" attributes="0"/>
+                      <Component id="btnSeRetiro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="397" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -105,8 +105,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnQuitar" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnPosponer" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSeRetiro" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnNoQuiso" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
@@ -114,7 +114,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="btnPosponer">
+            <Component class="javax.swing.JLabel" name="btnNoQuiso">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -123,7 +123,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/clock.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="POSPONER"/>
+                <Property name="text" type="java.lang.String" value="NO QUIZO ESPERAR"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -132,8 +132,11 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnNoQuisoMouseClicked"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="btnQuitar">
+            <Component class="javax.swing.JLabel" name="btnSeRetiro">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -142,7 +145,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/delete.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="QUITAR"/>
+                <Property name="text" type="java.lang.String" value="SE RETIR&#xd3; SIN MOTIVOS"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
@@ -151,6 +154,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSeRetiroMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
