@@ -2176,18 +2176,20 @@ public int ConsultasxMes() throws SQLException{
  public DefaultTableModel getHistorialPaciente(JTable jTable1,String query) throws SQLException{
         DefaultTableModel model;
         if (query.equals("no")){
-        query = "Select pac_carne, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera,factultad,pac_telefono,cons_fecha,motivo "
-                + " from pacientes" +
-" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac" +
-" inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
+        query = "Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera.carrera,departamento.departamento," +
+"CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
+"ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
+"WHEN 'M' THEN 'Masculino' " +
+"ELSE 'Femenino' END sexo from pacientes" +
+" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
 " inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
-" inner join Consulta on consulta.idpaciente=pacientes.idpaciente" +
-" inner join det_consulta on consulta.idconsulta=det_consulta.idConsulta"; }          
+" inner join carrera on carrera.idcarrera=pacientes.idcarrera" +
+" inner join departamento on departamento.iddepartamento=pacientes.iddepartamento"; }          
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();   
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        Object Datos[]= new Object[8];
+        Object Datos[]= new Object[10];
           
           while (rs.next())
            {
@@ -2200,6 +2202,36 @@ public int ConsultasxMes() throws SQLException{
            }
            return model;
     }
+ 
+ 
+ 
+ public Paciente getPacientebyID(int _idPac) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "Select idpaciente,pac_nombre,pac_apellido,idcarrera,iddepartamento," +
+                       "PAC_ZONA,pac_celular from pacientes" +
+                       " WHERE idpaciente = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1,_idPac);
+        ResultSet rs2 = preparedStatement.executeQuery();
+        
+        Object Datos[]= new Object[6];
+        Paciente pac = new Paciente();
+          while (rs2.next())
+           {
+              pac.idPaciente = rs2.getInt(1);
+              pac.nombre=rs2.getString(2);
+              pac.apellido=rs2.getString(3);
+              pac.departamento=rs2.getString(4);
+              pac.zona=rs2.getInt(5);
+              pac.celular=rs2.getString(6);
+              
+              
+           }
+           return pac;
+    }
+ 
+ 
 
 
 

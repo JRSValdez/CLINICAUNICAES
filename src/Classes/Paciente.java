@@ -33,6 +33,7 @@ public class Paciente {
     public int tipoPaciente;
     public int carreraP;
    
+    
     void Paciente(int _idPaciente){
         
     }
