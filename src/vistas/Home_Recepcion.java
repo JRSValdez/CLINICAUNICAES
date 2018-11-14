@@ -3312,10 +3312,12 @@ if(this.rbAcademico.isSelected()){
     pac.tipoPaciente=3;
     pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
     pac.carne="";
+     pac.carreraP=-2;
 }else if(this.rbProyeccionSocial.isSelected()){
     pac.tipoPaciente=4;
     pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
     pac.carne="";
+    pac.carreraP=-2;
 }else{
     pac.tipoPaciente=2;
     pac.carne=this.txtCarnet.getText();
