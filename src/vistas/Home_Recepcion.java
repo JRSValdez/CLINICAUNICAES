@@ -911,6 +911,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino);
         rdbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        rdbMasculino.setSelected(true);
         rdbMasculino.setText("Masculino");
 
         rdbFemenino.setBackground(new java.awt.Color(102, 0, 0));
@@ -1042,6 +1043,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbUrbanoC);
         rbUrbanoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbUrbanoC.setForeground(new java.awt.Color(255, 255, 255));
+        rbUrbanoC.setSelected(true);
         rbUrbanoC.setText("Urbano");
         rbUrbanoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1480,7 +1482,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino1);
         rdbMasculino1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino1.setForeground(new java.awt.Color(255, 255, 255));
-        rdbMasculino1.setSelected(true);
         rdbMasculino1.setText("Masculino");
 
         rdbFemenino1.setBackground(new java.awt.Color(102, 0, 0));
@@ -1608,7 +1609,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbzonaUrb);
         rbzonaUrb.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbzonaUrb.setForeground(new java.awt.Color(255, 255, 255));
-        rbzonaUrb.setSelected(true);
         rbzonaUrb.setText("Urbano");
         rbzonaUrb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2508,11 +2508,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         txtFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         txtCantMedicamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-        try {
-            txtCantMedicamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtCantMedicamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         txtCantMedicamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -2774,7 +2770,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(Tab_FarmaciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 988, Short.MAX_VALUE))
                 .addContainerGap())
         );
         Tab_FarmaciaLayout.setVerticalGroup(
@@ -3546,6 +3542,10 @@ if(this.rbAcademico.isSelected()){
                 String mensaje = this.conn.aggMedicamento(med);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
                 this.llenarMedicamentosFarmacia();
+                
+                this.txtNombreMedicmento.setText("");
+                this.txtCantMedicamento.setText("");
+                this.txtFechaV.setText("");
             } else {
                 //error de validación
                 JOptionPane.showMessageDialog(rootPane, validacion);
