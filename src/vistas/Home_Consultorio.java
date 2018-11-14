@@ -43,8 +43,8 @@ public class Home_Consultorio extends javax.swing.JFrame {
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
-        this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
         this.tbConsultasEspera.setSelectionForeground(Color.white);
+        this.llenarConsultasEnEspera();
         
         xs = this.Contenedor.getWidth();
         ys = this.Contenedor.getHeight();
@@ -70,6 +70,15 @@ public class Home_Consultorio extends javax.swing.JFrame {
         this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
         
     }
+    
+    private void llenarConsultasEnEspera(){
+        try {
+            this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -109,10 +118,10 @@ public class Home_Consultorio extends javax.swing.JFrame {
         Tab_Cons = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnAtender = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        btnHistorialConsultas = new javax.swing.JLabel();
+        btnConsultasAhora = new javax.swing.JLabel();
+        btnNoQuiso = new javax.swing.JLabel();
+        btnSeRetiro = new javax.swing.JLabel();
         jPanelExistente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConsultasEspera = new javax.swing.JTable();
@@ -317,6 +326,10 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (dìas)"
             }
         ));
+        jTAlertas.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTAlertas.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTAlertas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTAlertas.setShowHorizontalLines(true);
         jScrollPane2.setViewportView(jTAlertas);
 
         btnAlertaTotal.setText("Total");
@@ -534,7 +547,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -544,72 +557,92 @@ public class Home_Consultorio extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        jLabel7.setText("POSPONER");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel7.setFocusable(false);
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorialConsultas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnHistorialConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
+        btnHistorialConsultas.setText("Historial");
+        btnHistorialConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorialConsultas.setFocusable(false);
+        btnHistorialConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHistorialConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnHistorialConsultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHistorialConsultasMouseClicked(evt);
+            }
+        });
 
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        jLabel14.setText("Historial");
-        jLabel14.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel14.setFocusable(false);
-        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultasAhora.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnConsultasAhora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
+        btnConsultasAhora.setText("ATENDIDAS HOY");
+        btnConsultasAhora.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultasAhora.setFocusable(false);
+        btnConsultasAhora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultasAhora.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultasAhora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConsultasAhoraMouseClicked(evt);
+            }
+        });
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
-        jLabel15.setText("ATENDIDAS HOY");
-        jLabel15.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel15.setFocusable(false);
-        jLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.setForeground(new java.awt.Color(255, 255, 255));
+        btnNoQuiso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
+        btnNoQuiso.setText("NO QUIZO ESPERAR");
+        btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNoQuiso.setFocusable(false);
+        btnNoQuiso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNoQuiso.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNoQuisoMouseClicked(evt);
+            }
+        });
 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        jLabel8.setText("QUITAR");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel8.setFocusable(false);
-        jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.setForeground(new java.awt.Color(255, 255, 255));
+        btnSeRetiro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSeRetiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        btnSeRetiro.setText("SE RETIRÓ SIN MOTIVOS");
+        btnSeRetiro.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSeRetiro.setFocusable(false);
+        btnSeRetiro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSeRetiro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSeRetiroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(296, Short.MAX_VALUE)
+                .addContainerGap(243, Short.MAX_VALUE)
                 .addComponent(btnAtender)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel7)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel8)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel15)
-                .addGap(25, 25, 25)
-                .addComponent(jLabel14)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnNoQuiso)
+                .addGap(18, 18, 18)
+                .addComponent(btnSeRetiro)
+                .addGap(18, 18, 18)
+                .addComponent(btnConsultasAhora)
+                .addGap(18, 18, 18)
+                .addComponent(btnHistorialConsultas)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel7)
+                    .addComponent(btnConsultasAhora)
+                    .addComponent(btnNoQuiso)
+                    .addComponent(btnSeRetiro)
+                    .addComponent(btnHistorialConsultas)
                     .addComponent(btnAtender))
                 .addGap(15, 15, 15))
         );
@@ -647,11 +680,12 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbConsultasEspera.setColumnSelectionAllowed(true);
         tbConsultasEspera.setGridColor(new java.awt.Color(255, 255, 153));
         tbConsultasEspera.setRowHeight(25);
         tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbConsultasEspera.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbConsultasEspera.setShowHorizontalLines(true);
         tbConsultasEspera.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbConsultasEspera);
         tbConsultasEspera.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -669,9 +703,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExistenteLayout.createSequentialGroup()
-                .addContainerGap(368, Short.MAX_VALUE)
+                .addContainerGap(374, Short.MAX_VALUE)
                 .addComponent(lblHeader2)
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addContainerGap(375, Short.MAX_VALUE))
         );
         jPanelExistenteLayout.setVerticalGroup(
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1229,6 +1263,71 @@ public class Home_Consultorio extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnAlertaCantActionPerformed
 
+    private void btnHistorialConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialConsultasMouseClicked
+        Consultas_Historial h;
+        try {
+            h = new Consultas_Historial();
+            h.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnHistorialConsultasMouseClicked
+
+    private void btnConsultasAhoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasAhoraMouseClicked
+        Consultas_Ahora c;
+        try {
+            c = new Consultas_Ahora();
+            c.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsultasAhoraMouseClicked
+
+    private void btnNoQuisoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNoQuisoMouseClicked
+        //cambiar estao de consulta a 2 (el paciente se retiró xq no quiso esperar)
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+            Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea quitar esta consulta?","Advertencia",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                try {
+                    int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
+                    String res = this.conn.setEstadoConsulta(2, idConsulta);
+                    JOptionPane.showMessageDialog(rootPane, res);
+                    this.llenarConsultasEnEspera();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+    }//GEN-LAST:event_btnNoQuisoMouseClicked
+
+    private void btnSeRetiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeRetiroMouseClicked
+        //cambiar estao de consulta a 3 (el paciente se retiró xq sin motivos)
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+            Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea quitar esta consulta?","Advertencia",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                try {
+                    int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
+                    String res = this.conn.setEstadoConsulta(3, idConsulta);
+                    JOptionPane.showMessageDialog(rootPane, res);
+                    this.llenarConsultasEnEspera();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnSeRetiroMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -1279,7 +1378,11 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel btnAtender;
     private javax.swing.JLabel btnBuscarCatMedicamento;
     private javax.swing.JLabel btnBuscarMedicamento;
+    private javax.swing.JLabel btnConsultasAhora;
+    private javax.swing.JLabel btnHistorialConsultas;
     private javax.swing.JButton btnHome2;
+    private javax.swing.JLabel btnNoQuiso;
+    private javax.swing.JLabel btnSeRetiro;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
     private javax.swing.JButton btn_farmacia;
@@ -1291,8 +1394,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbCatMedicamento;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1300,8 +1401,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;

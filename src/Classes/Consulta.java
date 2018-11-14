@@ -32,6 +32,7 @@ public class Consulta {
     public String frec_card;
     public String pres_art;
     public String recomendaciones;
+    public String tratamiento;
     
     private Validar val = new Validar();
     

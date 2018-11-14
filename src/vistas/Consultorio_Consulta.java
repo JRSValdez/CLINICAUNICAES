@@ -206,7 +206,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         lblHeader17 = new javax.swing.JLabel();
         txtTratamiento = new javax.swing.JScrollPane();
-        txt_recomendaciones2 = new javax.swing.JTextArea();
+        txt_tratamiento = new javax.swing.JTextArea();
         btnTerminarConsulta2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -285,7 +285,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         btnHistorial.setText("HISTORIAL PACIENTE");
         btnHistorial.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnHistorial.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHistorial.setFocusable(false);
         btnHistorial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHistorial.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -1464,11 +1464,11 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         lblHeader17.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader17.setText("TRATAMIENTO");
 
-        txt_recomendaciones2.setColumns(20);
-        txt_recomendaciones2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txt_recomendaciones2.setRows(3);
-        txt_recomendaciones2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        txtTratamiento.setViewportView(txt_recomendaciones2);
+        txt_tratamiento.setColumns(20);
+        txt_tratamiento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        txt_tratamiento.setRows(3);
+        txt_tratamiento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        txtTratamiento.setViewportView(txt_tratamiento);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -1561,12 +1561,13 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             TAB_TRATAMIENTO1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addGroup(TAB_TRATAMIENTO1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2)
+                    .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
+                        .addGap(0, 351, Short.MAX_VALUE)
+                        .addComponent(btnTerminarConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 387, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(TAB_TRATAMIENTO1Layout.createSequentialGroup()
-                .addContainerGap(357, Short.MAX_VALUE)
-                .addComponent(btnTerminarConsulta1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(393, Short.MAX_VALUE))
         );
         TAB_TRATAMIENTO1Layout.setVerticalGroup(
             TAB_TRATAMIENTO1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1815,6 +1816,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         consulta.ef_abdomen = this.txt_Ef_Abdomen.getText();
         consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
         consulta.recomendaciones = this.txt_recomendaciones.getText();
+        consulta.tratamiento = this.txt_tratamiento.getText();
         
         consulta.receta = this.receta;
         consulta.diagnostico = this.diagnostico;
@@ -2034,6 +2036,6 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private javax.swing.JTextArea txt_Ef_Extremidades;
     private javax.swing.JTextArea txt_Ef_Torax;
     private javax.swing.JTextArea txt_recomendaciones;
-    private javax.swing.JTextArea txt_recomendaciones2;
+    private javax.swing.JTextArea txt_tratamiento;
     // End of variables declaration//GEN-END:variables
 }

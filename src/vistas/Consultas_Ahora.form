@@ -30,7 +30,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -55,11 +55,6 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -68,9 +63,7 @@
                   <Component id="Barra_Superior" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnRegresar" min="-2" pref="60" max="-2" attributes="0"/>
-                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -243,7 +236,8 @@
                 <Component class="javax.swing.JTable" name="tbConsultasAhora">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="0">
+                      <Table columnCount="9" rowCount="0">
+                        <Column editable="true" title="ID" type="java.lang.Object"/>
                         <Column editable="true" title="Carnet" type="java.lang.Object"/>
                         <Column editable="true" title="Actividad" type="java.lang.Object"/>
                         <Column editable="true" title="Nombre" type="java.lang.Object"/>
@@ -256,6 +250,11 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="40" minWidth="-1" prefWidth="40" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -313,22 +312,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="btnRegresar">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/go-back-left-arrow.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="REGRESAR"/>
-            <Property name="verticalAlignment" type="int" value="3"/>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

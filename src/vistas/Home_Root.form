@@ -3251,7 +3251,7 @@
                                                       <Component id="cmbActividad" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="cmbSexo" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="cmbDcotor" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="cmbCarrera" alignment="0" pref="496" max="32767" attributes="0"/>
+                                                      <Component id="cmbCarrera" alignment="0" pref="342" max="32767" attributes="0"/>
                                                       <Component id="cmbFacultad" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="cmbUbicacion" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
@@ -3270,10 +3270,12 @@
                                                       </Group>
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="txtCodCat" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtCodDiag" alignment="0" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="txtCodCat" max="32767" attributes="0"/>
+                                                      <Component id="txtCodDiag" pref="224" max="32767" attributes="0"/>
                                                   </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="btnVerCIE10" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -3355,15 +3357,18 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="rdbDiagnostico" min="-2" pref="27" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblHeader42" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCodCat" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblHeader49" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCodDiag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="btnVerCIE10" min="-2" pref="58" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblHeader42" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtCodCat" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lblHeader49" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtCodDiag" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -3758,6 +3763,28 @@
                             </Property>
                           </Properties>
                         </Component>
+                        <Component class="javax.swing.JLabel" name="btnVerCIE10">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/images/buscar.png"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="VER CIE10"/>
+                            <Property name="verticalAlignment" type="int" value="3"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Hand Cursor"/>
+                            </Property>
+                            <Property name="focusable" type="boolean" value="false"/>
+                            <Property name="horizontalTextPosition" type="int" value="0"/>
+                            <Property name="verticalTextPosition" type="int" value="3"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVerCIE10MouseClicked"/>
+                          </Events>
+                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="jPanelEstNuevo5">
@@ -3793,7 +3820,7 @@
                                               <Component id="txtFechaFinal" alignment="0" pref="250" max="32767" attributes="0"/>
                                               <Component id="txtFechaInicio" alignment="1" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Component id="btnReporteConsultas" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -4042,7 +4069,7 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txtNombres" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtApellidos" alignment="0" pref="364" max="32767" attributes="0"/>
+                                              <Component id="txtApellidos" alignment="0" pref="238" max="32767" attributes="0"/>
                                               <Component id="txtIdPac" alignment="0" max="32767" attributes="0"/>
                                               <Component id="txtCarnetRoot" alignment="1" max="32767" attributes="0"/>
                                           </Group>
@@ -4292,9 +4319,9 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="180" max="32767" attributes="0"/>
+                                  <EmptySpace pref="117" max="32767" attributes="0"/>
                                   <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="180" max="32767" attributes="0"/>
+                                  <EmptySpace pref="117" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -4302,7 +4329,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="148" max="32767" attributes="0"/>
+                                  <EmptySpace pref="162" max="32767" attributes="0"/>
                                   <Component id="btnGenReporteExpediente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>

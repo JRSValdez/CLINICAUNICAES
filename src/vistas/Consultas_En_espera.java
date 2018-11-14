@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Consultas_En_espera extends javax.swing.JFrame {
 
@@ -12,8 +13,16 @@ public class Consultas_En_espera extends javax.swing.JFrame {
     
     public Consultas_En_espera() throws SQLException {
         initComponents();
-        this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
         this.tbConsultasEspera.setSelectionForeground(Color.white);
+        this.llenarConsultasEnEspera();
+    }
+    
+    private void llenarConsultasEnEspera(){
+        try {
+            this.tbConsultasEspera.setModel(conn.getConsultasEnEspera(this.tbConsultasEspera));
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
  
@@ -23,8 +32,8 @@ public class Consultas_En_espera extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btnPosponer = new javax.swing.JLabel();
-        btnQuitar = new javax.swing.JLabel();
+        btnNoQuiso = new javax.swing.JLabel();
+        btnSeRetiro = new javax.swing.JLabel();
         Barra_Superior = new javax.swing.JPanel();
         btnHome2 = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
@@ -44,44 +53,54 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        btnPosponer.setForeground(new java.awt.Color(255, 255, 255));
-        btnPosponer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnPosponer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        btnPosponer.setText("POSPONER");
-        btnPosponer.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnPosponer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPosponer.setFocusable(false);
-        btnPosponer.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnPosponer.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.setForeground(new java.awt.Color(255, 255, 255));
+        btnNoQuiso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
+        btnNoQuiso.setText("NO QUIZO ESPERAR");
+        btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNoQuiso.setFocusable(false);
+        btnNoQuiso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNoQuiso.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNoQuiso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNoQuisoMouseClicked(evt);
+            }
+        });
 
-        btnQuitar.setForeground(new java.awt.Color(255, 255, 255));
-        btnQuitar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        btnQuitar.setText("QUITAR");
-        btnQuitar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnQuitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQuitar.setFocusable(false);
-        btnQuitar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnQuitar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.setForeground(new java.awt.Color(255, 255, 255));
+        btnSeRetiro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnSeRetiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
+        btnSeRetiro.setText("SE RETIRÓ SIN MOTIVOS");
+        btnSeRetiro.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSeRetiro.setFocusable(false);
+        btnSeRetiro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSeRetiro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSeRetiro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSeRetiroMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(469, Short.MAX_VALUE)
-                .addComponent(btnPosponer)
+                .addContainerGap(397, Short.MAX_VALUE)
+                .addComponent(btnNoQuiso)
                 .addGap(28, 28, 28)
-                .addComponent(btnQuitar)
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addComponent(btnSeRetiro)
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnQuitar)
-                    .addComponent(btnPosponer))
+                    .addComponent(btnSeRetiro)
+                    .addComponent(btnNoQuiso))
                 .addGap(15, 15, 15))
         );
 
@@ -273,6 +292,51 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         this.setOpacity((float)1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
+    private void btnNoQuisoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNoQuisoMouseClicked
+        //cambiar estao de consulta a 2 (el paciente se retiró xq no quiso esperar)
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+             Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea quitar esta consulta?","Advertencia",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                 try {
+                    int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
+                    String res = this.conn.setEstadoConsulta(2, idConsulta);
+                    JOptionPane.showMessageDialog(rootPane, res);
+                    this.llenarConsultasEnEspera();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
+        }
+        
+    }//GEN-LAST:event_btnNoQuisoMouseClicked
+
+    private void btnSeRetiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSeRetiroMouseClicked
+        //cambiar estao de consulta a 3 (el paciente se retiró xq sin motivos)
+        if (this.tbConsultasEspera.getSelectedRows().length == 1)
+        {
+             Object [] opciones ={"Aceptar","Cancelar"};
+            int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Desea quitar esta consulta?","Advertencia",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+            if (eleccion == JOptionPane.YES_OPTION)
+            {
+                 try {
+                    int idConsulta = Integer.parseInt(this.tbConsultasEspera.getModel().getValueAt(this.tbConsultasEspera.getSelectedRow(), 0).toString());
+                    String res = this.conn.setEstadoConsulta(3, idConsulta);
+                    JOptionPane.showMessageDialog(rootPane, res);
+                    this.llenarConsultasEnEspera();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(Consultas_En_espera.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
+        }
+    }//GEN-LAST:event_btnSeRetiroMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -318,8 +382,8 @@ public class Consultas_En_espera extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JButton btnHome2;
-    private javax.swing.JLabel btnPosponer;
-    private javax.swing.JLabel btnQuitar;
+    private javax.swing.JLabel btnNoQuiso;
+    private javax.swing.JLabel btnSeRetiro;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

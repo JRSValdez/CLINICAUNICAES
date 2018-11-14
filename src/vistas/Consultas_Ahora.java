@@ -1,11 +1,18 @@
 package vistas;
 
 import Classes.ConexionDB;
+import Classes.Consulta;
+import Classes.Paciente;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Consultas_Ahora extends javax.swing.JFrame {
@@ -20,6 +27,30 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));
         DefaultTableModel model  = (DefaultTableModel) tbConsultasAhora.getModel();
         this.tbConsultasAhora.setSelectionForeground(Color.white);
+        
+        
+        //doble clic en una fila
+        this.tbConsultasAhora.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table =(JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    try {
+                        int idConsulta = Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
+                        Consulta consulta = conn.getConsulta(idConsulta);
+                        Paciente paciente = conn.getPaciente(consulta.idConsulta);
+                        Expediente_Paciente expediente = new Expediente_Paciente(consulta,paciente);
+                        expediente.setVisible(true);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        
     }
 
  
@@ -37,7 +68,6 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbConsultasAhora = new javax.swing.JTable();
-        btnRegresar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -128,12 +158,16 @@ public class Consultas_Ahora extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
+                "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
             }
         ));
         tbConsultasAhora.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasAhora.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultasAhora);
+        if (tbConsultasAhora.getColumnModel().getColumnCount() > 0) {
+            tbConsultasAhora.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tbConsultasAhora.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,15 +192,6 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegresar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
-        btnRegresar.setText("REGRESAR");
-        btnRegresar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnRegresar.setFocusable(false);
-        btnRegresar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRegresar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,10 +203,6 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,9 +210,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,7 +221,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -275,7 +294,6 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JButton btnHome2;
-    private javax.swing.JLabel btnRegresar;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
