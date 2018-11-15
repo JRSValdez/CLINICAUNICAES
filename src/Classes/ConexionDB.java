@@ -2226,8 +2226,9 @@ public int ConsultasxMes() throws SQLException{
  public Paciente getPacientebyID(int _idPac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "Select idpaciente,pac_nombre,pac_apellido,idcarrera,iddepartamento," +
-                       "PAC_ZONA,pac_celular from pacientes" +
+        String query = "Select idpaciente,pac_nombre,pac_apellido,departamento," +
+                       "PAC_ZONA,pac_celular from pacientes " +
+                "INNER JOIN departamento on departamento.iddepartamento=pacientes.iddepartamento"+
                        " WHERE idpaciente = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPac);
@@ -2250,7 +2251,27 @@ public int ConsultasxMes() throws SQLException{
     }
  
  
-
+public String ActualizarPaciente(Paciente _pac) throws SQLException {
+        
+    String msj="";
+    try{
+        String query = "UPDATE PACIENTES SET pac_nombre=? , pac_apellido=? ,"
+                + "iddepartamento=? , pac_zona=? , pac_celular=?  WHERE idpaciente=? ";
+            
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1, _pac.nombre);
+        preparedStatement.setString(2, _pac.apellido);
+        preparedStatement.setInt(3, Integer.parseInt(_pac.departamento));
+        preparedStatement.setInt(4, _pac.zona);
+        preparedStatement.setString(5, _pac.celular);
+        preparedStatement.setInt(6, _pac.idPaciente);
+        ResultSet rs = preparedStatement.executeQuery();
+        msj="Exito";
+    }catch (Exception e){
+     msj="Error";
+    }
+      return msj;
+    }
 
 
 

@@ -560,7 +560,6 @@ if (this.tbPacientes.getSelectedRows().length == 1)
         {        
         try {
                 int idPac = Integer.parseInt(this.tbPacientes.getModel().getValueAt(this.tbPacientes.getSelectedRow(), 0).toString());
-                
                 Paciente pac = this.conn.getPacientebyID(idPac);
                 Editar_Paciente form = new Editar_Paciente(pac);
                 form.setVisible(true);
