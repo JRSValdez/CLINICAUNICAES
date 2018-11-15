@@ -1,12 +1,10 @@
 package vistas;
 
-import java.awt.Dimension;
 import Classes.ConexionDB;
 import Classes.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 public class Pacientes_Historial extends javax.swing.JFrame {
 
      int xx,xy;
@@ -44,8 +42,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         rbProyec_social = new javax.swing.JRadioButton();
         rbFemenino = new javax.swing.JRadioButton();
         lblHeader52 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
-        lblHeader53 = new javax.swing.JLabel();
         rbMasculino = new javax.swing.JRadioButton();
         rbEstudiante = new javax.swing.JRadioButton();
         rbAcademico = new javax.swing.JRadioButton();
@@ -167,13 +163,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader52.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader52.setText("TIPO PACIENTE:");
 
-        txtFecha.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
-        lblHeader53.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader53.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader53.setText("FECHA:");
-
         rbMasculino.setBackground(new java.awt.Color(102, 0, 0));
         rbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbMasculino.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,17 +212,11 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblHeader53, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblHeader17, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbMasculino)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbFemenino))))
+                                .addComponent(lblHeader17, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbFemenino))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -264,11 +247,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                             .addComponent(lblHeader17)
                             .addComponent(rbFemenino)
                             .addComponent(rbMasculino))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFecha)
-                            .addComponent(lblHeader53))
-                        .addGap(18, 18, 18)
+                        .addGap(46, 46, 46)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader52)
                             .addComponent(rbEstudiante)
@@ -487,9 +466,9 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 "ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
 "WHEN 'M' THEN 'Masculino' " +
 "ELSE 'Femenino' END sexo from pacientes" +
-" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
-" inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
-" inner join carrera on carrera.idcarrera=pacientes.idcarrera" +
+" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac " +
+" left outer join carrera on carrera.idcarrera=pacientes.idcarrera" +
+" left outer join Facultad on facultad.idfacultad=Carrera.idfacultad" +
 " inner join departamento on departamento.iddepartamento=pacientes.iddepartamento";
         
     if (nombre.trim().length()>0){
@@ -645,7 +624,6 @@ if (this.tbPacientes.getSelectedRows().length == 1)
     private javax.swing.JLabel lblHeader5;
     private javax.swing.JLabel lblHeader50;
     private javax.swing.JLabel lblHeader52;
-    private javax.swing.JLabel lblHeader53;
     private javax.swing.JRadioButton rbAcademico;
     private javax.swing.JRadioButton rbEstudiante;
     private javax.swing.JRadioButton rbFemenino;
@@ -654,7 +632,6 @@ if (this.tbPacientes.getSelectedRows().length == 1)
     private javax.swing.JTable tbPacientes;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCarnet;
-    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

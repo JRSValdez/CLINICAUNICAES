@@ -7,8 +7,8 @@
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
 	<style name="Detail" fontName="Arial" fontSize="12"/>
-	<parameter name="categoria" class="java.lang.String">
-		<defaultValueExpression><![CDATA[G43]]></defaultValueExpression>
+	<parameter name="enfermedad" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT DISTINCT
@@ -21,18 +21,17 @@
             ELSE P.PAC_CARNE END CARNET_DOCUMENTO,
     F.FACTULTAD,
     TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm') FECHA_CONSULTA,
-    CAT.CATEGORIA
+    ENF.ENFERMEDAD
 FROM CONSULTA C
     INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
     INNER JOIN DIAGNOSTICO_X_CONS DIAG ON DIAG.IDCONSULTA = C.IDCONSULTA
     INNER JOIN CIE10_ENFERMEDAD ENF ON ENF.COD_ENF = DIAG.COD_ENF
-    INNER JOIN CIE10_CATEGORIA CAT ON CAT.COD_CAT = ENF.COD_CAT
     INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
     INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE
     INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC
     LEFT OUTER JOIN CARRERA CA ON CA.IDCARRERA = P.IDCARRERA
     LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = CA.IDFACULTAD
-WHERE CAT.COD_CAT = $P{categoria}
+WHERE ENF.COD_ENF = $P{enfermedad}
 ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
 	</queryString>
 	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
@@ -42,7 +41,7 @@ ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
 	<field name="CARNET_DOCUMENTO" class="java.lang.String"/>
 	<field name="FACTULTAD" class="java.lang.String"/>
 	<field name="FECHA_CONSULTA" class="java.lang.String"/>
-	<field name="CATEGORIA" class="java.lang.String"/>
+	<field name="ENFERMEDAD" class="java.lang.String"/>
 	<variable name="IDCONSULTA_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{IDCONSULTA}]]></variableExpression>
 	</variable>
@@ -74,8 +73,8 @@ ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
 				<text><![CDATA[PACIENTES DIAGNOSTICAOOS CON:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="5" y="133" width="406" height="20" uuid="86d7a569-288d-4832-8fe6-7a6371e4f435"/>
-				<textFieldExpression><![CDATA[$F{CATEGORIA}]]></textFieldExpression>
+				<reportElement x="5" y="132" width="382" height="20" uuid="2a2f3613-7dc3-4515-9389-b8db4c9cdb87"/>
+				<textFieldExpression><![CDATA[$F{ENFERMEDAD}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

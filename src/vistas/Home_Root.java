@@ -5372,9 +5372,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
             path = ".\\src\\Reportes\\reporte_consultas_departamento.jasper"; 
         }
         else if(this.rdbUbicacion.isSelected()){
-            parameters.put ("ubicacion", this.cmbDepartamento.getSelectedIndex() +1);
+            parameters.put ("zona", this.cmbUbicacion.getSelectedIndex() +1);
             // Ubicacion del Reporte
-            //path = ".\\src\\Reportes\\reporte_consultas_ubicacion.jasper"; 
+            path = ".\\src\\Reportes\\reporte_consultas_ubicacion.jasper"; 
         }
         else if(this.rdbCategoria.isSelected()){
             String cat = this.txtCodCat.getText();
