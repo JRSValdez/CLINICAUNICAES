@@ -58,7 +58,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="itemNombreMed">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/pill.png"/>
+              <Image iconType="3" name="/images/nombre_medicamento.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="por Nombre"/>
           </Properties>
@@ -80,9 +80,9 @@
         <MenuItem class="javax.swing.JMenuItem" name="itemCatMed">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/popUp_Carrera.png"/>
+              <Image iconType="3" name="/images/categorias.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="por Categor&#xe1;"/>
+            <Property name="text" type="java.lang.String" value="por Categor&#xed;a"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCatMedActionPerformed"/>
@@ -91,7 +91,7 @@
         <MenuItem class="javax.swing.JMenuItem" name="itemPresMed">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/lista.png"/>
+              <Image iconType="3" name="/images/presentaciones.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="por Presentaci&#xf3;n"/>
           </Properties>

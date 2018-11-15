@@ -14,7 +14,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT
+		<![CDATA[SELECT DISTINCT
     C.IDCONSULTA,
     DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR,
     P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE,
@@ -23,7 +23,7 @@
             WHEN NULL THEN P.PAC_DOCUMENTO
             ELSE P.PAC_CARNE END CARNET_DOCUMENTO,
     F.FACTULTAD,
-    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') FECHA_CONSULTA
+    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm') FECHA_CONSULTA
 FROM CONSULTA C
     INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
     INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
@@ -32,7 +32,7 @@ FROM CONSULTA C
     LEFT OUTER JOIN CARRERA CA ON CA.IDCARRERA = P.IDCARRERA
     LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = CA.IDFACULTAD
 WHERE C.CONS_FECHA BETWEEN TO_DATE($P{fecha1}, 'dd-mm-yyyy') AND TO_DATE($P{fecha2}, 'dd-mm-yyyy')
-ORDER BY C.CONS_FECHA]]>
+ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
 	</queryString>
 	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
 	<field name="DOCTOR" class="java.lang.String"/>
@@ -168,16 +168,19 @@ ORDER BY C.CONS_FECHA]]>
 				<reportElement x="252" y="4" width="69" height="20" uuid="197e4d08-3696-4ab1-a012-b85f13217b62"/>
 				<textFieldExpression><![CDATA[$F{TIPO_PACIENTE}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="334" y="4" width="77" height="20" uuid="bee70b6b-6201-4fa5-9597-5d9349dd839f"/>
 				<textFieldExpression><![CDATA[$F{CARNET_DOCUMENTO}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="422" y="4" width="69" height="20" uuid="0c63b4ce-5442-48ea-a06f-3f97300240c9"/>
 				<textFieldExpression><![CDATA[$F{FACTULTAD}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="503" y="4" width="69" height="20" uuid="c26e0f24-0f98-4567-bfd0-7377703e618b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{FECHA_CONSULTA}]]></textFieldExpression>
 			</textField>
 		</band>

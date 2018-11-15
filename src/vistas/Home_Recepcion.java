@@ -355,7 +355,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarPaciente.add(ItemCarnet);
 
-        itemNombreMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
+        itemNombreMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nombre_medicamento.png"))); // NOI18N
         itemNombreMed.setText("por Nombre");
         itemNombreMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,8 +373,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemFechaV);
 
-        itemCatMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_Carrera.png"))); // NOI18N
-        itemCatMed.setText("por Categorá");
+        itemCatMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categorias.png"))); // NOI18N
+        itemCatMed.setText("por Categoría");
         itemCatMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCatMedActionPerformed(evt);
@@ -382,7 +382,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemCatMed);
 
-        itemPresMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lista.png"))); // NOI18N
+        itemPresMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/presentaciones.png"))); // NOI18N
         itemPresMed.setText("por Presentación");
         itemPresMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
