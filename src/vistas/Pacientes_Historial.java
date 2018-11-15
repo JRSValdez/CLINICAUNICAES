@@ -2,9 +2,11 @@ package vistas;
 
 import java.awt.Dimension;
 import Classes.ConexionDB;
+import Classes.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 public class Pacientes_Historial extends javax.swing.JFrame {
 
      int xx,xy;
@@ -57,6 +59,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPacientes = new javax.swing.JTable();
         btnAtras = new javax.swing.JLabel();
+        btnEditarPaciente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -350,9 +353,17 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CARNET/DOCUMENTO", "NOMBRE", "TIPO_PACIENTE", "FACULTAD", "CARRERA", "TELEFONO", "FECHA CONSULTA", "MOTIVO CONSULTA"
+                "ID", "CARNET", "DOCUMENTO", "NOMBRE", "TIPO_PACIENTE", "CARRERA", "DEPARTAMENTO", "ZONA", "CELULAR", "SEXO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbPacientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -373,6 +384,20 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         );
 
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
+        btnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasMouseClicked(evt);
+            }
+        });
+
+        btnEditarPaciente.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        btnEditarPaciente.setText("Editar");
+        btnEditarPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarPacienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -388,7 +413,9 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnEditarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAtras)))
                 .addContainerGap())
         );
@@ -403,8 +430,12 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAtras)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAtras)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(btnEditarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -451,12 +482,15 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         String carnet=this.txtCarnet.getText();
         int tipo=0;
         String sexo="";
-        String query="Select pac_carne, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera,factultad,pac_telefono,cons_fecha,motivo from pacientes" +
-" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac" +
-" inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
+        String query="Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera.carrera,departamento.departamento," +
+"CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
+"ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
+"WHEN 'M' THEN 'Masculino' " +
+"ELSE 'Femenino' END sexo from pacientes" +
+" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
 " inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
-" inner join Consulta on consulta.idpaciente=pacientes.idpaciente" +
-" inner join det_consulta on consulta.idconsulta=det_consulta.idConsulta";
+" inner join carrera on carrera.idcarrera=pacientes.idcarrera" +
+" inner join departamento on departamento.iddepartamento=pacientes.iddepartamento";
         
     if (nombre.trim().length()>0){
     query=query+" where pac_nombre='"+nombre+"'";
@@ -466,14 +500,10 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     
     if (apellido.trim().length()>0){
     query=query+" and pac_apellido='"+apellido+"'";
-    }else{
-    query=query+" and pac_apellido like '%%'";
     }
     
     if (carnet.trim().length()>0){
     query=query+" and pac_carne='"+carnet+"'";
-    }else{
-    query=query+" and pac_carne like '%%'";
     }
     
     if(this.rbMasculino.isSelected()){
@@ -484,8 +514,6 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     
     if (sexo.trim().length()>0){
     query=query+" and pac_sexo='"+sexo+"'";
-    }else{
-    query=query+" and pac_sexo like '%%'";
     }
     
     if(this.rbAcademico.isSelected()){
@@ -540,6 +568,26 @@ public class Pacientes_Historial extends javax.swing.JFrame {
          }
     }//GEN-LAST:event_rbFemeninoMouseClicked
 
+    private void btnEditarPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarPacienteMouseClicked
+if (this.tbPacientes.getSelectedRows().length == 1)
+        {        
+        try {
+                int idPac = Integer.parseInt(this.tbPacientes.getModel().getValueAt(this.tbPacientes.getSelectedRow(), 0).toString());
+                Paciente pac = this.conn.getPacientebyID(idPac);
+                Editar_Paciente form = new Editar_Paciente(pac);
+                form.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btnEditarPacienteMouseClicked
+
+    private void btnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnAtrasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -580,6 +628,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     private javax.swing.JPanel Barra_Superior2;
     private javax.swing.JLabel btnAtras;
     private javax.swing.JLabel btnBuscar;
+    private javax.swing.JLabel btnEditarPaciente;
     private javax.swing.JButton btnHome4;
     private javax.swing.JLabel btn_close2;
     private javax.swing.JLabel jLabel3;

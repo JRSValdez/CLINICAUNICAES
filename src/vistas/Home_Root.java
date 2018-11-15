@@ -2122,7 +2122,7 @@ int xx, xy;
         btnVerCIE10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnVerCIE10.setText("VER CIE10");
         btnVerCIE10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnVerCIE10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVerCIE10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVerCIE10.setFocusable(false);
         btnVerCIE10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnVerCIE10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

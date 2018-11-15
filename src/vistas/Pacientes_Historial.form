@@ -56,7 +56,9 @@
                       <Component id="jPanel2" max="32767" attributes="0"/>
                       <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="btnEditarPaciente" min="-2" pref="149" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnAtras" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -75,8 +77,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnAtras" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btnAtras" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="btnEditarPaciente" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -624,19 +632,31 @@
                 <Component class="javax.swing.JTable" name="tbPacientes">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="0">
-                        <Column editable="true" title="CARNET/DOCUMENTO" type="java.lang.Object"/>
-                        <Column editable="true" title="NOMBRE" type="java.lang.Object"/>
-                        <Column editable="true" title="TIPO_PACIENTE" type="java.lang.Object"/>
-                        <Column editable="true" title="FACULTAD" type="java.lang.Object"/>
-                        <Column editable="true" title="CARRERA" type="java.lang.Object"/>
-                        <Column editable="true" title="TELEFONO" type="java.lang.Object"/>
-                        <Column editable="true" title="FECHA CONSULTA" type="java.lang.Object"/>
-                        <Column editable="true" title="MOTIVO CONSULTA" type="java.lang.Object"/>
+                      <Table columnCount="10" rowCount="0">
+                        <Column editable="false" title="ID" type="java.lang.Object"/>
+                        <Column editable="false" title="CARNET" type="java.lang.Object"/>
+                        <Column editable="false" title="DOCUMENTO" type="java.lang.Object"/>
+                        <Column editable="false" title="NOMBRE" type="java.lang.Object"/>
+                        <Column editable="false" title="TIPO_PACIENTE" type="java.lang.Object"/>
+                        <Column editable="false" title="CARRERA" type="java.lang.Object"/>
+                        <Column editable="false" title="DEPARTAMENTO" type="java.lang.Object"/>
+                        <Column editable="false" title="ZONA" type="java.lang.Object"/>
+                        <Column editable="false" title="CELULAR" type="java.lang.Object"/>
+                        <Column editable="false" title="SEXO" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                           <Title/>
                           <Editor/>
@@ -694,6 +714,23 @@
               <Image iconType="3" name="/images/go-back-left-arrow.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAtrasMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="btnEditarPaciente">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/edit.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Editar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEditarPacienteMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
