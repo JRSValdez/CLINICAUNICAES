@@ -2250,6 +2250,36 @@ public int ConsultasxMes() throws SQLException{
            return pac;
     }
  
+  public DefaultTableModel getSolicPacCarnet(JTable jTable1, String _idCarnet) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " c.CARRERA "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " WHERE p.PAC_CARNE LIKE ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_idCarnet);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[6];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
  
 public String ActualizarPaciente(Paciente _pac) throws SQLException {
         
@@ -2272,6 +2302,58 @@ public String ActualizarPaciente(Paciente _pac) throws SQLException {
     }
       return msj;
     }
+ public DefaultTableModel getSolicPacDoc(JTable jTable1, String _doc) throws SQLException{
+        DefaultTableModel model;
+        
+        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
+                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
+                " c.CARRERA "+
+                " FROM Pacientes p "+ 
+                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
+                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
+                " WHERE p.PAC_DOCUMENTO = ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setString(1,_doc);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object Datos[]= new Object[6];
+          
+          while (rs.next())
+           {
+              for (int i=0;i<Datos.length;i++)
+              {
+                Datos[i]=rs.getObject(i+1);
+              }
+              
+              model.addRow(Datos);
+           }
+           return model;
+    }
+  public int aggSolicitud(String _carnet, String _documento) throws SQLException{
+     
+        //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
+         CallableStatement cst = this.conn.prepareCall("{call  AGG_SOLICITUD(?,?,?)}");
+        // Parametros de entrada
+        cst.setString("pCarnet", _carnet);
+        cst.setString("pDocumento", _documento);
+        
+        // Parametro de salida (mensaje)
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        
+        // Ejecuta el procedimiento almacenado
+        cst.execute();
+        
+        // Se obtienen la salida del procedimineto almacenado
+        String mensaje = cst.getString("MENSAJE");
+        System.out.println(mensaje);
+        
+        return 0;
+        
+ }
+
 
 
 
