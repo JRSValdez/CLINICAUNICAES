@@ -398,6 +398,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
         
         try {
             String mensaje=conn.ActualizarPaciente(paciente);
+            this.dispose();
             JOptionPane.showMessageDialog(this, mensaje);
         } catch (SQLException ex) {
             Logger.getLogger(Editar_Paciente.class.getName()).log(Level.SEVERE, null, ex);

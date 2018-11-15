@@ -3417,7 +3417,7 @@ if(this.rbAcademico.isSelected()){
             this.txtnombreEmp.setText("");
             this.txtTelefono.setText("");
         } catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
+            JOptionPane.showMessageDialog(this,ex.toString());
         }
             JOptionPane.showMessageDialog(this, resultado);
         }else {

@@ -355,7 +355,15 @@ public class Pacientes_Historial extends javax.swing.JFrame {
             new String [] {
                 "ID", "CARNET", "DOCUMENTO", "NOMBRE", "TIPO_PACIENTE", "CARRERA", "DEPARTAMENTO", "ZONA", "CELULAR", "SEXO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tbPacientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -376,6 +384,11 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         );
 
         btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/go-back-left-arrow.png"))); // NOI18N
+        btnAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtrasMouseClicked(evt);
+            }
+        });
 
         btnEditarPaciente.setForeground(new java.awt.Color(255, 255, 255));
         btnEditarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
@@ -570,6 +583,10 @@ if (this.tbPacientes.getSelectedRows().length == 1)
         
         
     }//GEN-LAST:event_btnEditarPacienteMouseClicked
+
+    private void btnAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtrasMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnAtrasMouseClicked
 
     /**
      * @param args the command line arguments
