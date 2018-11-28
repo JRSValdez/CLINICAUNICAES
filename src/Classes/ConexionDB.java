@@ -129,8 +129,10 @@ public class ConexionDB {
         Statement stmt = conn.createStatement();
         String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy'), C.IDUSUARIO, DC.EF_CABEZA," +
                     " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
-                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C " +
-                    " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
+                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO, " +
+                    " DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR FROM CONSULTA C " +
+                    " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA " +
+                    " LEFT OUTER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR " +
                     " WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idConsulta);
@@ -156,6 +158,7 @@ public class ConexionDB {
             consulta.motivo = rs.getString(17);
             consulta.recomendaciones = rs.getString(18);
             consulta.tratamiento = rs.getString(19);
+            consulta.doctor = rs.getString(20);
             
             consulta.antecedente = this.getAntecedentes(consulta.idConsulta);
             consulta.diagnostico = this.getDiagnosticos(consulta.idConsulta);
@@ -639,9 +642,8 @@ public class ConexionDB {
     }
     
     public String[] getDashBoardRecepcion() throws SQLException{
-        String queryPacientes = "SELECT COUNT(*) FROM PACIENTES P " +
-                        " INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE " +
-                    " WHERE TO_DATE(C.CONS_FECHA, 'dd-mm-yyyy') = TO_DATE(CURRENT_DATE, 'dd-mm-yyyy')";
+        String queryPacientes = "SELECT COUNT(idConsulta) FROM CONSULTA C" +
+                    " WHERE TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') = TO_CHAR(CURRENT_DATE, 'dd-mm-yyyy') AND ESTADO = 1";
         PreparedStatement preparedStatement = conn.prepareStatement(queryPacientes,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         String total = "";
@@ -649,7 +651,8 @@ public class ConexionDB {
             total = rs.getString(1);
         }
         
-        String queryConsEspera = "SELECT COUNT(*) FROM CONSULTA C WHERE C.ESTADO = 0";
+        String queryConsEspera = "SELECT COUNT(C.IDCONSULTA) FROM CONSULTA C "
+                + " WHERE TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') = TO_CHAR(CURRENT_DATE, 'dd-mm-yyyy') AND C.ESTADO = 0";
         PreparedStatement preparedStatement2 = conn.prepareStatement(queryConsEspera);
         ResultSet rs2 = preparedStatement2.executeQuery();
         String total2 = "";
@@ -2126,22 +2129,35 @@ public class ConexionDB {
            }
            return model;
     }
+       
+    public int ContarConsultasEspera() throws SQLException{
+        String query = "select count(idConsulta) from consulta where estado=0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int ncons=0;
+        while (rs.next())
+         {
+            ncons=rs.getInt(1);
+
+         }
+         return ncons;
+    }
         
   
        
-        public int ContarDoctores() throws SQLException{
-        
+    public int ContarDoctores() throws SQLException{
         String query = "select count(idDoctor) from Doctor where eliminado=0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         int ndoctores=0;
-          while (rs.next())
-           {
-              ndoctores=rs.getInt(1);
-             
-           }
-           return ndoctores;
+        while (rs.next())
+         {
+            ndoctores=rs.getInt(1);
+
+         }
+         return ndoctores;
     }
        
      public int ContarMedicamentos() throws SQLException{
@@ -2157,6 +2173,22 @@ public class ConexionDB {
              
            }
            return nmedicamentos;
+    }
+     
+     public int ContarConsultasByDoctor(int _idDoctor) throws SQLException{
+        
+        String query = "select count(idDoctor) from consulta WHERE estado = 1 and idDoctor = ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idDoctor);
+        ResultSet rs = preparedStatement.executeQuery();
+        int ncons=0;
+          while (rs.next())
+           {
+              ncons=rs.getInt(1);
+             
+           }
+           return ncons;
     }
    
 public int ContarPacientes() throws SQLException{

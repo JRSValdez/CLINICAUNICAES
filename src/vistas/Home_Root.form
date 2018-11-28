@@ -64,6 +64,10 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="rdbUsuario">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="radiosSexoEmpleado">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -309,7 +313,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/home_btn.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="HOME"/>
+                    <Property name="text" type="java.lang.String" value="INICIO"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                         <EtchetBorder/>
@@ -1135,7 +1139,7 @@
                         <Component class="javax.swing.JLabel" name="jLabel58">
                           <Properties>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                              <Image iconType="3" name="/images/estetoscopio.png"/>
+                              <Image iconType="3" name="/images/medicamento.png"/>
                             </Property>
                           </Properties>
                         </Component>
@@ -1540,6 +1544,7 @@
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="##-##-####" subtype="-1" type="5"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="dd-mm-yyyy"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JFormattedTextField" name="txtTelefono">
@@ -2088,7 +2093,7 @@
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
                           <Format format="dd-MM-yyyy" subtype="-1" type="1"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                        <Property name="toolTipText" type="java.lang.String" value="dd-mm-yyyy"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
                         </Property>
@@ -4875,7 +4880,6 @@
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Comic Sans MS" size="14" style="0"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Categor&#xed;a"/>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -5527,7 +5531,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="CARRERAS:"/>
+                                <Property name="text" type="java.lang.String" value="CARRERA:"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="txtCarrera">
@@ -5535,7 +5539,6 @@
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Comic Sans MS" size="14" style="0"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Carrera"/>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                     <LineBorder>
@@ -6967,6 +6970,7 @@
                         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                           <Format format="##-##-####" subtype="-1" type="5"/>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="dd-mm-yyyy"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblHeader79">
@@ -6985,6 +6989,9 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="66" type="rgb"/>
                         </Property>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="radiosSexoEmpleado"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>
                         </Property>
@@ -6998,6 +7005,9 @@
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="radiosSexoEmpleado"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Comic Sans MS" size="14" style="0"/>

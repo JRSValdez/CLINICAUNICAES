@@ -168,6 +168,8 @@ int xx, xy;
         rdbFiltros2 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         rdbUsuario = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        radiosSexoEmpleado = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         SideBar = new javax.swing.JPanel();
         Botonera = new javax.swing.JPanel();
@@ -558,7 +560,7 @@ int xx, xy;
         btn_home.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btn_home.setForeground(new java.awt.Color(255, 255, 255));
         btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home_btn.png"))); // NOI18N
-        btn_home.setText("HOME");
+        btn_home.setText("INICIO");
         btn_home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_home.addActionListener(new java.awt.event.ActionListener() {
@@ -968,7 +970,7 @@ int xx, xy;
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel57.setText("Medicamentos");
 
-        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/estetoscopio.png"))); // NOI18N
+        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/medicamento.png"))); // NOI18N
 
         lblMedicamentos.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         lblMedicamentos.setForeground(new java.awt.Color(255, 255, 255));
@@ -1151,6 +1153,7 @@ int xx, xy;
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFecha.setToolTipText("dd-mm-yyyy");
 
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
         try {
@@ -1430,7 +1433,7 @@ int xx, xy;
 
         txtFechaV.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         txtFechaV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
-        txtFechaV.setToolTipText("");
+        txtFechaV.setToolTipText("dd-mm-yyyy");
         txtFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         txtCantMedicamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
@@ -2122,7 +2125,7 @@ int xx, xy;
         btnVerCIE10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnVerCIE10.setText("VER CIE10");
         btnVerCIE10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnVerCIE10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVerCIE10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVerCIE10.setFocusable(false);
         btnVerCIE10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnVerCIE10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -2821,7 +2824,6 @@ int xx, xy;
         lblHeader3.setText("CATEGORÍA:");
 
         txtCategoria.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCategoria.setText("Categoría");
         txtCategoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         btnAggCategoria.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -3182,10 +3184,9 @@ int xx, xy;
 
         lblHeader7.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblHeader7.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader7.setText("CARRERAS:");
+        lblHeader7.setText("CARRERA:");
 
         txtCarrera.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarrera.setText("Carrera");
         txtCarrera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
         txtCarrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3973,17 +3974,20 @@ int xx, xy;
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFecNac2.setToolTipText("dd-mm-yyyy");
 
         lblHeader79.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader79.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader79.setText("FECHA NACIMIENTO:");
 
         rbFem2.setBackground(new java.awt.Color(102, 0, 0));
+        radiosSexoEmpleado.add(rbFem2);
         rbFem2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbFem2.setForeground(new java.awt.Color(255, 255, 255));
         rbFem2.setText("Femenino");
 
         rbMasc3.setBackground(new java.awt.Color(102, 0, 0));
+        radiosSexoEmpleado.add(rbMasc3);
         rbMasc3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbMasc3.setForeground(new java.awt.Color(255, 255, 255));
         rbMasc3.setSelected(true);
@@ -5539,6 +5543,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JButton btn_users;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cboBuscarCatMed;
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCategoriaMed;
@@ -5722,6 +5727,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPacientes;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
+    private javax.swing.ButtonGroup radiosSexoEmpleado;
     private javax.swing.JRadioButton rbF;
     private javax.swing.JRadioButton rbFem2;
     private javax.swing.JRadioButton rbM;

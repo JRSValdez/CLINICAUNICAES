@@ -32,7 +32,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         this.lblNombre.setText(this.paciente.nombre);
         this.lblPacienteTitulo.setText(this.paciente.nombre);
         this.lblFechaCons.setText(this.consulta.fecha);
-        this.lblAtendidoPo.setText("Doctor Estático");
+        this.lblAtendidoPo.setText(this.consulta.doctor);
         this.lblMotivo.setText(this.consulta.motivo);
         
         this.lblPeso.setText(this.consulta.peso);
