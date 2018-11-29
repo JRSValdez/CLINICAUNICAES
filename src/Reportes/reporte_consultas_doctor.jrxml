@@ -11,7 +11,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT
+		<![CDATA[SELECT DISTINCT
     C.IDCONSULTA,
     DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR,
     P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE,
@@ -20,7 +20,7 @@
             WHEN NULL THEN P.PAC_DOCUMENTO
             ELSE P.PAC_CARNE END CARNET_DOCUMENTO,
     F.FACTULTAD,
-    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') FECHA_CONSULTA
+    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm') FECHA_CONSULTA
 FROM CONSULTA C
     INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
     INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
@@ -28,7 +28,8 @@ FROM CONSULTA C
     INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC
     INNER JOIN CARRERA CA ON CA.IDCARRERA = P.IDCARRERA
     INNER JOIN FACULTAD F ON F.IDFACULTAD = CA.IDFACULTAD
-WHERE C.IDDOCTOR = $P{idDoctor}]]>
+WHERE C.IDDOCTOR = $P{idDoctor}
+ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
 	</queryString>
 	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
 	<field name="DOCTOR" class="java.lang.String"/>
@@ -44,7 +45,7 @@ WHERE C.IDDOCTOR = $P{idDoctor}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="155" splitType="Stretch">
+		<band height="154" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="124" y="34" width="263" height="33" uuid="c09a559f-dcb9-4d50-84db-f3079ab5caaf"/>
 				<textElement verticalAlignment="Middle">
@@ -86,35 +87,35 @@ WHERE C.IDDOCTOR = $P{idDoctor}]]>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="51" y="20" width="190" height="20" uuid="dfa6a959-1300-4edb-9222-b67707f66e08"/>
+				<reportElement x="34" y="20" width="190" height="20" uuid="dfa6a959-1300-4edb-9222-b67707f66e08"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PACIENTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="253" y="20" width="68" height="20" uuid="9e80bbac-9adb-417e-aac7-d37159bbc8eb"/>
+				<reportElement x="229" y="20" width="68" height="20" uuid="9e80bbac-9adb-417e-aac7-d37159bbc8eb"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ACTIVIDAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="331" y="20" width="80" height="20" uuid="9ab36922-db36-4b3b-a4a5-875644646854"/>
+				<reportElement x="301" y="20" width="80" height="20" uuid="9ab36922-db36-4b3b-a4a5-875644646854"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CARNET/DOC]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="422" y="20" width="81" height="20" uuid="5456407a-eaf3-4441-acdf-2a67f865adb0"/>
+				<reportElement x="390" y="20" width="96" height="20" uuid="5456407a-eaf3-4441-acdf-2a67f865adb0"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FACTULTAD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="503" y="20" width="47" height="20" uuid="8b0d1157-42a4-433e-bee1-c200d1b75f2d"/>
+				<reportElement x="486" y="20" width="47" height="20" uuid="8b0d1157-42a4-433e-bee1-c200d1b75f2d"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -129,23 +130,29 @@ WHERE C.IDDOCTOR = $P{idDoctor}]]>
 				<textFieldExpression><![CDATA[$F{IDCONSULTA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="51" y="2" width="179" height="20" uuid="d970ab03-2693-4883-884a-0b3d08972ef0"/>
+				<reportElement x="34" y="2" width="190" height="20" uuid="d970ab03-2693-4883-884a-0b3d08972ef0"/>
 				<textFieldExpression><![CDATA[$F{PACIENTE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="252" y="2" width="69" height="20" uuid="197e4d08-3696-4ab1-a012-b85f13217b62"/>
+				<reportElement x="228" y="2" width="69" height="20" uuid="197e4d08-3696-4ab1-a012-b85f13217b62"/>
 				<textFieldExpression><![CDATA[$F{TIPO_PACIENTE}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="334" y="2" width="77" height="20" uuid="bee70b6b-6201-4fa5-9597-5d9349dd839f"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="304" y="2" width="77" height="20" uuid="bee70b6b-6201-4fa5-9597-5d9349dd839f"/>
 				<textFieldExpression><![CDATA[$F{CARNET_DOCUMENTO}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="422" y="2" width="69" height="20" uuid="0c63b4ce-5442-48ea-a06f-3f97300240c9"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="390" y="2" width="96" height="20" uuid="0c63b4ce-5442-48ea-a06f-3f97300240c9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{FACTULTAD}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="503" y="2" width="69" height="20" uuid="c26e0f24-0f98-4567-bfd0-7377703e618b"/>
+				<reportElement x="498" y="0" width="74" height="20" uuid="c26e0f24-0f98-4567-bfd0-7377703e618b"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{FECHA_CONSULTA}]]></textFieldExpression>
 			</textField>
 		</band>

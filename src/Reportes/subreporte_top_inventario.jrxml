@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ca722b61-9fa1-4dd0-8fc0-08b77369a737">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT O.* FROM (SELECT M.IDMEDICAMENTO, MEDICAMENTO, COUNT(D.IDMEDICAMENTO) TOTAL FROM MEDICAMENTO M
+    INNER JOIN DET_RECETA D ON D.IDMEDICAMENTO = M.IDMEDICAMENTO
+    GROUP BY M.IDMEDICAMENTO, MEDICAMENTO
+    ORDER BY COUNT(D.IDMEDICAMENTO) DESC) O
+WHERE ROWNUM <=5]]>
+	</queryString>
+	<field name="IDMEDICAMENTO" class="java.math.BigDecimal"/>
+	<field name="MEDICAMENTO" class="java.lang.String"/>
+	<field name="TOTAL" class="java.math.BigDecimal"/>
+	<title>
+		<band height="237" splitType="Stretch">
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="0" width="408" height="237" uuid="db2eba6f-8f4e-48af-90d1-b5e6d8eaf842"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{IDMEDICAMENTO}]]></keyExpression>
+					<valueExpression><![CDATA[$F{TOTAL}]]></valueExpression>
+					<labelExpression><![CDATA[$F{MEDICAMENTO}]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</title>
+</jasperReport>

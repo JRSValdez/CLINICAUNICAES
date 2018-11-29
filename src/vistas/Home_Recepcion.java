@@ -124,7 +124,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         SideBar = new javax.swing.JPanel();
         Botonera = new javax.swing.JPanel();
-        btn_sols = new javax.swing.JButton();
         btn_cons = new javax.swing.JButton();
         btn_farmacia = new javax.swing.JButton();
         btn_home = new javax.swing.JButton();
@@ -138,7 +137,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        lblSol_medicamento = new javax.swing.JLabel();
+        lblMedicamento = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -163,7 +162,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggConPacNuevo = new javax.swing.JLabel();
         jPanel33 = new javax.swing.JPanel();
         lblHeader37 = new javax.swing.JLabel();
-        txtCarnetC = new javax.swing.JTextField();
         lblHeader21 = new javax.swing.JLabel();
         txtNombreC = new javax.swing.JTextField();
         lblHeader26 = new javax.swing.JLabel();
@@ -177,6 +175,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         txtFechanacC = new javax.swing.JFormattedTextField();
         txtTelefonoC = new javax.swing.JFormattedTextField();
         txtCelularC = new javax.swing.JFormattedTextField();
+        txtCarnetC = new javax.swing.JFormattedTextField();
         jPanel34 = new javax.swing.JPanel();
         lblHeader38 = new javax.swing.JLabel();
         txtDireccionC = new javax.swing.JTextArea();
@@ -359,7 +358,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarPaciente.add(ItemCarnet);
 
-        itemNombreMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pill.png"))); // NOI18N
+        itemNombreMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/nombre_medicamento.png"))); // NOI18N
         itemNombreMed.setText("por Nombre");
         itemNombreMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,8 +376,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemFechaV);
 
-        itemCatMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/popUp_Carrera.png"))); // NOI18N
-        itemCatMed.setText("por Categorá");
+        itemCatMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/categorias.png"))); // NOI18N
+        itemCatMed.setText("por Categoría");
         itemCatMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemCatMedActionPerformed(evt);
@@ -386,7 +385,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         });
         pUpBuscarMedicamento.add(itemCatMed);
 
-        itemPresMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lista.png"))); // NOI18N
+        itemPresMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/presentaciones.png"))); // NOI18N
         itemPresMed.setText("por Presentación");
         itemPresMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,19 +429,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         Botonera.setMinimumSize(new java.awt.Dimension(265, 306));
         Botonera.setPreferredSize(new java.awt.Dimension(265, 306));
 
-        btn_sols.setBackground(new java.awt.Color(0, 0, 0));
-        btn_sols.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        btn_sols.setForeground(new java.awt.Color(255, 255, 255));
-        btn_sols.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
-        btn_sols.setText("SOLICITUD DE MED.");
-        btn_sols.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        btn_sols.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_sols.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_solsActionPerformed(evt);
-            }
-        });
-
         btn_cons.setBackground(new java.awt.Color(0, 0, 0));
         btn_cons.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btn_cons.setForeground(new java.awt.Color(255, 255, 255));
@@ -473,7 +459,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_home.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btn_home.setForeground(new java.awt.Color(255, 255, 255));
         btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
-        btn_home.setText("HOME");
+        btn_home.setText("INICIO");
         btn_home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_home.addActionListener(new java.awt.event.ActionListener() {
@@ -502,8 +488,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(BotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(BotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_pac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -518,9 +503,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(btn_cons, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_pac, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(btn_sols, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btn_farmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -538,7 +521,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -607,17 +590,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        lblSol_medicamento.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        lblSol_medicamento.setForeground(new java.awt.Color(255, 255, 255));
-        lblSol_medicamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSol_medicamento.setText("4");
+        lblMedicamento.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        lblMedicamento.setForeground(new java.awt.Color(255, 255, 255));
+        lblMedicamento.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMedicamento.setText("4");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/img1.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/medicamento.png"))); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("Comic Sans MS", 1, 17)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Solicitudes de medicamento");
+        jLabel15.setText("Medicamentos");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -626,26 +609,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSol_medicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblMedicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel12))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel15)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(lblSol_medicamento)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(lblMedicamento)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(102, 0, 0));
@@ -676,7 +658,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -716,7 +698,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -740,13 +722,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,9 +827,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         Tab_homeLayout.setHorizontalGroup(
             Tab_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_homeLayout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Tab_homeLayout.createSequentialGroup()
@@ -908,9 +890,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader37.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader37.setText("CARNET:");
 
-        txtCarnetC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnetC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         lblHeader21.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader21.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader21.setText("NOMBRES:");
@@ -933,7 +912,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino);
         rdbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        rdbMasculino.setSelected(true);
         rdbMasculino.setText("Masculino");
 
         rdbFemenino.setBackground(new java.awt.Color(102, 0, 0));
@@ -960,6 +938,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFechanacC.setToolTipText("dd-mm-yyyy");
         txtFechanacC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         txtTelefonoC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
@@ -977,6 +956,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         txtCelularC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        txtCarnetC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtCarnetC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-AA-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCarnetC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
         jPanel33.setLayout(jPanel33Layout);
@@ -1002,7 +989,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(31, 31, 31)))
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNombreC, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                    .addComponent(txtCarnetC, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addComponent(rdbMasculino)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1010,7 +996,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(txtApellidoC)
                     .addComponent(txtFechanacC)
                     .addComponent(txtTelefonoC)
-                    .addComponent(txtCelularC, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtCelularC, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCarnetC))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel33Layout.setVerticalGroup(
@@ -1019,7 +1006,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader37)
-                    .addComponent(txtCarnetC))
+                    .addComponent(txtCarnetC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader21)
@@ -1065,7 +1052,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbUrbanoC);
         rbUrbanoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbUrbanoC.setForeground(new java.awt.Color(255, 255, 255));
-        rbUrbanoC.setSelected(true);
         rbUrbanoC.setText("Urbano");
         rbUrbanoC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1228,7 +1214,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1505,12 +1491,23 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rdbMasculino1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino1.setForeground(new java.awt.Color(255, 255, 255));
         rdbMasculino1.setText("Masculino");
+        rdbMasculino1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbMasculino1MouseClicked(evt);
+            }
+        });
 
         rdbFemenino1.setBackground(new java.awt.Color(102, 0, 0));
         buttonGroup1.add(rdbFemenino1);
         rdbFemenino1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbFemenino1.setForeground(new java.awt.Color(255, 255, 255));
+        rdbFemenino1.setSelected(true);
         rdbFemenino1.setText("Femenino");
+        rdbFemenino1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdbFemenino1MouseClicked(evt);
+            }
+        });
 
         lblHeader60.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader60.setForeground(new java.awt.Color(255, 255, 255));
@@ -1530,6 +1527,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFechaNac.setToolTipText("dd-mm-yyyy");
         txtFechaNac.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         txtTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
@@ -1631,7 +1629,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup3.add(rbzonaUrb);
         rbzonaUrb.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbzonaUrb.setForeground(new java.awt.Color(255, 255, 255));
+        rbzonaUrb.setSelected(true);
         rbzonaUrb.setText("Urbano");
+        rbzonaUrb.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbzonaUrbMouseClicked(evt);
+            }
+        });
         rbzonaUrb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbzonaUrbActionPerformed(evt);
@@ -1643,6 +1647,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rbzonaRur.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbzonaRur.setForeground(new java.awt.Color(255, 255, 255));
         rbzonaRur.setText("Rural");
+        rbzonaRur.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbzonaRurMouseClicked(evt);
+            }
+        });
 
         lblHeader64.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader64.setForeground(new java.awt.Color(255, 255, 255));
@@ -1750,9 +1759,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2550,6 +2559,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFechaV.setToolTipText("dd-mm-yyyy");
         txtFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         txtCantMedicamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
@@ -2940,7 +2950,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -2969,6 +2979,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         String[] arrayDash = this.conn.getDashBoardRecepcion();
         this.lblConsult_espera.setText(arrayDash[2]);
         this.lblPacAtendidos.setText(arrayDash[1]);
+        this.lblMedicamento.setText(""+conn.ContarMedicamentos());
     }
     
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
@@ -2992,22 +3003,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        this.btn_sols.setBackground(Color.black);
+        //this.btn_sols.setBackground(Color.black);
         
-        
+        try {
+            this.llenarDashboard();
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_homeActionPerformed
-
-    private void btn_solsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solsActionPerformed
-        this.Contenedor.setSelectedIndex(3);
-        this.lblHeader.setText("SOLICITUDES MED.");
-        
-        this.btn_sols.setBackground(Color.decode("#660000"));
-        this.btn_cons.setBackground(Color.black);
-        this.btn_farmacia.setBackground(Color.black);
-        this.btn_pac.setBackground(Color.black);
-        this.btn_home.setBackground(Color.black);
-        
-    }//GEN-LAST:event_btn_solsActionPerformed
 
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
         int x = evt.getXOnScreen();
@@ -3033,7 +3036,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
-        this.btn_sols.setBackground(Color.black);
+        //this.btn_sols.setBackground(Color.black);
         
     }//GEN-LAST:event_btn_pacActionPerformed
 
@@ -3045,7 +3048,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_farmacia.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        this.btn_sols.setBackground(Color.black);
+        //this.btn_sols.setBackground(Color.black);
     }//GEN-LAST:event_btn_consActionPerformed
 
     private void btn_farmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_farmaciaActionPerformed
@@ -3056,7 +3059,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        this.btn_sols.setBackground(Color.black);
+        //this.btn_sols.setBackground(Color.black);
         
     }//GEN-LAST:event_btn_farmaciaActionPerformed
 
@@ -3095,7 +3098,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        this.btn_sols.setBackground(Color.black);
+        //this.btn_sols.setBackground(Color.black);
     }//GEN-LAST:event_btnHome2ActionPerformed
 
     private void jPanelEstNuevo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo2MouseClicked
@@ -3320,7 +3323,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     int idConsulta = this.conn.aggConsulta(idPaciente, this.user.idUsuario);
                     if(idConsulta > 0){
                         consulta = this.conn.getConsulta(idConsulta);
-                        paciente = this.conn.getPaciente(consulta.idPaciente);
+                        paciente = this.conn.getPaciente(idPaciente);
                         JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
                         Consulta_Signos_Vitales form = new Consulta_Signos_Vitales(consulta, paciente);
                         form.setVisible(true);
@@ -3755,6 +3758,26 @@ if(this.rbAcademico.isSelected()){
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_mDocActionPerformed
+
+    private void rdbFemenino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbFemenino1MouseClicked
+        this.rdbFemenino1.setSelected(true);
+        this.rdbMasculino1.setSelected(false);
+    }//GEN-LAST:event_rdbFemenino1MouseClicked
+
+    private void rdbMasculino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbMasculino1MouseClicked
+        this.rdbFemenino1.setSelected(false);
+        this.rdbMasculino1.setSelected(true);
+    }//GEN-LAST:event_rdbMasculino1MouseClicked
+
+    private void rbzonaUrbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbzonaUrbMouseClicked
+        this.rbzonaUrb.setSelected(true);
+        this.rbzonaRur.setSelected(false);
+    }//GEN-LAST:event_rbzonaUrbMouseClicked
+
+    private void rbzonaRurMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbzonaRurMouseClicked
+        this.rbzonaUrb.setSelected(false);
+        this.rbzonaRur.setSelected(true);
+    }//GEN-LAST:event_rbzonaRurMouseClicked
     
     
     /**
@@ -3820,7 +3843,6 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JLabel btn_maximize;
     private javax.swing.JLabel btn_minimize;
     private javax.swing.JButton btn_pac;
-    private javax.swing.JButton btn_sols;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -3964,9 +3986,9 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JLabel lblHeader70;
     private javax.swing.JLabel lblHeader71;
     private javax.swing.JLabel lblHeader8;
+    private javax.swing.JLabel lblMedicamento;
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPacAtendidos;
-    private javax.swing.JLabel lblSol_medicamento;
     private javax.swing.JMenuItem mCarnet;
     private javax.swing.JMenuItem mDoc;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
@@ -3990,7 +4012,7 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JTextField txtBusquedaExistente;
     private javax.swing.JFormattedTextField txtCantMedicamento;
     private javax.swing.JFormattedTextField txtCarnet;
-    private javax.swing.JTextField txtCarnetC;
+    private javax.swing.JFormattedTextField txtCarnetC;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JFormattedTextField txtCelularC;
     private javax.swing.JTextArea txtDireccion;

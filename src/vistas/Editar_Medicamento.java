@@ -211,6 +211,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtFechaV.setToolTipText("dd-mm-yyyy");
         txtFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);

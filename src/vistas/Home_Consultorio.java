@@ -69,6 +69,9 @@ public class Home_Consultorio extends javax.swing.JFrame {
         this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
         this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
         
+        // DaSSSHHHBOARDD
+        this.lblPac_atendidos.setText(String.valueOf(this.conn.ContarConsultasByDoctor(this.user.idDoctor)));
+        this.lblConsult_espera.setText(""+this.conn.ContarConsultasEspera());
     }
     
     private void llenarConsultasEnEspera(){
@@ -183,7 +186,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btn_home.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btn_home.setForeground(new java.awt.Color(255, 255, 255));
         btn_home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pacientes.png"))); // NOI18N
-        btn_home.setText("HOME");
+        btn_home.setText("INICIO");
         btn_home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_home.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_home.addActionListener(new java.awt.event.ActionListener() {
@@ -560,7 +563,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnHistorialConsultas.setForeground(new java.awt.Color(255, 255, 255));
         btnHistorialConsultas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnHistorialConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
-        btnHistorialConsultas.setText("Historial");
+        btnHistorialConsultas.setText("HISTORIAL");
         btnHistorialConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnHistorialConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnHistorialConsultas.setFocusable(false);
@@ -590,7 +593,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnNoQuiso.setForeground(new java.awt.Color(255, 255, 255));
         btnNoQuiso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        btnNoQuiso.setText("NO QUIZO ESPERAR");
+        btnNoQuiso.setText("NO QUISO ESPERAR");
         btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNoQuiso.setFocusable(false);
@@ -622,7 +625,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
+                .addContainerGap(234, Short.MAX_VALUE)
                 .addComponent(btnAtender)
                 .addGap(18, 18, 18)
                 .addComponent(btnNoQuiso)
@@ -632,7 +635,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(btnConsultasAhora)
                 .addGap(18, 18, 18)
                 .addComponent(btnHistorialConsultas)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

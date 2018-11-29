@@ -58,6 +58,36 @@ public class ConexionDB {
     ////////////////////// GETS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
     
+    public int ContarConsultasByDoctor(int _idDoctor) throws SQLException{
+        
+        String query = "select count(idDoctor) from consulta WHERE estado = 1 and idDoctor = ?";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idDoctor);
+        ResultSet rs = preparedStatement.executeQuery();
+        int ncons=0;
+          while (rs.next())
+           {
+              ncons=rs.getInt(1);
+             
+           }
+           return ncons;
+    }
+    
+    public int ContarConsultasEspera() throws SQLException{
+        String query = "select count(idConsulta) from consulta where estado=0";
+                
+        PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        ResultSet rs = preparedStatement.executeQuery();
+        int ncons=0;
+        while (rs.next())
+         {
+            ncons=rs.getInt(1);
+
+         }
+         return ncons;
+    }
+    
     public Medicamento getMedicamentobyID(int _idMed) throws SQLException{
         DefaultTableModel model;
         
@@ -284,7 +314,7 @@ public class ConexionDB {
         CallableStatement cst = this.conn.prepareCall("call  AGG_USUARIO(?,?,?,?,?,?)");
     
         cst.setString("PUSUARIO", _usuario.user);
-        cst.setString("CCONTRA", _usuario.password1);
+        cst.setString("PCONTRA", _usuario.password1);
         cst.setInt("PTIPO", _usuario.tipo_usr);
         cst.setString("PTABLA",_tabla);
         cst.setInt("PIDOWNER",_idOwner);
@@ -305,7 +335,7 @@ public class ConexionDB {
         cst.setString("PNOMBRE", _doctor.nombre);
         cst.setString("PAPELLIDO", _doctor.apellido);
         cst.setInt("PIDESPECIALIDAD", _doctor.idEspecialidad);
-        cst.setString("pTEL", _doctor.telefono);
+        cst.setString("PTEL", _doctor.telefono);
         cst.setString("PFECHANAC", _doctor.fechaNac);
         cst.setString("PSEXO",_doctor.sexo);
         cst.setString("PDOC",_doctor.documento);

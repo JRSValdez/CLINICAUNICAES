@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="638f09c2-6339-410d-9ec7-f408968c8fd0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT D.IDDOCTOR, D.DOC_APELLIDO, COUNT(C.IDDOCTOR) FROM CONSULTA C
+    INNER JOIN DOCTOR D ON D.IDDOCTOR = C.IDDOCTOR
+GROUP BY D.IDDOCTOR, D.DOC_APELLIDO]]>
+	</queryString>
+	<field name="IDDOCTOR" class="java.math.BigDecimal"/>
+	<field name="DOC_APELLIDO" class="java.lang.String"/>
+	<field name="COUNT(C.IDDOCTOR)" class="java.math.BigDecimal"/>
+	<title>
+		<band height="284" splitType="Stretch">
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="35" width="367" height="249" uuid="95a9491b-bfc4-48e2-a80d-1701433e6a78"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{IDDOCTOR}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COUNT(C.IDDOCTOR)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{DOC_APELLIDO}]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<staticText>
+				<reportElement x="83" y="0" width="200" height="20" uuid="fc505c36-471e-4d61-a82e-cb1cfd8f2ee2"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCTORES-CONSULTAS]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

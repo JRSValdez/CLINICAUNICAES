@@ -56,7 +56,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnNoQuiso.setForeground(new java.awt.Color(255, 255, 255));
         btnNoQuiso.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
-        btnNoQuiso.setText("NO QUIZO ESPERAR");
+        btnNoQuiso.setText("NO QUISO ESPERAR");
         btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNoQuiso.setFocusable(false);
@@ -92,7 +92,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
                 .addComponent(btnNoQuiso)
                 .addGap(28, 28, 28)
                 .addComponent(btnSeRetiro)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

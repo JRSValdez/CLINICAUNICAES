@@ -18,6 +18,7 @@ public class Consulta {
     public Receta receta;
     public Diagnostico diagnostico;
     public Antecedente antecedente;
+    public String doctor;
     
     public String motivo;
     public String ef_cabeza;

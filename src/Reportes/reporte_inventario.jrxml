@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="836be674-e83f-4b2d-8150-8a50ece5da2a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT M.IDMEDICAMENTO, M.MEDICAMENTO, M.CANTIDAD || ' ' || U.ABREVIATURA CANTIDAD, P.PRESENTACION, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') VENCIMIENTO  FROM MEDICAMENTO M 
+    INNER JOIN UNIDAD_MED U ON U.IDUNIDAD_MED = M.IDUNIDAD_MED
+    INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO
+    INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION]]>
+	</queryString>
+	<field name="IDMEDICAMENTO" class="java.math.BigDecimal"/>
+	<field name="MEDICAMENTO" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.lang.String"/>
+	<field name="PRESENTACION" class="java.lang.String"/>
+	<field name="VENCIMIENTO" class="java.lang.String"/>
+	<title>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="32" width="306" height="23" uuid="06205ec8-3b21-439a-942e-0f736aa358bf"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE INVENTARIO FARMACIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="66" width="163" height="23" uuid="75ae32ac-4f37-41a1-9bf4-571e21c4e2b3"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA UNICAES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="381" y="8" width="115" height="104" uuid="66d55df3-aeb4-4e25-92f8-8e5467889147"/>
+				<imageExpression><![CDATA[".\\unicaes_logo_small.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="2" width="34" height="20" uuid="0c2b2d86-b802-4a15-b584-ba1df7d8d096"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="2" width="100" height="20" uuid="b8961afb-da55-4159-bca8-2e6aa264f727"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="240" y="2" width="67" height="20" uuid="2cdc5de9-a7fc-4340-ad81-f243ee40dcb5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="2" width="100" height="20" uuid="32f9bbcb-b97a-497c-99f7-7ca50905f27d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESENTACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20" uuid="82c0098e-d5ff-413a-8b63-3ee7dc465343"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENCIMIENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="34" height="20" uuid="279a38ed-a49a-4ae3-ac17-bafecd3473d2"/>
+				<textFieldExpression><![CDATA[$F{IDMEDICAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="180" height="20" uuid="700d6a00-053c-46e5-8ccb-8c663909125b"/>
+				<textFieldExpression><![CDATA[$F{MEDICAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="82" height="20" uuid="bd254488-7bdf-4248-9de0-3df5eca041bc"/>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="100" height="20" uuid="580457b5-4b62-4004-abc2-f43a5e53a4e8"/>
+				<textFieldExpression><![CDATA[$F{PRESENTACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="87abc9c8-87ff-4ee0-8a10-5e438e1bfabb"/>
+				<textFieldExpression><![CDATA[$F{VENCIMIENTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="199" height="20" uuid="7c3508a1-417d-46f8-8347-fc888fc8bdde"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="80" height="20" uuid="e6074fb2-a373-4358-b930-f466ae4263c4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="ea1d96db-c5a8-4e2b-a434-fed545ded2cc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
