@@ -36,8 +36,8 @@ public class ConexionDB {
   
     public void conectar(){
         try {
-            String url="jdbc:oracle:thin:@localhost:1521:XE";
-            conn= DriverManager.getConnection(url,"clinica","unicaes");
+            String url="jdbc:mysql://localhost:3306/clinica_unicaes";
+            conn= DriverManager.getConnection(url,"root","jr2020");
             st= conn.createStatement();
         }
         catch (Exception e){
@@ -61,11 +61,11 @@ public class ConexionDB {
     public Medicamento getMedicamentobyID(int _idMed) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO, UM.UNIDAD, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.IDMEDICAMENTO = ? AND M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO, UM.UNIDAD, P.PRESENTACION, M.CANTIDAD, DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+"INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+"INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+"INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+"WHERE M.IDMEDICAMENTO = ? AND M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idMed);
         ResultSet rs = preparedStatement.executeQuery();
@@ -89,16 +89,18 @@ public class ConexionDB {
         Paciente paciente = new Paciente();
         Statement stmt = conn.createStatement();
         String query = "SELECT P.IDPACIENTE, P.PAC_CARNE, TP.TIPOPAC, C.CARRERA, " +
-                        " P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, P.PAC_SEXO, P.PAC_CELULAR, P.PAC_TELEFONO, " +
-                        " (trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, " +
-                        " P.PAC_DIRECCION, D.DEPARTAMENTO,  P.PAC_RESPONSABLE, P.PAC_RES_TEL, PA.PARENTESCO " +
-                    "FROM PACIENTES P " +
-                    " LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
-                    " LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
-                    " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
-                    " INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
-                    " INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
-                    " WHERE P.IDPACIENTE = ?";
+                       "CONCAT(IFNULL(P.PAC_NOMBRE, '') , ' ' , IFNULL(P.PAC_APELLIDO, '')) NOMBRE, P.PAC_SEXO, " +
+                       "P.PAC_CELULAR, P.PAC_TELEFONO, " +
+                       "(concat(ifnull(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0), '') , ' Años ' , " +
+                       "ifnull(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12), 0), '') , ' meses')) Edad, " +
+                       "P.PAC_DIRECCION, D.DEPARTAMENTO,  P.PAC_RESPONSABLE, P.PAC_RES_TEL, PA.PARENTESCO " +
+                       "FROM PACIENTES P " +
+                       "LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                       "LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = C.IDFACULTAD " +
+                       "INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
+                       "INNER JOIN PARENTESCO PA ON PA.IDPARENTESCO = P.IDPARENTESCO " +
+                       "INNER JOIN DEPARTAMENTO D ON D.IDDEPARTAMENTO = P.IDDEPARTAMENTO " +
+                       "WHERE P.IDPACIENTE = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPaciente);
         ResultSet rs = preparedStatement.executeQuery();
@@ -127,11 +129,11 @@ public class ConexionDB {
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException{
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
-        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy'), C.IDUSUARIO, DC.EF_CABEZA," +
-                    " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
-                    " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C " +
-                    " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA" +
-                    " WHERE C.IDCONSULTA = ?";
+        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y'), C.IDUSUARIO, DC.EF_CABEZA," +
+                       "DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, " +
+                       "DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C " +
+                       "LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA " +
+                       "WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idConsulta);
         ResultSet rs = preparedStatement.executeQuery();
@@ -279,13 +281,13 @@ public class ConexionDB {
     
      public String aggUsuario(Usuario _usuario, String _tabla, int _idOwner) throws SQLException{
         
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_USUARIO(?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_USUARIO(?,?,?,?,?,?)");
     
-        cst.setString("pUSUARIO", _usuario.user);
-        cst.setString("pCONTRA", _usuario.password1);
-        cst.setInt("pTIPO", _usuario.tipo_usr);
-        cst.setString("pTABLA",_tabla);
-        cst.setInt("pIDOWNER",_idOwner);
+        cst.setString("PUSUARIO", _usuario.user);
+        cst.setString("CCONTRA", _usuario.password1);
+        cst.setInt("PTIPO", _usuario.tipo_usr);
+        cst.setString("PTABLA",_tabla);
+        cst.setInt("PIDOWNER",_idOwner);
            
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -297,21 +299,21 @@ public class ConexionDB {
      
       public String aggDoctor(Doctor _doctor) throws SQLException{
         
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGARDOCTOR(?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGREGARDOCTOR(?,?,?,?,?,?,?,?)");
         
     
-        cst.setString("pNombre", _doctor.nombre);
-        cst.setString("pApellido", _doctor.apellido);
-        cst.setInt("pIdEspecialidad", _doctor.idEspecialidad);
-        cst.setString("pTel", _doctor.telefono);
-        cst.setString("pFechaNac", _doctor.fechaNac);
-        cst.setString("pSexo",_doctor.sexo);
-        cst.setString("pDoc",_doctor.documento);
+        cst.setString("PNOMBRE", _doctor.nombre);
+        cst.setString("PAPELLIDO", _doctor.apellido);
+        cst.setInt("PIDESPECIALIDAD", _doctor.idEspecialidad);
+        cst.setString("pTEL", _doctor.telefono);
+        cst.setString("PFECHANAC", _doctor.fechaNac);
+        cst.setString("PSEXO",_doctor.sexo);
+        cst.setString("PDOC",_doctor.documento);
            
-        cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
+        cst.registerOutParameter("MSJ", java.sql.Types.VARCHAR);
         cst.execute();
         
-        String mensaje = cst.getString("Msj");
+        String mensaje = cst.getString("MSJ");
         System.out.println(mensaje);
         return mensaje;
         
@@ -330,22 +332,22 @@ public class ConexionDB {
         
         
          
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGAREMPLEADO(?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGREGAREMPLEADO(?,?,?,?,?,?,?,?)");
         
     
-        cst.setString("pNombre", _Emp.nombre);
-        cst.setString("pApellido", _Emp.apellido);
-        cst.setString("pTel", _Emp.telefono);
-        cst.setString("pCel", _Emp.celular);
-        cst.setString("pFechaNac", _Emp.fechaNac);
-        cst.setString("pSexo",_Emp.sexo);
-        cst.setString("pDoc",_Emp.documento);
+        cst.setString("PNOMBRE", _Emp.nombre);
+        cst.setString("PAPELLIDO", _Emp.apellido);
+        cst.setString("PTEL", _Emp.telefono);
+        cst.setString("PCEL", _Emp.celular);
+        cst.setString("PFECHANAC", _Emp.fechaNac);
+        cst.setString("PSEXO",_Emp.sexo);
+        cst.setString("PDOC",_Emp.documento);
             
            
-        cst.registerOutParameter("Msj", java.sql.Types.VARCHAR);
+        cst.registerOutParameter("MSJ", java.sql.Types.VARCHAR);
         cst.execute();
         
-        String mensaje = cst.getString("Msj");
+        String mensaje = cst.getString("MSJ");
         System.out.println(mensaje);
         return mensaje;
         
@@ -357,10 +359,10 @@ public class ConexionDB {
     public int aggConsulta(int _idPaciente, int _idUsuario) throws SQLException{
      
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
-         CallableStatement cst = this.conn.prepareCall("{call  AGG_CONSULTA(?,?,?)}");
+         CallableStatement cst = this.conn.prepareCall("call  AGG_CONSULTA(?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDUSUARIO", _idUsuario);
-        cst.setInt("pIDPACIENTE", _idPaciente);
+        cst.setInt("PIDUSUARIO", _idUsuario);
+        cst.setInt("PIDPACIENTE", _idPaciente);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -382,24 +384,24 @@ public class ConexionDB {
     
     public String aggDetConsulta(Consulta _consulta, int _idDoctor) throws SQLException{
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDCONSULTA", _consulta.idConsulta);
-        cst.setInt("pIDDOCTOR", _idDoctor);
-        cst.setString("pEF_CABEZA", _consulta.ef_cabeza);
-        cst.setString("pEF_CUELLO", _consulta.ef_cuello);
-        cst.setString("pEF_TORAX", _consulta.ef_torax);
-        cst.setString("pEF_ABDOMEN", _consulta.ef_abdomen);
-        cst.setString("pEF_EXTREMIDADES", _consulta.ef_extremidades);
-        cst.setString("pPESO", _consulta.peso);
-        cst.setString("pTALLA", _consulta.talla);
-        cst.setString("pPULSO", _consulta.pulso);
-        cst.setString("pFREC_C", _consulta.frec_card);
-        cst.setString("pPRES_ART", _consulta.pres_art);
-        cst.setString("pTEMP", _consulta.temperatura);
-        cst.setString("pMOTIVO", _consulta.motivo);
-        cst.setString("pRECOMENDACION", _consulta.recomendaciones);
-        cst.setString("pTRATAMIENTO", _consulta.tratamiento);
+        cst.setInt("PIDCONSULTA", _consulta.idConsulta);
+        cst.setInt("PIDDOCTOR", _idDoctor);
+        cst.setString("PEF_CABEZA", _consulta.ef_cabeza);
+        cst.setString("PEF_CUELLO", _consulta.ef_cuello);
+        cst.setString("PEF_TORAX", _consulta.ef_torax);
+        cst.setString("PEF_ABDOMEN", _consulta.ef_abdomen);
+        cst.setString("PEF_EXTREMIDADES", _consulta.ef_extremidades);
+        cst.setString("PPESO", _consulta.peso);
+        cst.setString("PTALLA", _consulta.talla);
+        cst.setString("PPULSO", _consulta.pulso);
+        cst.setString("PFREC_C", _consulta.frec_card);
+        cst.setString("PPRES_ART", _consulta.pres_art);
+        cst.setString("PTEMP", _consulta.temperatura);
+        cst.setString("PMOTIVO", _consulta.motivo);
+        cst.setString("PRECOMENDACION", _consulta.recomendaciones);
+        cst.setString("PTRATAMIENTO", _consulta.tratamiento);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -472,16 +474,16 @@ public class ConexionDB {
     
     public String aggSignosVitales(Consulta _consulta) throws SQLException{
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_SIGNOS_VITALES(?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_SIGNOS_VITALES(?,?,?,?,?,?,?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDCONSULTA", _consulta.idConsulta);
-        cst.setString("pPESO", _consulta.peso);
-        cst.setString("pTALLA", _consulta.talla);
-        cst.setString("pPULSO", _consulta.pulso);
-        cst.setString("pFREC_C", _consulta.frec_card);
-        cst.setString("pPRES_ART", _consulta.pres_art);
-        cst.setString("pMOTIVO", _consulta.motivo);
-        cst.setString("pTEMP", _consulta.temperatura);
+        cst.setInt("PIDCONSULTA", _consulta.idConsulta);
+        cst.setString("PPESO", _consulta.peso);
+        cst.setString("PTALLA", _consulta.talla);
+        cst.setString("PPULSO", _consulta.pulso);
+        cst.setString("PFREC_C", _consulta.frec_card);
+        cst.setString("PPRES_ART", _consulta.pres_art);
+        cst.setString("PMOTIVO", _consulta.motivo);
+        cst.setString("PTEMP", _consulta.temperatura);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -496,9 +498,9 @@ public class ConexionDB {
     }
     
     private int aggReceta(int _idConsulta) throws SQLException{
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_RECETA(?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_RECETA(?,?)");
         // Parametros de entrada
-        cst.setInt("pIDCONSULTA", _idConsulta);
+        cst.setInt("PIDCONSULTA", _idConsulta);
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -512,12 +514,12 @@ public class ConexionDB {
     }
     
     private String aggDetReceta(int _idReceta, String[] _row) throws SQLException{
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_DET_RECETA(?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_DET_RECETA(?,?,?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDRECETA", _idReceta);
-        cst.setInt("pIDMEDICAMENTO", Integer.parseInt(_row[0]));
-        cst.setInt("pCANTIDAD", Integer.parseInt(_row[3]));
-        cst.setString("pDOSIS",_row[2]);
+        cst.setInt("PIDRECETA", _idReceta);
+        cst.setInt("PIDMEDICAMENTO", Integer.parseInt(_row[0]));
+        cst.setInt("PCANTIDAD", Integer.parseInt(_row[3]));
+        cst.setString("PDOSIS",_row[2]);
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -530,10 +532,10 @@ public class ConexionDB {
     }
     
     private String aggDiagnostico(int _idConsulta, String[] _row) throws SQLException{
-         CallableStatement cst = this.conn.prepareCall("{call  AGG_DIAGNOSTICO(?,?,?)}");
+         CallableStatement cst = this.conn.prepareCall("call  AGG_DIAGNOSTICO(?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDCONSULTA", _idConsulta);
-        cst.setString("pCOD_ENF", _row[2]);
+        cst.setInt("PIDCONSULTA", _idConsulta);
+        cst.setString("PCOD_ENF", _row[2]);
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -546,10 +548,10 @@ public class ConexionDB {
     }
     
     private String aggAntecedente(int _idConsulta, String[] _row) throws SQLException{
-         CallableStatement cst = this.conn.prepareCall("{call  AGG_ANTECEDENTE(?,?,?)}");
+         CallableStatement cst = this.conn.prepareCall("call  AGG_ANTECEDENTE(?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDCONSULTA", _idConsulta);
-        cst.setString("pCOD_ENF", _row[2]);
+        cst.setInt("PIDCONSULTA", _idConsulta);
+        cst.setString("PCOD_ENF", _row[2]);
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -562,14 +564,14 @@ public class ConexionDB {
     }
     
     public String aggMedicamento(Medicamento _med) throws SQLException{
-        CallableStatement cst = this.conn.prepareCall("{call  AGG_MEDICAMENTO(?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_MEDICAMENTO(?,?,?,?,?,?,?)");
         // Parametros de entrada
-        cst.setString("pMEDICAMENTO", _med.medicamento);
-        cst.setInt("pIDUNIDAD", _med.idUnidad);
-        cst.setInt("pCANTIDAD", _med.cantidad);
-        cst.setInt("pIDPRESENTACION", _med.idPresentacion);
-        cst.setInt("pIDTIPO", _med.idTipoMed);
-        cst.setString("pFECHA", _med.fechaV);
+        cst.setString("PMEDICAMENTO", _med.medicamento);
+        cst.setInt("PIDUNIDAD", _med.idUnidad);
+        cst.setInt("PCANTIDAD", _med.cantidad);
+        cst.setInt("PIDPRESENTACION", _med.idPresentacion);
+        cst.setInt("PIDTIPO", _med.idTipoMed);
+        cst.setString("PFECHA", _med.fechaV);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
@@ -594,15 +596,15 @@ public class ConexionDB {
         
         
          //llamar procedimeinto almacenado
-        CallableStatement cst = this.conn.prepareCall("{call  ValidacionUser(?,?,?)}");
-        cst.setString("pUsuario", _usuario.user);
-        cst.setString("pContra", _usuario.password);
+        CallableStatement cst = this.conn.prepareCall("call  ValidacionUser(?,?,?)");
+        cst.setString("PUSUARIO", _usuario.user);
+        cst.setString("PCONTRA", _usuario.password);
         
         // Parametro de salida (mensaje)
-        cst.registerOutParameter("pMensaje", java.sql.Types.VARCHAR);
+        cst.registerOutParameter("PMENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
         
-        String mensaje = cst.getString("pMensaje");
+        String mensaje = cst.getString("PMENSAJE");
         System.out.println(mensaje);
         if(!mensaje.equals("Error")){
             String[] splitter = mensaje.split(",");
@@ -615,15 +617,15 @@ public class ConexionDB {
     }
     
     public String editarMedicamento(Medicamento _med) throws SQLException {
-        CallableStatement cst = this.conn.prepareCall("{call  EDIT_MEDICAMENTO(?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  EDIT_MEDICAMENTO(?,?,?,?,?,?,?,?)");
         // Parametros de entrada
-        cst.setInt("pIDMEDICAMENTO", _med.idMedicamente);
-        cst.setString("pMEDICAMENTO", _med.medicamento);
-        cst.setInt("pIDUNIDAD", _med.idUnidad);
-        cst.setInt("pCANTIDAD", _med.cantidad);
-        cst.setInt("pIDPRESENTACION", _med.idPresentacion);
-        cst.setInt("pIDTIPO", _med.idTipoMed);
-        cst.setString("pFECHA", _med.fechaV);
+        cst.setInt("PIDMEDICAMENTO", _med.idMedicamente);
+        cst.setString("PMEDICAMENTO", _med.medicamento);
+        cst.setInt("PIDUNIDAD", _med.idUnidad);
+        cst.setInt("PCANTIDAD", _med.cantidad);
+        cst.setInt("PIDPRESENTACION", _med.idPresentacion);
+        cst.setInt("PIDTIPO", _med.idTipoMed);
+        cst.setString("PFECHA", _med.fechaV);
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
         cst.execute();
@@ -640,8 +642,8 @@ public class ConexionDB {
     
     public String[] getDashBoardRecepcion() throws SQLException{
         String queryPacientes = "SELECT COUNT(*) FROM PACIENTES P " +
-                        " INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE " +
-                    " WHERE TO_DATE(C.CONS_FECHA, 'dd-mm-yyyy') = TO_DATE(CURRENT_DATE, 'dd-mm-yyyy')";
+"INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE " +
+"WHERE STR_TO_DATE(C.CONS_FECHA,'%d-%m-%Y') = STR_TO_DATE(CURRENT_TIMESTAMP,'%d-%m-%Y')";
         PreparedStatement preparedStatement = conn.prepareStatement(queryPacientes,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         String total = "";
@@ -667,7 +669,7 @@ public class ConexionDB {
     public Object[] llenarDoctores(JComboBox _combo) throws SQLException{
         DefaultComboBoxModel model;
         
-        String query = "SELECT IDDOCTOR, DOC_NOMBRE || ' ' || DOC_APELLIDO DOCTOR FROM DOCTOR";
+        String query = "SELECT IDDOCTOR, CONCAT(IFNULL(DOC_NOMBRE,''),' ',IFNULL(DOC_APELLIDO,'')) DOCTOR FROM DOCTOR";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         
@@ -694,11 +696,11 @@ public class ConexionDB {
         Statement stmt = conn.createStatement();
         //_parametro = _parametro.toUpperCase();
         String query = "SELECT P.IDPACIENTE, P.PAC_CARNE, P.PAC_DOCUMENTO, TP.TIPOPAC, " +
-                        " P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, C.CARRERA, " +
-                        " TO_CHAR(P.PAC_FECHA_NAC, 'dd-mm-yyyy') " + 
-                    "FROM PACIENTES P " +
-                    " LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
-                    " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC ";
+                       "CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) NOMBRE, C.CARRERA, " +
+                       "DATE_FORMAT(P.PAC_FECHA_NAC,'%d-%m-%Y') " +
+                       "FROM PACIENTES P " +
+                       "LEFT OUTER JOIN CARRERA C ON C.IDCARRERA = P.IDCARRERA " +
+                       "INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC ";
         switch(_filtro){
             case "Apellido":
                 query += " WHERE P.PAC_APELLIDO LIKE ?";
@@ -744,13 +746,15 @@ public class ConexionDB {
     public DefaultTableModel getConsultasEnEspera( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT C.IDCONSULTA, TP.TIPOPAC ACTIVIDAD, P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') "+
-                " FROM CONSULTA C "+ 
-                " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE "+
-                " INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC "+
-                " WHERE C.ESTADO =0";
+        String query = "SELECT C.IDCONSULTA, TP.TIPOPAC ACTIVIDAD, CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) PACIENTE, " +
+                       "(CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       "''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       "''), ' meses')) Edad, " +
+                       "DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y') " +
+                       "FROM CONSULTA C  \n" +
+                       "INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                       "INNER JOIN TIPO_PACIENTE TP ON TP.IDTIPOPAC = P.IDTIPOPAC " +
+                       "WHERE C.ESTADO = 0";
         ResultSet rs = stmt.executeQuery(query);
           
         model = (DefaultTableModel) jTable1.getModel();
@@ -772,17 +776,19 @@ public class ConexionDB {
     public DefaultTableModel getConsultasAhora( JTable jTable1) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE ||' '|| p.PAC_APELLIDO PACIENTE, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD, TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy'), d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE TO_CHAR(cc.CONS_FECHA, 'dd-mm-yyyy') =  TO_CHAR(CURRENT_DATE, 'dd-mm-yyyy') AND ESTADO = 1";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) PACIENTE, " +
+                       "(CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       "''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       "''), ' meses')) EDAD, " +
+                       "f.FACTULTAD, DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') as FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       "FROM Pacientes p " +
+                       "INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       "LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       "LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       "INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       "INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       "INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       "WHERE DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') =  DATE_FORMAT(CURRENT_TIMESTAMP,'%d-%m-%Y') AND ESTADO = 1";
               
         ResultSet rs = stmt.executeQuery(query);
           
@@ -805,11 +811,12 @@ public class ConexionDB {
     public DefaultTableModel getMedicamentosbyCat(JTable jTable1, int _idTipo) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.IDTIPO = ? AND M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, CONCAT(IFNULL(M.MEDICAMENTO,''),' ',IFNULL(UM.ABREVIATURA,'')) MEDICAMENTO, " +
+                       "P.PRESENTACION, M.CANTIDAD, DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+                       " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                       " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                       " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                       " WHERE M.IDTIPO = ? AND M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idTipo);
         ResultSet rs = preparedStatement.executeQuery();
@@ -833,11 +840,12 @@ public class ConexionDB {
     public DefaultTableModel getMedicamentos(JTable jTable1) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, CONCAT(IFNULL(M.MEDICAMENTO,''),' ',IFNULL(UM.ABREVIATURA,'')) MEDICAMENTO, P.PRESENTACION, " +
+"M.CANTIDAD, DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+"INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+"INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+"INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+"WHERE M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         
@@ -860,11 +868,12 @@ public class ConexionDB {
     public DefaultTableModel getMedicamentobyNombre(JTable jTable1, String _med) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.MEDICAMENTO LIKE ? AND M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, CONCAT(IFNULL(M.MEDICAMENTO,''),' ',IFNULL(UM.ABREVIATURA,'')) MEDICAMENTO, P.PRESENTACION," +
+                       "M.CANTIDAD, DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+                       " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                       " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                       " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                       " WHERE M.MEDICAMENTO LIKE ? AND M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,"%" + _med + "%");
         ResultSet rs = preparedStatement.executeQuery();
@@ -887,11 +896,12 @@ public class ConexionDB {
     
     public DefaultTableModel getMedicamentosbyFechaV(JTable jTable1, String _fecha) throws SQLException{
         DefaultTableModel model;
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED ,M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.FECHA_V = TO_DATE(?, 'dd-mm-yyyy') AND M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED ,CONCAT(IFNULL(M.MEDICAMENTO,''),' ',IFNULL(UM.ABREVIATURA,'')) MEDICAMENTO, P.PRESENTACION, M.CANTIDAD," +
+                       " DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+                       " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                       " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                       " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                       " WHERE M.FECHA_V = STR_TO_DATE(?,'%d-%m-%Y') AND M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_fecha);
         ResultSet rs = preparedStatement.executeQuery();
@@ -915,11 +925,12 @@ public class ConexionDB {
     public DefaultTableModel getMedicamentobyPresentacion(JTable jTable1, int _idPres) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, M.MEDICAMENTO || ' ' || UM.ABREVIATURA MEDICAMENTO, P.PRESENTACION, M.CANTIDAD, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') FECHA FROM MEDICAMENTO M " +
-                            " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
-                            " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
-                            " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
-                        " WHERE M.IDPRESENTACION = ? AND M.ELIMINADO = 0";
+        String query = "SELECT M.IDMEDICAMENTO, TP.TIPO_MED, CONCAT(IFNULL(M.MEDICAMENTO,''),' ',IFNULL(UM.ABREVIATURA,'')) MEDICAMENTO, P.PRESENTACION, " +
+                       "M.CANTIDAD, DATE_FORMAT(M.FECHA_V,'%d-%m-%Y') FECHA FROM MEDICAMENTO M " +
+                       " INNER JOIN UNIDAD_MED UM ON UM.IDUNIDAD_MED = M.IDUNIDAD_MED " +
+                       " INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO " +
+                       " INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION " +
+                       " WHERE M.IDPRESENTACION = ? AND M.ELIMINADO = 0";
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPres);
         ResultSet rs = preparedStatement.executeQuery();
@@ -1111,7 +1122,7 @@ public class ConexionDB {
         public Object[] Obt_Empleado() throws SQLException {
 
         Statement stmt = conn.createStatement();
-        String query = "SELECT IDEMP,EMP_NOMBRE || ' ' || EMP_APELLIDO NOMBRE FROM EMPLEADO";
+        String query = "SELECT IDEMP,CONCAT(IFNULL(EMP_NOMBRE,''),' ',IFNULL(EMP_APELLIDO,'')) NOMBRE FROM EMPLEADO";
          PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         
         ResultSet rs = preparedStatement.executeQuery();
@@ -1140,7 +1151,7 @@ public class ConexionDB {
          public Object[] Obt_Doctores() throws SQLException {
 
         Statement stmt = conn.createStatement();
-        String query = "SELECT IDDOCTOR,DOC_NOMBRE || ' ' || DOC_APELLIDO NOMBRE FROM DOCTOR";
+        String query = "SELECT IDDOCTOR,CONCAT(IFNULL(DOC_NOMBRE,''),' ',IFNULL(DOC_APELLIDO,'')) NOMBRE FROM DOCTOR";
          PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         
         ResultSet rs = preparedStatement.executeQuery();
@@ -1230,11 +1241,14 @@ public class ConexionDB {
          //DOCTOR
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
-                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad "+
-                   " FROM DOCTOR d " +
-                   " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
-                   " WHERE d.ELIMINADO= 0";
+        String query = "SELECT d.IDDOCTOR, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) NOMBRE, e.ESPECIALIDAD, " +
+                       " d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,DOC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,DOC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) Edad" +
+                       " FROM DOCTOR d " +
+                       " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD = e.IDESPECIALIDAD " +
+                       " WHERE d.ELIMINADO = 0";
               
         ResultSet rs = stmt.executeQuery(query);
           
@@ -1259,13 +1273,15 @@ public class ConexionDB {
          //DOCTOR
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT d.IDDOCTOR, d.DOC_NOMBRE || ' ' || d.DOC_APELLIDO NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
-                   "(trunc(months_between(sysdate,d.DOC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,d.DOC_FECHA_NAC),12)) || ' meses') Edad, "+
-                    "u.USUARIO"+
-                   " FROM DOCTOR d " +
-                   " INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD= e.IDESPECIALIDAD " +
-                   " INNER JOIN USUARIO u on d.IDUSUARIO= u.IDUSUARIO " +
-                   " WHERE d.ELIMINADO=1";
+        String query = "SELECT d.IDDOCTOR, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) NOMBRE, e.ESPECIALIDAD, d.DOC_SEXO, d.DOC_DOCUMENTO, d.DOC_TEL, " +
+                       "(CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,DOC_FECHA_NAC,curdate())/12, 0), " +
+                       "''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,DOC_FECHA_NAC,curdate()),12),0 )," +
+                       "''), ' meses')) Edad, " +
+                       "u.USUARIO" +
+                       "FROM DOCTOR d " +
+                       "INNER JOIN ESPECIALIDAD e on d.IDESPECIALIDAD = e.IDESPECIALIDAD " +
+                       "INNER JOIN USUARIO u on d.IDUSUARIO = u.IDUSUARIO " +
+                       "WHERE d.ELIMINADO = 1";
               
         ResultSet rs = stmt.executeQuery(query);
           
@@ -1290,11 +1306,13 @@ public class ConexionDB {
          //EMPLEADO
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT e.IDEMP, e.EMP_NOMBRE || ' ' || e.EMP_APELLIDO NOMBRE,e.EMP_TEL,e.EMP_CEL, " +
-                   "(trunc(months_between(sysdate,e.EMP_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,e.EMP_FECHA_NAC),12)) || ' meses') Edad, "+
-                    "e.EMP_SEXO, e.EMP_DOCUMENTO"+
-                   " FROM EMPLEADO e " +
-                   " WHERE e.ELIMINADO= 0";
+        String query = "SELECT e.IDEMP, CONCAT(IFNULL(e.EMP_NOMBRE,''),' ',IFNULL(e.EMP_APELLIDO,'')) NOMBRE,e.EMP_TEL,e.EMP_CEL, " +
+                       "(CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,EMP_FECHA_NAC,curdate())/12, 0)," +
+                       "''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,EMP_FECHA_NAC,curdate()),12),0 )," +
+                       "''), ' meses')) EDAD, " +
+                       "e.EMP_SEXO, e.EMP_DOCUMENTO " +
+                       "FROM EMPLEADO e " +
+                       "WHERE e.ELIMINADO = 0";
               
         ResultSet rs = stmt.executeQuery(query);
           
@@ -1419,15 +1437,15 @@ public class ConexionDB {
         DefaultTableModel model;
         
         String query = "SELECT " +
-                        "    C.IDCONSULTA, " +
-                        "    CASE P.PAC_CARNE " +
-                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
-                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
-                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
-                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
-                        "    FROM  CONSULTA C " +
-                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? AND C.ESTADO != 0";
+                       "  C.IDCONSULTA, " +
+                       " CASE P.PAC_CARNE " +
+                       "  WHEN NULL THEN P.PAC_DOCUMENTO " +
+                       "  ELSE P.PAC_CARNE END CARENTDOC, " +
+                       " CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) NOMBRE, " +
+                       " DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y') as FECHA " +
+                       "  FROM  CONSULTA C " + 
+                       "  INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                       "  WHERE P.PAC_CARNE LIKE ? OR P.PAC_DOCUMENTO LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" + _idCarnet + "%");
@@ -1454,15 +1472,15 @@ public class ConexionDB {
         DefaultTableModel model;
         
         String query = "SELECT " +
-                        "    C.IDCONSULTA, " +
-                        "    CASE P.PAC_CARNE " +
-                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
-                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
-                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
-                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
-                        "    FROM  CONSULTA C " +
-                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.IDPACIENTE = ? AND C.ESTADO != 0";
+" C.IDCONSULTA, " +
+" CASE P.PAC_CARNE " +
+" WHEN NULL THEN P.PAC_DOCUMENTO " +
+"  ELSE P.PAC_CARNE END CARENTDOC, " +
+" CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) NOMBRE, " +
+" DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y') as FECHA " +
+"  FROM  CONSULTA C " +
+"  INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+"  WHERE P.IDPACIENTE = ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idPac);
@@ -1488,15 +1506,15 @@ public class ConexionDB {
         DefaultTableModel model;
         
         String query = "SELECT " +
-                        "    C.IDCONSULTA, " +
-                        "    CASE P.PAC_CARNE " +
-                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
-                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
-                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
-                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
-                        "    FROM  CONSULTA C " +
-                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_APELLIDO LIKE ? AND C.ESTADO != 0";
+                       " C.IDCONSULTA, " +
+                       " CASE P.PAC_CARNE " +
+                       " WHEN NULL THEN P.PAC_DOCUMENTO " +
+                       " ELSE P.PAC_CARNE END CARENTDOC, " +
+                       " CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) NOMBRE, " +
+                       " DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y') as FECHA" +
+                       " FROM  CONSULTA C " +
+                       " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                       " WHERE P.PAC_APELLIDO LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" +_apellido + "%");
@@ -1522,15 +1540,15 @@ public class ConexionDB {
         DefaultTableModel model;
         
         String query = "SELECT " +
-                        "    C.IDCONSULTA, " +
-                        "    CASE P.PAC_CARNE " +
-                        "        WHEN NULL THEN P.PAC_DOCUMENTO " +
-                        "        ELSE P.PAC_CARNE END CARENTDOC, " +
-                        "    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO NOMBRE, " +
-                        "    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') " +
-                        "    FROM  CONSULTA C " +
-                        " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
-                        " WHERE P.PAC_NOMBRE LIKE ? AND C.ESTADO != 0";
+                       " C.IDCONSULTA, " +
+                       " CASE P.PAC_CARNE " +
+                       " WHEN NULL THEN P.PAC_DOCUMENTO " +
+                       " ELSE P.PAC_CARNE END CARENTDOC, " +
+                       " CONCAT(IFNULL(P.PAC_NOMBRE,''),' ',IFNULL(P.PAC_APELLIDO,'')) NOMBRE, " +
+                       " DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y') as FECHA" +
+                       " FROM  CONSULTA C " +
+                       " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE " +
+                       " WHERE P.PAC_NOMBRE LIKE ? AND C.ESTADO != 0";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, "%" +_nombre + "%");
@@ -1553,31 +1571,31 @@ public class ConexionDB {
     }
     
     public String aggPaciente(Paciente pac) throws SQLException{
-        CallableStatement cst = this.conn.prepareCall("{call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+        CallableStatement cst = this.conn.prepareCall("call  AGREGARPACIENTE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         // Parametros de entrada
-        cst.setString("pdocumento", pac.documento);
-        cst.setInt("ptipoPac", pac.tipoPaciente);
-        cst.setString("pnombre", pac.nombre);
-        cst.setString("papellido", pac.apellido);
-         cst.setString("psexo", pac.sexo);
-         cst.setString("pfecha", pac.FechaNac);
-         cst.setString("ptelefono", pac.telefono);
-         cst.setString("pcelular", pac.celular);
-         cst.setInt("pdepartamento", Integer.parseInt(pac.departamento));
-         cst.setString("pdireccion", pac.direccion);
-         cst.setInt("pzona", pac.zona);
-         cst.setString("pemergencia", pac.caso_emergencia);
-         cst.setString("ptelEmergencia", pac.tel_emergencia);
-         cst.setInt("pparentezco", Integer.parseInt(pac.parentezco));
-         cst.setString("pCarnet", pac.carne);
-         cst.setInt("pcarrera",pac.carreraP);
+        cst.setString("PDOCUMENTO", pac.documento);
+        cst.setInt("PTIPOPAC", pac.tipoPaciente);
+        cst.setString("PNOMBRE", pac.nombre);
+        cst.setString("PAPELLIDO", pac.apellido);
+         cst.setString("PSEXO", pac.sexo);
+         cst.setString("PFECHA", pac.FechaNac);
+         cst.setString("PTELEFONO", pac.telefono);
+         cst.setString("PCELULAR", pac.celular);
+         cst.setInt("PDEPARTAMENTO", Integer.parseInt(pac.departamento));
+         cst.setString("PDIRECCION", pac.direccion);
+         cst.setInt("PZONA", pac.zona);
+         cst.setString("PEMERGENCIA", pac.caso_emergencia);
+         cst.setString("PTELEMERGENCIA", pac.tel_emergencia);
+         cst.setInt("PPARENTEZCO", Integer.parseInt(pac.parentezco));
+         cst.setString("PCARNET", pac.carne);
+         cst.setInt("PCARRERA",pac.carreraP);
          
          
         // Parametro de salida (mensaje)
-        cst.registerOutParameter("pMsj", java.sql.Types.VARCHAR);
+        cst.registerOutParameter("PMSJ", java.sql.Types.VARCHAR);
         cst.execute();
         
-        String mensaje = cst.getString("pMsj");
+        String mensaje = cst.getString("PMSJ");
         
         return mensaje;
     }
@@ -1585,17 +1603,19 @@ public class ConexionDB {
     public DefaultTableModel getConsultasByID(JTable jTable1, int _idPaciente) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE cc.IDPACIENTE = ?";
+        String query = "SELECT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE cc.IDPACIENTE = ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPaciente);
@@ -1620,17 +1640,19 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConFacult(JTable jTable1, int _idFac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE f.IDFACULTAD = ?";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE f.IDFACULTAD = ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idFac);
@@ -1655,17 +1677,19 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConCarnet(JTable jTable1, String _idCarnet) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE p.PAC_CARNE LIKE ?";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE p.PAC_CARNE LIKE ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_idCarnet);
@@ -1690,17 +1714,19 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConCarrera(JTable jTable1, int _idCarrera) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE c.IDCARRERA  = ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE c.IDCARRERA = ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idCarrera);
@@ -1725,17 +1751,19 @@ public class ConexionDB {
        public DefaultTableModel getHistorialConActividad(JTable jTable1, int _idPac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE p.IDTIPOPAC  = ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE p.IDTIPOPAC  = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1,_idPac);
@@ -1760,17 +1788,19 @@ public class ConexionDB {
         public DefaultTableModel getHistorialConNombre(JTable jTable1, String _Pac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE p.PAC_NOMBRE  LIKE  ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE p.PAC_NOMBRE  LIKE  ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Pac);
@@ -1795,17 +1825,19 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConApellido(JTable jTable1, String _Pac) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE p.PAC_APELLIDO  LIKE  ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE p.PAC_APELLIDO  LIKE  ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Pac);
@@ -1830,17 +1862,19 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConFecha(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE TO_CHAR(cc.CONS_FECHA , 'dd-mm-yyyy') = ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);
@@ -1865,17 +1899,19 @@ public class ConexionDB {
     public DefaultTableModel getHistorialConEdad(JTable jTable1, String _Fecha) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, d.DOC_NOMBRE ||' '|| d.DOC_APELLIDO , dc.MOTIVO "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD= c.IDFACULTAD  "+
-                " INNER JOIN CONSULTA cc on cc.IDPACIENTE= p.IDPACIENTE "+
-                " INNER JOIN DOCTOR d on d.IDDOCTOR= cc.IDDOCTOR "+
-                " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA= cc.IDCONSULTA "+
-                " WHERE (EXTRACT(YEAR FROM SYSDATE) -EXTRACT(YEAR FROM p.PAC_FECHA_NAC)) = ? ";
+        String query = "SELECT DISTINCT cc.IDCONSULTA, p.PAC_CARNE, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " f.FACTULTAD,c.CARRERA, p.PAC_TELEFONO, cc.CONS_FECHA, CONCAT(IFNULL(d.DOC_NOMBRE,''),' ',IFNULL(d.DOC_APELLIDO,'')) as DOCTOR , dc.MOTIVO " +
+                       " FROM Pacientes p  " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  " +
+                       " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE " +
+                       " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR " +
+                       " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA " +
+                       " WHERE (EXTRACT(YEAR FROM curdate()) -EXTRACT(YEAR FROM p.PAC_FECHA_NAC)) = ? ";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_Fecha);
@@ -2096,16 +2132,19 @@ public class ConexionDB {
         String query="";
         switch(tipoA){
             case 1:
-                 query= "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
-                + "where (cantidad<=5 or (trunc(fecha_v)-trunc(current_date)<10) and (trunc(fecha_v)-trunc(current_date)>0))  and eliminado=0";
+                 query= "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias " +
+                        "from medicamento " +
+                        "where (cantidad<=5 or (DATE(fecha_v)-DATE(CURDATE())<10) " +
+                        " and (DATE(fecha_v)-DATE(CURDATE())>0))  and eliminado=0";
                 break;
             case 2:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
-                + "where ((trunc(fecha_v)-trunc(current_date)<10) and (trunc(fecha_v)-trunc(current_date)>0))  and eliminado=0";
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias from medicamento " +
+                        "where ((DATE(fecha_v)-DATE(CURDATE())<10) and (DATE(fecha_v)-DATE(CURDATE())>0))  and eliminado=0";
                 break;
             case 3:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,trunc(fecha_v)-trunc(current_date) as dias from medicamento "
-                + "where (cantidad<=5 )and eliminado=0";
+                query = "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias " +
+                        "from medicamento " +
+                        "where (cantidad<=5 )and eliminado=0";
                 break;
         }
         
@@ -2176,8 +2215,9 @@ public int ContarPacientes() throws SQLException{
      
 public int ConsultasxMes() throws SQLException{
         
-        String query = "select count(idConsulta) from Consulta \n" +
-"where cons_fecha>TO_DATE(('01/'||Extract(month from sysdate)||'/'||Extract(year from sysdate)), 'dd/mm/yyyy')";
+        String query = "select count(idConsulta) from Consulta " +
+                       " where cons_fecha > STR_TO_DATE((CONCAT('01/'," +
+                       " IFNULL(month(CURRENT_TIMESTAMP),''),'/',IFNULL(year(CURRENT_TIMESTAMP),''))),'%d/%m/%Y')";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
@@ -2194,15 +2234,16 @@ public int ConsultasxMes() throws SQLException{
  public DefaultTableModel getHistorialPaciente(JTable jTable1,String query) throws SQLException{
         DefaultTableModel model;
         if (query.equals("no")){
-        query = "Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera.carrera,departamento.departamento," +
-"CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
-"ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
-"WHEN 'M' THEN 'Masculino' " +
-"ELSE 'Femenino' END sexo from pacientes" +
-" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac inner join Carrera on carrera.idcarrera=pacientes.idcarrera" +
-" inner join Facultad on facultad.idfacultad=Carrera.idfacultad" +
-" inner join carrera on carrera.idcarrera=pacientes.idcarrera" +
-" inner join departamento on departamento.iddepartamento=pacientes.iddepartamento"; }          
+        query = "Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) as nombre,tipopac," +
+                " c.carrera,departamento.departamento," +
+                " CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
+                " ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
+                " WHEN 'M' THEN 'Masculino' " +
+                " ELSE 'Femenino' END sexo from pacientes" +
+                " inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac " +
+                " inner join Carrera c on c.idcarrera=pacientes.idcarrera" +
+                " inner join Facultad on facultad.idfacultad=c.idfacultad" +
+                " inner join departamento on departamento.iddepartamento=pacientes.iddepartamento"; }          
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();   
         model = (DefaultTableModel) jTable1.getModel();
@@ -2253,13 +2294,15 @@ public int ConsultasxMes() throws SQLException{
   public DefaultTableModel getSolicPacCarnet(JTable jTable1, String _idCarnet) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " c.CARRERA "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " WHERE p.PAC_CARNE LIKE ?";
+        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " + 
+                       " c.CARRERA " +
+                       " FROM Pacientes p " + 
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " WHERE p.PAC_CARNE LIKE ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_idCarnet);
@@ -2305,13 +2348,15 @@ public String ActualizarPaciente(Paciente _pac) throws SQLException {
  public DefaultTableModel getSolicPacDoc(JTable jTable1, String _doc) throws SQLException{
         DefaultTableModel model;
         
-        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, p.PAC_NOMBRE || ' ' || p.PAC_APELLIDO, " +
-                "(trunc(months_between(sysdate,PAC_FECHA_NAC)/12) || ' Años ' || trunc(mod(months_between(sysdate,PAC_FECHA_NAC),12)) || ' meses') Edad, "+
-                " c.CARRERA "+
-                " FROM Pacientes p "+ 
-                " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC= p.IDTIPOPAC "+
-                " LEFT OUTER JOIN CARRERA c on c.IDCARRERA= p.IDCARRERA "+
-                " WHERE p.PAC_DOCUMENTO = ?";
+        String query = "SELECT p.PAC_CARNE, p.PAC_DOCUMENTO, tp.TIPOPAC, CONCAT(IFNULL(p.PAC_NOMBRE,''),' ',IFNULL(p.PAC_APELLIDO,'')) as PACIENTE, " +
+                       " (CONCAT(IFNULL(truncate(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate())/12, 0)," +
+                       " ''),' Años ',IFNULL(truncate(mod(TIMESTAMPDIFF(month,PAC_FECHA_NAC,curdate()),12),0 )," +
+                       " ''), ' meses')) EDAD, " +
+                       " c.CARRERA " +
+                       " FROM Pacientes p " +
+                       " INNER JOIN TIPO_PACIENTE tp on tp.IDTIPOPAC = p.IDTIPOPAC " +
+                       " LEFT OUTER JOIN CARRERA c on c.IDCARRERA = p.IDCARRERA " +
+                       " WHERE p.PAC_DOCUMENTO = ?";
                 
         PreparedStatement preparedStatement = conn.prepareStatement(query,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1,_doc);
@@ -2335,10 +2380,10 @@ public String ActualizarPaciente(Paciente _pac) throws SQLException {
   public int aggSolicitud(String _carnet, String _documento) throws SQLException{
      
         //Ejecutar el procedimiento almacenado para agg consulta con el estado = 0
-         CallableStatement cst = this.conn.prepareCall("{call  AGG_SOLICITUD(?,?,?)}");
+         CallableStatement cst = this.conn.prepareCall("call  AGG_SOLICITUD(?,?,?)");
         // Parametros de entrada
-        cst.setString("pCarnet", _carnet);
-        cst.setString("pDocumento", _documento);
+        cst.setString("PCARNET", _carnet);
+        cst.setString("PDOCUMENTO", _documento);
         
         // Parametro de salida (mensaje)
         cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
