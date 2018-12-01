@@ -2162,19 +2162,18 @@ public class ConexionDB {
         String query="";
         switch(tipoA){
             case 1:
-                 query= "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias " +
-                        "from medicamento " +
-                        "where (cantidad<=5 or (DATE(fecha_v)-DATE(CURDATE())<10) " +
-                        " and (DATE(fecha_v)-DATE(CURDATE())>0))  and eliminado=0";
+                 query= "select idmedicamento,medicamento,cantidad,fecha_v,datediff(fecha_V, curdate()) as dias " +
+                    " from medicamento " +
+                    " where (cantidad<=30 or (datediff(fecha_V, curdate())<10)) and eliminado=0;";
                 break;
             case 2:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias from medicamento " +
-                        "where ((DATE(fecha_v)-DATE(CURDATE())<10) and (DATE(fecha_v)-DATE(CURDATE())>0))  and eliminado=0";
+                query = "select idmedicamento,medicamento,cantidad,fecha_v, datediff(fecha_V, curdate()) as dias from medicamento " +
+                        " where (datediff(fecha_V, curdate())<10) and eliminado=0";
                 break;
             case 3:
-                query = "select idmedicamento,medicamento,cantidad,fecha_v,DATE(fecha_v)-DATE(CURDATE()) as dias " +
-                        "from medicamento " +
-                        "where (cantidad<=5 )and eliminado=0";
+                query = "select idmedicamento,medicamento,cantidad,fecha_v, datediff(fecha_V, curdate()) as dias " +
+                        " from medicamento " +
+                        " where (cantidad<=30 )and eliminado=0";
                 break;
         }
         

@@ -2,72 +2,120 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_expediente" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9dd8d743-3692-4563-a3de-620667b127eb">
 	<property name="ireport.zoom" value="1.1269722013523664"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="375"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idConsulta" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-            C.IDCONSULTA, 
-            C.IDPACIENTE, DOC.IDDOCTOR,
-            P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE,
-            P.PAC_TELEFONO,
-            P.PAC_CELULAR,
-            P.PAC_CARNE,
-            P.PAC_DOCUMENTO,
-            P.PAC_DIRECCION,
-            P.PAC_RESPONSABLE,
-            P.PAC_RES_TEL,
-            (trunc(months_between(sysdate,P.PAC_FECHA_NAC)/12) || ' Años ' ||   trunc(mod(months_between(sysdate,P.PAC_FECHA_NAC),12)) || ' meses') Edad,
-            DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR,
-            TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy') FECHA,
-            D.MOTIVO,
-            D.EF_ABDOMEN,
-            D.EF_CABEZA,
-            D.EF_CUELLO,
-            D.EF_EXTREMIDADES,
-            D.EF_TORAX,
-            D.FREC_CAR,
-            D.PESO,
-            D.PRES_ART,
-            D.PULSO,
-            D.TALLA,
-            D.TEMP,
-            D.MOTIVO,
-            D.RECOMENDACION
+	C.IDCONSULTA, 
+	C.IDPACIENTE, DOC.IDDOCTOR,
+	CONCAT(P.PAC_NOMBRE , ' ' , P.PAC_APELLIDO) as PACIENTE,
+	P.PAC_TELEFONO,
+	P.PAC_CELULAR,
+	P.PAC_CARNE,
+	P.PAC_DOCUMENTO,
+	P.PAC_DIRECCION,
+	P.PAC_RESPONSABLE,
+	P.PAC_RES_TEL,
+	(concat(ifnull(truncate(TIMESTAMPDIFF(month,P.PAC_FECHA_NAC,curdate())/12, 0), '') , ' Años ' , ifnull(truncate(mod(TIMESTAMPDIFF(month,P.PAC_FECHA_NAC,curdate()),12), 0), '') , ' meses')) EDAD,
+	CONCAT(DOC.DOC_NOMBRE , ' ' , DOC.DOC_APELLIDO) as DOCTOR,
+	date_format(C.CONS_FECHA, '%d-%m-%Y %H:%i') as FECHA,
+	D.MOTIVO,
+	D.EF_ABDOMEN,
+	D.EF_CABEZA,
+	D.EF_CUELLO,
+	D.EF_EXTREMIDADES,
+	D.EF_TORAX,
+	D.FREC_CAR,
+	D.PESO,
+	D.PRES_ART,
+	D.PULSO,
+	D.TALLA,
+	D.TEMP,
+	D.MOTIVO,
+	D.RECOMENDACION
 FROM CONSULTA C
     INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
     INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
     INNER JOIN PACIENTES P  ON P.IDPACIENTE = C.IDPACIENTE
 WHERE C.IDCONSULTA = $P{idConsulta}]]>
 	</queryString>
-	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
-	<field name="IDPACIENTE" class="java.math.BigDecimal"/>
-	<field name="IDDOCTOR" class="java.math.BigDecimal"/>
+	<field name="IDCONSULTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDPACIENTE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IDDOCTOR" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="PACIENTE" class="java.lang.String"/>
-	<field name="PAC_TELEFONO" class="java.lang.String"/>
-	<field name="PAC_CELULAR" class="java.lang.String"/>
-	<field name="PAC_CARNE" class="java.lang.String"/>
-	<field name="PAC_DOCUMENTO" class="java.lang.String"/>
-	<field name="PAC_DIRECCION" class="java.lang.String"/>
-	<field name="PAC_RESPONSABLE" class="java.lang.String"/>
-	<field name="PAC_RES_TEL" class="java.lang.String"/>
+	<field name="PAC_TELEFONO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_CELULAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_CARNE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_DOCUMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_DIRECCION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_RESPONSABLE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAC_RES_TEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="EDAD" class="java.lang.String"/>
 	<field name="DOCTOR" class="java.lang.String"/>
-	<field name="FECHA" class="java.lang.String"/>
-	<field name="MOTIVO" class="java.lang.String"/>
-	<field name="EF_ABDOMEN" class="java.lang.String"/>
-	<field name="EF_CABEZA" class="java.lang.String"/>
-	<field name="EF_CUELLO" class="java.lang.String"/>
-	<field name="EF_EXTREMIDADES" class="java.lang.String"/>
-	<field name="EF_TORAX" class="java.lang.String"/>
-	<field name="FREC_CAR" class="java.lang.String"/>
-	<field name="PESO" class="java.lang.String"/>
-	<field name="PRES_ART" class="java.lang.String"/>
-	<field name="PULSO" class="java.lang.String"/>
-	<field name="TALLA" class="java.lang.String"/>
-	<field name="TEMP" class="java.lang.String"/>
-	<field name="RECOMENDACION" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOTIVO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EF_ABDOMEN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EF_CABEZA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EF_CUELLO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EF_EXTREMIDADES" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EF_TORAX" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FREC_CAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PESO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRES_ART" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PULSO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TALLA" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TEMP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECOMENDACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="85" splitType="Stretch">
 			<staticText>

@@ -13,14 +13,14 @@
 	<queryString>
 		<![CDATA[SELECT DISTINCT
     C.IDCONSULTA,
-    DOC.DOC_NOMBRE || ' ' || DOC.DOC_APELLIDO DOCTOR,
-    P.PAC_NOMBRE || ' ' || P.PAC_APELLIDO PACIENTE,
+    CONCAT(DOC.DOC_NOMBRE , ' ' , DOC.DOC_APELLIDO) as DOCTOR,
+    CONCAT(P.PAC_NOMBRE , ' ' , P.PAC_APELLIDO) as PACIENTE,
     TP.TIPOPAC TIPO_PACIENTE,
     CASE P.PAC_CARNE 
             WHEN NULL THEN P.PAC_DOCUMENTO
             ELSE P.PAC_CARNE END CARNET_DOCUMENTO,
     F.FACTULTAD,
-    TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm') FECHA_CONSULTA
+    date_format(C.CONS_FECHA, '%d-%m-%Y %H:%i') as FECHA_CONSULTA
 FROM CONSULTA C
     INNER JOIN DET_CONSULTA D ON D.IDCONSULTA = C.IDCONSULTA
     INNER JOIN DOCTOR DOC ON DOC.IDDOCTOR = C.IDDOCTOR
@@ -29,14 +29,18 @@ FROM CONSULTA C
     LEFT OUTER JOIN CARRERA CA ON CA.IDCARRERA = P.IDCARRERA
     LEFT OUTER JOIN FACULTAD F ON F.IDFACULTAD = CA.IDFACULTAD
 WHERE P.PAC_SEXO = $P{sexo}
-ORDER BY TO_CHAR(C.CONS_FECHA, 'dd-mm-yyyy HH:mm')]]>
+ORDER BY C.CONS_FECHA]]>
 	</queryString>
-	<field name="IDCONSULTA" class="java.math.BigDecimal"/>
+	<field name="IDCONSULTA" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="DOCTOR" class="java.lang.String"/>
 	<field name="PACIENTE" class="java.lang.String"/>
 	<field name="TIPO_PACIENTE" class="java.lang.String"/>
 	<field name="CARNET_DOCUMENTO" class="java.lang.String"/>
-	<field name="FACTULTAD" class="java.lang.String"/>
+	<field name="FACTULTAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="FECHA_CONSULTA" class="java.lang.String"/>
 	<variable name="IDCONSULTA_1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{IDCONSULTA}]]></variableExpression>

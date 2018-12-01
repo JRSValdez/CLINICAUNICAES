@@ -4,15 +4,23 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT M.IDMEDICAMENTO, M.MEDICAMENTO, M.CANTIDAD || ' ' || U.ABREVIATURA CANTIDAD, P.PRESENTACION, TO_CHAR(M.FECHA_V, 'dd-mm-yyyy') VENCIMIENTO  FROM MEDICAMENTO M 
+		<![CDATA[SELECT M.IDMEDICAMENTO, M.MEDICAMENTO, CONCAT(M.CANTIDAD , ' ' , U.ABREVIATURA) CANTIDAD, P.PRESENTACION, date_format(M.FECHA_V, '%d-%m-%Y') VENCIMIENTO  FROM MEDICAMENTO M 
     INNER JOIN UNIDAD_MED U ON U.IDUNIDAD_MED = M.IDUNIDAD_MED
     INNER JOIN TIPO_MEDICAMENTO TP ON TP.IDTIPO_MED = M.IDTIPO
     INNER JOIN PRESENTACION P ON P.IDPRESENTACION = M.IDPRESENTACION]]>
 	</queryString>
-	<field name="IDMEDICAMENTO" class="java.math.BigDecimal"/>
-	<field name="MEDICAMENTO" class="java.lang.String"/>
-	<field name="CANTIDAD" class="java.lang.String"/>
-	<field name="PRESENTACION" class="java.lang.String"/>
+	<field name="IDMEDICAMENTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MEDICAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CANTIDAD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRESENTACION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="VENCIMIENTO" class="java.lang.String"/>
 	<title>
 		<band height="116" splitType="Stretch">

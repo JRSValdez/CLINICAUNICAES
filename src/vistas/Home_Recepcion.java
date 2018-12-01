@@ -59,10 +59,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha)); 
         
-        this.cboActAcademico.setEnabled(false);
+        //this.cboActAcademico.setEnabled(false);
         this.cboFacultadAcadem.setEnabled(false);
         this.txtnombreEmp.setEnabled(false);
-        this.cboActEmpleado.setEnabled(false);
+       // this.cboActEmpleado.setEnabled(false);
         
          //Pacientes
         this.llenarFacultad();
@@ -128,6 +128,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btn_farmacia = new javax.swing.JButton();
         btn_home = new javax.swing.JButton();
         btn_pac = new javax.swing.JButton();
+        btn_sols = new javax.swing.JButton();
         Contenedor = new javax.swing.JTabbedPane();
         Tab_home = new javax.swing.JPanel();
         header = new javax.swing.JPanel();
@@ -240,9 +241,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanelEstNuevo2 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         lblHeader22 = new javax.swing.JLabel();
-        lblHeader25 = new javax.swing.JLabel();
         cboFacultadAcadem = new javax.swing.JComboBox<>();
-        cboActAcademico = new javax.swing.JComboBox<>();
         rbAcademico = new javax.swing.JRadioButton();
         jPanelEstNuevo4 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -255,10 +254,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         tbEstudiante = new javax.swing.JRadioButton();
         jPanelEstNuevo3 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        lblHeader27 = new javax.swing.JLabel();
         lblHeader29 = new javax.swing.JLabel();
         txtnombreEmp = new javax.swing.JTextField();
-        cboActEmpleado = new javax.swing.JComboBox<>();
         rbProyeccionSocial = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -481,6 +478,19 @@ public class Home_Recepcion extends javax.swing.JFrame {
             }
         });
 
+        btn_sols.setBackground(new java.awt.Color(0, 0, 0));
+        btn_sols.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        btn_sols.setForeground(new java.awt.Color(255, 255, 255));
+        btn_sols.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/solmedicamento.png"))); // NOI18N
+        btn_sols.setText("SOL. MEDICAMENTO");
+        btn_sols.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btn_sols.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_sols.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout BotoneraLayout = new javax.swing.GroupLayout(Botonera);
         Botonera.setLayout(BotoneraLayout);
         BotoneraLayout.setHorizontalGroup(
@@ -491,7 +501,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btn_cons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_pac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_pac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                 .addContainerGap())
         );
         BotoneraLayout.setVerticalGroup(
@@ -503,7 +514,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(btn_cons, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_pac, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_sols, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_farmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1677,7 +1690,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader67.setText("DEPARTAMENTO:");
 
         cboDepartamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Santa Ana", "Sonsonate", "Ahuachapan", "San Salvador" }));
         cboDepartamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         txtTelefonoEmerg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
@@ -1788,17 +1800,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader22.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader22.setText("FACULTAD:");
 
-        lblHeader25.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader25.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader25.setText("ACTIVIDAD:");
-
         cboFacultadAcadem.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         cboFacultadAcadem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ING y ARQ", "CC HH", "CC SALUD" }));
         cboFacultadAcadem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
-        cboActAcademico.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboActAcademico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
-        cboActAcademico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1806,26 +1810,18 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblHeader25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblHeader22, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboFacultadAcadem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboActAcademico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(cboFacultadAcadem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader25)
-                    .addComponent(cboActAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader22)
                     .addComponent(cboFacultadAcadem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rbAcademico.setBackground(new java.awt.Color(102, 0, 0));
@@ -1861,7 +1857,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             .addGroup(jPanelEstNuevo2Layout.createSequentialGroup()
                 .addComponent(rbAcademico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1985,10 +1981,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(102, 0, 0));
 
-        lblHeader27.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        lblHeader27.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader27.setText("ACTIVIDAD:");
-
         lblHeader29.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader29.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader29.setText("EMPLEADO:");
@@ -1996,37 +1988,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
         txtnombreEmp.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtnombreEmp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
-        cboActEmpleado.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        cboActEmpleado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hora clase", "tiempo completo", "Administrativo", "Ordenanza" }));
-        cboActEmpleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblHeader29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblHeader27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtnombreEmp)
-                    .addComponent(cboActEmpleado, 0, 187, Short.MAX_VALUE))
+                .addComponent(lblHeader29, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 22, Short.MAX_VALUE)
+                .addComponent(txtnombreEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHeader29)
                     .addComponent(txtnombreEmp))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader27)
-                    .addComponent(cboActEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         rbProyeccionSocial.setBackground(new java.awt.Color(102, 0, 0));
@@ -2153,7 +2133,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(jPanelEstNuevo4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("PACIENTES", Tab_Pac);
@@ -3003,7 +2983,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        //this.btn_sols.setBackground(Color.black);
+        this.btn_sols.setBackground(Color.black);
         
         try {
             this.llenarDashboard();
@@ -3036,7 +3016,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
-        //this.btn_sols.setBackground(Color.black);
+        this.btn_sols.setBackground(Color.black);
         
     }//GEN-LAST:event_btn_pacActionPerformed
 
@@ -3048,7 +3028,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_farmacia.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        //this.btn_sols.setBackground(Color.black);
+        this.btn_sols.setBackground(Color.black);
     }//GEN-LAST:event_btn_consActionPerformed
 
     private void btn_farmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_farmaciaActionPerformed
@@ -3059,7 +3039,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_home.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        //this.btn_sols.setBackground(Color.black);
+        this.btn_sols.setBackground(Color.black);
         
     }//GEN-LAST:event_btn_farmaciaActionPerformed
 
@@ -3098,7 +3078,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.btn_cons.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
         this.btn_pac.setBackground(Color.black);
-        //this.btn_sols.setBackground(Color.black);
+        this.btn_sols.setBackground(Color.black);
     }//GEN-LAST:event_btnHome2ActionPerformed
 
     private void jPanelEstNuevo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEstNuevo2MouseClicked
@@ -3143,7 +3123,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         this.idTipoPac = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboActAcademico.setModel(model);
+        //this.cboActAcademico.setModel(model);
     }
     public void llenartipoPacEmp() throws SQLException {
         // llenar el combobox de facultad
@@ -3151,7 +3131,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         this.idTipoPac = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
-        this.cboActEmpleado.setModel(model);
+        //this.cboActEmpleado.setModel(model);
     }
     public void llenarFacultad() throws SQLException {
         // llenar el combobox de facultad
@@ -3266,7 +3246,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
        
        
     Paciente pac =new Paciente();
-    pac.tipoPaciente=2;
+    pac.tipoPaciente=1;
     pac.carne=this.txtCarnetC.getText();
     pac.carreraP=this.idCarrera[this.cboCarreraCon.getSelectedIndex()];
     
@@ -3342,9 +3322,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
     
-      
-            
-        
     }//GEN-LAST:event_btnAggConPacNuevoMouseClicked
 
     private void btnConsultasEsperaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasEsperaMouseClicked
@@ -3363,17 +3340,17 @@ public class Home_Recepcion extends javax.swing.JFrame {
 Paciente pac= new Paciente();
 
 if(this.rbAcademico.isSelected()){
-    pac.tipoPaciente=3;
-    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.tipoPaciente=2;
+    pac.actividad= "Académico";
     pac.carne="";
-     pac.carreraP=-2;
+    pac.carreraP=-2;
 }else if(this.rbProyeccionSocial.isSelected()){
-    pac.tipoPaciente=4;
-    pac.actividad=Integer.toString(this.idTipoPac[this.cboActAcademico.getSelectedIndex()]);
+    pac.tipoPaciente=3;
+    pac.actividad="Proyección Social";
     pac.carne="";
     pac.carreraP=-2;
 }else{
-    pac.tipoPaciente=2;
+    pac.tipoPaciente=1;
     pac.carne=this.txtCarnet.getText();
     pac.carreraP=this.idCarrera[this.cboCarreraEstud.getSelectedIndex()];
 }
@@ -3524,30 +3501,30 @@ if(this.rbAcademico.isSelected()){
 
     private void tbEstudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEstudianteMouseClicked
         
-        this.cboActAcademico.setEnabled(false);
+        //this.cboActAcademico.setEnabled(false);
         this.cboFacultadAcadem.setEnabled(false);
         this.txtnombreEmp.setEnabled(false);
-        this.cboActEmpleado.setEnabled(false);
+        //this.cboActEmpleado.setEnabled(false);
         this.txtCarnet.setEnabled(true);
         this.cboFacultadEs.setEnabled(true);
         this.cboCarreraEstud.setEnabled(true);
     }//GEN-LAST:event_tbEstudianteMouseClicked
 
     private void rbAcademicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbAcademicoMouseClicked
-        this.cboActAcademico.setEnabled(true);
+        //this.cboActAcademico.setEnabled(true);
         this.cboFacultadAcadem.setEnabled(true);
         this.txtnombreEmp.setEnabled(false);
-        this.cboActEmpleado.setEnabled(false);
+        //this.cboActEmpleado.setEnabled(false);
         this.txtCarnet.setEnabled(false);
         this.cboFacultadEs.setEnabled(false);
         this.cboCarreraEstud.setEnabled(false);
     }//GEN-LAST:event_rbAcademicoMouseClicked
 
     private void rbProyeccionSocialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbProyeccionSocialMouseClicked
-        this.cboActAcademico.setEnabled(false);
+        //this.cboActAcademico.setEnabled(false);
         this.cboFacultadAcadem.setEnabled(false);
         this.txtnombreEmp.setEnabled(true);
-        this.cboActEmpleado.setEnabled(true);
+        //this.cboActEmpleado.setEnabled(true);
         this.txtCarnet.setEnabled(false);
         this.cboFacultadEs.setEnabled(false);
         this.cboCarreraEstud.setEnabled(false);
@@ -3778,6 +3755,18 @@ if(this.rbAcademico.isSelected()){
         this.rbzonaUrb.setSelected(false);
         this.rbzonaRur.setSelected(true);
     }//GEN-LAST:event_rbzonaRurMouseClicked
+
+    private void btn_solsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solsActionPerformed
+        this.Contenedor.setSelectedIndex(3);
+        this.lblHeader.setText("SOLICITUDES MED.");
+
+        this.btn_sols.setBackground(Color.decode("#660000"));
+        this.btn_cons.setBackground(Color.black);
+        this.btn_farmacia.setBackground(Color.black);
+        this.btn_pac.setBackground(Color.black);
+        this.btn_home.setBackground(Color.black);
+
+    }//GEN-LAST:event_btn_solsActionPerformed
     
     
     /**
@@ -3843,11 +3832,10 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JLabel btn_maximize;
     private javax.swing.JLabel btn_minimize;
     private javax.swing.JButton btn_pac;
+    private javax.swing.JButton btn_sols;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JComboBox<String> cboActAcademico;
-    private javax.swing.JComboBox<String> cboActEmpleado;
     private javax.swing.JComboBox<String> cboBuscarCatMed;
     private javax.swing.JComboBox<String> cboBuscarPresentacionMed;
     private javax.swing.JComboBox<String> cboCarreraCon;
@@ -3936,9 +3924,7 @@ if(this.rbAcademico.isSelected()){
     private javax.swing.JLabel lblHeader21;
     private javax.swing.JLabel lblHeader22;
     private javax.swing.JLabel lblHeader23;
-    private javax.swing.JLabel lblHeader25;
     private javax.swing.JLabel lblHeader26;
-    private javax.swing.JLabel lblHeader27;
     private javax.swing.JLabel lblHeader28;
     private javax.swing.JLabel lblHeader29;
     private javax.swing.JLabel lblHeader3;

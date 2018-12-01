@@ -264,10 +264,10 @@ int xx, xy;
         lblHeader69 = new javax.swing.JLabel();
         cboBuscarCatMed = new javax.swing.JComboBox<>();
         btnBuscarMed = new javax.swing.JLabel();
-        txtBuscarFechaV = new javax.swing.JTextField();
         lblHeader70 = new javax.swing.JLabel();
         lblHeader71 = new javax.swing.JLabel();
         cboBuscarPresentacionMed = new javax.swing.JComboBox<>();
+        txtBuscarFechaV = new javax.swing.JFormattedTextField();
         Tab_Usuarios = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         lblHeader15 = new javax.swing.JLabel();
@@ -345,11 +345,11 @@ int xx, xy;
         txtIdPac = new javax.swing.JTextField();
         btnBuscarExpediente = new javax.swing.JLabel();
         lblHeader62 = new javax.swing.JLabel();
-        txtCarnetRoot = new javax.swing.JTextField();
         rdbIdPac = new javax.swing.JRadioButton();
         rdbCarnet = new javax.swing.JRadioButton();
         rdbNombres = new javax.swing.JRadioButton();
         rdbApellidos = new javax.swing.JRadioButton();
+        txtCarnetRoot = new javax.swing.JFormattedTextField();
         jPanelEstNuevo7 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         jScrollPane14 = new javax.swing.JScrollPane();
@@ -1092,7 +1092,6 @@ int xx, xy;
         lblHeader37.setText("J.V.P.M");
 
         txtDocumento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtDocumento.setText("XXXXXXXX");
         txtDocumento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         txtNombre.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1432,7 +1431,11 @@ int xx, xy;
         lblHeader63.setText("CATEGORÍA:");
 
         txtFechaV.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        txtFechaV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        try {
+            txtFechaV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txtFechaV.setToolTipText("dd-mm-yyyy");
         txtFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
@@ -1613,9 +1616,6 @@ int xx, xy;
             }
         });
 
-        txtBuscarFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtBuscarFechaV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         lblHeader70.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader70.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader70.setText("FECHA V.:");
@@ -1627,6 +1627,15 @@ int xx, xy;
         cboBuscarPresentacionMed.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         cboBuscarPresentacionMed.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         cboBuscarPresentacionMed.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+
+        txtBuscarFechaV.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        try {
+            txtBuscarFechaV.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtBuscarFechaV.setToolTipText("dd-mm-yyyy");
+        txtBuscarFechaV.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1647,9 +1656,9 @@ int xx, xy;
                     .addComponent(lblHeader70, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBuscarFechaV)
-                    .addComponent(cboBuscarPresentacionMed, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(cboBuscarPresentacionMed, 0, 234, Short.MAX_VALUE)
+                    .addComponent(txtBuscarFechaV))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscarMed)
                 .addGap(102, 102, 102)
                 .addComponent(btnEditMedicamento)
@@ -1671,7 +1680,7 @@ int xx, xy;
                                     .addComponent(lblHeader68)
                                     .addComponent(txtBuscarNombreMed)
                                     .addComponent(lblHeader70)
-                                    .addComponent(txtBuscarFechaV, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtBuscarFechaV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblHeader69)
@@ -2416,9 +2425,6 @@ int xx, xy;
         lblHeader62.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader62.setText("CARNET/DOC:");
 
-        txtCarnetRoot.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnetRoot.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
-
         rdbFiltros2.add(rdbIdPac);
 
         rdbFiltros2.add(rdbCarnet);
@@ -2426,6 +2432,14 @@ int xx, xy;
         rdbFiltros2.add(rdbNombres);
 
         rdbFiltros2.add(rdbApellidos);
+
+        txtCarnetRoot.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtCarnetRoot.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-AA-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCarnetRoot.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanelEstNuevo6Layout = new javax.swing.GroupLayout(jPanelEstNuevo6);
         jPanelEstNuevo6.setLayout(jPanelEstNuevo6Layout);
@@ -2452,10 +2466,10 @@ int xx, xy;
                                     .addComponent(lblHeader62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelEstNuevo6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombres)
+                            .addComponent(txtNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
                             .addComponent(txtApellidos)
                             .addComponent(txtIdPac)
-                            .addComponent(txtCarnetRoot, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(txtCarnetRoot)))
                     .addGroup(jPanelEstNuevo6Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelEstNuevo6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2608,12 +2622,12 @@ int xx, xy;
                     .addComponent(jLabel28)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelEstNuevo6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelEstNuevo6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanelEstNuevo7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGenReporteExpediente)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("EXPEDIENTES", reportes_expediente);
@@ -4433,6 +4447,7 @@ int xx, xy;
         this.btn_reports.setBackground(Color.black);
         this.btn_config.setBackground(Color.black);
         this.btn_empleado.setBackground(Color.black);
+        this.btn_home.setBackground(Color.black);
     }//GEN-LAST:event_btn_farmaciaActionPerformed
 
     private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
@@ -5761,10 +5776,10 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JTextField txtAp2;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidos;
-    private javax.swing.JTextField txtBuscarFechaV;
+    private javax.swing.JFormattedTextField txtBuscarFechaV;
     private javax.swing.JTextField txtBuscarNombreMed;
     private javax.swing.JFormattedTextField txtCantMedicamento;
-    private javax.swing.JTextField txtCarnetRoot;
+    private javax.swing.JFormattedTextField txtCarnetRoot;
     private javax.swing.JTextField txtCarrera;
     private javax.swing.JTextField txtCategoria;
     private javax.swing.JFormattedTextField txtCel2;
