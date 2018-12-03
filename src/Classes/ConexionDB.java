@@ -2069,16 +2069,15 @@ public class ConexionDB {
         return res;
     }
 
-    public Empleado DesactEmpleado(int _idEmp) throws SQLException {
+    public int DesactEmpleado(int _idEmp) throws SQLException {
 
         String query = "UPDATE EMPLEADO SET ELIMINADO=1 WHERE IDEMP= ? ";
 
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idEmp);
-        ResultSet rs = preparedStatement.executeQuery();
-        Empleado emp = new Empleado();
+        int res = preparedStatement.executeUpdate();
 
-        return emp;
+        return res;
     }
 
     public int ActDoctor(int _idDoctor) throws SQLException {

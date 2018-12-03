@@ -5462,8 +5462,12 @@ public class Home_Root extends javax.swing.JFrame {
 
             try {
                 int e = Integer.parseInt(this.tbEmp.getModel().getValueAt(this.tbEmp.getSelectedRow(), 0).toString());
-                Empleado emp = this.conn.DesactEmpleado(e);
-                this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
+                if(this.conn.DesactEmpleado(e) > 0){
+                    this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Error al desactivar");
+                }
+                
             } catch (SQLException ex) {
                 JOptionPane.showConfirmDialog(this, ex.toString());
             }
