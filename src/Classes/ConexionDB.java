@@ -1799,7 +1799,7 @@ public class ConexionDB {
                 + " WHERE p.PAC_NOMBRE  LIKE  ? ";
 
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        preparedStatement.setString(1, _Pac);
+        preparedStatement.setString(1,"%" +  _Pac +"%");
         ResultSet rs = preparedStatement.executeQuery();
 
         model = (DefaultTableModel) jTable1.getModel();
@@ -1834,7 +1834,7 @@ public class ConexionDB {
                 + " WHERE p.PAC_APELLIDO  LIKE  ? ";
 
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-        preparedStatement.setString(1, _Pac);
+        preparedStatement.setString(1, "%" +  _Pac +"%");
         ResultSet rs = preparedStatement.executeQuery();
 
         model = (DefaultTableModel) jTable1.getModel();

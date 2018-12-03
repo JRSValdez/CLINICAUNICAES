@@ -318,6 +318,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos que requieren atención:");
 
+        jTAlertas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -328,12 +329,24 @@ public class Home_Consultorio extends javax.swing.JFrame {
             new String [] {
                 "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (dìas)"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTAlertas.setGridColor(new java.awt.Color(255, 255, 102));
         jTAlertas.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jTAlertas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTAlertas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTAlertas.setShowHorizontalLines(true);
         jScrollPane2.setViewportView(jTAlertas);
+        if (jTAlertas.getColumnModel().getColumnCount() > 0) {
+            jTAlertas.getColumnModel().getColumn(0).setMaxWidth(40);
+            jTAlertas.getColumnModel().getColumn(2).setMaxWidth(60);
+        }
 
         btnAlertaTotal.setText("Total");
         btnAlertaTotal.addActionListener(new java.awt.event.ActionListener() {
@@ -704,11 +717,15 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jPanelExistente.setLayout(jPanelExistenteLayout);
         jPanelExistenteLayout.setHorizontalGroup(
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExistenteLayout.createSequentialGroup()
-                .addContainerGap(374, Short.MAX_VALUE)
-                .addComponent(lblHeader2)
-                .addContainerGap(375, Short.MAX_VALUE))
+            .addGroup(jPanelExistenteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelExistenteLayout.createSequentialGroup()
+                        .addGap(0, 368, Short.MAX_VALUE)
+                        .addComponent(lblHeader2)
+                        .addGap(0, 369, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanelExistenteLayout.setVerticalGroup(
             jPanelExistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,7 +920,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -917,6 +934,10 @@ public class Home_Consultorio extends javax.swing.JFrame {
         jtMedicamentos.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jtMedicamentos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane9.setViewportView(jtMedicamentos);
+        if (jtMedicamentos.getColumnModel().getColumnCount() > 0) {
+            jtMedicamentos.getColumnModel().getColumn(0).setMaxWidth(45);
+            jtMedicamentos.getColumnModel().getColumn(4).setMaxWidth(60);
+        }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);

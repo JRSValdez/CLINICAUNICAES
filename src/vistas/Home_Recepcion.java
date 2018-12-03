@@ -3561,8 +3561,7 @@ if(this.rbAcademico.isSelected()){
             med.idTipoMed = this.idCatsMed[this.cboCategoriaMed.getSelectedIndex()];
             med.fechaV = this.txtFechaV.getText();
             
-            String validacion = med.validarMedicamento();
-            if(validacion.equals("")){
+            if(med.validarMedicamento().equals("Correcto")){
                 
                 String mensaje = this.conn.aggMedicamento(med);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
@@ -3571,13 +3570,13 @@ if(this.rbAcademico.isSelected()){
                 this.txtNombreMedicmento.setText("");
                 this.txtCantMedicamento.setText("");
                 this.txtFechaV.setText("");
+                
             } else {
                 //error de validación
-                JOptionPane.showMessageDialog(rootPane, validacion);
-                System.out.println(validacion);
+                JOptionPane.showMessageDialog(rootPane, "Ingrese datos correctos");
             }
         } catch (SQLException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.toString());
+            JOptionPane.showMessageDialog(rootPane, "Ingrese datos correctos");
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAggMedicamentoMouseClicked
