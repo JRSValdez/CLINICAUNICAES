@@ -3,40 +3,44 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT D.IDDOCTOR, D.DOC_APELLIDO, COUNT(C.IDDOCTOR) FROM CONSULTA C
-    INNER JOIN DOCTOR D ON D.IDDOCTOR = C.IDDOCTOR
-GROUP BY D.IDDOCTOR, D.DOC_APELLIDO]]>
+		<![CDATA[SELECT (CONCAT("Semana ", FLOOR((DayOfMonth(C.CONS_FECHA)-1)/7)+1)) as semana ,dayname(C.CONS_FECHA), COUNT(dayname(C.CONS_FECHA)) FROM CONSULTA C
+	WHERE C.ESTADO = 1 AND (MONTH(cons_fecha) = MONTH(CURDATE())- $P{mes} )
+    GROUP BY (CONCAT("Semana ", FLOOR((DayOfMonth(C.CONS_FECHA)-1)/7)+1)), dayname(C.CONS_FECHA)]]>
 	</queryString>
-	<field name="IDDOCTOR" class="java.math.BigDecimal"/>
-	<field name="DOC_APELLIDO" class="java.lang.String"/>
-	<field name="COUNT(C.IDDOCTOR)" class="java.math.BigDecimal"/>
+	<field name="semana" class="java.lang.String"/>
+	<field name="dayname(C.CONS_FECHA)" class="java.lang.String"/>
+	<field name="COUNT(dayname(C.CONS_FECHA))" class="java.lang.Long"/>
 	<title>
-		<band height="284" splitType="Stretch">
-			<pie3DChart>
+		<band height="161" splitType="Stretch">
+			<stackedBar3DChart>
 				<chart evaluationTime="Report">
-					<reportElement x="0" y="35" width="367" height="249" uuid="95a9491b-bfc4-48e2-a80d-1701433e6a78"/>
+					<reportElement x="28" y="0" width="497" height="147" uuid="6a5099dc-4001-4d2a-a61e-f84e22e2a943"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
-				<pieDataset>
-					<keyExpression><![CDATA[$F{IDDOCTOR}]]></keyExpression>
-					<valueExpression><![CDATA[$F{COUNT(C.IDDOCTOR)}]]></valueExpression>
-					<labelExpression><![CDATA[$F{DOC_APELLIDO}]]></labelExpression>
-				</pieDataset>
-				<pie3DPlot>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{semana}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{dayname(C.CONS_FECHA)}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COUNT(dayname(C.CONS_FECHA))}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
 					<plot/>
 					<itemLabel/>
-				</pie3DPlot>
-			</pie3DChart>
-			<staticText>
-				<reportElement x="83" y="0" width="200" height="20" uuid="fc505c36-471e-4d61-a82e-cb1cfd8f2ee2"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DOCTORES-CONSULTAS]]></text>
-			</staticText>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
 		</band>
 	</title>
 </jasperReport>

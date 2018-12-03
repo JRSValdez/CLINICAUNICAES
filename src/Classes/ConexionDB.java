@@ -1362,22 +1362,37 @@ public class ConexionDB {
            return model;
         }
         
-         public DefaultTableModel getUsuarios( JTable jTable1) throws SQLException{
+    public DefaultTableModel getUsuarios( JTable jTable1, int _tipo) throws SQLException{
         DefaultTableModel model;
         Statement stmt = conn.createStatement() ;
-        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA,u.USR_TIPO " +
-                   " FROM USUARIO u " +
-                   " WHERE u.ELIMINADO= 0";
-              
+        String query = "SELECT u.IDUSUARIO, u.USUARIO,u.USR_CONTRA, " +
+                    " CASE u.USR_TIPO " +
+                    "	WHEN 0 THEN 'Administrador' " +
+                    "   WHEN 1 THEN 'Doctor' " +
+                    "   WHEN 2 THEN 'Recepción' " +
+                    "   ELSE 'Sin Asignar' " +
+                    "	END as Tipo, " ;
+                if(_tipo == 0){
+                    query += " CONCAT(E.emp_nombre, ' ', E.emp_apellido) as Nombre " +
+                    " FROM USUARIO u " +
+                    " INNER JOIN EMPLEADO E ON E.idusuario = u.idusuario " +
+                    " WHERE u.ELIMINADO= 0";
+                } else {
+                    query += " CONCAT(D.doc_nombre, ' ', D.doc_apellido) as Nombre " +
+                    " FROM USUARIO u " +
+                    " INNER JOIN DOCTOR D ON D.idusuario = u.idusuario " +
+                    " WHERE u.ELIMINADO= 0";
+                }
+                
         ResultSet rs = stmt.executeQuery(query);
           
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-        Object Datos[]= new Object[5];
+        Object Datos[]= new Object[6];
           
           while (rs.next())
            {
-              for (int i=0;i<4;i++)
+              for (int i=0;i<5;i++)
               {
                 Datos[i]=rs.getObject(i+1);
               }

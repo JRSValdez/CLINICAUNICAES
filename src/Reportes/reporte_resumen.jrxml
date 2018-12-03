@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0009f875-3b2b-44a5-98ae-e67270eed2a2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mes" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select CASE $P{mes} WHEN 0 THEN MONTHNAME(CURDATE()) WHEN 1 THEN MONTHNAME(DATE_SUB(curdate(), INTERVAL 1 MONTH)) END as MES]]>
+	</queryString>
+	<field name="MES" class="java.lang.String"/>
+	<title>
+		<band height="629" splitType="Stretch">
+			<staticText>
+				<reportElement x="152" y="4" width="196" height="31" uuid="16804d13-7ac3-4a0b-b394-3d2846f1e585"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="35" width="146" height="22" uuid="b178a3ac-1332-4111-b022-1956465624b3"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA UNICAES]]></text>
+			</staticText>
+			<image>
+				<reportElement x="405" y="0" width="100" height="102" uuid="3ecdfeeb-4948-4efe-8d5a-abee7bfd3b1f"/>
+				<imageExpression><![CDATA[".\\unicaes_logo_small.png"]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="10" y="118" width="518" height="163" uuid="0a2c3ef1-73c3-4c64-b5e6-f62c3c770167"/>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_dias_semana.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="334" y="324" width="200" height="100" uuid="99ed699d-d1b8-43c2-80eb-ec06a35d95a6"/>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_sexo.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="16" y="487" width="518" height="132" uuid="4e032480-081e-4ed9-aabb-a71512ac3da6"/>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_diagnosticos.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="164" y="465" width="230" height="22" uuid="0a581871-85be-4d10-af08-ca0e8e930a0d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Enfermedades diagnósticadas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="96" width="230" height="22" uuid="b7e802c4-446d-4011-8e1e-1ec2ea9c923b"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Consultas por día de la semana]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="28" y="324" width="200" height="100" uuid="de6ea396-7266-40e5-aad6-bcf9926c12d7"/>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mes}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_doctores.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="316" y="302" width="230" height="22" uuid="301c272e-0826-4a64-80b8-a9ba50654e69"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Consultas por sexo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="302" width="230" height="22" uuid="2f9a952d-12e5-4d5b-8519-aeeb08c42967"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Doctores y Consultas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="65" width="47" height="22" uuid="043b488f-f3e1-48ff-936e-1b5c3a5b6e85"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[MES: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="53" y="66" width="100" height="20" uuid="e670a916-49d1-43b4-8dce-491ddc7829f7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MES}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="5" width="80" height="20" uuid="a240220b-879a-438b-b908-b3fec9012541"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="5" width="40" height="20" uuid="6f3f2558-2112-4fe0-aa5e-5dbf997874e8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="64" y="5" width="100" height="20" uuid="82ff106a-12f7-4bb2-9bbb-27458c69cc55"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="5" width="100" height="20" uuid="9e691edb-4c98-437d-b955-24c9ece7097d"/>
+				<text><![CDATA[Impreso el:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

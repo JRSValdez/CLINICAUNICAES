@@ -82,6 +82,7 @@ int xx, xy;
     
     public Home_Root(){
         initComponents();
+        conn = new ConexionDB();
     }
     
     public Home_Root(Usuario _user) throws SQLException {
@@ -118,7 +119,10 @@ int xx, xy;
         this.llenarEmp();
         this.llenarDoctores();
         this.tbUsuarios.setSelectionForeground(Color.WHITE);
-        this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
+        this.tbUsuarios1.setSelectionForeground(Color.WHITE);
+        
+        this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios, 0));
+        this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1, 1));
         
         this.llenarEsp();
         this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
@@ -291,8 +295,11 @@ int xx, xy;
         btnEliminarUsuario = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         lblHeader57 = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbUsuarios = new javax.swing.JTable();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tbUsuarios1 = new javax.swing.JTable();
         Tab_reports = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -362,6 +369,13 @@ int xx, xy;
         jPanelEstNuevo8 = new javax.swing.JPanel();
         btnReporteInventario = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        reportes_farmacia1 = new javax.swing.JPanel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jPanelEstNuevo9 = new javax.swing.JPanel();
+        btnReporteResumenMA = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        btnReporteIResumen = new javax.swing.JLabel();
         Tab_Config = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
@@ -1829,8 +1843,8 @@ int xx, xy;
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader14)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(73, 73, 73)
-                .addComponent(btnAggUsuario)
+                .addGap(43, 43, 43)
+                .addComponent(btnAggUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -1958,6 +1972,39 @@ int xx, xy;
             tbUsuarios.getColumnModel().getColumn(3).setMaxWidth(60);
         }
 
+        jTabbedPane2.addTab("Empleados", jScrollPane5);
+
+        tbUsuarios1.setBackground(new java.awt.Color(204, 204, 204));
+        tbUsuarios1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        tbUsuarios1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"123", "Doctor", "José Ricardo Sifontes Valdez", "Activo", null}
+            },
+            new String [] {
+                "ID", "Usuario", "Contraseña", "Tipo", "Emp / Doc"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tbUsuarios1.setGridColor(new java.awt.Color(255, 255, 153));
+        tbUsuarios1.setRowHeight(25);
+        tbUsuarios1.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbUsuarios1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tbUsuarios1.getTableHeader().setReorderingAllowed(false);
+        jScrollPane13.setViewportView(tbUsuarios1);
+        if (tbUsuarios1.getColumnModel().getColumnCount() > 0) {
+            tbUsuarios1.getColumnModel().getColumn(0).setMaxWidth(35);
+            tbUsuarios1.getColumnModel().getColumn(3).setMaxWidth(60);
+        }
+
+        jTabbedPane2.addTab("Doctores", jScrollPane13);
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -1969,17 +2016,19 @@ int xx, xy;
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader57)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jTabbedPane2))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(lblHeader57)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jTabbedPane2.getAccessibleContext().setAccessibleName("Doctores");
 
         javax.swing.GroupLayout Tab_UsuariosLayout = new javax.swing.GroupLayout(Tab_Usuarios);
         Tab_Usuarios.setLayout(Tab_UsuariosLayout);
@@ -1989,9 +2038,9 @@ int xx, xy;
                 .addContainerGap()
                 .addGroup(Tab_UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         Tab_UsuariosLayout.setVerticalGroup(
             Tab_UsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1999,10 +2048,10 @@ int xx, xy;
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
         );
 
         Contenedor.addTab("USUARIOS", Tab_Usuarios);
@@ -2722,6 +2771,114 @@ int xx, xy;
 
         jTabbedPane1.addTab("FARMACIA", reportes_farmacia);
 
+        reportes_farmacia1.setBackground(new java.awt.Color(102, 0, 0));
+        reportes_farmacia1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
+
+        jLabel30.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel25.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("REPORTE MENSUAL");
+        jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jPanelEstNuevo9.setBackground(new java.awt.Color(102, 0, 0));
+        jPanelEstNuevo9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+
+        btnReporteResumenMA.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteResumenMA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnReporteResumenMA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
+        btnReporteResumenMA.setText("REPORTE MES ANTERIOR");
+        btnReporteResumenMA.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnReporteResumenMA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReporteResumenMA.setFocusable(false);
+        btnReporteResumenMA.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReporteResumenMA.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteResumenMA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteResumenMAMouseClicked(evt);
+            }
+        });
+
+        jLabel26.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btnReporteIResumen.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteIResumen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnReporteIResumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
+        btnReporteIResumen.setText("REPORTE DEL MES");
+        btnReporteIResumen.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnReporteIResumen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReporteIResumen.setFocusable(false);
+        btnReporteIResumen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReporteIResumen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteIResumen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteIResumenMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelEstNuevo9Layout = new javax.swing.GroupLayout(jPanelEstNuevo9);
+        jPanelEstNuevo9.setLayout(jPanelEstNuevo9Layout);
+        jPanelEstNuevo9Layout.setHorizontalGroup(
+            jPanelEstNuevo9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEstNuevo9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE))
+            .addGroup(jPanelEstNuevo9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReporteResumenMA, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btnReporteIResumen)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanelEstNuevo9Layout.setVerticalGroup(
+            jPanelEstNuevo9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEstNuevo9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEstNuevo9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReporteResumenMA)
+                    .addComponent(btnReporteIResumen))
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout reportes_farmacia1Layout = new javax.swing.GroupLayout(reportes_farmacia1);
+        reportes_farmacia1.setLayout(reportes_farmacia1Layout);
+        reportes_farmacia1Layout.setHorizontalGroup(
+            reportes_farmacia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportes_farmacia1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(reportes_farmacia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportes_farmacia1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportes_farmacia1Layout.createSequentialGroup()
+                        .addComponent(jPanelEstNuevo9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(reportes_farmacia1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel25)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        reportes_farmacia1Layout.setVerticalGroup(
+            reportes_farmacia1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reportes_farmacia1Layout.createSequentialGroup()
+                .addComponent(jLabel30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelEstNuevo9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(438, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("RESUMEN MENSUAL", reportes_farmacia1);
+
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
         jPanel35Layout.setHorizontalGroup(
@@ -2735,7 +2892,7 @@ int xx, xy;
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -4630,7 +4787,8 @@ int xx, xy;
             try {
 
                 resultado= conn.aggUsuario(us, tabla, idOwner);
-                this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
+                this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios,0));
+                this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1,1));
                 this.txtUsuario.setText("");
                 this.txtPassword1.setText("");
                 this.txtPassword2.setText("");
@@ -5198,10 +5356,11 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         if (this.tbUsuarios.getSelectedRows().length == 1)
         {
             
-               try {
+        try {
             int us = Integer.parseInt(this.tbUsuarios.getModel().getValueAt(this.tbUsuarios.getSelectedRow(), 0).toString());
             Usuario usr = this.conn.DesactUsuario(us);
-            this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios));
+            this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios,0));
+            this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1,1));
                }
                
                catch (SQLException ex) {
@@ -5360,7 +5519,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         else if(this.rdbSexo.isSelected()){
             System.out.println("Si llego weeeeee");
             if(this.cmbSexo.getSelectedItem().equals("Masculino")){
-                parameters.put ("sexo", "M");
+                parameters.put("sexo", "M");
             } else parameters.put ("sexo", "F");
             path = ".\\src\\Reportes\\reporte_consultas_sexo.jasper"; 
         }
@@ -5466,6 +5625,42 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         
     }//GEN-LAST:event_btnReporteInventarioMouseClicked
 
+    private void btnReporteResumenMAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteResumenMAMouseClicked
+         // reporte resumen mes anterior
+        try {
+            Map parameters = new HashMap ();
+            JasperReport reporte; //Creo el objeto reporte
+            // Ubicacion del Reporte
+            String path = ".\\src\\Reportes\\reporte_resumen.jasper"; 
+            parameters.put("mes", 1);
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteResumenMAMouseClicked
+
+    private void btnReporteIResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteIResumenMouseClicked
+        // reporte resumen mes actual
+        try {
+            Map parameters = new HashMap ();
+            parameters.put("mes", 0);
+            JasperReport reporte; //Creo el objeto reporte
+            // Ubicacion del Reporte
+            String path = ".\\src\\Reportes\\reporte_resumen.jasper"; 
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteIResumenMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -5544,7 +5739,9 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btnMostrarElimDoc;
     private javax.swing.JLabel btnReporteConsultas;
+    private javax.swing.JLabel btnReporteIResumen;
     private javax.swing.JLabel btnReporteInventario;
+    private javax.swing.JLabel btnReporteResumenMA;
     private javax.swing.JLabel btnVerCIE10;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_config;
@@ -5586,9 +5783,12 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -5645,10 +5845,12 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel jPanelEstNuevo6;
     private javax.swing.JPanel jPanelEstNuevo7;
     private javax.swing.JPanel jPanelEstNuevo8;
+    private javax.swing.JPanel jPanelEstNuevo9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -5661,6 +5863,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JTable jTAlertas;
     private javax.swing.JTable jTFarmacia;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTactividades;
     private javax.swing.JTable jTcarreras;
     private javax.swing.JTable jTcategorias;
@@ -5769,9 +5972,11 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel reportes_consultas;
     private javax.swing.JPanel reportes_expediente;
     private javax.swing.JPanel reportes_farmacia;
+    private javax.swing.JPanel reportes_farmacia1;
     private javax.swing.JTable tbDoctor;
     private javax.swing.JTable tbEmp;
     private javax.swing.JTable tbUsuarios;
+    private javax.swing.JTable tbUsuarios1;
     private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtAp2;
     private javax.swing.JTextField txtApellido;

@@ -7,33 +7,29 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT O.* FROM (SELECT M.IDMEDICAMENTO, MEDICAMENTO, COUNT(D.IDMEDICAMENTO) TOTAL FROM MEDICAMENTO M
-    INNER JOIN DET_RECETA D ON D.IDMEDICAMENTO = M.IDMEDICAMENTO
-    INNER JOIN RECETA R ON R.IDRECETA = D.IDRECETA
-    GROUP BY M.IDMEDICAMENTO, MEDICAMENTO
-    ORDER BY COUNT(D.IDMEDICAMENTO) DESC) O
-LIMIT 5]]>
+		<![CDATA[SELECT ENFERMEDAD, COUNT(DIAG.COD_ENF) FROM DIAGNOSTICO_X_CONS DIAG
+	INNER JOIN CIE10_ENFERMEDAD ENF ON DIAG.COD_ENF = ENF.COD_ENF
+    INNER JOIN CONSULTA C ON C.IDCONSULTA = DIAG.IDCONSULTA
+    WHERE C.ESTADO = 1 AND (MONTH(C.CONS_FECHA) = MONTH(CURDATE())- $P{mes} )
+    GROUP BY ENFERMEDAD]]>
 	</queryString>
-	<field name="IDMEDICAMENTO" class="java.lang.Integer">
+	<field name="ENFERMEDAD" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="MEDICAMENTO" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="TOTAL" class="java.lang.Long"/>
+	<field name="COUNT(DIAG.COD_ENF)" class="java.lang.Long"/>
 	<title>
-		<band height="237" splitType="Stretch">
+		<band height="210" splitType="Stretch">
 			<pie3DChart>
 				<chart evaluationTime="Report">
-					<reportElement x="74" y="0" width="408" height="237" uuid="db2eba6f-8f4e-48af-90d1-b5e6d8eaf842"/>
+					<reportElement x="58" y="0" width="431" height="207" uuid="ba3f4661-64ca-4f7b-ae84-02cea3d47bce"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
-				<pieDataset maxCount="8">
-					<keyExpression><![CDATA[$F{MEDICAMENTO}]]></keyExpression>
-					<valueExpression><![CDATA[$F{TOTAL}]]></valueExpression>
-					<labelExpression><![CDATA[$F{TOTAL}.toString()]]></labelExpression>
+				<pieDataset maxCount="5">
+					<keyExpression><![CDATA[$F{ENFERMEDAD}]]></keyExpression>
+					<valueExpression><![CDATA[$F{COUNT(DIAG.COD_ENF)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{COUNT(DIAG.COD_ENF)}.toString()]]></labelExpression>
 				</pieDataset>
 				<pie3DPlot>
 					<plot/>

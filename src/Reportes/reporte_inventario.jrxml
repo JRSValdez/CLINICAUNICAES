@@ -26,14 +26,14 @@
 		<band height="116" splitType="Stretch">
 			<staticText>
 				<reportElement x="62" y="32" width="306" height="23" uuid="06205ec8-3b21-439a-942e-0f736aa358bf"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE INVENTARIO FARMACIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="122" y="66" width="163" height="23" uuid="75ae32ac-4f37-41a1-9bf4-571e21c4e2b3"/>
-				<textElement>
+				<reportElement x="122" y="66" width="163" height="23" forecolor="#666666" uuid="75ae32ac-4f37-41a1-9bf4-571e21c4e2b3"/>
+				<textElement textAlignment="Center">
 					<font size="18"/>
 				</textElement>
 				<text><![CDATA[CLÍNICA UNICAES]]></text>
@@ -44,6 +44,22 @@
 			</image>
 		</band>
 	</title>
+	<pageHeader>
+		<band height="147">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="0" y="37" width="555" height="99" uuid="114ac0a0-786e-4c62-b774-07e4fc1046be"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_inventario.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="194" y="17" width="187" height="20" uuid="f3ba9613-bca9-4c41-9197-99a60db93ea8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS MÁS USADOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
@@ -108,18 +124,18 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="0" width="199" height="20" uuid="7c3508a1-417d-46f8-8347-fc888fc8bdde"/>
+				<reportElement x="2" y="10" width="199" height="20" uuid="7c3508a1-417d-46f8-8347-fc888fc8bdde"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="435" y="0" width="80" height="20" uuid="e6074fb2-a373-4358-b930-f466ae4263c4"/>
+				<reportElement x="437" y="10" width="80" height="20" uuid="e6074fb2-a373-4358-b930-f466ae4263c4"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="515" y="0" width="40" height="20" uuid="ea1d96db-c5a8-4e2b-a434-fed545ded2cc"/>
+				<reportElement x="517" y="10" width="40" height="20" uuid="ea1d96db-c5a8-4e2b-a434-fed545ded2cc"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
