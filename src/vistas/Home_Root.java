@@ -38,6 +38,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
@@ -53,53 +54,52 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class Home_Root extends javax.swing.JFrame {
 
-    
-int xx, xy;
-    int xs, ys, sbx,sby;
-    
+    int xx, xy;
+    int xs, ys, sbx, sby;
+
     ConexionDB conn;
     Usuario user;
-    
+
     int[] idPresentacion;
     int[] idCatsMed;
     int[] idUnidadesMed;
-     int[] idFacult;
-     
+    int[] idFacult;
+
     int[] idBusquedaPresMed;
     int[] idBusquedaCatsMed;
-    
+
     int[] idEmp;
     int[] idDoctores;
-    
+
     int[] idEsp;
     int[] idUsr;
-    
+
     int[] idDoctorReporte;
     int[] idActividadReporte;
     int[] idFacultadReporte;
     int[] idCarreraReporte;
     int[] idDepartamentoReporte;
-    
-    public Home_Root(){
+
+    public Home_Root() {
         initComponents();
         conn = new ConexionDB();
     }
-    
+
     public Home_Root(Usuario _user) throws SQLException {
         initComponents();
-        
+
         conn = new ConexionDB();
         user = _user;
-        
+
         //FECHA DEL SISTEMA
-        Date sistFecha=new Date();
-        SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");
-        lblFecha.setText(formato.format(sistFecha)); 
-        
+        Date sistFecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MMMMM/YYYY");
+        lblFecha.setText(formato.format(sistFecha));
+
         this.jTFarmacia.setSelectionForeground(Color.white);
         this.jTespecialidades.setSelectionForeground(Color.white);
         this.jTunidades.setSelectionForeground(Color.white);
-        
+
         conn.getFacultades(this.jTfacultades);
         conn.getCatMedicamento(this.jTcategorias);
         conn.getFacultades(this.jTfacultades);
@@ -111,51 +111,49 @@ int xx, xy;
         ys = this.Contenedor.getHeight();
         sbx = this.SideBar.getWidth();
         sby = this.SideBar.getHeight();
-        
+
         this.llenarMedicamentosFarmacia();
         this.llenarFacultad();
-        
-        
+
         this.llenarEmp();
         this.llenarDoctores();
         this.tbUsuarios.setSelectionForeground(Color.WHITE);
         this.tbUsuarios1.setSelectionForeground(Color.WHITE);
-        
-        this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios, 0));
-        this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1, 1));
-        
+
+        this.actualizarUsuarios();
+
         this.llenarEsp();
         this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
         this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
-        
-        this.jTAlertas.setModel(this.conn.obt_alertas(jTAlertas,1));
-        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
-        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
-        
+
+        this.jTAlertas.setModel(this.conn.obt_alertas(jTAlertas, 1));
+        this.btnAlertaTotal.setText("Todas(" + jTAlertas.getRowCount() + ")");
+        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12));
+
         this.lblDoctores.setText(Integer.toString(conn.ContarDoctores()));
         this.lblMedicamentos.setText(Integer.toString(conn.ContarMedicamentos()));
         this.lblPacientes.setText(Integer.toString(conn.ContarPacientes()));
         this.lblConsultas.setText(Integer.toString(conn.ConsultasxMes()));
-        
+
         //---------------------reportes------------------------------------------
         Object[] array = this.conn.Obt_TipoPaciente();
         this.idActividadReporte = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cmbActividad.setModel(model);
-        
+
         Object[] arrays = this.conn.llenarCarreras(this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
         this.idCarreraReporte = (int[]) arrays[0];
-        
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel( (Object[]) arrays[2] );
+
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel((Object[]) arrays[2]);
         this.cmbCarrera.setModel(model2);
-        
+
         // llenar el combobox de departamento
         Object[] arrayDep = this.conn.Obt_Depart();
 
         this.idDepartamentoReporte = (int[]) arrayDep[0];
         DefaultComboBoxModel modelDep = new DefaultComboBoxModel((Object[]) arrayDep[1]);
         this.cmbDepartamento.setModel(modelDep);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -174,6 +172,7 @@ int xx, xy;
         rdbUsuario = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         radiosSexoEmpleado = new javax.swing.ButtonGroup();
+        radiosDoctor = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         SideBar = new javax.swing.JPanel();
         Botonera = new javax.swing.JPanel();
@@ -291,11 +290,11 @@ int xx, xy;
         rdbEmpleadoUser = new javax.swing.JRadioButton();
         rdbDoctorUser = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        btnEditarUsuario = new javax.swing.JLabel();
         btnEliminarUsuario = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         lblHeader57 = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        ContenedorUsers = new javax.swing.JTabbedPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbUsuarios = new javax.swing.JTable();
         jScrollPane13 = new javax.swing.JScrollPane();
@@ -1115,12 +1114,14 @@ int xx, xy;
         txtApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
         rbM.setBackground(new java.awt.Color(102, 0, 0));
+        radiosDoctor.add(rbM);
         rbM.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbM.setForeground(new java.awt.Color(255, 255, 255));
         rbM.setSelected(true);
         rbM.setText("Masculino");
 
         rbF.setBackground(new java.awt.Color(102, 0, 0));
+        radiosDoctor.add(rbF);
         rbF.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbF.setForeground(new java.awt.Color(255, 255, 255));
         rbF.setText("Femenino");
@@ -1327,7 +1328,7 @@ int xx, xy;
         btnElimanarDoctor.setForeground(new java.awt.Color(255, 255, 255));
         btnElimanarDoctor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         btnElimanarDoctor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
-        btnElimanarDoctor.setText("ELIMINAR");
+        btnElimanarDoctor.setText("DESACTIVAR");
         btnElimanarDoctor.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnElimanarDoctor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnElimanarDoctor.setFocusable(false);
@@ -1890,15 +1891,20 @@ int xx, xy;
         jPanel5.setBackground(new java.awt.Color(102, 0, 0));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
-        jLabel11.setText("EDITAR");
-        jLabel11.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel11.setFocusable(false);
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditarUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnEditarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
+        btnEditarUsuario.setText("EDITAR");
+        btnEditarUsuario.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnEditarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEditarUsuario.setFocusable(false);
+        btnEditarUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEditarUsuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditarUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarUsuarioMouseClicked(evt);
+            }
+        });
 
         btnEliminarUsuario.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1921,7 +1927,7 @@ int xx, xy;
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11)
+                .addComponent(btnEditarUsuario)
                 .addGap(40, 40, 40)
                 .addComponent(btnEliminarUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1932,7 +1938,7 @@ int xx, xy;
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminarUsuario)
-                    .addComponent(jLabel11))
+                    .addComponent(btnEditarUsuario))
                 .addContainerGap())
         );
 
@@ -1968,11 +1974,11 @@ int xx, xy;
         tbUsuarios.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbUsuarios);
         if (tbUsuarios.getColumnModel().getColumnCount() > 0) {
-            tbUsuarios.getColumnModel().getColumn(0).setMaxWidth(35);
-            tbUsuarios.getColumnModel().getColumn(3).setMaxWidth(60);
+            tbUsuarios.getColumnModel().getColumn(0).setMaxWidth(40);
+            tbUsuarios.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
-        jTabbedPane2.addTab("Empleados", jScrollPane5);
+        ContenedorUsers.addTab("Empleados", jScrollPane5);
 
         tbUsuarios1.setBackground(new java.awt.Color(204, 204, 204));
         tbUsuarios1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -1999,11 +2005,11 @@ int xx, xy;
         tbUsuarios1.getTableHeader().setReorderingAllowed(false);
         jScrollPane13.setViewportView(tbUsuarios1);
         if (tbUsuarios1.getColumnModel().getColumnCount() > 0) {
-            tbUsuarios1.getColumnModel().getColumn(0).setMaxWidth(35);
-            tbUsuarios1.getColumnModel().getColumn(3).setMaxWidth(60);
+            tbUsuarios1.getColumnModel().getColumn(0).setMaxWidth(40);
+            tbUsuarios1.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
-        jTabbedPane2.addTab("Doctores", jScrollPane13);
+        ContenedorUsers.addTab("Doctores", jScrollPane13);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -2016,7 +2022,7 @@ int xx, xy;
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblHeader57)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane2))
+                    .addComponent(ContenedorUsers))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -2024,11 +2030,11 @@ int xx, xy;
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(lblHeader57)
                 .addGap(5, 5, 5)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addComponent(ContenedorUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane2.getAccessibleContext().setAccessibleName("Doctores");
+        ContenedorUsers.getAccessibleContext().setAccessibleName("Doctores");
 
         javax.swing.GroupLayout Tab_UsuariosLayout = new javax.swing.GroupLayout(Tab_Usuarios);
         Tab_Usuarios.setLayout(Tab_UsuariosLayout);
@@ -2892,7 +2898,7 @@ int xx, xy;
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -4461,9 +4467,9 @@ int xx, xy;
                 .addComponent(lblHeader1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHeader)
-                .addGap(328, 328, 328)
+                .addGap(322, 322, 322)
                 .addComponent(btn_minimize)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_maximize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_close)
@@ -4472,13 +4478,15 @@ int xx, xy;
         Barra_SuperiorLayout.setVerticalGroup(
             Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(btn_minimize)
-                .addComponent(btn_maximize)
-                .addComponent(btn_close)
-                .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader)
-                    .addComponent(lblHeader1)))
+            .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblHeader)
+                .addComponent(lblHeader1))
+            .addGroup(Barra_SuperiorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(Barra_SuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_minimize)
+                    .addComponent(btn_maximize)
+                    .addComponent(btn_close)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -4524,33 +4532,33 @@ int xx, xy;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void llenarMedicamentosFarmacia() throws SQLException{
+    public void llenarMedicamentosFarmacia() throws SQLException {
         this.jTFarmacia.setSelectionForeground(Color.white);
         this.jTFarmacia.setModel(this.conn.getMedicamentos(jTFarmacia));
-        
+
         //llenar presentaciones de medicamentos
         Object[] arrays = this.conn.llenarPresentacionesMed(this.cboPresentacionMed);
         this.idPresentacion = (int[]) arrays[1];
         this.cboPresentacionMed.setModel((DefaultComboBoxModel) arrays[0]);
-        
+
         this.idBusquedaPresMed = (int[]) arrays[1];
         this.cboBuscarPresentacionMed.setModel((DefaultComboBoxModel) arrays[0]);
-        
+
         //llenar tipos de medicamentos
         Object[] arrays2 = this.conn.llenarCatsMedicamentos(this.cboCategoriaMed);
         this.idCatsMed = (int[]) arrays2[1];
         this.cboCategoriaMed.setModel((DefaultComboBoxModel) arrays2[0]);
-        
+
         this.idBusquedaCatsMed = (int[]) arrays2[1];
         this.cboBuscarCatMed.setModel((DefaultComboBoxModel) arrays2[0]);
-        
+
         //llenar unidades de medicamentos
         Object[] arrays3 = this.conn.llenarUnidadesMed(this.cboUnidadesMed);
         this.idUnidadesMed = (int[]) arrays3[1];
         this.cboUnidadesMed.setModel((DefaultComboBoxModel) arrays3[0]);
     }
-    
-     public void llenarEmp() throws SQLException {
+
+    public void llenarEmp() throws SQLException {
         // llenar el combobox de facultad
         Object[] array = this.conn.Obt_Empleado();
 
@@ -4558,29 +4566,29 @@ int xx, xy;
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboEmpleado.setModel(model);
     }
-     
-      public void llenarDoctores() throws SQLException {
+
+    public void llenarDoctores() throws SQLException {
         // llenar el combobox de facultad
         Object[] array = this.conn.Obt_Doctores();
 
         this.idDoctores = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboDoctores.setModel(model);
-        
+
         this.idDoctorReporte = (int[]) array[0];
         this.cmbDcotor.setModel(model);
     }
-    
-       public void llenarEsp() throws SQLException {
-        
+
+    public void llenarEsp() throws SQLException {
+
         Object[] array = this.conn.Obt_Especialidad();
 
         this.idEsp = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboEspecialidad.setModel(model);
     }
-   
-    
+
+
     private void btn_usersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usersActionPerformed
         this.Contenedor.setSelectedIndex(3);
         this.lblHeader.setText("USUARIOS");
@@ -4728,31 +4736,29 @@ int xx, xy;
             med.idTipoMed = this.idCatsMed[this.cboCategoriaMed.getSelectedIndex()];
             med.fechaV = this.txtFechaV.getText();
 
-            String validacion = med.validarMedicamento();
-            if(validacion.equals("")){
+            if (med.validarMedicamento().equals("Correcto")) {
 
                 String mensaje = this.conn.aggMedicamento(med);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
                 this.llenarMedicamentosFarmacia();
+                
             } else {
                 //error de validación
-                JOptionPane.showMessageDialog(rootPane, validacion);
-                System.out.println(validacion);
+                JOptionPane.showMessageDialog(rootPane, "Ingrese valores correctos");
             }
         } catch (SQLException | NumberFormatException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.toString());
+            JOptionPane.showMessageDialog(rootPane, "Ingrese valores correctos");
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAggMedicamentoMouseClicked
 
     private void btnEditMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMedicamentoMouseClicked
         //Editar el medicamento seleccinoado del JTABLE
-        if (this.jTFarmacia.getSelectedRows().length == 1)
-        {
+        if (this.jTFarmacia.getSelectedRows().length == 1) {
             try {
                 int idMed = Integer.parseInt(this.jTFarmacia.getModel().getValueAt(this.jTFarmacia.getSelectedRow(), 0).toString());
                 Medicamento med = this.conn.getMedicamentobyID(idMed);
-                Editar_Medicamento form = new Editar_Medicamento(this,med);
+                Editar_Medicamento form = new Editar_Medicamento(this, med);
                 form.setVisible(true);
             } catch (SQLException ex) {
                 Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
@@ -4767,37 +4773,38 @@ int xx, xy;
 
     private void btnAggUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUsuarioMouseClicked
 
-        Usuario us= new Usuario();
+        Usuario us = new Usuario();
 
-        us.user= this.txtUsuario.getText();
-        us.password1= new String(txtPassword1.getPassword());
-        us.password2= new String(txtPassword2.getPassword());
-        us.tipo_usr= this.cboTipoUsuario.getSelectedIndex();
-        us.empleado=this.idEmp[this.cboEmpleado.getSelectedIndex()];
+        us.user = this.txtUsuario.getText();
+        us.password1 = new String(txtPassword1.getPassword());
+        us.password2 = new String(txtPassword2.getPassword());
+        us.tipo_usr = this.cboTipoUsuario.getSelectedIndex();
+        us.empleado = this.idEmp[this.cboEmpleado.getSelectedIndex()];
 
-        if(us.ValidarAgg().equals("Exito")){
+        if (us.ValidarAgg().equals("Exito")) {
 
-            String resultado="";
+            String resultado = "";
             int idOwner = 0;
             String tabla = "EMPLEADO";
-            if(this.rdbDoctorUser.isSelected()){
+            if (this.rdbDoctorUser.isSelected()) {
                 idOwner = this.idDoctores[this.cboDoctores.getSelectedIndex()];
                 tabla = "DOCTOR";
-            } else idOwner = this.idEmp[this.cboEmpleado.getSelectedIndex()];
+            } else {
+                idOwner = this.idEmp[this.cboEmpleado.getSelectedIndex()];
+            }
             try {
 
-                resultado= conn.aggUsuario(us, tabla, idOwner);
-                this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios,0));
-                this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1,1));
+                resultado = conn.aggUsuario(us, tabla, idOwner);
+                this.actualizarUsuarios();
                 this.txtUsuario.setText("");
                 this.txtPassword1.setText("");
                 this.txtPassword2.setText("");
 
             } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(this,ex.toString());
+                JOptionPane.showConfirmDialog(this, ex.toString());
             }
             JOptionPane.showMessageDialog(this, resultado);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
 
@@ -4808,9 +4815,9 @@ int xx, xy;
     }//GEN-LAST:event_reportes_consultasMouseClicked
 
     private void btnBuscarExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarExpedienteMouseClicked
-        if(this.rdbCarnet.isSelected()){
+        if (this.rdbCarnet.isSelected()) {
             // Buscar medicamento por carnet
-            if (this.txtCarnetRoot.getText().length() > 5){
+            if (this.txtCarnetRoot.getText().length() > 5) {
                 try {
                     String carnet = this.txtCarnetRoot.getText();
                     this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByCarnet(jtBuscarExpediente, carnet));
@@ -4819,9 +4826,9 @@ int xx, xy;
                 }
             }
         }
-        if(this.rdbApellidos.isSelected()){
+        if (this.rdbApellidos.isSelected()) {
             // Buscar medicamento por apellidos
-            if (this.txtApellidos.getText().length() > 3){
+            if (this.txtApellidos.getText().length() > 3) {
                 try {
                     String apellido = this.txtApellidos.getText();
                     this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByApellidos(jtBuscarExpediente, apellido));
@@ -4830,9 +4837,9 @@ int xx, xy;
                 }
             }
         }
-        if(this.rdbIdPac.isSelected()){
+        if (this.rdbIdPac.isSelected()) {
             // Buscar medicamento por ID
-            if (this.txtIdPac.getText().length() > 0){
+            if (this.txtIdPac.getText().length() > 0) {
                 try {
                     int id = Integer.parseInt(this.txtIdPac.getText());
                     this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByID(jtBuscarExpediente, id));
@@ -4841,9 +4848,9 @@ int xx, xy;
                 }
             }
         }
-        if(this.rdbNombres.isSelected()){
+        if (this.rdbNombres.isSelected()) {
             // Buscar medicamento por Nombres
-            if (this.txtNombres.getText().length() > 2){
+            if (this.txtNombres.getText().length() > 2) {
                 try {
                     String nombre = this.txtNombres.getText();
                     this.jtBuscarExpediente.setModel(this.conn.getExpedienteRootByNombres(jtBuscarExpediente, nombre));
@@ -4861,19 +4868,18 @@ int xx, xy;
 
     private void btnGenReporteExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteExpedienteMouseClicked
         //REPORTE DE EXPEDIENTE SELECCIONADO
-        if (this.jtBuscarExpediente.getSelectedRows().length == 1)
-        {
+        if (this.jtBuscarExpediente.getSelectedRows().length == 1) {
             int idConsulta = Integer.parseInt(this.jtBuscarExpediente.getModel().getValueAt(this.jtBuscarExpediente.getSelectedRow(), 0).toString());
-            Map parameters = new HashMap ();
+            Map parameters = new HashMap();
             //A nuestro informe de prueba le vamos a enviar la fecha de hoy
-            parameters.put ("idConsulta", idConsulta);
+            parameters.put("idConsulta", idConsulta);
             JasperReport reporte; //Creo el objeto reporte
             // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_expediente.jasper"; 
+            String path = ".\\src\\Reportes\\reporte_expediente.jasper";
             try {
                 reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
                 JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-                JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+                JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
                 viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
                 viewer.setVisible(true); //Inicializamos la vista del Reporte
             } catch (JRException ex) {
@@ -4887,81 +4893,87 @@ int xx, xy;
     }//GEN-LAST:event_jPanelEstNuevo7MouseClicked
 
     private void btnAggCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCategoriaMouseClicked
-        TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
-        TipoMedicamento tm=new TipoMedicamento();
+        TipoMedicamentoJpaController t = new TipoMedicamentoJpaController(entityMain.getInstance());
+        TipoMedicamento tm = new TipoMedicamento();
         tm.setTipoMed(this.txtCategoria.getText());
-        if(this.txtCategoria.getText().trim().length()>3){
-            try{
+        if (this.txtCategoria.getText().trim().length() > 3) {
+            try {
                 t.create(tm);
                 conn.getCatMedicamento(this.jTcategorias);
                 this.txtCategoria.setText("");
-                JOptionPane.showMessageDialog(null,"Categoria agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
+                JOptionPane.showMessageDialog(null, "Categoria agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
 
     }//GEN-LAST:event_btnAggCategoriaMouseClicked
 
     private void btnEditCategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditCategoriaMouseClicked
-        int totalfilas=this.jTcategorias.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTcategorias.getSelectedRow();
-            int id=Integer.parseInt(jTcategorias.getValueAt(nfila, 0).toString());
-            String nombreCat=jTcategorias.getValueAt(nfila, 1).toString();
-            String categoria="";
-            categoria=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreCat);
+        int totalfilas = this.jTcategorias.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTcategorias.getSelectedRow();
+            int id = Integer.parseInt(jTcategorias.getValueAt(nfila, 0).toString());
+            String nombreCat = jTcategorias.getValueAt(nfila, 1).toString();
+            String categoria = "";
+            categoria = JOptionPane.showInputDialog(null, "Modificar categoria:", nombreCat);
 
-            if((!categoria.equals("")) && (categoria.trim().length()>3)){
-                try{
-                    TipoMedicamentoJpaController t=new TipoMedicamentoJpaController(entityMain.getInstance());
-                    TipoMedicamento tpm=new TipoMedicamento();
+            if ((!categoria.equals("")) && (categoria.trim().length() > 3)) {
+                try {
+                    TipoMedicamentoJpaController t = new TipoMedicamentoJpaController(entityMain.getInstance());
+                    TipoMedicamento tpm = new TipoMedicamento();
                     tpm.setIdtipoMed(id);
                     tpm.setTipoMed(categoria);
                     t.edit(tpm);
                     conn.getCatMedicamento(this.jTcategorias);
                     JOptionPane.showMessageDialog(null, "categoria Actualizada");
-                }catch(Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage().toString());
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error en la edición");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditCategoriaMouseClicked
 
     private void btnAggFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggFacultadMouseClicked
-        FacultadJpaController t=new FacultadJpaController(entityMain.getInstance());
-        Facultad fa=new Facultad();
+        FacultadJpaController t = new FacultadJpaController(entityMain.getInstance());
+        Facultad fa = new Facultad();
         fa.setFactultad(txtFacultad.getText());
-        if(this.txtFacultad.getText().trim().length()>3){
-            try{
+        if (this.txtFacultad.getText().trim().length() > 3) {
+            try {
                 t.create(fa);
                 conn.getFacultades(this.jTfacultades);
                 this.llenarFacultad();
-                JOptionPane.showMessageDialog(null,"Facultad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{ JOptionPane.showMessageDialog(null,"verifique el campo");}
+                JOptionPane.showMessageDialog(null, "Facultad agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
     }//GEN-LAST:event_btnAggFacultadMouseClicked
 
     private void btnEditFacultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditFacultadMouseClicked
-        int totalfilas=this.jTfacultades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTfacultades.getSelectedRow();
-            int id=Integer.parseInt(jTfacultades.getValueAt(nfila, 0).toString());
-            String nombreFac="";
-            nombreFac=jTfacultades.getValueAt(nfila, 1).toString();
-            String facultad="";
-            facultad=JOptionPane.showInputDialog(null, "Modificar facultad:",nombreFac);
+        int totalfilas = this.jTfacultades.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTfacultades.getSelectedRow();
+            int id = Integer.parseInt(jTfacultades.getValueAt(nfila, 0).toString());
+            String nombreFac = "";
+            nombreFac = jTfacultades.getValueAt(nfila, 1).toString();
+            String facultad = "";
+            facultad = JOptionPane.showInputDialog(null, "Modificar facultad:", nombreFac);
 
-            if((!facultad.equals("")) && (facultad.trim().length()>3)){
-                try{
-                    FacultadJpaController f=new FacultadJpaController(entityMain.getInstance());
-                    Facultad fac2=f.findFacultad(id);
-                    Facultad fac=new Facultad();
+            if ((!facultad.equals("")) && (facultad.trim().length() > 3)) {
+                try {
+                    FacultadJpaController f = new FacultadJpaController(entityMain.getInstance());
+                    Facultad fac2 = f.findFacultad(id);
+                    Facultad fac = new Facultad();
                     fac.setIdfacultad(id);
                     fac.setFactultad(facultad);
                     fac.setCarreraList(fac2.getCarreraList());
@@ -4970,14 +4982,14 @@ int xx, xy;
                     conn.getFacultades(this.jTfacultades);
                     JOptionPane.showMessageDialog(null, "Facultad actualizada");
 
-                }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Error: "+e.getMessage());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error en la edición");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditFacultadMouseClicked
@@ -4987,35 +4999,38 @@ int xx, xy;
     }//GEN-LAST:event_txtCarreraActionPerformed
 
     private void btnAggCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggCarreraMouseClicked
-        CarreraJpaController controlador=new CarreraJpaController(entityMain.getInstance());
+        CarreraJpaController controlador = new CarreraJpaController(entityMain.getInstance());
         // FacultadJpaController controlador=new FacultadJpaController(entityMain.getInstance());
-        List<Facultad> lf=new ArrayList<Facultad>();
-        Carrera ca=new Carrera();
-        Facultad fa=new Facultad();
+        List<Facultad> lf = new ArrayList<Facultad>();
+        Carrera ca = new Carrera();
+        Facultad fa = new Facultad();
         ca.setCarrera(this.txtCarrera.getText());
         fa.setIdfacultad(this.idFacult[this.cboFacultad.getSelectedIndex()]);
         ca.setIdfacultad(fa);
 
-        if(this.txtCarrera.getText().trim().length()>3){
-            try{
+        if (this.txtCarrera.getText().trim().length() > 3) {
+            try {
                 controlador.create(ca);
                 conn.getCarreras(this.jTcarreras);
                 this.txtCarrera.setText("");
-                JOptionPane.showMessageDialog(null,"Carrera agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());}
-        }else{JOptionPane.showMessageDialog(null,"verifique el campo");}
+                JOptionPane.showMessageDialog(null, "Carrera agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
 
     }//GEN-LAST:event_btnAggCarreraMouseClicked
 
     private void btnEditarCarreraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarCarreraMouseClicked
-        int totalfilas=this.jTcarreras.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTcarreras.getSelectedRow();
-            int id=Integer.parseInt(jTcarreras.getValueAt(nfila, 0).toString());
-            String carrera=jTcarreras.getValueAt(nfila, 1).toString();
-            String facultad=jTcarreras.getValueAt(nfila, 2).toString();
-            String [] array ={"",""};
+        int totalfilas = this.jTcarreras.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTcarreras.getSelectedRow();
+            int id = Integer.parseInt(jTcarreras.getValueAt(nfila, 0).toString());
+            String carrera = jTcarreras.getValueAt(nfila, 1).toString();
+            String facultad = jTcarreras.getValueAt(nfila, 2).toString();
+            String[] array = {"", ""};
             JTextField txtCarrera2 = new JTextField();
             JComboBox cboFacultad2 = new JComboBox();
             txtCarrera2.setText(carrera);
@@ -5027,101 +5042,103 @@ int xx, xy;
             }
             Object[] message = {
                 "Carrera:", txtCarrera2,
-                "Facultad:", cboFacultad2,
-            };
+                "Facultad:", cboFacultad2,};
             int option = JOptionPane.showConfirmDialog(null, message, "Editar carrera", JOptionPane.OK_CANCEL_OPTION);
-            if(option == JOptionPane.OK_OPTION){
-                array[0]=txtCarrera2.getText();
-                array[1]=cboFacultad2.getSelectedItem().toString();
+            if (option == JOptionPane.OK_OPTION) {
+                array[0] = txtCarrera2.getText();
+                array[1] = cboFacultad2.getSelectedItem().toString();
 
-                if((array[0].trim().length()>3 && array[1].trim().length()>0)){
-                    try{
-                        CarreraJpaController t=new  CarreraJpaController(entityMain.getInstance());
-                        Carrera car=new  Carrera();
+                if ((array[0].trim().length() > 3 && array[1].trim().length() > 0)) {
+                    try {
+                        CarreraJpaController t = new CarreraJpaController(entityMain.getInstance());
+                        Carrera car = new Carrera();
                         car.setIdcarrera(id);
                         car.setCarrera(array[0]);
-                        Facultad fa=new Facultad();
+                        Facultad fa = new Facultad();
                         car.setCarrera(txtCarrera2.getText());
                         fa.setIdfacultad(this.idFacult[cboFacultad2.getSelectedIndex()]);
                         car.setIdfacultad(fa);
                         t.edit(car);
                         conn.getCarreras(this.jTcarreras);
                         JOptionPane.showMessageDialog(null, "Carrera Actualizada");
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage().toString());
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Error en la edición");
                 }
 
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditarCarreraMouseClicked
 
     private void btnAggEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggEspecialidadMouseClicked
-        EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
-        Especialidad esp=new Especialidad();
+        EspecialidadJpaController t = new EspecialidadJpaController(entityMain.getInstance());
+        Especialidad esp = new Especialidad();
         esp.setEspecialidad(this.txtespecialidad.getText());
-        if(this.txtespecialidad.getText().trim().length()>3){
-            try{
+        if (this.txtespecialidad.getText().trim().length() > 3) {
+            try {
                 t.create(esp);
                 conn.getEspecialidad(this.jTespecialidades);
                 this.txtespecialidad.setText("");
-                JOptionPane.showMessageDialog(null,"Especialidad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString()); }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
+                JOptionPane.showMessageDialog(null, "Especialidad agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
     }//GEN-LAST:event_btnAggEspecialidadMouseClicked
 
     private void btnEditEspecialidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditEspecialidadMouseClicked
-        int totalfilas=this.jTespecialidades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTespecialidades.getSelectedRow();
-            int id=Integer.parseInt(jTespecialidades.getValueAt(nfila, 0).toString());
-            String nombreEsp=jTespecialidades.getValueAt(nfila, 1).toString();
-            String especialidad="";
-            especialidad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreEsp);
+        int totalfilas = this.jTespecialidades.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTespecialidades.getSelectedRow();
+            int id = Integer.parseInt(jTespecialidades.getValueAt(nfila, 0).toString());
+            String nombreEsp = jTespecialidades.getValueAt(nfila, 1).toString();
+            String especialidad = "";
+            especialidad = JOptionPane.showInputDialog(null, "Modificar categoria:", nombreEsp);
 
-            if((especialidad.trim().length()>3)){
-                try{
-                    EspecialidadJpaController t=new EspecialidadJpaController(entityMain.getInstance());
-                    Especialidad esp=new Especialidad();
+            if ((especialidad.trim().length() > 3)) {
+                try {
+                    EspecialidadJpaController t = new EspecialidadJpaController(entityMain.getInstance());
+                    Especialidad esp = new Especialidad();
                     esp.setIdespecialidad(id);
                     esp.setEspecialidad(especialidad);
                     t.edit(esp);
                     conn.getEspecialidad(this.jTespecialidades);
                     JOptionPane.showMessageDialog(null, "Especialidad Actualizada");
-                }catch(Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage().toString());
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error en la edición");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditEspecialidadMouseClicked
 
     private void btnAggUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggUnidMedMouseClicked
-        UnidadMedJpaController t=new UnidadMedJpaController(entityMain.getInstance());
-        UnidadMed umed=new UnidadMed();
+        UnidadMedJpaController t = new UnidadMedJpaController(entityMain.getInstance());
+        UnidadMed umed = new UnidadMed();
         umed.setUnidad(this.txtUnidMed.getText());
         umed.setAbreviatura(this.txtUnidAbrev.getText());
-        if(this.txtUnidMed.getText().trim().length()>3 && this.txtUnidAbrev.getText().trim().length()>0){
-            try{
+        if (this.txtUnidMed.getText().trim().length() > 3 && this.txtUnidAbrev.getText().trim().length() > 0) {
+            try {
                 t.create(umed);
                 conn.getUnidMedida(this.jTunidades);
                 this.txtUnidAbrev.setText("");
-                JOptionPane.showMessageDialog(null,"Unidad de Medida agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
+                JOptionPane.showMessageDialog(null, "Unidad de Medida agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
     }//GEN-LAST:event_btnAggUnidMedMouseClicked
 
     public void llenarFacultad() throws SQLException {
@@ -5131,12 +5148,12 @@ int xx, xy;
         this.idFacult = (int[]) array[0];
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboFacultad.setModel(model);
-        
+
         this.idFacultadReporte = (int[]) array[0];
         this.cmbFacultad.setModel(model);
     }
-    
-public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
+
+    public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         // llenar el combobox de facultad
         Object[] array = this.conn.llenarFacultad();
 
@@ -5144,15 +5161,15 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         cbo.setModel(model);
     }
-    
+
     private void btnEditUnidMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditUnidMedMouseClicked
-        int totalfilas=this.jTunidades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTunidades.getSelectedRow();
-            int id=Integer.parseInt(jTunidades.getValueAt(nfila, 0).toString());
-            String nombreUnidad=jTunidades.getValueAt(nfila, 1).toString();
-            String Uabrev=jTunidades.getValueAt(nfila, 2).toString();
-            String [] array ={"",""};
+        int totalfilas = this.jTunidades.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTunidades.getSelectedRow();
+            int id = Integer.parseInt(jTunidades.getValueAt(nfila, 0).toString());
+            String nombreUnidad = jTunidades.getValueAt(nfila, 1).toString();
+            String Uabrev = jTunidades.getValueAt(nfila, 2).toString();
+            String[] array = {"", ""};
             JTextField unidad = new JTextField();
             JTextField abrev = new JTextField();
             unidad.setText(nombreUnidad);
@@ -5161,75 +5178,76 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
                 "Unidad de Medida:", unidad,
                 "Abreviatura:", abrev,};
             int option = JOptionPane.showConfirmDialog(null, message, "Editar unidad de medida", JOptionPane.OK_CANCEL_OPTION);
-            if(option == JOptionPane.OK_OPTION){
-                array[0]=unidad.getText();
-                array[1]=abrev.getText();
+            if (option == JOptionPane.OK_OPTION) {
+                array[0] = unidad.getText();
+                array[1] = abrev.getText();
 
-                if((array[0].trim().length()>3 && array[1].trim().length()>0)){
-                    try{
-                        UnidadMedJpaController t=new  UnidadMedJpaController(entityMain.getInstance());
-                        UnidadMed med=new  UnidadMed();
+                if ((array[0].trim().length() > 3 && array[1].trim().length() > 0)) {
+                    try {
+                        UnidadMedJpaController t = new UnidadMedJpaController(entityMain.getInstance());
+                        UnidadMed med = new UnidadMed();
                         med.setIdunidadMed(id);
                         med.setUnidad(array[0]);
                         med.setAbreviatura(array[1]);
                         t.edit(med);
                         conn.getUnidMedida(this.jTunidades);
                         JOptionPane.showMessageDialog(null, "Unidad de Medida Actualizada");
-                    }catch(Exception e){
+                    } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage().toString());
                     }
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Error en la edición");
                 }
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditUnidMedMouseClicked
 
     private void btnAggActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggActividadMouseClicked
-        TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
-        TipoPaciente tpc=new TipoPaciente();
+        TipoPacienteJpaController t = new TipoPacienteJpaController(entityMain.getInstance());
+        TipoPaciente tpc = new TipoPaciente();
         tpc.setTipopac(this.txtActividad.getText());
-        if(this.txtActividad.getText().trim().length()>3){
-            try{
+        if (this.txtActividad.getText().trim().length() > 3) {
+            try {
                 t.create(tpc);
                 conn.getActividad(this.jTactividades);
                 this.txtActividad.setText("");
-                JOptionPane.showMessageDialog(null,"Actividad agregada correctamente");
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Ha ocurrido un error"+e.toString());
+                JOptionPane.showMessageDialog(null, "Actividad agregada correctamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error" + e.toString());
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"verifique el campo");}
+        } else {
+            JOptionPane.showMessageDialog(null, "verifique el campo");
+        }
     }//GEN-LAST:event_btnAggActividadMouseClicked
 
     private void btnEditActividadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditActividadMouseClicked
-        int totalfilas=this.jTactividades.getSelectedRowCount();
-        if(totalfilas==1){
-            int nfila=this.jTactividades.getSelectedRow();
-            int id=Integer.parseInt(jTactividades.getValueAt(nfila, 0).toString());
-            String nombreAct=jTactividades.getValueAt(nfila, 1).toString();
-            String Actividad="";
-            Actividad=JOptionPane.showInputDialog(null, "Modificar categoria:",nombreAct);
+        int totalfilas = this.jTactividades.getSelectedRowCount();
+        if (totalfilas == 1) {
+            int nfila = this.jTactividades.getSelectedRow();
+            int id = Integer.parseInt(jTactividades.getValueAt(nfila, 0).toString());
+            String nombreAct = jTactividades.getValueAt(nfila, 1).toString();
+            String Actividad = "";
+            Actividad = JOptionPane.showInputDialog(null, "Modificar categoria:", nombreAct);
 
-            if((Actividad.trim().length()>3)){
-                try{
-                    TipoPacienteJpaController t=new TipoPacienteJpaController(entityMain.getInstance());
-                    TipoPaciente act=new TipoPaciente();
+            if ((Actividad.trim().length() > 3)) {
+                try {
+                    TipoPacienteJpaController t = new TipoPacienteJpaController(entityMain.getInstance());
+                    TipoPaciente act = new TipoPaciente();
                     act.setIdtipopac(id);
                     act.setTipopac(Actividad);
                     t.edit(act);
                     conn.getActividad(this.jTactividades);
                     JOptionPane.showMessageDialog(null, "Actividad actualizada");
-                }catch(Exception e){
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage().toString());
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Error en la edición");
             }
 
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
         }
     }//GEN-LAST:event_btnEditActividadMouseClicked
@@ -5247,15 +5265,14 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     }//GEN-LAST:event_btnHome2ActionPerformed
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
-        Object [] opciones ={"Aceptar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Esta seguro de cerrar la sesión?","Advertencia",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION)
-        {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Esta seguro de cerrar la sesión?", "Advertencia",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
             System.exit(0);
 
-        }else{
+        } else {
         }
     }//GEN-LAST:event_btn_closeMouseClicked
 
@@ -5275,17 +5292,17 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-xy);
+        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_Barra_SuperiorMouseDragged
 
     private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
-        this.setOpacity((float)0.8);
-        xx=evt.getX();
+        this.setOpacity((float) 0.8);
+        xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_Barra_SuperiorMousePressed
 
     private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
-        this.setOpacity((float)1.0);
+        this.setOpacity((float) 1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
     private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
@@ -5333,46 +5350,53 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     }//GEN-LAST:event_btnElimCategoriaMouseClicked
 
     private void btnElimanarDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnElimanarDoctorMouseClicked
-        if (this.tbDoctor.getSelectedRows().length == 1)
-        {
-            
-               try {
-            int idDoc = Integer.parseInt(this.tbDoctor.getModel().getValueAt(this.tbDoctor.getSelectedRow(), 0).toString());
-            Doctor doc = this.conn.DesactDoctor(idDoc);
-            this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
-               }
-               
-               catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
-        }
-              
-        }
-            else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila del doctor a eliminar"); 
+        if (this.tbDoctor.getSelectedRows().length == 1) {
+
+            try {
+                int idDoc = Integer.parseInt(this.tbDoctor.getModel().getValueAt(this.tbDoctor.getSelectedRow(), 0).toString());
+                if (this.conn.DesactDoctor(idDoc)>0){
+                    this.tbDoctor.setModel(this.conn.getDocs(tbDoctor));
+                } else{
+                    JOptionPane.showMessageDialog(rootPane,"Error al desactivar");
+                }
+                
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila del doctor a eliminar");
         }
     }//GEN-LAST:event_btnElimanarDoctorMouseClicked
 
+    public void actualizarUsuarios() throws SQLException{
+        this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios, 0));
+        this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1, 1));
+    }
+    
     private void btnEliminarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioMouseClicked
-        if (this.tbUsuarios.getSelectedRows().length == 1)
-        {
-            
-        try {
-            int us = Integer.parseInt(this.tbUsuarios.getModel().getValueAt(this.tbUsuarios.getSelectedRow(), 0).toString());
-            Usuario usr = this.conn.DesactUsuario(us);
-            this.tbUsuarios.setModel(this.conn.getUsuarios(tbUsuarios,0));
-            this.tbUsuarios1.setModel(this.conn.getUsuarios(tbUsuarios1,1));
-               }
-               
-               catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
+        //Desactivar usuario
+        JTable tabla;
+        if(this.ContenedorUsers.getSelectedIndex() == 0){
+            tabla = this.tbUsuarios;
+        } else{
+            tabla = this.tbUsuarios1;
         }
-              
-        }
-            else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila del usuario a eliminar"); 
-        }
+        if (tabla.getSelectedRows().length == 1) {
 
+            try {
+                int us = Integer.parseInt(tabla.getModel().getValueAt(tabla.getSelectedRow(), 0).toString());
+                if(this.conn.DesactUsuario(us)>0){
+                    JOptionPane.showMessageDialog(this, "Exito");
+                    this.actualizarUsuarios();
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
 
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila del usuario a eliminar");
+        }
     }//GEN-LAST:event_btnEliminarUsuarioMouseClicked
 
     private void btn_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_empleadoActionPerformed
@@ -5391,7 +5415,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     }//GEN-LAST:event_btn_empleadoActionPerformed
 
     private void btnAggEmp2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggEmp2MouseClicked
-        
+
         Empleado em = new Empleado();
 
         em.nombre = this.txtNom2.getText();
@@ -5400,13 +5424,12 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
         em.celular = this.txtCel2.getText();
         em.fechaNac = this.txtFecNac2.getText();
         em.documento = this.txtDo2.getText();
-      
 
         if (this.rbMasc3.isSelected()) {
             em.sexo = "M";
 
         } else {
-           
+
             em.sexo = "F";
         }
 
@@ -5430,155 +5453,146 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
             JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }
 
-        
-        
+
     }//GEN-LAST:event_btnAggEmp2MouseClicked
 
     private void btnEliminarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoMouseClicked
-       
-         if (this.tbEmp.getSelectedRows().length == 1)
-        {
-            
-               try {
-            int e = Integer.parseInt(this.tbEmp.getModel().getValueAt(this.tbEmp.getSelectedRow(), 0).toString());
-            Empleado emp = this.conn.DesactEmpleado(e);
-            this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
-               }
-               
-               catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
+
+        if (this.tbEmp.getSelectedRows().length == 1) {
+
+            try {
+                int e = Integer.parseInt(this.tbEmp.getModel().getValueAt(this.tbEmp.getSelectedRow(), 0).toString());
+                Empleado emp = this.conn.DesactEmpleado(e);
+                this.tbEmp.setModel(this.conn.getEmpleado(tbEmp));
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila del empleado a eliminar");
         }
-              
-        }
-            else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila del empleado a eliminar"); 
-        }
-        
+
     }//GEN-LAST:event_btnEliminarEmpleadoMouseClicked
 
     private void btnMostrarElimDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarElimDocMouseClicked
-                 try{
-        
-                Activar_Doctor form = new Activar_Doctor();
-                form.setVisible(true);        
-       
-                 }
-         catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
+        try {
+
+            Activar_Doctor form = new Activar_Doctor();
+            form.setVisible(true);
+
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(this, ex.toString());
         }
-        
+
     }//GEN-LAST:event_btnMostrarElimDocMouseClicked
 
     private void btnAlertaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaTotalActionPerformed
-    try {
-        this.conn.obt_alertas(jTAlertas,1);
-        this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
-        this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
-        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
-        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
-    } catch (SQLException ex) {
-        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            this.conn.obt_alertas(jTAlertas, 1);
+            this.btnAlertaTotal.setText("Todas(" + jTAlertas.getRowCount() + ")");
+            this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12));
+            this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+            this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAlertaTotalActionPerformed
 
     private void btnAlertaFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaFechaActionPerformed
         try {
-        this.conn.obt_alertas(jTAlertas,2);
-        this.btnAlertaFecha.setText("Vencimiento("+jTAlertas.getRowCount()+")");
-        this.btnAlertaFecha.setFont(new Font("Arial", Font.BOLD, 12)); 
-        this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
-        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
-    } catch (SQLException ex) {
-        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
-    }
+            this.conn.obt_alertas(jTAlertas, 2);
+            this.btnAlertaFecha.setText("Vencimiento(" + jTAlertas.getRowCount() + ")");
+            this.btnAlertaFecha.setFont(new Font("Arial", Font.BOLD, 12));
+            this.btnAlertaCant.setFont(new Font("Arial", Font.PLAIN, 12));
+            this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAlertaFechaActionPerformed
 
     private void btnAlertaCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaCantActionPerformed
         try {
-        this.conn.obt_alertas(jTAlertas,3);
-        this.btnAlertaCant.setText("Existencia("+jTAlertas.getRowCount()+")");
-        this.btnAlertaCant.setFont(new Font("Arial", Font.BOLD, 12));
-        this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
-        this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
-    } catch (SQLException ex) {
-        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
-    }
+            this.conn.obt_alertas(jTAlertas, 3);
+            this.btnAlertaCant.setText("Existencia(" + jTAlertas.getRowCount() + ")");
+            this.btnAlertaCant.setFont(new Font("Arial", Font.BOLD, 12));
+            this.btnAlertaTotal.setFont(new Font("Arial", Font.PLAIN, 12));
+            this.btnAlertaFecha.setFont(new Font("Arial", Font.PLAIN, 12));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnAlertaCantActionPerformed
 
     private void btnReporteConsultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteConsultasMouseClicked
         //REPORTE DE CONSULTAS
-        JasperReport reporte; 
-        Map parameters = new HashMap ();
+        JasperReport reporte;
+        Map parameters = new HashMap();
         String path = "";
-        
-        if(this.rdbDoctor.isSelected()){
-            parameters.put ("idDoctor", this.idDoctorReporte[this.cmbDcotor.getSelectedIndex()]);
+
+        if (this.rdbDoctor.isSelected()) {
+            parameters.put("idDoctor", this.idDoctorReporte[this.cmbDcotor.getSelectedIndex()]);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_doctor.jasper"; 
-        }
-        else if(this.rdbSexo.isSelected()){
+            path = ".\\src\\Reportes\\reporte_consultas_doctor.jasper";
+        } else if (this.rdbSexo.isSelected()) {
             System.out.println("Si llego weeeeee");
-            if(this.cmbSexo.getSelectedItem().equals("Masculino")){
+            if (this.cmbSexo.getSelectedItem().equals("Masculino")) {
                 parameters.put("sexo", "M");
-            } else parameters.put ("sexo", "F");
-            path = ".\\src\\Reportes\\reporte_consultas_sexo.jasper"; 
-        }
-        else if(this.rdbActividad.isSelected()){
-            parameters.put ("tipopac", this.idActividadReporte[this.cmbActividad.getSelectedIndex()]);
+            } else {
+                parameters.put("sexo", "F");
+            }
+            path = ".\\src\\Reportes\\reporte_consultas_sexo.jasper";
+        } else if (this.rdbActividad.isSelected()) {
+            parameters.put("tipopac", this.idActividadReporte[this.cmbActividad.getSelectedIndex()]);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_actividad.jasper"; 
-        }
-        else if(this.rdbFacultad.isSelected()){
-            parameters.put ("facultad", this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
+            path = ".\\src\\Reportes\\reporte_consultas_actividad.jasper";
+        } else if (this.rdbFacultad.isSelected()) {
+            parameters.put("facultad", this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_facultad.jasper"; 
-        }
-        else if(this.rdbCarrera.isSelected()){
-            parameters.put ("carrera", this.idCarreraReporte[this.cmbCarrera.getSelectedIndex()]);
+            path = ".\\src\\Reportes\\reporte_consultas_facultad.jasper";
+        } else if (this.rdbCarrera.isSelected()) {
+            parameters.put("carrera", this.idCarreraReporte[this.cmbCarrera.getSelectedIndex()]);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_carrera.jasper"; 
-        }
-        else if(this.rdbFechas.isSelected()){
-            parameters.put ("fecha1", this.txtFechaInicio.getText());
-            parameters.put ("fecha2", this.txtFechaFinal.getText());
+            path = ".\\src\\Reportes\\reporte_consultas_carrera.jasper";
+        } else if (this.rdbFechas.isSelected()) {
+            parameters.put("fecha1", this.txtFechaInicio.getText());
+            parameters.put("fecha2", this.txtFechaFinal.getText());
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_fechas.jasper"; 
-        }
-        else if(this.rdbDepartamento.isSelected()){
-            parameters.put ("departamento", this.idDepartamentoReporte[this.cmbDepartamento.getSelectedIndex()]);
+            path = ".\\src\\Reportes\\reporte_consultas_fechas.jasper";
+        } else if (this.rdbDepartamento.isSelected()) {
+            parameters.put("departamento", this.idDepartamentoReporte[this.cmbDepartamento.getSelectedIndex()]);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_departamento.jasper"; 
-        }
-        else if(this.rdbUbicacion.isSelected()){
-            parameters.put ("zona", this.cmbUbicacion.getSelectedIndex() +1);
+            path = ".\\src\\Reportes\\reporte_consultas_departamento.jasper";
+        } else if (this.rdbUbicacion.isSelected()) {
+            parameters.put("zona", this.cmbUbicacion.getSelectedIndex() + 1);
             // Ubicacion del Reporte
-            path = ".\\src\\Reportes\\reporte_consultas_ubicacion.jasper"; 
-        }
-        else if(this.rdbCategoria.isSelected()){
+            path = ".\\src\\Reportes\\reporte_consultas_ubicacion.jasper";
+        } else if (this.rdbCategoria.isSelected()) {
             String cat = this.txtCodCat.getText();
-            if(cat.length() >= 2){
-                parameters.put ("categoria", cat);
+            if (cat.length() >= 2) {
+                parameters.put("categoria", cat);
                 // Ubicacion del Reporte
-                path = ".\\src\\Reportes\\reporte_consultas_categoria.jasper"; 
-            } else JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de categoría válido");
-            
-        }
-        else if(this.rdbDiagnostico.isSelected()){
+                path = ".\\src\\Reportes\\reporte_consultas_categoria.jasper";
+            } else {
+                JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de categoría válido");
+            }
+
+        } else if (this.rdbDiagnostico.isSelected()) {
             String enf = this.txtCodDiag.getText();
-            if(enf.length() >= 2){
-                parameters.put ("enfermedad", enf);
+            if (enf.length() >= 2) {
+                parameters.put("enfermedad", enf);
                 // Ubicacion del Reporte
-                path = ".\\src\\Reportes\\reporte_consultas_enfermedad.jasper"; 
-            } else JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de enfermead válido");
-            
+                path = ".\\src\\Reportes\\reporte_consultas_enfermedad.jasper";
+            } else {
+                JOptionPane.showMessageDialog(this, "ERROR: Ingrese un código de enfermead válido");
+            }
+
         }
-        
+
         try {
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); 
-            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); 
-            JasperViewer viewer = new JasperViewer(jprint,false);
-            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); 
-            viewer.setVisible(true); 
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn);
+            JasperViewer viewer = new JasperViewer(jprint, false);
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            viewer.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -5589,7 +5603,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
             Object[] arrays = this.conn.llenarCarreras(this.idFacultadReporte[this.cmbFacultad.getSelectedIndex()]);
             this.idCarreraReporte = (int[]) arrays[0];
 
-            DefaultComboBoxModel model2 = new DefaultComboBoxModel( (Object[]) arrays[2] );
+            DefaultComboBoxModel model2 = new DefaultComboBoxModel((Object[]) arrays[2]);
             this.cmbCarrera.setModel(model2);
         } catch (SQLException ex) {
             Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
@@ -5597,45 +5611,45 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     }//GEN-LAST:event_cmbFacultadItemStateChanged
 
     private void btnVerCIE10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerCIE10MouseClicked
-    try {
-        Ver_CIE10 cie10 = new Ver_CIE10();
-        cie10.setVisible(true);
-    } catch (SQLException ex) {
-        Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            Ver_CIE10 cie10 = new Ver_CIE10();
+            cie10.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVerCIE10MouseClicked
 
     private void btnReporteInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteInventarioMouseClicked
         // reporte de inventario
         try {
-            Map parameters = new HashMap ();
+            Map parameters = new HashMap();
             //A nuestro informe de prueba le vamos a enviar la fecha de hoy
             JasperReport reporte; //Creo el objeto reporte
             // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_inventario.jasper"; 
+            String path = ".\\src\\Reportes\\reporte_inventario.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
             viewer.setVisible(true); //Inicializamos la vista del Reporte
         } catch (JRException ex) {
             Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_btnReporteInventarioMouseClicked
 
     private void btnReporteResumenMAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteResumenMAMouseClicked
-         // reporte resumen mes anterior
+        // reporte resumen mes anterior
         try {
-            Map parameters = new HashMap ();
+            Map parameters = new HashMap();
             JasperReport reporte; //Creo el objeto reporte
             // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_resumen.jasper"; 
+            String path = ".\\src\\Reportes\\reporte_resumen.jasper";
             parameters.put("mes", 1);
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
             viewer.setVisible(true); //Inicializamos la vista del Reporte
         } catch (JRException ex) {
@@ -5646,20 +5660,43 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private void btnReporteIResumenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteIResumenMouseClicked
         // reporte resumen mes actual
         try {
-            Map parameters = new HashMap ();
+            Map parameters = new HashMap();
             parameters.put("mes", 0);
             JasperReport reporte; //Creo el objeto reporte
             // Ubicacion del Reporte
-            String path = ".\\src\\Reportes\\reporte_resumen.jasper"; 
+            String path = ".\\src\\Reportes\\reporte_resumen.jasper";
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
             JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
-            JasperViewer viewer = new JasperViewer(jprint,false); //Creamos la vista del Reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
             viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
             viewer.setVisible(true); //Inicializamos la vista del Reporte
         } catch (JRException ex) {
             Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnReporteIResumenMouseClicked
+
+    private void btnEditarUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarUsuarioMouseClicked
+        // Edición del usuario seleccionado
+        JTable tabla;
+        if(this.ContenedorUsers.getSelectedIndex() == 0){
+            tabla = this.tbUsuarios;
+        } else{
+            tabla = this.tbUsuarios1;
+        }
+        if (tabla.getSelectedRows().length == 1) {
+
+            try {
+                int us = Integer.parseInt(tabla.getModel().getValueAt(tabla.getSelectedRow(), 0).toString());
+                Editar_Usuario edit = new Editar_Usuario(this, us);
+                edit.setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila del usuario a eliminar");
+        }
+    }//GEN-LAST:event_btnEditarUsuarioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -5696,6 +5733,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JPanel Barra_Superior;
     private javax.swing.JPanel Botonera;
     private javax.swing.JTabbedPane Contenedor;
+    private javax.swing.JTabbedPane ContenedorUsers;
     private javax.swing.JPanel SideBar;
     private javax.swing.JPanel Tab_Config;
     private javax.swing.JPanel Tab_Doctores;
@@ -5726,6 +5764,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel btnEditMedicamento;
     private javax.swing.JLabel btnEditUnidMed;
     private javax.swing.JLabel btnEditarCarrera;
+    private javax.swing.JLabel btnEditarUsuario;
     private javax.swing.JLabel btnElimActividad;
     private javax.swing.JLabel btnElimCategoria;
     private javax.swing.JLabel btnElimUnidMed;
@@ -5779,7 +5818,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JMenuItem itemNombreMed;
     private javax.swing.JMenuItem itemPresMed;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -5863,7 +5901,6 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JTable jTAlertas;
     private javax.swing.JTable jTFarmacia;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTactividades;
     private javax.swing.JTable jTcarreras;
     private javax.swing.JTable jTcategorias;
@@ -5945,6 +5982,7 @@ public void llenarFacultadEdit(JComboBox cbo) throws SQLException {
     private javax.swing.JLabel lblMedxVencer;
     private javax.swing.JLabel lblPacientes;
     private javax.swing.JPopupMenu pUpBuscarMedicamento;
+    private javax.swing.ButtonGroup radiosDoctor;
     private javax.swing.ButtonGroup radiosSexoEmpleado;
     private javax.swing.JRadioButton rbF;
     private javax.swing.JRadioButton rbFem2;

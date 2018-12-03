@@ -177,7 +177,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
 
         lblHeader55.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         lblHeader55.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader55.setText("MEDICAMENTO NUEVO");
+        lblHeader55.setText("EDITAR MEDICAMENTO");
 
         btnAggMedicamento.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnAggMedicamento.setForeground(new java.awt.Color(255, 255, 255));
@@ -378,8 +378,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
             med.idTipoMed = this.idCatsMed[this.cboCategoriaMed.getSelectedIndex()];
             med.fechaV = this.txtFechaV.getText();
 
-            String validacion = med.validarMedicamento();
-            if(validacion.equals("")){
+            if(med.validarMedicamento().equals("Correcto")){
                 String mensaje = this.conn.editarMedicamento(med);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
                 
@@ -390,8 +389,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
                 this.dispose();
             } else {
                 //error de validación
-                JOptionPane.showMessageDialog(rootPane, validacion);
-                System.out.println(validacion);
+                JOptionPane.showMessageDialog(rootPane, "Ingrese valores correctos");
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.toString());

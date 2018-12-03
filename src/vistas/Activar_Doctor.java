@@ -1,4 +1,3 @@
-
 package vistas;
 
 import Classes.ConexionDB;
@@ -17,18 +16,16 @@ import Classes.Usuario;
  */
 public class Activar_Doctor extends javax.swing.JFrame {
 
-    int xx,xy;
-    int xs, ys, sbx,sby;
-    
-  
+    int xx, xy;
+    int xs, ys, sbx, sby;
+
     ConexionDB conn = new ConexionDB();
-  
-    
+
     public Activar_Doctor() throws SQLException {
         initComponents();
-        
-         this.tbDoc.setModel(this.conn.getDocsDes(tbDoc));
-        
+
+        this.tbDoc.setModel(this.conn.getDocsDes(tbDoc));
+
     }
 
     @SuppressWarnings("unchecked")
@@ -214,11 +211,10 @@ public class Activar_Doctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHome2ActionPerformed
-        
+
     }//GEN-LAST:event_btnHome2ActionPerformed
 
-  
-    
+
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
@@ -226,43 +222,40 @@ public class Activar_Doctor extends javax.swing.JFrame {
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-xy);
+        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_Barra_SuperiorMouseDragged
 
     private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
-        this.setOpacity((float)0.8);
-        xx=evt.getX();
+        this.setOpacity((float) 0.8);
+        xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_Barra_SuperiorMousePressed
 
     private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
-        this.setOpacity((float)1.0);
+        this.setOpacity((float) 1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
     private void btnActivarDoctorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActivarDoctorMouseClicked
 
-        if (this.tbDoc.getSelectedRows().length == 1)
-        {
-            
-               try {
-            int us = Integer.parseInt(this.tbDoc.getModel().getValueAt(this.tbDoc.getSelectedRow(), 0).toString());
-            Doctor usr = this.conn.ActDoctor(us);
-            this.tbDoc.setModel(this.conn.getDocsDes(tbDoc));
-               }
-               
-               catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(this,ex.toString());
+        if (this.tbDoc.getSelectedRows().length == 1) {
+
+            try {
+                int us = Integer.parseInt(this.tbDoc.getModel().getValueAt(this.tbDoc.getSelectedRow(), 0).toString());
+                if (this.conn.ActDoctor(us) > 0) {
+                    this.tbDoc.setModel(this.conn.getDocsDes(tbDoc));
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Error al activar");
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showConfirmDialog(this, ex.toString());
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una fila del doctor a activar");
         }
-              
-        }
-            else {
-            JOptionPane.showMessageDialog(this, "Seleccione una fila del doctor a activar"); 
-        }
-       
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnActivarDoctorMouseClicked
 
     /**

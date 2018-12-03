@@ -18,13 +18,12 @@ public class Medicamento {
     public String presentacion;
     public String tipo;
     public String fechaV;
-    
-    private Validar val = new Validar();
+   
     
     public String validarMedicamento(){
-        this.medicamento = val.validarString(this.medicamento,"Nombre medicamento");
-        this.fechaV = val.validarString(this.fechaV,"Fecha de vencimiento");
-        
-        return val.validacionesMalas;
+        if(this.medicamento.length()>3 && this.cantidad > 0 && this.fechaV.length() == 10){
+            return "Correcto";
+        }
+        return "Error";
     }
 }

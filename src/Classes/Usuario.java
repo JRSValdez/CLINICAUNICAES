@@ -46,4 +46,13 @@ public class Usuario {
     } else return "Error";
     }
     
+    public String validarEdit(String _nuevaPass){
+        
+        if(this.password.equals(this.password2) && _nuevaPass.length() > 5){
+            this.password = _nuevaPass;
+            return "Exito";
+        }
+        return "Error";
+    }
+    
 }
