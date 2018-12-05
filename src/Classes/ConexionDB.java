@@ -36,8 +36,8 @@ public class ConexionDB {
 
     public void conectar() {
         try {
-            String url = "jdbc:mysql://localhost:3306/clinica_unicaes";
-            conn = DriverManager.getConnection(url, "root", "jr2020");
+            String url = "jdbc:mysql://localhost:3306/clinica";
+            conn = DriverManager.getConnection(url, "root", "master");
             st = conn.createStatement();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible connectarse \n" + e);
@@ -1882,9 +1882,9 @@ public class ConexionDB {
                 + " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  "
                 + " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE "
                 + " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR "
-                + " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA "
+                + " LEFT OUTER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA "
                 + " WHERE DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') = ? ";
-
+       
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setString(1, _Fecha);
         ResultSet rs = preparedStatement.executeQuery();
