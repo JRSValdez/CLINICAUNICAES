@@ -36,8 +36,8 @@ public class ConexionDB {
 
     public void conectar() {
         try {
-            String url = "jdbc:mysql://localhost:3306/clinica";
-            conn = DriverManager.getConnection(url, "root", "master");
+            String url = "jdbc:mysql://localhost:3306/clinica_unicaes";
+            conn = DriverManager.getConnection(url, "root", "jr2020");
             st = conn.createStatement();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible connectarse \n" + e);
@@ -155,7 +155,7 @@ public class ConexionDB {
         String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y'), C.IDUSUARIO, DC.EF_CABEZA,"
                 + "DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, "
                 + "DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C "
-                + "LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
+                + "INNER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
                 + "WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idConsulta);
@@ -1882,7 +1882,7 @@ public class ConexionDB {
                 + " LEFT OUTER JOIN FACULTAD f on f.IDFACULTAD = c.IDFACULTAD  "
                 + " INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE "
                 + " INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR "
-                + " LEFT OUTER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA "
+                + " INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA "
                 + " WHERE DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') = ? ";
        
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -2206,15 +2206,15 @@ public class ConexionDB {
     public DefaultTableModel getHistorialPaciente(JTable jTable1, String query) throws SQLException {
         DefaultTableModel model;
         if (query.equals("no")) {
-            query = "Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) as nombre,tipopac,"
+            query = "Select idpaciente, pac_carne,pacientes.pac_documento, CONCAT(pac_nombre,' ',pac_apellido) as nombre,tipopac,"
                     + " c.carrera,departamento.departamento,"
                     + " CASE PAC_ZONA WHEN '1' THEN 'Urbana' "
                     + " ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO "
                     + " WHEN 'M' THEN 'Masculino' "
                     + " ELSE 'Femenino' END sexo from pacientes"
                     + " inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac "
-                    + " inner join Carrera c on c.idcarrera=pacientes.idcarrera"
-                    + " inner join Facultad on facultad.idfacultad=c.idfacultad"
+                    + " left outer join Carrera c on c.idcarrera=pacientes.idcarrera"
+                    + " left outer join Facultad on facultad.idfacultad=c.idfacultad"
                     + " inner join departamento on departamento.iddepartamento=pacientes.iddepartamento";
         }
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

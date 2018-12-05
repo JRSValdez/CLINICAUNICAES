@@ -462,15 +462,15 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         String carnet=this.txtCarnet.getText();
         int tipo=0;
         String sexo="";
-        String query="Select idpaciente, pac_carne,pacientes.pac_documento, (pac_nombre||' '||pac_apellido) nombre,tipopac,carrera.carrera,departamento.departamento," +
-"CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
-"ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
-"WHEN 'M' THEN 'Masculino' " +
-"ELSE 'Femenino' END sexo from pacientes" +
-" inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac " +
-" left outer join carrera on carrera.idcarrera=pacientes.idcarrera" +
-" left outer join Facultad on facultad.idfacultad=Carrera.idfacultad" +
-" inner join departamento on departamento.iddepartamento=pacientes.iddepartamento";
+        String query="Select idpaciente, pac_carne,pacientes.pac_documento, CONCAT(pac_nombre,' ',pac_apellido) nombre,tipopac,carrera.carrera,departamento.departamento," +
+            "CASE PAC_ZONA WHEN '1' THEN 'Urbana' " +
+            "ELSE 'Rural' END zona,pac_celular,CASE PAC_SEXO " +
+            "WHEN 'M' THEN 'Masculino' " +
+            "ELSE 'Femenino' END sexo from pacientes" +
+            " inner join tipo_paciente on pacientes.idtipopac=tipo_paciente.idtipopac " +
+            " left outer join carrera on carrera.idcarrera=pacientes.idcarrera" +
+            " left outer join Facultad on facultad.idfacultad=Carrera.idfacultad" +
+            " inner join departamento on departamento.iddepartamento=pacientes.iddepartamento";
         
     if (nombre.trim().length()>0){
     query=query+" where pac_nombre='"+nombre+"'";
@@ -497,13 +497,13 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     }
     
     if(this.rbAcademico.isSelected()){
-    tipo=3;
+    tipo=2;
     query=query+" and pacientes.idtipopac="+tipo;
 }else if(this.rbProyec_social.isSelected()){
-    tipo=4;
+    tipo=3;
     query=query+" and pacientes.idtipopac="+tipo;
 }else if(this.rbEstudiante.isSelected()){
-    tipo=2;
+    tipo=1;
     query=query+" and pacientes.idtipopac="+tipo;
 }else{
 }

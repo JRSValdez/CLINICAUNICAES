@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -619,7 +620,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -709,11 +710,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMedicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 50, Short.MAX_VALUE)
+                        .addGap(0, 54, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel15)
                             .addComponent(jLabel12))
-                        .addGap(0, 50, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -756,7 +757,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -796,7 +797,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -1309,7 +1310,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1852,9 +1853,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2419,7 +2420,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rdbNuevoSolicitud.setBackground(new java.awt.Color(102, 0, 0));
         radiosSolicitud.add(rdbNuevoSolicitud);
         rdbNuevoSolicitud.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdbNuevoSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdbNuevoSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rdbNuevoSolicitud.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rdbNuevoSolicitudItemStateChanged(evt);
@@ -2517,10 +2518,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTbusqueda1.setColumnSelectionAllowed(true);
+        jTbusqueda1.setCellSelectionEnabled(false);
         jTbusqueda1.setGridColor(new java.awt.Color(255, 255, 153));
         jTbusqueda1.setRowHeight(25);
+        jTbusqueda1.setRowSelectionAllowed(true);
         jTbusqueda1.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTbusqueda1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTbusqueda1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTbusqueda1.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jTbusqueda1);
@@ -2533,7 +2536,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         radiosSolicitud.add(rdbExistSolicitud);
         rdbExistSolicitud.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         rdbExistSolicitud.setSelected(true);
-        rdbExistSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rdbExistSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rdbExistSolicitud.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rdbExistSolicitudItemStateChanged(evt);
@@ -2651,10 +2654,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnConsultasAten1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHistorialCon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAggSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAggSolicitud)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader76)
-                            .addComponent(txtCantSolicitud))))
+                            .addComponent(txtCantSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -3150,7 +3153,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -4063,12 +4066,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     if (this.rdbExistSolicitud.isSelected()) {
                         if (this.jTbusqueda1.getSelectedRows().length == 1) {
                             sol.nombre = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 4).toString();
-                            String carnet = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 1).toString();
-                            String doc = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 2).toString();
+                            Object carnet = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 1);
+                            Object doc = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 2);
                             
-                            if(carnet.equals("")){
-                                sol.cardoc = doc;
-                            } else sol.cardoc = carnet;
+                            if(carnet != null){
+                                sol.cardoc = carnet.toString();
+                            } else sol.cardoc = doc.toString();
                             
                         } else JOptionPane.showMessageDialog(this, "Debe seleccionar un paciente existente");
 
@@ -4082,6 +4085,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     if (sol.validarSolicitud().equals("Correcto")) {
                         String res = this.conn.aggSolMed(sol);
                         JOptionPane.showMessageDialog(this, res);
+                        this.txtNombreSolicitud.setText("");
+                        this.txtCarnetSolicitud.setText("");
+                        this.txtApellidoSolicitud.setText("");
+                        this.txtBusquedaExistente1.setText("");
+                        this.txtCantSolicitud.setText("");
+                        
+                        DefaultTableModel model =  (DefaultTableModel)this.jTbusqueda1.getModel();
+                        model.setRowCount(0);
                     } else {
                         JOptionPane.showMessageDialog(this, "Ingrese valores correctos");
                     }
