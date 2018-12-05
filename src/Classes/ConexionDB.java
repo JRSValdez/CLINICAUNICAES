@@ -297,7 +297,7 @@ public class ConexionDB {
     //////////////////////////////////////////////////////////////////
     
     public String aggSolMed(solicitud_med _sol) throws SQLException{
-        CallableStatement cst = this.conn.prepareCall("call  AGG_SOL_MED(?,?,?,?)");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_SOL_MED(?,?,?,?,?)");
 
         cst.setString("pCARDOC", _sol.cardoc);
         cst.setString("pNOMBRE", _sol.nombre);

@@ -100,6 +100,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         //llenar contadores del dashboard
         this.llenarDashboard();
+        
+        //activando radio bbutton de solicitud de medicamento
+        this.rdbExistSolicitud.setSelected(true);
 
     }
 
@@ -1721,7 +1724,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         radiosSolicitud.add(rbzonaUrb);
         rbzonaUrb.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbzonaUrb.setForeground(new java.awt.Color(255, 255, 255));
-        rbzonaUrb.setSelected(true);
         rbzonaUrb.setText("Urbano");
         rbzonaUrb.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2501,10 +2503,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2515,6 +2517,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTbusqueda1.setColumnSelectionAllowed(true);
         jTbusqueda1.setGridColor(new java.awt.Color(255, 255, 153));
         jTbusqueda1.setRowHeight(25);
         jTbusqueda1.setSelectionBackground(new java.awt.Color(0, 0, 0));
@@ -2529,6 +2532,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rdbExistSolicitud.setBackground(new java.awt.Color(102, 0, 0));
         radiosSolicitud.add(rdbExistSolicitud);
         rdbExistSolicitud.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rdbExistSolicitud.setSelected(true);
         rdbExistSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rdbExistSolicitud.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -4052,23 +4056,45 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
                 if (eleccion == JOptionPane.YES_OPTION) {
-                     solicitud_med sol = new solicitud_med();
-                     
-                     sol.idMed = Integer.parseInt(this.jTFarmacia1.getModel().getValueAt(this.jTFarmacia1.getSelectedRow(), 0).toString());
-                     
-                     if(this.rdbExistSolicitud.isSelected()){
-                         sol.nombre = this.jTFarmacia1.getModel().getValueAt(this.jTFarmacia1.getSelectedRow(), 4).toString();
-                         sol.cardoc = this.jTFarmacia1.getModel().getValueAt(this.jTFarmacia1.getSelectedRow(), 1).toString();
-                     } else {
-                         sol.nombre = this.txtNombreSolicitud.getText() + this.txtApellidoSolicitud.getText();
-                     }
-                     
-                     sol.cantidad = Integer.parseInt(this.txtCantSolicitud.getText());
-                     
+                    solicitud_med sol = new solicitud_med();
+
+                    sol.idMed = Integer.parseInt(this.jTFarmacia1.getModel().getValueAt(this.jTFarmacia1.getSelectedRow(), 0).toString());
+
+                    if (this.rdbExistSolicitud.isSelected()) {
+                        if (this.jTbusqueda1.getSelectedRows().length == 1) {
+                            sol.nombre = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 4).toString();
+                            String carnet = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 1).toString();
+                            String doc = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 2).toString();
+                            
+                            if(carnet.equals("")){
+                                sol.cardoc = doc;
+                            } else sol.cardoc = carnet;
+                            
+                        } else JOptionPane.showMessageDialog(this, "Debe seleccionar un paciente existente");
+
+                    } else {
+                        sol.nombre = this.txtNombreSolicitud.getText() + " " + this.txtApellidoSolicitud.getText();
+                        sol.cardoc = this.txtCarnetSolicitud.getText();
+                    }
+
+                    sol.cantidad = Integer.parseInt(this.txtCantSolicitud.getText());
+
+                    if (sol.validarSolicitud().equals("Correcto")) {
+                        String res = this.conn.aggSolMed(sol);
+                        JOptionPane.showMessageDialog(this, res);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Ingrese valores correctos");
+                    }
+
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ingrese valores correctos");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Ingrese valores correctos");
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_btnAggSolicitudMouseClicked
 

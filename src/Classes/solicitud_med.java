@@ -11,7 +11,7 @@ public class solicitud_med {
     public int cantidad;
     
     public String validarSolicitud(){
-        if(this.nombre.length() > 7 && this.cantidad > 0){
+        if(this.cardoc.length() > 6 &&this.nombre.length() > 7 && this.cantidad > 0){
             return "Correcto";
         }
         return "Error";
