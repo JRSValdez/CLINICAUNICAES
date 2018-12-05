@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -24,18 +23,18 @@ import javax.persistence.Table;
  * @author pedro
  */
 @Entity
-@Table(name = "FACULTAD")
-@SequenceGenerator(name="facultadSeq",  sequenceName = "FACULTAD_SEQ",allocationSize = 1)
+@Table(name = "facultad")
 @NamedQueries({
     @NamedQuery(name = "Facultad.findAll", query = "SELECT f FROM Facultad f")})
 public class Facultad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy =GenerationType.SEQUENCE,generator="facultadSeq")
-    @Column(name = "IDFACULTAD")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idfacultad")
     private Integer idfacultad;
-    @Column(name = "FACTULTAD")
+    @Column(name = "factultad")
     private String factultad;
     @OneToMany(mappedBy = "idfacultad")
     private List<Carrera> carreraList;
@@ -93,7 +92,7 @@ public class Facultad implements Serializable {
 
     @Override
     public String toString() {
-        return "Classes.Facultad[ idfacultad= " + idfacultad + " ]";
+        return "Classes.Facultad[ idfacultad=" + idfacultad + " ]";
     }
     
 }

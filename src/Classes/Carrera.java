@@ -5,7 +5,6 @@
  */
 package Classes;
 
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -25,20 +23,20 @@ import javax.persistence.Table;
  * @author pedro
  */
 @Entity
-@Table(name = "CARRERA")
-@SequenceGenerator(name="CarreaSeq",  sequenceName = "CARRERA_SEQ",allocationSize = 1)
+@Table(name = "carrera")
 @NamedQueries({
     @NamedQuery(name = "Carrera.findAll", query = "SELECT c FROM Carrera c")})
 public class Carrera implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy =GenerationType.SEQUENCE,generator="CarreraSeq")
-    @Column(name = "IDCARRERA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idcarrera")
     private Integer idcarrera;
-    @Column(name = "CARRERA")
+    @Column(name = "carrera")
     private String carrera;
-    @JoinColumn(name = "IDFACULTAD", referencedColumnName = "IDFACULTAD")
+    @JoinColumn(name = "idfacultad", referencedColumnName = "idfacultad")
     @ManyToOne
     private Facultad idfacultad;
 

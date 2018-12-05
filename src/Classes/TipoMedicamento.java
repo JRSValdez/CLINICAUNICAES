@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,18 +21,18 @@ import javax.persistence.Table;
  * @author pedro
  */
 @Entity
-@Table(name = "TIPO_MEDICAMENTO")
-@SequenceGenerator(name="MEDICAMENTO_SEQ",  sequenceName = "TIPO_MEDICAMENTO_SEQ",allocationSize = 1)
+@Table(name = "tipo_medicamento")
 @NamedQueries({
     @NamedQuery(name = "TipoMedicamento.findAll", query = "SELECT t FROM TipoMedicamento t")})
 public class TipoMedicamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy =GenerationType.SEQUENCE,generator="MEDICAMENTO_SEQ")
-    @Column(name = "IDTIPO_MED")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idtipo_med")
     private Integer idtipoMed;
-    @Column(name = "TIPO_MED")
+    @Column(name = "tipo_med")
     private String tipoMed;
 
     public TipoMedicamento() {

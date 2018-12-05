@@ -6,7 +6,6 @@
 package Classes;
 
 import Classes.exceptions.NonexistentEntityException;
-import Classes.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,18 +30,13 @@ public class TipoPacienteJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TipoPaciente tipoPaciente) throws PreexistingEntityException, Exception {
+    public void create(TipoPaciente tipoPaciente) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(tipoPaciente);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTipoPaciente(tipoPaciente.getIdtipopac()) != null) {
-                throw new PreexistingEntityException("TipoPaciente " + tipoPaciente + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,18 +21,18 @@ import javax.persistence.Table;
  * @author pedro
  */
 @Entity
-@Table(name = "ESPECIALIDAD")
-@SequenceGenerator(name="especialidadSeq",  sequenceName = "ESPECIALIDAD_SEQ",allocationSize = 1)
+@Table(name = "especialidad")
 @NamedQueries({
     @NamedQuery(name = "Especialidad.findAll", query = "SELECT e FROM Especialidad e")})
 public class Especialidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy =GenerationType.SEQUENCE,generator="especialidadSeq")
-    @Column(name = "IDESPECIALIDAD")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idespecialidad")
     private Integer idespecialidad;
-    @Column(name = "ESPECIALIDAD")
+    @Column(name = "especialidad")
     private String especialidad;
 
     public Especialidad() {

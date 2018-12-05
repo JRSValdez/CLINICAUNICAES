@@ -6,7 +6,6 @@
 package Classes;
 
 import Classes.exceptions.NonexistentEntityException;
-import Classes.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,18 +30,13 @@ public class UnidadMedJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UnidadMed unidadMed) throws PreexistingEntityException, Exception {
+    public void create(UnidadMed unidadMed) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             em.persist(unidadMed);
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findUnidadMed(unidadMed.getIdunidadMed()) != null) {
-                throw new PreexistingEntityException("UnidadMed " + unidadMed + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

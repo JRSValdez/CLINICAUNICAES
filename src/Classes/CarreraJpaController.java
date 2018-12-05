@@ -6,7 +6,6 @@
 package Classes;
 
 import Classes.exceptions.NonexistentEntityException;
-import Classes.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,7 +30,7 @@ public class CarreraJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Carrera carrera) throws PreexistingEntityException, Exception {
+    public void create(Carrera carrera) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -47,11 +46,6 @@ public class CarreraJpaController implements Serializable {
                 idfacultad = em.merge(idfacultad);
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findCarrera(carrera.getIdcarrera()) != null) {
-                throw new PreexistingEntityException("Carrera " + carrera + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

@@ -6,7 +6,6 @@
 package Classes;
 
 import Classes.exceptions.NonexistentEntityException;
-import Classes.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -32,7 +31,7 @@ public class FacultadJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Facultad facultad) throws PreexistingEntityException, Exception {
+    public void create(Facultad facultad) {
         if (facultad.getCarreraList() == null) {
             facultad.setCarreraList(new ArrayList<Carrera>());
         }
@@ -57,11 +56,6 @@ public class FacultadJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findFacultad(facultad.getIdfacultad()) != null) {
-                throw new PreexistingEntityException("Facultad " + facultad + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
