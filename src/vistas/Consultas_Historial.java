@@ -9,9 +9,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 
@@ -590,13 +593,22 @@ public class Consultas_Historial extends javax.swing.JFrame {
     
     private void opcCarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcCarnetActionPerformed
      
+        if(txtCarnet.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(this, "Por favor ingrese el carnet del paciente", "Error!", JOptionPane.ERROR_MESSAGE);    
+            
+        }
         
+        else{
+           
          try {
             String carnet = this.txtCarnet.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConCarnet(tbConsultas, carnet));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+       }
     }//GEN-LAST:event_opcCarnetActionPerformed
 
     private void cboFacultadItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboFacultadItemStateChanged
@@ -606,7 +618,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
             int idFac = this.idFacult[this.cboFacultad.getSelectedIndex()];
             this.cboCarrera.setModel(this.llenarComboBoxCarrera(idFac));
         } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cboFacultadItemStateChanged
 
@@ -617,7 +629,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
             int idCar = this.idCarrera[this.cboCarrera.getSelectedIndex()];
         this.tbConsultas.setModel(this.conn.getHistorialConCarrera(tbConsultas, idCar));
         } catch (SQLException ex) {
-            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_opcCarreraActionPerformed
@@ -628,61 +640,99 @@ public class Consultas_Historial extends javax.swing.JFrame {
             int idFa = this.idFacult[this.cboFacultad.getSelectedIndex()];
             this.tbConsultas.setModel(this.conn.getHistorialConFacult(tbConsultas, idFa));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_opcFacultadActionPerformed
 
     private void opcActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcActividadActionPerformed
         
-         
+            
         try {
             int idA = this.idAct[this.cboActividad.getSelectedIndex()];
             this.tbConsultas.setModel(this.conn.getHistorialConActividad(tbConsultas, idA));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+          
     }//GEN-LAST:event_opcActividadActionPerformed
 
     private void opcNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcNombreActionPerformed
         
+         if(txtNombre.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(this, "Por favor ingrese el nombre del paciente", "Error!", JOptionPane.ERROR_MESSAGE);    
+            
+        }
+        
+        else{
+             
+         
          try {
             String nombre = this.txtNombre.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConNombre(tbConsultas, nombre));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
+       }
         
     }//GEN-LAST:event_opcNombreActionPerformed
 
     private void opcApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcApellidoActionPerformed
        
+        if(txtApellido.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(this, "Por favor ingrese el apellido del paciente", "Error!", JOptionPane.ERROR_MESSAGE);    
+            
+        }
+        
+        else{
+            
+        
         try {
             String apellido = this.txtApellido.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConApellido(tbConsultas, apellido));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
         }
+       }
     }//GEN-LAST:event_opcApellidoActionPerformed
 
     private void opcFechaConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcFechaConActionPerformed
+              
+         if(txtFecha.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(this, "Por favor ingrese la fecha de  la consulta", "Error!", JOptionPane.ERROR_MESSAGE);    
+            
+        }
         
+        else{   
+         
         try {
+           
             String fecha = this.txtFecha.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConFecha(tbConsultas, fecha));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+       }
     }//GEN-LAST:event_opcFechaConActionPerformed
 
     private void opcEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcEdadActionPerformed
         
-        //pendiente
+       if(txtEdad.getText().equals("")){
+            
+             JOptionPane.showMessageDialog(this, "Por favor ingrese la edad del paciente", "Error!", JOptionPane.ERROR_MESSAGE);    
+            
+        }
+       else{
+            
         try {
             String edad = this.txtEdad.getText();
             this.tbConsultas.setModel(this.conn.getHistorialConEdad(tbConsultas, edad));
         } catch (SQLException ex) {
-            Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         }
         
     }//GEN-LAST:event_opcEdadActionPerformed
