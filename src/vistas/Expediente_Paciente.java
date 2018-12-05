@@ -145,7 +145,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         Barra_Superior.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -276,7 +276,6 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         jScrollPane3.setBorder(null);
 
         jPanel5.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel5.setBorder(null);
 
         lblHeader68.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         lblHeader68.setForeground(new java.awt.Color(255, 255, 255));
@@ -357,9 +356,9 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                     .addComponent(lblHeader69)
                     .addComponent(lblCuello))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeader70)
-                    .addComponent(lblTorax))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTorax)
+                    .addComponent(lblHeader70))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHeader71, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -777,7 +776,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                 .addContainerGap())
         );
 

@@ -82,7 +82,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         Barra_Superior.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {

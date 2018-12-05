@@ -42,9 +42,7 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder roundedCorners="true" thickness="2">
-              <Color PropertyName="color" blue="66" green="ff" red="ff" type="rgb"/>
-            </LineBorder>
+            <LineBorder roundedCorners="true" thickness="3"/>
           </Border>
         </Property>
       </Properties>

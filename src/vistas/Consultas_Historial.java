@@ -181,6 +181,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel1.setPreferredSize(new java.awt.Dimension(1050, 650));
 
         Barra_Superior2.setBackground(new java.awt.Color(102, 0, 0));

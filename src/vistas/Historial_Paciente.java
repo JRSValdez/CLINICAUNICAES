@@ -77,7 +77,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         lblHistPaciente.setFont(new java.awt.Font("Comic Sans MS", 0, 24)); // NOI18N
         lblHistPaciente.setForeground(new java.awt.Color(255, 255, 255));

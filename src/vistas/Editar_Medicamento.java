@@ -81,7 +81,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         Barra_Superior.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -129,7 +129,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
                 .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHeader1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(btn_close)
                 .addContainerGap())
         );
@@ -185,7 +185,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
         btnAggMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/edit.png"))); // NOI18N
         btnAggMedicamento.setText("Editar Medicamento");
         btnAggMedicamento.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
-        btnAggMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAggMedicamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAggMedicamento.setFocusable(false);
         btnAggMedicamento.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnAggMedicamento.addMouseListener(new java.awt.event.MouseAdapter() {

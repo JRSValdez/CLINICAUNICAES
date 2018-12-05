@@ -295,6 +295,23 @@ public class ConexionDB {
     //////////////////////////////////////////////////////////////////
     ////////////////////// ADDS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
+    
+    public String aggSolMed(solicitud_med _sol) throws SQLException{
+        CallableStatement cst = this.conn.prepareCall("call  AGG_SOL_MED(?,?,?,?)");
+
+        cst.setString("pCARDOC", _sol.cardoc);
+        cst.setString("pNOMBRE", _sol.nombre);
+        cst.setInt("pIDMEDICAMENTO", _sol.idMed );
+        cst.setInt("pCANT", _sol.cantidad);
+        
+        cst.registerOutParameter("MENSAJE", java.sql.Types.VARCHAR);
+        cst.execute();
+
+        String mensaje = cst.getString("MENSAJE");
+        
+        return mensaje;
+    }
+    
     public String aggUsuario(Usuario _usuario, String _tabla, int _idOwner) throws SQLException {
 
         CallableStatement cst = this.conn.prepareCall("call  AGG_USUARIO(?,?,?,?,?,?)");

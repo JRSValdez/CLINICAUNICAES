@@ -47,7 +47,7 @@ public class Activar_Doctor extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         Barra_Superior.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -139,6 +139,9 @@ public class Activar_Doctor extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tbDoc);
+        if (tbDoc.getColumnModel().getColumnCount() > 0) {
+            tbDoc.getColumnModel().getColumn(0).setMaxWidth(40);
+        }
 
         lblHeader81.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader81.setForeground(new java.awt.Color(255, 255, 255));

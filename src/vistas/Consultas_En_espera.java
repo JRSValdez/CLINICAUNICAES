@@ -49,6 +49,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         jPanel3.setBackground(new java.awt.Color(102, 0, 0));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
@@ -58,7 +59,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         btnNoQuiso.setText("NO QUISO ESPERAR");
         btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNoQuiso.setFocusable(false);
         btnNoQuiso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNoQuiso.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -73,7 +74,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         btnSeRetiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnSeRetiro.setText("SE RETIRÓ SIN MOTIVOS");
         btnSeRetiro.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSeRetiro.setFocusable(false);
         btnSeRetiro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSeRetiro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -88,11 +89,11 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(397, Short.MAX_VALUE)
+                .addContainerGap(419, Short.MAX_VALUE)
                 .addComponent(btnNoQuiso)
                 .addGap(28, 28, 28)
                 .addComponent(btnSeRetiro)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(418, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,10 +215,10 @@ public class Consultas_En_espera extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 472, Short.MAX_VALUE)
+                        .addGap(0, 470, Short.MAX_VALUE)
                         .addComponent(jLabel4)
-                        .addGap(0, 366, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE))
+                        .addGap(0, 364, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1066, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,7 +226,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

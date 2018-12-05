@@ -61,7 +61,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         Barra_Superior.setBackground(new java.awt.Color(102, 0, 0));
         Barra_Superior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -134,7 +134,6 @@ public class Editar_Usuario extends javax.swing.JFrame {
         lblHeader55.setText("EDITAR USUARIO");
 
         jPanel9.setBackground(new java.awt.Color(102, 0, 0));
-        jPanel9.setBorder(null);
 
         lblHeader15.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader15.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,9 +232,9 @@ public class Editar_Usuario extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addComponent(lblHeader55)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel6Layout.createSequentialGroup()
                     .addContainerGap()
