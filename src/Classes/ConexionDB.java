@@ -55,6 +55,44 @@ public class ConexionDB {
     //////////////////////////////////////////////////////////////////
     ////////////////////// GETS //////////////////////////////////////
     //////////////////////////////////////////////////////////////////
+    
+    public DefaultTableModel getSolicitudes(JTable _jt, String _tipo, String _busqueda) throws SQLException{
+        
+        String query = "SELECT S.IDSOLICITUD, S.CARNET_DOC ,S.NOMBRE, S.FECHA, M.MEDICAMENTO, S.CANTIDAD FROM SOLICITUD_MED S "+
+                    " INNER JOIN MEDICAMENTO M ON M.IDMEDICAMENTO = S.IDMEDICAMENTO ";
+        
+        if(_tipo.equals("nombre")){
+            query += " WHERE S.NOMBRE LIKE ?";
+        } else if(_tipo.equals("fecha")){
+            query += " WHERE date(FECHA) = str_to_date(?, '%d-%m-%Y')";
+        } else if(_tipo.equals("medicamento")){
+            query += " WHERE M.MEDICAMENTO LIKE ?";
+        }
+
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        
+        if(_tipo.equals("nombre") ||_tipo.equals("medicamento")){
+            preparedStatement.setString(1,"%"+_busqueda+"%");
+        } else if( _tipo.equals("fecha")){
+            preparedStatement.setString(1,_busqueda);
+        }
+        
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        DefaultTableModel model;
+        model = (DefaultTableModel) _jt.getModel();
+        model.setRowCount(0);
+        Object Datos[] = new Object[6];
+
+        while (rs.next()) {
+            for (int i = 0; i < 6; i++) {
+                Datos[i] = rs.getObject(i + 1);
+            }
+            model.addRow(Datos);
+        }
+        return model;
+    }
+    
     public int ContarConsultasByDoctor(int _idDoctor) throws SQLException {
 
         String query = "select count(idDoctor) from consulta WHERE estado = 1 and idDoctor = ?";
