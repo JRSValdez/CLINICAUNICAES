@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ca722b61-9fa1-4dd0-8fc0-08b77369a737">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT M.IDMEDICAMENTO, M.MEDICAMENTO, SUM(S.CANTIDAD) FROM MEDICAMENTO M
+	INNER JOIN SOLICITUD_MED S ON S.IDMEDICAMENTO = M.IDMEDICAMENTO
+    WHERE s.FECHA BETWEEN str_to_date($P{fecha1}, '%d-%m-%Y') AND str_to_date($P{fecha2}, '%d-%m-%Y')
+    GROUP BY M.IDMEDICAMENTO
+    ORDER BY SUM(S.CANTIDAD) DESC
+LIMIT 5]]>
+	</queryString>
+	<field name="IDMEDICAMENTO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MEDICAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUM(S.CANTIDAD)" class="java.math.BigDecimal"/>
+	<title>
+		<band height="237" splitType="Stretch">
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="74" y="0" width="408" height="237" uuid="db2eba6f-8f4e-48af-90d1-b5e6d8eaf842"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset maxCount="5">
+					<keyExpression><![CDATA[$F{MEDICAMENTO}]]></keyExpression>
+					<valueExpression><![CDATA[$F{SUM(S.CANTIDAD)}]]></valueExpression>
+					<labelExpression><![CDATA[$F{SUM(S.CANTIDAD)}.toString()]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c73dc64-3111-472e-a3e3-a1c29f336c40">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fecha1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT S.IDSOLICITUD, S.CARNET_DOC ,S.NOMBRE, S.FECHA, M.MEDICAMENTO, S.CANTIDAD FROM SOLICITUD_MED S
+	INNER JOIN MEDICAMENTO M ON M.IDMEDICAMENTO = S.IDMEDICAMENTO
+    WHERE FECHA BETWEEN str_to_date($P{fecha1}, '%d-%m-%Y') AND str_to_date($P{fecha2}, '%d-%m-%Y')]]>
+	</queryString>
+	<field name="IDSOLICITUD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CARNET_DOC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NOMBRE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FECHA" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MEDICAMENTO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CANTIDAD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="163" splitType="Stretch">
+			<image>
+				<reportElement x="405" y="0" width="150" height="153" uuid="e1e80338-aa5a-420c-855e-bb6ed4a32154"/>
+				<imageExpression><![CDATA[".\\unicaes_logo_small.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="31" y="141" width="100" height="22" uuid="0a383d1b-d7b7-4328-9abc-be51e3ad5c93"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="141" width="100" height="22" uuid="ef56fbbc-77b2-4b7c-9d34-03f5f298bfa9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="99" y="23" width="306" height="48" uuid="45aef551-e4d1-4064-a20d-86d2e8bacbc3"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE SOLICITUD DE MEDICAMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="71" width="306" height="27" forecolor="#666666" uuid="77d08fe1-75c4-402c-b7a8-13f056a0c68c"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CLINICA UNICAES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="141" width="30" height="22" forecolor="#666666" uuid="55cf7fbe-6b48-47ee-a31b-d043dd27c3a7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[De]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="141" width="57" height="22" forecolor="#666666" uuid="b710c43b-25b9-4285-859a-1eff1ed92ea3"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[hasta]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="176" splitType="Stretch">
+			<subreport>
+				<reportElement x="-1" y="22" width="555" height="144" uuid="b7f8e650-43b9-44c6-9c11-accaac59b6d8"/>
+				<subreportParameter name="fecha1">
+					<subreportParameterExpression><![CDATA[$P{fecha1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fecha2">
+					<subreportParameterExpression><![CDATA[$P{fecha2}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[".\\subreporte_top_solicitudes.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="-1" y="0" width="556" height="22" forecolor="#000000" uuid="6352fd26-3f2f-4174-bb9c-9262337b655f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Medicamentos más solicitados]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="31" height="20" uuid="29b60349-c4b5-4c9c-8f27-78f56c4fd9ab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="0" width="95" height="20" uuid="33dfda41-8f7d-4cd1-93d8-8264220f6f7e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARNET /DOCUMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="0" width="100" height="20" uuid="2550b517-e4ab-4bee-8fea-82d495833685"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="0" width="46" height="20" uuid="5c5d0990-7b0d-42fa-a968-ca2c687b0793"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="0" width="157" height="20" uuid="a69b1c77-ca15-42bb-acbe-b494b8776e57"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="0" width="88" height="20" uuid="d0bc0c53-e159-4436-bf7a-bd6a1abe93c3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="32" height="20" uuid="bb450c40-a5f4-4cbe-8e99-706b8d993240"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDSOLICITUD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="95" height="20" uuid="c9b46c22-8c6d-413b-ac35-b8d874f19b17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CARNET_DOC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="305" y="0" width="100" height="20" uuid="c4e76d28-6911-4e87-8e87-5a747dfd96d3"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEDICAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="0" width="46" height="20" uuid="e1079f62-16e0-468e-a92b-959ab988de2e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="0" width="157" height="20" uuid="505d0666-4f17-452b-ade1-dd100f3c5ccd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="0" width="88" height="20" uuid="c4cc4da2-330f-4c74-90c4-9c7ed5fe21b9"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="68" y="8" width="229" height="20" uuid="57f615ae-b38b-42bb-a1b6-722a79d04858"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="8" width="76" height="20" forecolor="#666666" uuid="fda32932-27b1-4715-aaf4-eef69bc7b43b"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Impreso el:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="10" width="80" height="20" uuid="277aa457-a52f-46fc-80b6-ad12bb91e45d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="10" width="40" height="20" uuid="adf6265b-ed3e-49a7-8d00-06fa8616145a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

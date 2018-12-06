@@ -13,12 +13,21 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -101,7 +110,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
 
         //llenar contadores del dashboard
         this.llenarDashboard();
-        
+
         //activando radio bbutton de solicitud de medicamento
         this.rdbExistSolicitud.setSelected(true);
 
@@ -3353,7 +3362,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.idBusquedaCatsMed = (int[]) arrays2[1];
         this.cboBuscarCatMed.setModel((DefaultComboBoxModel) arrays2[0]);
 
-            //SOlicitud de medicamento
+        //SOlicitud de medicamento
         this.idBusquedaCatsMed1 = (int[]) arrays2[1];
         this.cboBuscarCatMed1.setModel((DefaultComboBoxModel) arrays2[0]);
 
@@ -4143,12 +4152,16 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             sol.nombre = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 4).toString();
                             Object carnet = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 1);
                             Object doc = this.jTbusqueda1.getModel().getValueAt(this.jTbusqueda1.getSelectedRow(), 2);
-                            
-                            if(carnet != null){
+
+                            if (carnet != null) {
                                 sol.cardoc = carnet.toString();
-                            } else sol.cardoc = doc.toString();
-                            
-                        } else JOptionPane.showMessageDialog(this, "Debe seleccionar un paciente existente");
+                            } else {
+                                sol.cardoc = doc.toString();
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Debe seleccionar un paciente existente");
+                        }
 
                     } else {
                         sol.nombre = this.txtNombreSolicitud.getText() + " " + this.txtApellidoSolicitud.getText();
@@ -4165,8 +4178,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         this.txtApellidoSolicitud.setText("");
                         this.txtBusquedaExistente1.setText("");
                         this.txtCantSolicitud.setText("");
-                        
-                        DefaultTableModel model =  (DefaultTableModel)this.jTbusqueda1.getModel();
+
+                        DefaultTableModel model = (DefaultTableModel) this.jTbusqueda1.getModel();
                         model.setRowCount(0);
                     } else {
                         JOptionPane.showMessageDialog(this, "Ingrese valores correctos");
@@ -4185,7 +4198,25 @@ public class Home_Recepcion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAggSolicitudMouseClicked
 
     private void btnReporteSolicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteSolicitudesMouseClicked
-        // TODO add your handling code here:
+        //REPORTE DE EXPEDIENTE SELECCIONADO
+
+        if (!this.txtFechaSol1.getText().equals("  -  -    ") && !this.txtFechaSol2.getText().equals("  -  -    ")) {
+            Map parameters = new HashMap();
+            parameters.put("fecha1", this.txtFechaSol1.getText());
+            parameters.put("fecha2", this.txtFechaSol2.getText());
+            JasperReport reporte;
+
+            String path = ".\\src\\Reportes\\reporte_solicitudes.jasper";
+            try {
+                reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+                JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn);
+                JasperViewer viewer = new JasperViewer(jprint, false);
+                viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                viewer.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_btnReporteSolicitudesMouseClicked
 
     /**
