@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar() {
         try {
             String url = "jdbc:mysql://localhost:3306/clinica_unicaes";
-            conn = DriverManager.getConnection(url, "root", "jr2020");
+            conn = DriverManager.getConnection(url, "root", "");
             st = conn.createStatement();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible connectarse \n" + e);
