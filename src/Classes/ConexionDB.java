@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar() {
         try {
             String url = "jdbc:mysql://localhost:3306/clinica_unicaes";
-            conn = DriverManager.getConnection(url, "root", "");
+            conn = DriverManager.getConnection(url, "root", "jr2020");
             st = conn.createStatement();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible connectarse \n" + e);
@@ -193,7 +193,7 @@ public class ConexionDB {
         String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y'), C.IDUSUARIO, DC.EF_CABEZA,"
                 + "DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, "
                 + "DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C "
-                + "INNER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
+                + "LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
                 + "WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idConsulta);
@@ -486,7 +486,7 @@ public class ConexionDB {
                 for (int i = 0; i < _consulta.receta.rowReceta.length; i++) {
                     if (_consulta.receta.rowReceta[i] != null) {
                         String row = this.aggDetReceta(idReceta, (String[]) _consulta.receta.rowReceta[i]);
-                        if ((row.indexOf("ERROR:") > 0) || (row.equals("ERROR"))) {
+                        if ((row.indexOf("ERROR") > 0) || (row.equals("ERROR"))) {
                             return "ERROR: detalle de receta";
                         }
                     }
@@ -591,7 +591,7 @@ public class ConexionDB {
         if (mensaje.equals("EXITO")) {
             return mensaje;
         }
-        return "ERROR: " + mensaje;
+        return "ERROR";
     }
 
     private String aggDiagnostico(int _idConsulta, String[] _row) throws SQLException {
@@ -876,7 +876,7 @@ public class ConexionDB {
                 + "INNER JOIN CONSULTA cc on cc.IDPACIENTE = p.IDPACIENTE "
                 + "INNER JOIN DOCTOR d on d.IDDOCTOR = cc.IDDOCTOR "
                 + "INNER JOIN DET_CONSULTA dc on dc.IDCONSULTA = cc.IDCONSULTA "
-                + "WHERE DATE_FORMAT(cc.CONS_FECHA,'%d-%m-%Y') =  DATE_FORMAT(CURRENT_TIMESTAMP,'%d-%m-%Y') AND ESTADO = 1";
+                + "WHERE DATE(cc.CONS_FECHA) =  CURRENT_DATE() AND ESTADO = 1";
 
         ResultSet rs = stmt.executeQuery(query);
 

@@ -1,4 +1,3 @@
-
 package vistas;
 
 import Classes.Antecedente;
@@ -22,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Consultorio_Consulta extends javax.swing.JFrame {
 
-    int xx, xy,xs, ys, sbx,sby, idDoctor;
+    int xx, xy, xs, ys, sbx, sby, idDoctor;
     int conA = 0, conD = 0;
     ConexionDB conn = new ConexionDB();
     Consulta consulta;
@@ -30,13 +29,13 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     Receta receta;
     Diagnostico diagnostico;
     Antecedente antecedente;
-    
+
     String[] idCatsAntecedentes;
     String[] idCatsDiagnosticos;
-    
+
     String[] idEnfsAntecedentes;
     String[] idEnfsDiagnosticos;
-    
+
     int[] idCatsMedicamentos;
 
     public Consultorio_Consulta() throws SQLException {
@@ -45,8 +44,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "D"));
         this.llenarCatsMedicamento();
     }
-    
-    public Consultorio_Consulta(Consulta _consulta, Paciente _paciente, int _idDoctor) throws SQLException{
+
+    public Consultorio_Consulta(Consulta _consulta, Paciente _paciente, int _idDoctor) throws SQLException {
         initComponents();
         this.idDoctor = _idDoctor;
         this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));
@@ -54,20 +53,20 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.consulta = _consulta;
         this.paciente = _paciente;
         this.llenarCampos();
-        
+
     }
-    
-    public void llenarCampos() throws SQLException{
+
+    public void llenarCampos() throws SQLException {
         this.antecedente = new Antecedente();
         this.receta = new Receta();
         this.diagnostico = new Diagnostico();
-        
+
         this.lblDireccion.setText(this.paciente.direccion);
         this.lblNombre.setText(this.paciente.nombre);
-        this.lblMedicamentoPara.setText("Medicamentos para: " +this.paciente.nombre);
-        this.lblNombrePac.setText("Paciente: " +this.paciente.nombre);
+        this.lblMedicamentoPara.setText("Medicamentos para: " + this.paciente.nombre);
+        this.lblNombrePac.setText("Paciente: " + this.paciente.nombre);
         this.lblEdad.setText(this.paciente.edad);
-        
+
         this.txtMotivoConsulta.setText(this.consulta.motivo);
         this.txtPeso.setText(this.consulta.peso);
         this.txtTalla.setText(this.consulta.talla);
@@ -75,16 +74,15 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         this.txtFrecCardiaca.setText(this.consulta.frec_card);
         this.txtPresionArterial.setText(this.consulta.pres_art);
         this.txtTemperatura.setText(this.consulta.temperatura);
-        
-        
+
         this.llenarCatsMedicamento();
-        
+
         this.jtAntecedentes.setSelectionForeground(Color.white);
         this.jtDiagnosticos.setSelectionForeground(Color.white);
         this.jtMedicamentos.setSelectionForeground(Color.white);
         this.jtReceta.setSelectionForeground(Color.white);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1624,55 +1622,59 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-xy);
+        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_Barra_SuperiorMouseDragged
 
     private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
-        this.setOpacity((float)0.8);
-        xx=evt.getX();
+        this.setOpacity((float) 0.8);
+        xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_Barra_SuperiorMousePressed
 
     private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
-        this.setOpacity((float)1.0);
+        this.setOpacity((float) 1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
 
-    public DefaultComboBoxModel llenarComboBoxsCIE10cats(String _cat, String _tipo) throws SQLException{
-        Object[] arrays = this.conn.getCIE10Cats(_cat);
-        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[1] );
-        //llenar arraysIds
-        if (_tipo.equals("A")){
-            this.idCatsAntecedentes = (String[]) arrays[0];
-            this.cmbAntecedentessEnf.setModel(this.llenarComboBoxsCIE10enfs(this.idCatsAntecedentes[0], "A"));
-        } else{
-            this.idCatsDiagnosticos = (String[]) arrays[0];
-            this.cmbDiagnosticoEnfs.setModel(this.llenarComboBoxsCIE10enfs(this.idCatsDiagnosticos[0], "D"));
+    public DefaultComboBoxModel llenarComboBoxsCIE10cats(String _cat, String _tipo) throws SQLException {
+        try {
+            Object[] arrays = this.conn.getCIE10Cats(_cat);
+            DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) arrays[1]);
+            //llenar arraysIds
+            if (_tipo.equals("A")) {
+                this.idCatsAntecedentes = (String[]) arrays[0];
+                this.cmbAntecedentessEnf.setModel(this.llenarComboBoxsCIE10enfs(this.idCatsAntecedentes[0], "A"));
+            } else {
+                this.idCatsDiagnosticos = (String[]) arrays[0];
+                this.cmbDiagnosticoEnfs.setModel(this.llenarComboBoxsCIE10enfs(this.idCatsDiagnosticos[0], "D"));
+            }
+            return model;
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No se encontraron categorías(CIE10) con ese nombre");
+            return null;
         }
-        
-        return model;
     }
-    
-    public DefaultComboBoxModel llenarComboBoxsCIE10enfs(String _idCat, String _tipo) throws SQLException{
+
+    public DefaultComboBoxModel llenarComboBoxsCIE10enfs(String _idCat, String _tipo) throws SQLException {
         Object[] arrays = this.conn.getCIE10Enfs(_idCat);
-        if(_tipo.equals("A")){
+        if (_tipo.equals("A")) {
             this.idEnfsAntecedentes = (String[]) arrays[0];
-        } else{
+        } else {
             this.idEnfsDiagnosticos = (String[]) arrays[0];
         }
-        DefaultComboBoxModel model = new DefaultComboBoxModel( (Object[]) arrays[2] );
+        DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) arrays[2]);
         return model;
     }
-    
-    public void llenarCatsMedicamento() throws SQLException{
+
+    public void llenarCatsMedicamento() throws SQLException {
         // llenar el combobox de categorias de medicamentos
         Object[] array = this.conn.llenarCatsMedicamentos((JComboBox) cmbCatMedicamento);
-        
+
         this.idCatsMedicamentos = (int[]) array[1];
-        this.cmbCatMedicamento.setModel((DefaultComboBoxModel)array[0]);
+        this.cmbCatMedicamento.setModel((DefaultComboBoxModel) array[0]);
     }
-    
+
     private void btnTerminarConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTerminarConsultaMouseClicked
-        
+
         //agregar antecedentes, diagnosticos y receta con el Id obtenido de la consulta
     }//GEN-LAST:event_btnTerminarConsultaMouseClicked
 
@@ -1682,6 +1684,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             String cat = this.txtBuscarAntecedente.getText();
             this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats(cat.toUpperCase(), "A"));
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "No se encontraron categorías con ese nombre");
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarAntecedenteMouseClicked
@@ -1694,8 +1697,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         String enf = this.cmbAntecedentessEnf.getSelectedItem().toString();
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtAntecedentes.getModel();
-        if (this.verEnfRep(modelo, idE) == false){
-            String[] row = new String[]{idC, cat,idE, enf};
+        if (this.verEnfRep(modelo, idE) == false) {
+            String[] row = new String[]{idC, cat, idE, enf};
             this.antecedente.aggRow(row);
             this.jtAntecedentes.setModel(this.aggEnfermedadJt(modelo, row));
         }
@@ -1729,8 +1732,8 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         String enf = this.cmbDiagnosticoEnfs.getSelectedItem().toString();
 
         DefaultTableModel modelo = (DefaultTableModel) this.jtDiagnosticos.getModel();
-        if (this.verEnfRep(modelo, idE) == false){
-            String[] row = new String[]{idC, cat,idE, enf};
+        if (this.verEnfRep(modelo, idE) == false) {
+            String[] row = new String[]{idC, cat, idE, enf};
             this.diagnostico.aggRow(row);
             this.jtDiagnosticos.setModel(this.aggEnfermedadJt(modelo, row));
         }
@@ -1742,6 +1745,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             String cat = this.txtBuscarDiagnostico.getText();
             this.cmbDiagnosticoCats.setModel(this.llenarComboBoxsCIE10cats(cat, "D"));
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "No se encontraron categorías con ese nombre");
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBuscarDiagnosticoMouseClicked
@@ -1754,7 +1758,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnBuscarCatMedicamentoMouseClicked
 
     private void btnBuscarMedicamentoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMedicamentoMouseClicked
@@ -1771,25 +1775,25 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         try {
             int cantidad = Integer.parseInt(this.txtMedicamentoCantidad.getText());
             String dosis = this.txtMedicamentoDosis.getText();
-            if (this.jtMedicamentos.getSelectedRows().length == 1 && cantidad > 0 && !"".equals(dosis))
-            {
+            if (this.jtMedicamentos.getSelectedRows().length == 1 && cantidad > 0 && !"".equals(dosis)) {
                 int fila = this.jtMedicamentos.getSelectedRow();
                 String idMed = this.jtMedicamentos.getValueAt(fila, 0).toString();
                 String med = this.jtMedicamentos.getValueAt(fila, 2).toString();
+                double stock = Double.parseDouble(this.jtMedicamentos.getValueAt(fila, 4).toString());
 
                 DefaultTableModel modelo = (DefaultTableModel) this.jtReceta.getModel();
-                if (this.verRecetaRep(modelo, idMed) == false){
+                if (this.verRecetaRep(modelo, idMed) == false && stock >= cantidad){
                     String[] newRow = new String[]{idMed, med, dosis, String.valueOf(cantidad)};
                     this.receta.aggRow(newRow);
                     this.jtReceta.setModel(this.aggRecetaJt(modelo, newRow));
-                    
+
                     this.txtMedicamentoDosis.setText("");
                     this.txtMedicamentoCantidad.setText("");
-                }
+                } else JOptionPane.showMessageDialog(this, "Verifique los datos");
             }
         } catch (Exception e) {
             // mostarra validaciones en un messsageBox
-            System.out.println("Ingrese correctamente" + e);
+            JOptionPane.showMessageDialog(this, "Verifique los datos");
         }
     }//GEN-LAST:event_btnAddRecetaMouseClicked
 
@@ -1817,24 +1821,25 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         consulta.ef_extremidades = this.txt_Ef_Extremidades.getText();
         consulta.recomendaciones = this.txt_recomendaciones.getText();
         consulta.tratamiento = this.txt_tratamiento.getText();
-        
+
         consulta.receta = this.receta;
         consulta.diagnostico = this.diagnostico;
         consulta.antecedente = this.antecedente;
-        
+
         //verifica cada campo segun su tipo, si hay alguna validación mala la devolverá en la variable validacion
         String validacion = consulta.validarConsulta();
         // si la variable no tiene nada, las validaciones son correctas
-        if(validacion.equals("")){
+        if (validacion.equals("")) {
             try {
                 //Se agrega la consulta a través de un método en la clase conexionDB
                 String mensaje = this.conn.aggDetConsulta(consulta, this.idDoctor);
                 JOptionPane.showMessageDialog(rootPane, mensaje);
                 this.dispose();
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, "Ah ocurrido un error, revise el formato de sus entradas de texto o su tamaño");
                 Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } else {
             //error de validación
             JOptionPane.showMessageDialog(rootPane, validacion);
@@ -1846,38 +1851,38 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTerminarConsulta2MouseClicked
 
-    public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo,String[] _row){
+    public DefaultTableModel aggEnfermedadJt(DefaultTableModel _modelo, String[] _row) {
         _modelo.addRow(_row);
         return _modelo;
     }
-    
-    public DefaultTableModel aggRecetaJt(DefaultTableModel _modelo,String[] _row){
+
+    public DefaultTableModel aggRecetaJt(DefaultTableModel _modelo, String[] _row) {
         _modelo.addRow(_row);
         return _modelo;
     }
-    
-    public boolean verEnfRep(DefaultTableModel _modelo, String _idEnf){
+
+    public boolean verEnfRep(DefaultTableModel _modelo, String _idEnf) {
         boolean repetida = false;
         int filas = _modelo.getRowCount();
-        for(int i = 0; i<filas; i++){
-            if(_idEnf.equals(_modelo.getValueAt(i, 2))){
+        for (int i = 0; i < filas; i++) {
+            if (_idEnf.equals(_modelo.getValueAt(i, 2))) {
                 repetida = true;
             }
         }
         return repetida;
     }
-    
-    public boolean verRecetaRep(DefaultTableModel _modelo, String _idMed){
+
+    public boolean verRecetaRep(DefaultTableModel _modelo, String _idMed) {
         boolean repetida = false;
         int filas = _modelo.getRowCount();
-        for(int i = 0; i<filas; i++){
-            if(_idMed.equals(_modelo.getValueAt(i, 0))){
+        for (int i = 0; i < filas; i++) {
+            if (_idMed.equals(_modelo.getValueAt(i, 0))) {
                 repetida = true;
             }
         }
         return repetida;
     }
-    
+
     /**
      * @param args the command line arguments
      */
