@@ -77,6 +77,9 @@ public class Editar_Paciente extends javax.swing.JFrame {
         rdbRural = new javax.swing.JRadioButton();
         rdbUrbana = new javax.swing.JRadioButton();
         txtApellidoPac1 = new javax.swing.JTextField();
+        lblHeader50 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDireccion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -221,6 +224,14 @@ public class Editar_Paciente extends javax.swing.JFrame {
         txtApellidoPac1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtApellidoPac1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
 
+        lblHeader50.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader50.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader50.setText("DIRECCION:");
+
+        txtDireccion.setColumns(20);
+        txtDireccion.setRows(5);
+        jScrollPane1.setViewportView(txtDireccion);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -230,15 +241,12 @@ public class Editar_Paciente extends javax.swing.JFrame {
                 .addComponent(lblHeader55)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnEdiPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(248, 248, 248)
+                .addComponent(btnEdiPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(lblHeader45, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHeader47, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
@@ -260,9 +268,18 @@ public class Editar_Paciente extends javax.swing.JFrame {
                                     .addComponent(cboDepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtApellidoPac1)))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCelular)
+                                .addComponent(lblHeader45, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(lblHeader50, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                        .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCelular)))
                                 .addGap(3, 3, 3)))
                         .addGap(212, 212, 212))))
         );
@@ -295,9 +312,13 @@ public class Editar_Paciente extends javax.swing.JFrame {
                     .addComponent(lblHeader47)
                     .addComponent(rdbUrbana)
                     .addComponent(rdbRural))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHeader50)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(btnEdiPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -315,10 +336,10 @@ public class Editar_Paciente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addContainerGap(465, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(57, Short.MAX_VALUE)
+                    .addContainerGap(56, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap()))
         );
@@ -346,6 +367,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
        this.txtNombrePac.setText(pac.nombre);
        this.txtApellidoPac1.setText(pac.apellido);
        this.txtCelular.setText(pac.celular);
+       this.txtDireccion.setText(pac.direccion);
        
        if(pac.zona==1){
        this.rdbUrbana.setSelected(true);
@@ -358,6 +380,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
         DefaultComboBoxModel model = new DefaultComboBoxModel((Object[]) array[1]);
         this.cboDepartamento.setModel(model);
         this.cboDepartamento.setSelectedItem(this.pac.departamento);
+        
         
     }
     
@@ -389,6 +412,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
         paciente.nombre=this.txtNombrePac.getText();
         paciente.apellido=this.txtApellidoPac1.getText();
         paciente.celular=this.txtCelular.getText();
+        paciente.direccion=this.txtDireccion.getText();
         paciente.departamento=""+this.idDep[this.cboDepartamento.getSelectedIndex()];
         if(this.rdbUrbana.isSelected()){
         paciente.zona=1;
@@ -416,8 +440,8 @@ public class Editar_Paciente extends javax.swing.JFrame {
     }//GEN-LAST:event_rdbUrbanaMouseClicked
 
     private void rdbRuralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdbRuralMouseClicked
-       this.rdbUrbana.setSelected(false);
-       this.rdbRural.setSelected(true);
+        this.rdbUrbana.setSelected(false);
+        this.rdbRural.setSelected(true);
     }//GEN-LAST:event_rdbRuralMouseClicked
 
     /**
@@ -466,17 +490,20 @@ public class Editar_Paciente extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboDepartamento;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblHeader45;
     private javax.swing.JLabel lblHeader46;
     private javax.swing.JLabel lblHeader47;
     private javax.swing.JLabel lblHeader48;
     private javax.swing.JLabel lblHeader49;
+    private javax.swing.JLabel lblHeader50;
     private javax.swing.JLabel lblHeader55;
     private javax.swing.JRadioButton rdbRural;
     private javax.swing.JRadioButton rdbUrbana;
     private javax.swing.JTextField txtApellidoPac1;
     private javax.swing.JTextField txtCelular;
+    private javax.swing.JTextArea txtDireccion;
     private javax.swing.JTextField txtNombrePac;
     // End of variables declaration//GEN-END:variables
 }

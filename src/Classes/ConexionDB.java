@@ -2275,7 +2275,7 @@ public class ConexionDB {
         DefaultTableModel model;
 
         String query = "Select idpaciente,pac_nombre,pac_apellido,departamento,"
-                + "PAC_ZONA,pac_celular from pacientes "
+                + "PAC_ZONA,pac_celular,pac_direccion from pacientes "
                 + "INNER JOIN departamento on departamento.iddepartamento=pacientes.iddepartamento"
                 + " WHERE idpaciente = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -2291,6 +2291,7 @@ public class ConexionDB {
             pac.departamento = rs2.getString(4);
             pac.zona = rs2.getInt(5);
             pac.celular = rs2.getString(6);
+            pac.direccion=rs2.getString(7);
 
         }
         return pac;
@@ -2332,15 +2333,16 @@ public class ConexionDB {
         String msj = "";
         try {
             String query = "UPDATE PACIENTES SET pac_nombre=?, pac_apellido=?,"
-                    + "iddepartamento=?,pac_zona=?,pac_celular=?  WHERE idpaciente=? ";
+                    + "iddepartamento=?,pac_celular=?, pac_zona=?, pac_direccion=?  WHERE idpaciente=? ";
 
             PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, _pac.nombre);
             preparedStatement.setString(2, _pac.apellido);
             preparedStatement.setInt(3, Integer.parseInt(_pac.departamento));
-            preparedStatement.setInt(4, _pac.zona);
-            preparedStatement.setString(5, _pac.celular);
-            preparedStatement.setInt(6, _pac.idPaciente);
+            preparedStatement.setString(4, _pac.celular);
+            preparedStatement.setInt(5, _pac.zona);
+            preparedStatement.setString(6, _pac.direccion);
+            preparedStatement.setInt(7, _pac.idPaciente);
             int rs = preparedStatement.executeUpdate();
             msj = "Exito";
         } catch (Exception e) {
