@@ -313,6 +313,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
         btnAggSolicitud = new javax.swing.JLabel();
         txtCantSolicitud = new javax.swing.JTextField();
         lblHeader76 = new javax.swing.JLabel();
+        btnReporteSolicitudes = new javax.swing.JLabel();
+        txtFechaSol2 = new javax.swing.JFormattedTextField();
+        txtFechaSol1 = new javax.swing.JFormattedTextField();
+        lblHeader77 = new javax.swing.JLabel();
+        lblHeader78 = new javax.swing.JLabel();
         Tab_Farmacia = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lblHeader48 = new javax.swing.JLabel();
@@ -2292,7 +2297,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblHeader72, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblHeader73, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
@@ -2307,10 +2312,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboBuscarPresentacionMed1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtBuscarFechaV1))
+                    .addComponent(txtBuscarFechaV1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscarMed1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2518,10 +2523,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTbusqueda1.setCellSelectionEnabled(false);
         jTbusqueda1.setGridColor(new java.awt.Color(255, 255, 153));
         jTbusqueda1.setRowHeight(25);
-        jTbusqueda1.setRowSelectionAllowed(true);
         jTbusqueda1.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jTbusqueda1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTbusqueda1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -2558,7 +2561,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addComponent(txtBusquedaExistente1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscarPaciente1)
-                        .addGap(0, 112, Short.MAX_VALUE))
+                        .addGap(0, 125, Short.MAX_VALUE))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
@@ -2629,6 +2632,45 @@ public class Home_Recepcion extends javax.swing.JFrame {
         lblHeader76.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader76.setText("Cantidad:");
 
+        btnReporteSolicitudes.setForeground(new java.awt.Color(255, 255, 255));
+        btnReporteSolicitudes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        btnReporteSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/reportes.png"))); // NOI18N
+        btnReporteSolicitudes.setText("GEN. REPORTE");
+        btnReporteSolicitudes.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnReporteSolicitudes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnReporteSolicitudes.setFocusable(false);
+        btnReporteSolicitudes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReporteSolicitudes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnReporteSolicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReporteSolicitudesMouseClicked(evt);
+            }
+        });
+
+        txtFechaSol2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtFechaSol2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtFechaSol2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        txtFechaSol1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        try {
+            txtFechaSol1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtFechaSol1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+
+        lblHeader77.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader77.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader77.setText("Fecha Inicio:");
+
+        lblHeader78.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        lblHeader78.setForeground(new java.awt.Color(255, 255, 255));
+        lblHeader78.setText("Fecha Fin:");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -2638,10 +2680,22 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(btnConsultasAten1)
                 .addGap(31, 31, 31)
                 .addComponent(btnHistorialCon1)
-                .addGap(505, 505, 505)
+                .addGap(122, 122, 122)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(lblHeader78, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFechaSol2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(lblHeader77)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFechaSol1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(btnReporteSolicitudes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHeader76, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCantSolicitud, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCantSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAggSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -2649,15 +2703,26 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnConsultasAten1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHistorialCon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAggSolicitud)
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFechaSol1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblHeader77))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFechaSol2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblHeader78)))
+                        .addComponent(btnReporteSolicitudes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnConsultasAten1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHistorialCon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblHeader76)
-                            .addComponent(txtCantSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtCantSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAggSolicitud)))
                 .addContainerGap())
         );
 
@@ -3288,7 +3353,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.idBusquedaCatsMed = (int[]) arrays2[1];
         this.cboBuscarCatMed.setModel((DefaultComboBoxModel) arrays2[0]);
 
-        //SOlicitud de medicamento
+            //SOlicitud de medicamento
         this.idBusquedaCatsMed1 = (int[]) arrays2[1];
         this.cboBuscarCatMed1.setModel((DefaultComboBoxModel) arrays2[0]);
 
@@ -3777,7 +3842,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // Buscar medicamento por presentación
         try {
             int idPres = this.idBusquedaPresMed[this.cboBuscarPresentacionMed.getSelectedIndex()];
-            this.jTFarmacia.setModel(this.conn.getMedicamentosbyCat(jTFarmacia, idPres));
+            this.jTFarmacia.setModel(this.conn.getMedicamentobyPresentacion(jTFarmacia, idPres));
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -3985,11 +4050,21 @@ public class Home_Recepcion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMed1MouseClicked
 
     private void btnHistorialCon1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistorialCon1MouseClicked
-        // TODO add your handling code here:
+        try {
+            Historial_Solicitudes solicitudes = new Historial_Solicitudes();
+            solicitudes.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnHistorialCon1MouseClicked
 
     private void btnConsultasAten1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConsultasAten1MouseClicked
-        // TODO add your handling code here:
+        try {
+            Historial_Solicitudes solicitudes = new Historial_Solicitudes(100);
+            solicitudes.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConsultasAten1MouseClicked
 
     private void itemNombreMed1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMed1ActionPerformed
@@ -4026,7 +4101,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         // Buscar medicamento por presentación
         try {
             int idPres = this.idBusquedaPresMed1[this.cboBuscarPresentacionMed1.getSelectedIndex()];
-            this.jTFarmacia1.setModel(this.conn.getMedicamentosbyCat(jTFarmacia1, idPres));
+            this.jTFarmacia1.setModel(this.conn.getMedicamentobyPresentacion(jTFarmacia1, idPres));
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -4109,6 +4184,10 @@ public class Home_Recepcion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAggSolicitudMouseClicked
 
+    private void btnReporteSolicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReporteSolicitudesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReporteSolicitudesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -4167,6 +4246,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel btnHistorialCon;
     private javax.swing.JLabel btnHistorialCon1;
     private javax.swing.JButton btnHome2;
+    private javax.swing.JLabel btnReporteSolicitudes;
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_cons;
     private javax.swing.JButton btn_farmacia;
@@ -4317,6 +4397,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader74;
     private javax.swing.JLabel lblHeader75;
     private javax.swing.JLabel lblHeader76;
+    private javax.swing.JLabel lblHeader77;
+    private javax.swing.JLabel lblHeader78;
     private javax.swing.JLabel lblHeader8;
     private javax.swing.JLabel lblHeader9;
     private javax.swing.JLabel lblMedicamento;
@@ -4365,6 +4447,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmergencia;
     private javax.swing.JTextField txtEmergenciaC;
     private javax.swing.JFormattedTextField txtFechaNac;
+    private javax.swing.JFormattedTextField txtFechaSol1;
+    private javax.swing.JFormattedTextField txtFechaSol2;
     private javax.swing.JFormattedTextField txtFechaV;
     private javax.swing.JFormattedTextField txtFechanacC;
     private javax.swing.JTextField txtNombre;
