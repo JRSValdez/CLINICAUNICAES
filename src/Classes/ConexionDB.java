@@ -2331,8 +2331,8 @@ public class ConexionDB {
 
         String msj = "";
         try {
-            String query = "UPDATE PACIENTES SET pac_nombre=? , pac_apellido=? ,"
-                    + "iddepartamento=? , pac_zona=? , pac_celular=?  WHERE idpaciente=? ";
+            String query = "UPDATE PACIENTES SET pac_nombre=?, pac_apellido=?,"
+                    + "iddepartamento=?,pac_zona=?,pac_celular=?  WHERE idpaciente=? ";
 
             PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             preparedStatement.setString(1, _pac.nombre);
@@ -2341,7 +2341,7 @@ public class ConexionDB {
             preparedStatement.setInt(4, _pac.zona);
             preparedStatement.setString(5, _pac.celular);
             preparedStatement.setInt(6, _pac.idPaciente);
-            ResultSet rs = preparedStatement.executeQuery();
+            int rs = preparedStatement.executeUpdate();
             msj = "Exito";
         } catch (Exception e) {
             msj = "Error";
