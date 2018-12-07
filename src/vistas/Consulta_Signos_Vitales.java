@@ -217,11 +217,11 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
 
         lblHeader46.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader46.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader46.setText("lbs");
+        lblHeader46.setText("cms");
 
         lblHeader48.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         lblHeader48.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader48.setText("°");
+        lblHeader48.setText("°C");
 
         txtTemperatura.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         txtTemperatura.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
@@ -256,7 +256,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
         panelSignosVLayout.setHorizontalGroup(
             panelSignosVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSignosVLayout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addGroup(panelSignosVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSignosVLayout.createSequentialGroup()
                         .addGroup(panelSignosVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -291,7 +291,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblHeader54))))
                     .addComponent(lblHeader4))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         panelSignosVLayout.setVerticalGroup(
             panelSignosVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
