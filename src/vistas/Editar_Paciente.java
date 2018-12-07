@@ -122,7 +122,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
 
         lblHeader1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblHeader1.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader1.setText("CLÍNICA UNIVERSITARIA - EDITAR MEDICAMENTO");
+        lblHeader1.setText("CLÍNICA UNIVERSITARIA - EDITAR PACIENTE");
 
         javax.swing.GroupLayout Barra_SuperiorLayout = new javax.swing.GroupLayout(Barra_Superior);
         Barra_Superior.setLayout(Barra_SuperiorLayout);
@@ -133,7 +133,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
                 .addComponent(btnHome2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHeader1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                 .addComponent(btn_close)
                 .addContainerGap())
         );
