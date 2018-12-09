@@ -158,7 +158,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor", "Motivo Consulta"
+                "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor"
             }
         ));
         tbConsultasAhora.setSelectionBackground(new java.awt.Color(0, 0, 0));
