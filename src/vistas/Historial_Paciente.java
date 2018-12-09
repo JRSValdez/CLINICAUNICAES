@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
 
@@ -26,6 +27,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
     }
     
     public Historial_Paciente(Paciente _paciente) throws SQLException {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         this.tbConsultas.setSelectionForeground(Color.WHITE);
         conn = new ConexionDB();

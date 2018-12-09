@@ -6,6 +6,7 @@ import Classes.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
     ConexionDB conn;
     
     public Consulta_Signos_Vitales() {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
     }
     

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,6 +21,7 @@ public class Ver_CIE10 extends javax.swing.JFrame {
     String[] idEnfsAntecedentes;
     
     public Ver_CIE10() throws SQLException {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         this.conn = new ConexionDB();
         cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));

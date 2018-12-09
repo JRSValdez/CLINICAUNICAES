@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +30,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
     
     public Editar_Medicamento(Home_Recepcion home,Medicamento _med) {
         try {
+            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
             initComponents();
             this.med = _med;
             this.home_recepcion = home;
@@ -40,6 +42,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
     
      public Editar_Medicamento(Home_Root home,Medicamento _med) {
         try {
+            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
             initComponents();
             this.med = _med;
             this.home_root = home;

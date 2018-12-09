@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import Classes.Usuario;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,6 +23,7 @@ public class Activar_Doctor extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
 
     public Activar_Doctor() throws SQLException {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
 
         this.tbDoc.setModel(this.conn.getDocsDes(tbDoc));

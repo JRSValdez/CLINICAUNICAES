@@ -4828,9 +4828,9 @@
                                           <Component id="lblHeader51" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblHeader46" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtCantMedicamento" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblHeader46" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

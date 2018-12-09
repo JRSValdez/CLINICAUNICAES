@@ -5,12 +5,14 @@ import Classes.Paciente;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 public class Pacientes_Historial extends javax.swing.JFrame {
 
      int xx,xy;
    int xs, ys, sbx,sby;
    ConexionDB conn;
     public Pacientes_Historial() {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         conn = new ConexionDB();
         

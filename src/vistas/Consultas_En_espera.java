@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Consultas_En_espera extends javax.swing.JFrame {
@@ -12,6 +13,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
     
     public Consultas_En_espera() throws SQLException {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         this.tbConsultasEspera.setSelectionForeground(Color.white);
         this.llenarConsultasEnEspera();

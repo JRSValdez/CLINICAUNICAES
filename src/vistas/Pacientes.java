@@ -1,6 +1,8 @@
 
 package vistas;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author JRSVALDEZ
@@ -9,6 +11,7 @@ public class Pacientes extends javax.swing.JFrame {
 
     int xx, xy;
     public Pacientes() {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
     }
     @SuppressWarnings("unchecked")

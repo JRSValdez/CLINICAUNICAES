@@ -5,6 +5,7 @@ import Classes.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +23,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
 
     public Editar_Usuario(Home_Root home, int _idUsuario) {
         try {
+            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
             initComponents();
             this.user = this.conn.getUserById(_idUsuario);
             this.home_root = home;

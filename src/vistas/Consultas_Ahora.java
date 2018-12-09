@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,6 +23,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
       
     public Consultas_Ahora() throws SQLException {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         
         this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));

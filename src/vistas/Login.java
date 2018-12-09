@@ -3,13 +3,13 @@ package vistas;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import Classes.ConexionDB;
 import Classes.Usuario;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
    ConexionDB cn = new ConexionDB();
    
     public Login() {
+        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
         initComponents();
         Date sistFecha=new Date();
         SimpleDateFormat formato=new SimpleDateFormat("dd/MMMMM/YYYY");

@@ -6,8 +6,8 @@
 package W10Style;
 
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
-import vistas.Home_Recepcion;
 import vistas.Login;
 
 /**
@@ -25,6 +25,8 @@ public class W10Style {
         try {
             UIManager.setLookAndFeel( "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
             Login main = new Login();
+            ImageIcon icon = new ImageIcon("../images/clinica_unicaes.png");
+            main.setIconImage(icon.getImage());
             main.show();
         }
         catch (ClassNotFoundException ex) {
