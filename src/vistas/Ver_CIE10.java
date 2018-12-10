@@ -21,7 +21,7 @@ public class Ver_CIE10 extends javax.swing.JFrame {
     String[] idEnfsAntecedentes;
     
     public Ver_CIE10() throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         this.conn = new ConexionDB();
         cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));

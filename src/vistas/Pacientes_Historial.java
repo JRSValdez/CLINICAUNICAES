@@ -12,7 +12,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
    int xs, ys, sbx,sby;
    ConexionDB conn;
     public Pacientes_Historial() {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         conn = new ConexionDB();
         

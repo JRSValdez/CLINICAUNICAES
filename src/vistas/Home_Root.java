@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vistas;
 
 import Classes.Carrera;
@@ -87,7 +82,7 @@ public class Home_Root extends javax.swing.JFrame {
     }
 
     public Home_Root(Usuario _user) throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
 
         conn = new ConexionDB();

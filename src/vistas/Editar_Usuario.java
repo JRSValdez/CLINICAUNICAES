@@ -23,7 +23,7 @@ public class Editar_Usuario extends javax.swing.JFrame {
 
     public Editar_Usuario(Home_Root home, int _idUsuario) {
         try {
-            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+            this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
             initComponents();
             this.user = this.conn.getUserById(_idUsuario);
             this.home_root = home;

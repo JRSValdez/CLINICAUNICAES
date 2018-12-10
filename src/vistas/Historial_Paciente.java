@@ -27,7 +27,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
     }
     
     public Historial_Paciente(Paciente _paciente) throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         this.tbConsultas.setSelectionForeground(Color.WHITE);
         conn = new ConexionDB();

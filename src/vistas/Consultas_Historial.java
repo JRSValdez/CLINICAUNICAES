@@ -9,8 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -33,7 +31,7 @@ public class Consultas_Historial extends javax.swing.JFrame {
    ConexionDB conn;
    
     public Consultas_Historial() throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         this.conn = new ConexionDB();
         this.llenarFacultad(); 

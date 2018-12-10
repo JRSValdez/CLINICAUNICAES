@@ -28,7 +28,7 @@ public class Editar_Paciente extends javax.swing.JFrame {
     
     public Editar_Paciente(Paciente _pac) {
         try {
-            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+            this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
             initComponents();
             this.pac = _pac;
             this.setValues();

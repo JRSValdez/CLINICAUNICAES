@@ -4,7 +4,6 @@ import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Paciente;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,7 +22,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
       
     public Consultas_Ahora() throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         
         this.tbConsultasAhora.setModel(conn.getConsultasAhora(this.tbConsultasAhora));

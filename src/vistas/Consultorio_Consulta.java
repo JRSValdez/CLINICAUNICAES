@@ -47,7 +47,7 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
     }
 
     public Consultorio_Consulta(Consulta _consulta, Paciente _paciente, int _idDoctor) throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         this.idDoctor = _idDoctor;
         this.cmbAntecedentessEnfCat.setModel(this.llenarComboBoxsCIE10cats("FIEBRE", "A"));

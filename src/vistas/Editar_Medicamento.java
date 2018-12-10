@@ -30,7 +30,7 @@ public class Editar_Medicamento extends javax.swing.JFrame {
     
     public Editar_Medicamento(Home_Recepcion home,Medicamento _med) {
         try {
-            this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+            this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
             initComponents();
             this.med = _med;
             this.home_recepcion = home;

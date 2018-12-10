@@ -23,7 +23,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
 
     public Expediente_Paciente(Consulta consulta, Paciente paciente) {
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         this.consulta = consulta;
         this.paciente = paciente;
         

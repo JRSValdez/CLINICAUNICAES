@@ -23,7 +23,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
     ConexionDB conn;
     
     public Consulta_Signos_Vitales() {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
     }
     

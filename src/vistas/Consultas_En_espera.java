@@ -13,7 +13,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
     ConexionDB conn = new ConexionDB();
     
     public Consultas_En_espera() throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         this.tbConsultasEspera.setSelectionForeground(Color.white);
         this.llenarConsultasEnEspera();

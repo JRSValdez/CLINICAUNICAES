@@ -58,12 +58,12 @@ public class Home_Recepcion extends javax.swing.JFrame {
     int[] idDoctor;
 
     public Home_Recepcion() {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
     }
 
     public Home_Recepcion(Usuario _user) throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         
         conn = new ConexionDB();

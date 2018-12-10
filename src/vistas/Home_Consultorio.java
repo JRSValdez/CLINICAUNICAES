@@ -36,7 +36,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
     }
     
     public Home_Consultorio(Usuario _user) throws SQLException {
-        this.setIconImage(new ImageIcon(getClass().getResource("../images/clinica_unicaes.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         conn = new ConexionDB();
         user = _user;
