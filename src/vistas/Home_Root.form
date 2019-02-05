@@ -851,9 +851,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="lblDoctores" alignment="1" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
                                           <Component id="jLabel49" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="34" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel50" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -1020,9 +1020,9 @@
                                       </Group>
                                       <Component id="jLabel54" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                                          <EmptySpace pref="42" max="32767" attributes="0"/>
                                           <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>

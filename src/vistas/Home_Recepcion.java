@@ -606,7 +606,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btn_farmacia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_pac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                    .addComponent(btn_sols, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
                 .addContainerGap())
         );
         BotoneraLayout.setVerticalGroup(
@@ -638,7 +638,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -728,11 +728,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMedicamento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 50, Short.MAX_VALUE)
+                        .addGap(0, 48, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel15)
                             .addComponent(jLabel12))
-                        .addGap(0, 50, Short.MAX_VALUE)))
+                        .addGap(0, 48, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -775,7 +775,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -815,7 +815,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -911,7 +911,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addComponent(lblMedxVencer)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAlertaCant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -941,9 +941,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
         Tab_homeLayout.setHorizontalGroup(
             Tab_homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Tab_homeLayout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
+                .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(lblFecha)
                 .addGap(56, 56, 56))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Tab_homeLayout.createSequentialGroup()
@@ -1026,6 +1026,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbMasculino);
         rdbMasculino.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbMasculino.setForeground(new java.awt.Color(255, 255, 255));
+        rdbMasculino.setSelected(true);
         rdbMasculino.setText("Masculino");
 
         rdbFemenino.setBackground(new java.awt.Color(102, 0, 0));
@@ -1167,12 +1168,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         radiosSolicitud.add(rbUrbanoC);
         rbUrbanoC.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rbUrbanoC.setForeground(new java.awt.Color(255, 255, 255));
+        rbUrbanoC.setSelected(true);
         rbUrbanoC.setText("Urbano");
-        rbUrbanoC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbUrbanoCActionPerformed(evt);
-            }
-        });
 
         rbRuralC.setBackground(new java.awt.Color(102, 0, 0));
         radiosSolicitud.add(rbRuralC);
@@ -1236,7 +1233,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel34Layout.setHorizontalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel34Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1275,7 +1272,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cboCarreraCon, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel34Layout.setVerticalGroup(
             jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1329,7 +1326,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelEstNuevoLayout.setVerticalGroup(
@@ -1344,7 +1341,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAggConPacNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
+                    .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, 309, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1505,13 +1502,13 @@ public class Home_Recepcion extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(352, Short.MAX_VALUE)
+                .addContainerGap(357, Short.MAX_VALUE)
                 .addComponent(btnConsultasEspera)
                 .addGap(49, 49, 49)
                 .addComponent(btnConsultasAten)
                 .addGap(31, 31, 31)
                 .addComponent(btnHistorialCon)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1554,7 +1551,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(jPanelEstNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         Contenedor.addTab("CONSULTAS", Tab_Cons);
@@ -1616,7 +1613,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         buttonGroup1.add(rdbFemenino1);
         rdbFemenino1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         rdbFemenino1.setForeground(new java.awt.Color(255, 255, 255));
-        rdbFemenino1.setSelected(true);
         rdbFemenino1.setText("Femenino");
         rdbFemenino1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1872,9 +1868,9 @@ public class Home_Recepcion extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -2551,7 +2547,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         rdbExistSolicitud.setBackground(new java.awt.Color(102, 0, 0));
         radiosSolicitud.add(rdbExistSolicitud);
         rdbExistSolicitud.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdbExistSolicitud.setSelected(true);
         rdbExistSolicitud.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rdbExistSolicitud.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -3239,7 +3234,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -3424,10 +3419,6 @@ public class Home_Recepcion extends javax.swing.JFrame {
         this.Contenedor.setMinimumSize(new Dimension(a, this.Contenedor.getWidth()));
     }//GEN-LAST:event_btn_maximizeMouseClicked
 
-    private void rbUrbanoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbUrbanoCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbUrbanoCActionPerformed
-
     private void rbzonaUrbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbzonaUrbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbzonaUrbActionPerformed
@@ -3562,6 +3553,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAggConsPacExistenteMouseClicked
 
+    
+    String[] mensaje_consulta;
     private void btnAggConPacNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAggConPacNuevoMouseClicked
 
         Paciente pac = new Paciente();
@@ -3598,23 +3591,14 @@ public class Home_Recepcion extends javax.swing.JFrame {
             String resultado = "";
             try {
                 resultado = conn.aggPaciente(pac);
-                String mensaje[] = resultado.split(",");
-                this.txtCarnetC.setText("");
-                this.txtApellidoC.setText("");
-                this.txtCelularC.setText("");
-                this.txtDireccionC.setText("");
-                this.txtEmergenciaC.setText("");
-                this.txtFechanacC.setText("");
-                this.txtTelEmergenciaC.setText("");
-                this.txtNombreC.setText("");
-                this.txtTelefonoC.setText("");
-
+                mensaje_consulta = resultado.split(",");
+                
                 Object[] opciones = {"Aceptar", "Cancelar"};
                 int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Desea agregar esta consulta?", "Advertencia",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
                 if (eleccion == JOptionPane.YES_OPTION) {
-                    int idPaciente = Integer.parseInt(mensaje[1]);
+                    int idPaciente = Integer.parseInt(mensaje_consulta[1]);
                     Consulta consulta;
                     Paciente paciente;
                     try {
@@ -3625,6 +3609,15 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, "Agregada exitosamente");
                             Consulta_Signos_Vitales form = new Consulta_Signos_Vitales(consulta, paciente);
                             form.setVisible(true);
+                            this.txtCarnetC.setText("");
+                            this.txtApellidoC.setText("");
+                            this.txtCelularC.setText("");
+                            this.txtDireccionC.setText("");
+                            this.txtEmergenciaC.setText("");
+                            this.txtFechanacC.setText("");
+                            this.txtTelEmergenciaC.setText("");
+                            this.txtNombreC.setText("");
+                            this.txtTelefonoC.setText("");
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Error al agregar consulta ");
                         }
@@ -3635,9 +3628,11 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                JOptionPane.showConfirmDialog(this, ex.toString());
+                JOptionPane.showMessageDialog(this, ex.toString());
+            } catch (Exception ex){
+                JOptionPane.showMessageDialog(this, mensaje_consulta[0]);
             }
-            JOptionPane.showMessageDialog(this, resultado);
+            //JOptionPane.showMessageDialog(this, resultado);
         } else {
             JOptionPane.showMessageDialog(this, "ERROR: Revise que no existan campos requeridos vacios");
         }

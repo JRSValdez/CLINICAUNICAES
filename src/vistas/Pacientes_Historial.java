@@ -298,7 +298,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
 
         lblHeader5.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblHeader5.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader5.setText("CLÍNICA UNIVERSITARIA - RECEPCIÓN ");
+        lblHeader5.setText("CLÍNICA UNIVERSITARIA");
 
         javax.swing.GroupLayout Barra_Superior2Layout = new javax.swing.GroupLayout(Barra_Superior2);
         Barra_Superior2.setLayout(Barra_Superior2Layout);

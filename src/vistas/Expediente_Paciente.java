@@ -1,10 +1,20 @@
-
 package vistas;
 
+import Classes.ConexionDB;
 import Classes.Consulta;
 import Classes.Paciente;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -12,11 +22,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Expediente_Paciente extends javax.swing.JFrame {
 
-    int xx, xy,xs, ys, sbx,sby;
-    
+    int xx, xy, xs, ys, sbx, sby;
+
     Consulta consulta;
     Paciente paciente;
-    
+    ConexionDB conn;
+
     public Expediente_Paciente() {
         initComponents();
     }
@@ -26,57 +37,63 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         this.consulta = consulta;
         this.paciente = paciente;
-        
+
         this.setValues();
     }
 
-    private void setValues(){
+    private void setValues() {
         this.lblNombre.setText(this.paciente.nombre);
         this.lblPacienteTitulo.setText(this.paciente.nombre);
         this.lblFechaCons.setText(this.consulta.fecha);
         this.lblAtendidoPo.setText(this.consulta.doctor);
         this.lblMotivo.setText(this.consulta.motivo);
-        
+
         this.lblPeso.setText(this.consulta.peso);
         this.lblTalla.setText(this.consulta.talla);
         this.lblTemp.setText("ESTATICA ");
         this.lblPulso.setText(this.consulta.pulso);
         this.lblFrecCar.setText(this.consulta.frec_card);
         this.lblPresArt.setText(this.consulta.pres_art);
-        
+
         this.lblCabeza.setText(this.consulta.ef_cabeza);
         this.lblCuello.setText(this.consulta.ef_cuello);
         this.lblTorax.setText(this.consulta.ef_torax);
         this.lblAbdomen.setText(this.consulta.ef_abdomen);
         this.lblExtremidades.setText(this.consulta.ef_extremidades);
-        
+
         this.txtAreaRecomendaciones.setText(this.consulta.recomendaciones);
         this.txtAreaTratamiento.setText(this.consulta.tratamiento);
-        
+
         //lllenar JTBALES 
         DefaultTableModel modelAntecedentes = (DefaultTableModel) this.jtAntecedentes.getModel();
-        for (int i = 0; i< this.consulta.antecedente.rowAntecedente.length; i++){
-            if (this.consulta.antecedente.rowAntecedente[i] != null){
+        for (int i = 0; i < this.consulta.antecedente.rowAntecedente.length; i++) {
+            if (this.consulta.antecedente.rowAntecedente[i] != null) {
                 modelAntecedentes.addRow((String[]) this.consulta.antecedente.rowAntecedente[i]);
-            } else break;
+            } else {
+                break;
+            }
         }
-        
+
         DefaultTableModel modelDiagnostico = (DefaultTableModel) this.jtDiagnosticos.getModel();
-        for (int i = 0; i< this.consulta.diagnostico.rowDiagnostico.length; i++){
-            if (this.consulta.diagnostico.rowDiagnostico[i] != null){
+        for (int i = 0; i < this.consulta.diagnostico.rowDiagnostico.length; i++) {
+            if (this.consulta.diagnostico.rowDiagnostico[i] != null) {
                 modelDiagnostico.addRow((String[]) this.consulta.diagnostico.rowDiagnostico[i]);
-            } else break;
+            } else {
+                break;
+            }
         }
-        
+
         DefaultTableModel modelReceta = (DefaultTableModel) this.jtReceta.getModel();
-        for (int i = 0; i< this.consulta.receta.rowReceta.length; i++){
-            if (this.consulta.receta.rowReceta[i] != null){
+        for (int i = 0; i < this.consulta.receta.rowReceta.length; i++) {
+            if (this.consulta.receta.rowReceta[i] != null) {
                 modelReceta.addRow((String[]) this.consulta.receta.rowReceta[i]);
-            } else break;
+            } else {
+                break;
+            }
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,6 +159,8 @@ public class Expediente_Paciente extends javax.swing.JFrame {
         txtAreaRecomendaciones = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAreaTratamiento = new javax.swing.JTextArea();
+        btnGenReporteExpediente = new javax.swing.JLabel();
+        btnGenReporteReceta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -657,7 +676,7 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                 .addComponent(lblHeader83)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHeader81)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -778,27 +797,65 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        btnGenReporteExpediente.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenReporteExpediente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnGenReporteExpediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lista.png"))); // NOI18N
+        btnGenReporteExpediente.setText("IMPRIMIR EXPEDIENTE");
+        btnGenReporteExpediente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btnGenReporteExpediente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnGenReporteExpediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenReporteExpediente.setFocusable(false);
+        btnGenReporteExpediente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnGenReporteExpediente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGenReporteExpedienteMouseClicked(evt);
+            }
+        });
+
+        btnGenReporteReceta.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenReporteReceta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnGenReporteReceta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/solmedicamento.png"))); // NOI18N
+        btnGenReporteReceta.setText("IMPRIMIR RECETA");
+        btnGenReporteReceta.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btnGenReporteReceta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 1, true));
+        btnGenReporteReceta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenReporteReceta.setFocusable(false);
+        btnGenReporteReceta.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnGenReporteReceta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGenReporteRecetaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(Barra_Superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnGenReporteExpediente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(btnGenReporteReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(107, 107, 107)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(Barra_Superior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -816,8 +873,12 @@ public class Expediente_Paciente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGenReporteExpediente)
+                            .addComponent(btnGenReporteReceta))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -845,18 +906,60 @@ public class Expediente_Paciente extends javax.swing.JFrame {
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx, y-xy);
+        this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_Barra_SuperiorMouseDragged
 
     private void Barra_SuperiorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMousePressed
-        this.setOpacity((float)0.8);
-        xx=evt.getX();
+        this.setOpacity((float) 0.8);
+        xx = evt.getX();
         xy = evt.getY();
     }//GEN-LAST:event_Barra_SuperiorMousePressed
 
     private void Barra_SuperiorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseReleased
-        this.setOpacity((float)1.0);
+        this.setOpacity((float) 1.0);
     }//GEN-LAST:event_Barra_SuperiorMouseReleased
+
+    private void btnGenReporteExpedienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteExpedienteMouseClicked
+        //REPORTE DE EXPEDIENTE SELECCIONADO
+        int idConsulta = this.consulta.idConsulta;
+        Map parameters = new HashMap();
+        //A nuestro informe de prueba le vamos a enviar la fecha de hoy
+        parameters.put("idConsulta", idConsulta);
+        JasperReport reporte; //Creo el objeto reporte
+        // Ubicacion del Reporte
+        String path = ".\\src\\Reportes\\reporte_expediente.jasper";
+        try {
+            this.conn = new ConexionDB();
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGenReporteExpedienteMouseClicked
+
+    private void btnGenReporteRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGenReporteRecetaMouseClicked
+        //REPORTE DE RECETA DEL EXPEDIENTE SELECCIONADO
+        int idConsulta = this.consulta.idConsulta;
+        Map parameters = new HashMap();
+        //A nuestro informe de prueba le vamos a enviar la fecha de hoy
+        parameters.put("idConsulta", idConsulta);
+        JasperReport reporte; //Creo el objeto reporte
+        // Ubicacion del Reporte
+        String path = ".\\src\\Reportes\\reporte_receta.jasper";
+        try {
+            this.conn = new ConexionDB();
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Cargo el reporte al objeto
+            JasperPrint jprint = JasperFillManager.fillReport(path, parameters, this.conn.conn); //Llenado del Reporte con Tres parametros ubicacion,parametros,conexion a la base de datos
+            JasperViewer viewer = new JasperViewer(jprint, false); //Creamos la vista del Reporte
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Le agregamos que se cierre solo el reporte cuando lo cierre el usuario
+            viewer.setVisible(true); //Inicializamos la vista del Reporte
+        } catch (JRException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGenReporteRecetaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -895,6 +998,8 @@ public class Expediente_Paciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Barra_Superior;
+    private javax.swing.JLabel btnGenReporteExpediente;
+    private javax.swing.JLabel btnGenReporteReceta;
     private javax.swing.JButton btnHome2;
     private javax.swing.JLabel btn_close;
     private javax.swing.JPanel jPanel1;
