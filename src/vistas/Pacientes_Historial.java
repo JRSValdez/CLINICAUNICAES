@@ -39,7 +39,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader49 = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
         lblHeader50 = new javax.swing.JLabel();
-        txtCarnet = new javax.swing.JTextField();
+        txtCarnet = new javax.swing.JFormattedTextField();
         lblHeader17 = new javax.swing.JLabel();
         rbProyec_social = new javax.swing.JRadioButton();
         rbFemenino = new javax.swing.JRadioButton();
@@ -97,8 +97,12 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         lblHeader50.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader50.setText("CARNET:");
 
-        txtCarnet.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 102)));
+        txtCarnet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
+        try {
+            txtCarnet.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-AA-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,9 +119,9 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                             .addComponent(lblHeader49, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblHeader50, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(txtCarnet))))
                 .addGap(0, 56, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -133,8 +137,8 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                     .addComponent(txtApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCarnet)
-                    .addComponent(lblHeader50))
+                    .addComponent(lblHeader50)
+                    .addComponent(txtCarnet, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -634,7 +638,7 @@ if (this.tbPacientes.getSelectedRows().length == 1)
     private javax.swing.JRadioButton rbProyec_social;
     private javax.swing.JTable tbPacientes;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtCarnet;
+    private javax.swing.JFormattedTextField txtCarnet;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
