@@ -491,7 +491,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
     query=query+" and pac_apellido='"+apellido+"'";
     }
     
-    if (carnet.trim().length()>0){
+    if (!carnet.equals("    -  -   ")){
     query=query+" and pac_carne='"+carnet+"'";
     }
     
