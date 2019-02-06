@@ -2,6 +2,7 @@ package vistas;
 
 import Classes.ConexionDB;
 import Classes.Paciente;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +16,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         initComponents();
         conn = new ConexionDB();
-        
+        this.tbPacientes.setSelectionForeground(Color.white);
          try {
              this.tbPacientes.setModel(conn.getHistorialPaciente(tbPacientes,"no"));
          } catch (SQLException ex) {
@@ -334,6 +335,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(102, 0, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
+        tbPacientes.setBackground(new java.awt.Color(204, 204, 204));
         tbPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -350,6 +352,7 @@ public class Pacientes_Historial extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbPacientes.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tbPacientes);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

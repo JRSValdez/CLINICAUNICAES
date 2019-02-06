@@ -154,6 +154,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas atendidas Hoy");
 
+        tbConsultasAhora.setBackground(new java.awt.Color(204, 204, 204));
         tbConsultasAhora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -161,7 +162,15 @@ public class Consultas_Ahora extends javax.swing.JFrame {
             new String [] {
                 "ID", "Carnet", "Actividad", "Nombre", "Edad", "Facultad", "Fecha Consulta", "Doctor"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbConsultasAhora.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasAhora.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tbConsultasAhora);

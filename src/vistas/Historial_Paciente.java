@@ -153,6 +153,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(102, 0, 0));
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 102), 3, true));
 
+        tbConsultas.setBackground(new java.awt.Color(204, 204, 204));
         tbConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -185,6 +185,7 @@ public class Consultas_En_espera extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Consultas en Espera");
 
+        tbConsultasEspera.setBackground(new java.awt.Color(204, 204, 204));
         tbConsultasEspera.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         tbConsultasEspera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
