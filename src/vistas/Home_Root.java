@@ -748,12 +748,11 @@ public class Home_Root extends javax.swing.JFrame {
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos que requieren atención:");
 
+        jTAlertas.setAutoCreateRowSorter(true);
+        jTAlertas.setBackground(new java.awt.Color(204, 204, 204));
         jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Medicamento", "Cantidad", "Fecha Vencimiento", "Vence (días)"
@@ -774,6 +773,8 @@ public class Home_Root extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTAlertas.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTAlertas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTAlertas);
 
         btnAlertaTotal.setText("Todas");
@@ -1272,6 +1273,7 @@ public class Home_Root extends javax.swing.JFrame {
         tbDoctor.setGridColor(new java.awt.Color(255, 255, 153));
         tbDoctor.setRowHeight(25);
         tbDoctor.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbDoctor.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbDoctor.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbDoctor.getTableHeader().setReorderingAllowed(false);
         jScrollPane6.setViewportView(tbDoctor);
@@ -1537,6 +1539,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader56.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader56.setText("LISTA DE MEDICAMENTOS");
 
+        jTFarmacia.setBackground(new java.awt.Color(204, 204, 204));
         jTFarmacia.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTFarmacia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1563,6 +1566,7 @@ public class Home_Root extends javax.swing.JFrame {
         });
         jTFarmacia.setRowHeight(20);
         jTFarmacia.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTFarmacia.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTFarmacia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane12.setViewportView(jTFarmacia);
 
@@ -1954,6 +1958,7 @@ public class Home_Root extends javax.swing.JFrame {
         lblHeader57.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader57.setText("LISTA DE USUARIOS");
 
+        tbUsuarios.setAutoCreateRowSorter(true);
         tbUsuarios.setBackground(new java.awt.Color(204, 204, 204));
         tbUsuarios.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -1975,6 +1980,7 @@ public class Home_Root extends javax.swing.JFrame {
         tbUsuarios.setGridColor(new java.awt.Color(255, 255, 153));
         tbUsuarios.setRowHeight(25);
         tbUsuarios.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbUsuarios.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbUsuarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tbUsuarios.getTableHeader().setReorderingAllowed(false);
         jScrollPane5.setViewportView(tbUsuarios);
@@ -4161,6 +4167,7 @@ public class Home_Root extends javax.swing.JFrame {
         tbEmp.setGridColor(new java.awt.Color(255, 255, 153));
         tbEmp.setRowHeight(25);
         tbEmp.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbEmp.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbEmp.getTableHeader().setReorderingAllowed(false);
         jScrollPane7.setViewportView(tbEmp);
 

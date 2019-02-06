@@ -247,7 +247,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
             SideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
+                .addComponent(Botonera, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -320,6 +320,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblMedxVencer.setForeground(new java.awt.Color(255, 255, 255));
         lblMedxVencer.setText("Medicamentos que requieren atención:");
 
+        jTAlertas.setBackground(new java.awt.Color(204, 204, 204));
         jTAlertas.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jTAlertas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -436,7 +437,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -476,7 +477,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblConsult_espera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel14Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel20)
@@ -492,7 +493,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblConsult_espera)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -565,7 +566,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnAtender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/accept.png"))); // NOI18N
         btnAtender.setText("ATENDER");
         btnAtender.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAtender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAtender.setFocusable(false);
         btnAtender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAtender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -580,7 +581,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnHistorialConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/history.png"))); // NOI18N
         btnHistorialConsultas.setText("HISTORIAL");
         btnHistorialConsultas.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnHistorialConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHistorialConsultas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnHistorialConsultas.setFocusable(false);
         btnHistorialConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnHistorialConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -595,7 +596,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnConsultasAhora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/today.png"))); // NOI18N
         btnConsultasAhora.setText("ATENDIDAS HOY");
         btnConsultasAhora.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnConsultasAhora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConsultasAhora.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnConsultasAhora.setFocusable(false);
         btnConsultasAhora.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnConsultasAhora.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -610,7 +611,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnNoQuiso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clock.png"))); // NOI18N
         btnNoQuiso.setText("NO QUISO ESPERAR");
         btnNoQuiso.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNoQuiso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNoQuiso.setFocusable(false);
         btnNoQuiso.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNoQuiso.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -625,7 +626,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         btnSeRetiro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnSeRetiro.setText("SE RETIRÓ SIN MOTIVOS");
         btnSeRetiro.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSeRetiro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSeRetiro.setFocusable(false);
         btnSeRetiro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSeRetiro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -703,7 +704,6 @@ public class Home_Consultorio extends javax.swing.JFrame {
         tbConsultasEspera.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tbConsultasEspera.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tbConsultasEspera.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tbConsultasEspera.setShowHorizontalLines(true);
         tbConsultasEspera.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbConsultasEspera);
         tbConsultasEspera.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -909,6 +909,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
         lblHeader56.setForeground(new java.awt.Color(255, 255, 255));
         lblHeader56.setText("LISTA DE MEDICAMENTOS");
 
+        jtMedicamentos.setBackground(new java.awt.Color(204, 204, 204));
         jtMedicamentos.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jtMedicamentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -934,6 +935,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
             }
         });
         jtMedicamentos.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jtMedicamentos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jtMedicamentos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane9.setViewportView(jtMedicamentos);
         if (jtMedicamentos.getColumnModel().getColumnCount() > 0) {
@@ -1092,7 +1094,7 @@ public class Home_Consultorio extends javax.swing.JFrame {
                 .addComponent(Barra_Superior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                    .addComponent(SideBar, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
