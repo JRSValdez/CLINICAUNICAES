@@ -186,15 +186,37 @@ public class ConexionDB {
 
         return paciente;
     }
+    
+    public String[] getTallaPeso(int _idPaciente) throws SQLException {
+        Statement stmt = conn.createStatement();
+        String query = "SELECT TALLA,PESO FROM DET_CONSULTA D " +
+                        " INNER JOIN CONSULTA C ON C.IDCONSULTA = D.IDCONSULTA " +
+                        " WHERE C.IDPACIENTE = ? " +
+                        " ORDER BY C.IDCONSULTA DESC " +
+                        " LIMIT 1";
+        PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        preparedStatement.setInt(1, _idPaciente);
+        ResultSet rs = preparedStatement.executeQuery();
+        String[] tallapeso = new String[2];
+        while (rs.next()) {
+            tallapeso[0] = rs.getString(1);
+            tallapeso[1] = rs.getString(2);
+        }
+        return tallapeso;
+    }
 
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException {
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
         String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y'), C.IDUSUARIO, DC.EF_CABEZA,"
-                + "DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, "
-                + "DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO FROM CONSULTA C "
-                + "LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
-                + "WHERE C.IDCONSULTA = ?";
+                + " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, "
+                + " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO, "
+                + " CONCAT(D.DOC_NOMBRE , ' ' , D.DOC_APELLIDO) DOCTOR, "
+                + " CONCAT(P.PAC_NOMBRE , ' ' , P.PAC_APELLIDO) PACIENTE FROM CONSULTA C "
+                + " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
+                + " LEFT OUTER JOIN DOCTOR D ON D.IDDOCTOR = C.IDDOCTOR "
+                + " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE "
+                + " WHERE C.IDCONSULTA = ?";
         PreparedStatement preparedStatement = conn.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         preparedStatement.setInt(1, _idConsulta);
         ResultSet rs = preparedStatement.executeQuery();
@@ -218,7 +240,9 @@ public class ConexionDB {
             consulta.motivo = rs.getString(17);
             consulta.recomendaciones = rs.getString(18);
             consulta.tratamiento = rs.getString(19);
-
+            consulta.doctor = rs.getString(20);
+            consulta.paciente = rs.getString(21);
+            
             consulta.antecedente = this.getAntecedentes(consulta.idConsulta);
             consulta.diagnostico = this.getDiagnosticos(consulta.idConsulta);
             consulta.receta = this.getReceta(consulta.idConsulta);

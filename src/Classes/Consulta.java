@@ -19,6 +19,7 @@ public class Consulta {
     public Diagnostico diagnostico;
     public Antecedente antecedente;
     public String doctor;
+    public String paciente;
     
     public String motivo;
     public String ef_cabeza;

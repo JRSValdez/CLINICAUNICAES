@@ -25,25 +25,23 @@ public class Expediente_Paciente extends javax.swing.JFrame {
     int xx, xy, xs, ys, sbx, sby;
 
     Consulta consulta;
-    Paciente paciente;
     ConexionDB conn;
 
     public Expediente_Paciente() {
         initComponents();
     }
 
-    public Expediente_Paciente(Consulta consulta, Paciente paciente) {
+    public Expediente_Paciente(Consulta consulta) {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("clinica_unicaes.png")).getImage());
         this.consulta = consulta;
-        this.paciente = paciente;
 
         this.setValues();
     }
 
     private void setValues() {
-        this.lblNombre.setText(this.paciente.nombre);
-        this.lblPacienteTitulo.setText(this.paciente.nombre);
+        this.lblNombre.setText(this.consulta.paciente);
+        this.lblPacienteTitulo.setText(this.consulta.paciente);
         this.lblFechaCons.setText(this.consulta.fecha);
         this.lblAtendidoPo.setText(this.consulta.doctor);
         this.lblMotivo.setText(this.consulta.motivo);

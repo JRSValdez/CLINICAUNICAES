@@ -204,7 +204,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="panelSignosV" pref="1047" max="32767" attributes="0"/>
+                              <Component id="panelSignosV" pref="1039" max="32767" attributes="0"/>
                               <Component id="panelDatosPac" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -819,7 +819,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel4" pref="1047" max="32767" attributes="0"/>
+                          <Component id="jPanel4" pref="1039" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1183,7 +1183,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel5" pref="1047" max="32767" attributes="0"/>
+                          <Component id="jPanel5" pref="1039" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1273,7 +1273,7 @@
                                   <Component id="jScrollPane5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblHeader10" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="38" max="32767" attributes="0"/>
+                              <EmptySpace pref="35" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jScrollPane11" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblHeader14" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1508,7 +1508,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel7" pref="1047" max="32767" attributes="0"/>
+                          <Component id="jPanel7" pref="1039" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1947,7 +1947,7 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jPanel10" alignment="1" pref="1022" max="32767" attributes="0"/>
+                                      <Component id="jPanel10" alignment="1" pref="1010" max="32767" attributes="0"/>
                                       <Component id="jPanel11" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -2643,8 +2643,8 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jPanel9" alignment="0" pref="996" max="32767" attributes="0"/>
-                                          <Component id="jPanel12" alignment="0" pref="996" max="32767" attributes="0"/>
+                                          <Component id="jPanel9" alignment="0" pref="980" max="32767" attributes="0"/>
+                                          <Component id="jPanel12" alignment="0" pref="980" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
@@ -2702,7 +2702,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblHeader16" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jScrollPane13" pref="101" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane13" pref="100" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -2786,7 +2786,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblHeader17" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtTratamiento" pref="101" max="32767" attributes="0"/>
+                                          <Component id="txtTratamiento" pref="100" max="32767" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>

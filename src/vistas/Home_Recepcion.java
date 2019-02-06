@@ -3543,7 +3543,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                     int idConsulta = this.conn.aggConsulta(idPaciente, this.user.idUsuario);
                     if (idConsulta > 0) {
                         consulta = this.conn.getConsulta(idConsulta);
-                        paciente = this.conn.getPaciente(consulta.idPaciente);
+                        paciente = this.conn.getPaciente(idPaciente);
                         Consulta_Signos_Vitales form = new Consulta_Signos_Vitales(consulta, paciente);
                         form.setVisible(true);
                         //JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");

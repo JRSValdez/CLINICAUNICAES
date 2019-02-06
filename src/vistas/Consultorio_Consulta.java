@@ -1835,8 +1835,10 @@ public class Consultorio_Consulta extends javax.swing.JFrame {
             try {
                 //Se agrega la consulta a través de un método en la clase conexionDB
                 String mensaje = this.conn.aggDetConsulta(consulta, this.idDoctor);
-                JOptionPane.showMessageDialog(rootPane, mensaje);
-                this.dispose();
+                JOptionPane.showMessageDialog(this, mensaje);
+                if(!mensaje.equals("ERROR")){
+                    this.dispose();
+                }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, "Ah ocurrido un error, revise el formato de sus entradas de texto o su tamaño");
                 Logger.getLogger(Consultorio_Consulta.class.getName()).log(Level.SEVERE, null, ex);

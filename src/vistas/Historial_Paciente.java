@@ -44,8 +44,8 @@ public class Historial_Paciente extends javax.swing.JFrame {
                     try {
                         int idConsulta = Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
                         Consulta consulta = conn.getConsulta(idConsulta);
-                        Paciente paciente = conn.getPaciente(consulta.idConsulta);
-                        Expediente_Paciente expediente = new Expediente_Paciente(consulta,paciente);
+                        //Paciente paciente = conn.getPaciente(consulta.idPaciente);
+                        Expediente_Paciente expediente = new Expediente_Paciente(consulta);
                         expediente.setVisible(true);
                     } catch (SQLException ex) {
                         Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,7 +121,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
 
         lblHeader5.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
         lblHeader5.setForeground(new java.awt.Color(255, 255, 255));
-        lblHeader5.setText("CLÍNICA UNIVERSITARIA - RECEPCIÓN ");
+        lblHeader5.setText("CLÍNICA UNIVERSITARIA");
 
         javax.swing.GroupLayout Barra_Superior2Layout = new javax.swing.GroupLayout(Barra_Superior2);
         Barra_Superior2.setLayout(Barra_Superior2Layout);
@@ -134,7 +134,7 @@ public class Historial_Paciente extends javax.swing.JFrame {
                 .addComponent(lblHeader5)
                 .addGap(291, 291, 291)
                 .addComponent(lblHeader4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 436, Short.MAX_VALUE)
                 .addComponent(btn_close2)
                 .addGap(19, 19, 19))
         );

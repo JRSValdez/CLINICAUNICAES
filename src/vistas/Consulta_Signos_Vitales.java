@@ -27,7 +27,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Consulta_Signos_Vitales(Consulta _consulta, Paciente _paciente) {
+    public Consulta_Signos_Vitales(Consulta _consulta, Paciente _paciente) throws SQLException {
         initComponents();
         this.conn = new ConexionDB();
         this.consulta = _consulta;
@@ -37,6 +37,10 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
         this.lblNombre.setText(this.paciente.nombre);
         this.lblNombrePac.setText("Paciente: " +this.paciente.nombre);
         this.lblEdad.setText(this.paciente.edad);
+        
+        String[] tallapeso = this.conn.getTallaPeso(this.paciente.idPaciente);
+        this.txtTalla.setText(tallapeso[0]);
+        this.txtPeso.setText(tallapeso[1]);
     }
 
     @SuppressWarnings("unchecked")

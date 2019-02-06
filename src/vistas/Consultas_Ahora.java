@@ -40,8 +40,7 @@ public class Consultas_Ahora extends javax.swing.JFrame {
                     try {
                         int idConsulta = Integer.parseInt(table.getModel().getValueAt(table.getSelectedRow(), 0).toString());
                         Consulta consulta = conn.getConsulta(idConsulta);
-                        Paciente paciente = conn.getPaciente(consulta.idConsulta);
-                        Expediente_Paciente expediente = new Expediente_Paciente(consulta,paciente);
+                        Expediente_Paciente expediente = new Expediente_Paciente(consulta);
                         expediente.setVisible(true);
                     } catch (SQLException ex) {
                         Logger.getLogger(Consultas_Historial.class.getName()).log(Level.SEVERE, null, ex);
