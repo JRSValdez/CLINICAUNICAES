@@ -37,6 +37,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
         this.lblNombre.setText(this.paciente.nombre);
         this.lblNombrePac.setText("Paciente: " +this.paciente.nombre);
         this.lblEdad.setText(this.paciente.edad);
+        this.lblActividad.setText(this.paciente.actividad);
         
         String[] tallapeso = this.conn.getTallaPeso(this.paciente.idPaciente);
         this.txtTalla.setText(tallapeso[0]);
@@ -489,7 +490,7 @@ public class Consulta_Signos_Vitales extends javax.swing.JFrame {
         consulta.temperatura = this.txtTemperatura.getText();
 
         //verifica cada campo segun su tipo, si hay alguna validación mala la devolverá en la variable validacion
-        String validacion = consulta.validarConsulta();
+        String validacion = consulta.validarConsulta(0);
         // si la variable no tiene nada, las validaciones son correctas
         if(validacion.equals("")){
             try {

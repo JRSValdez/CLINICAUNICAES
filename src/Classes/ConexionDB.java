@@ -37,7 +37,7 @@ public class ConexionDB {
     public void conectar() {
         try {
             String url = "jdbc:mysql://localhost:3306/clinica_unicaes";
-            conn = DriverManager.getConnection(url, "clinicau01", "uniccli1515");
+            conn = DriverManager.getConnection(url, "clinicau02", "uniccli1515");
             st = conn.createStatement();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No ha sido posible connectarse \n" + e);
@@ -208,11 +208,11 @@ public class ConexionDB {
     public Consulta getConsulta(int _idConsulta) throws SQLException, ParseException {
         Consulta consulta = new Consulta();
         Statement stmt = conn.createStatement();
-        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y'), C.IDUSUARIO, DC.EF_CABEZA,"
+        String query = "SELECT C.IDCONSULTA, C.IDPACIENTE, C.IDDOCTOR, DATE_FORMAT(C.CONS_FECHA,'%d-%m-%Y %H:%i'), C.IDUSUARIO, DC.EF_CABEZA,"
                 + " DC.EF_ABDOMEN, DC.EF_CUELLO, DC.EF_TORAX, DC.EF_EXTREMIDADES, DC.FREC_CAR, DC.PRES_ART, "
                 + " DC.PESO, DC.TALLA, DC.PULSO, DC.TEMP, DC.MOTIVO, DC.RECOMENDACION, DC.TRATAMIENTO, "
                 + " CONCAT(D.DOC_NOMBRE , ' ' , D.DOC_APELLIDO) DOCTOR, "
-                + " CONCAT(P.PAC_NOMBRE , ' ' , P.PAC_APELLIDO) PACIENTE FROM CONSULTA C "
+                + " CONCAT(P.PAC_NOMBRE , ' ' , P.PAC_APELLIDO) PACIENTE, PRESENTE_ENF FROM CONSULTA C "
                 + " LEFT OUTER JOIN DET_CONSULTA DC ON DC.IDCONSULTA = C.IDCONSULTA "
                 + " LEFT OUTER JOIN DOCTOR D ON D.IDDOCTOR = C.IDDOCTOR "
                 + " INNER JOIN PACIENTES P ON P.IDPACIENTE = C.IDPACIENTE "
@@ -242,6 +242,7 @@ public class ConexionDB {
             consulta.tratamiento = rs.getString(19);
             consulta.doctor = rs.getString(20);
             consulta.paciente = rs.getString(21);
+            consulta.presenta_enf = rs.getString(22);
             
             consulta.antecedente = this.getAntecedentes(consulta.idConsulta);
             consulta.diagnostico = this.getDiagnosticos(consulta.idConsulta);
@@ -469,11 +470,12 @@ public class ConexionDB {
 
     public String aggDetConsulta(Consulta _consulta, int _idDoctor) throws SQLException {
         // agregar la consulta con el detalle de consulta con el procedimiento almecenado
-        CallableStatement cst = this.conn.prepareCall("call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        CallableStatement cst = this.conn.prepareCall("call  AGG_DET_CONSULTA(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         // Parametros de entrada
         cst.setInt("PIDCONSULTA", _consulta.idConsulta);
         cst.setInt("PIDDOCTOR", _idDoctor);
         cst.setString("PEF_CABEZA", _consulta.ef_cabeza);
+        cst.setString("PPRESENTE_ENF", _consulta.presenta_enf);
         cst.setString("PEF_CUELLO", _consulta.ef_cuello);
         cst.setString("PEF_TORAX", _consulta.ef_torax);
         cst.setString("PEF_ABDOMEN", _consulta.ef_abdomen);
@@ -729,8 +731,8 @@ public class ConexionDB {
 
     public String[] getDashBoardRecepcion() throws SQLException {
         String queryPacientes = "SELECT COUNT(*) FROM PACIENTES P "
-                + "INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE "
-                + "WHERE STR_TO_DATE(C.CONS_FECHA,'%d-%m-%Y') = STR_TO_DATE(CURRENT_TIMESTAMP,'%d-%m-%Y')";
+                + " INNER JOIN CONSULTA C ON C.IDPACIENTE = P.IDPACIENTE "
+                + " WHERE date_format(C.CONS_FECHA, '%d-%m-%Y') = date_format(curdate(), '%d-%m-%Y')";
         PreparedStatement preparedStatement = conn.prepareStatement(queryPacientes, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet rs = preparedStatement.executeQuery();
         String total = "";

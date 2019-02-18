@@ -127,11 +127,7 @@ public class Home_Root extends javax.swing.JFrame {
         this.btnAlertaTotal.setText("Todas(" + jTAlertas.getRowCount() + ")");
         this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12));
 
-        this.lblDoctores.setText(Integer.toString(conn.ContarDoctores()));
-        this.lblMedicamentos.setText(Integer.toString(conn.ContarMedicamentos()));
-        this.lblPacientes.setText(Integer.toString(conn.ContarPacientes()));
-        this.lblConsultas.setText(Integer.toString(conn.ConsultasxMes()));
-
+        
         //---------------------reportes------------------------------------------
         Object[] array = this.conn.Obt_TipoPaciente();
         this.idActividadReporte = (int[]) array[0];
@@ -150,7 +146,21 @@ public class Home_Root extends javax.swing.JFrame {
         this.idDepartamentoReporte = (int[]) arrayDep[0];
         DefaultComboBoxModel modelDep = new DefaultComboBoxModel((Object[]) arrayDep[1]);
         this.cmbDepartamento.setModel(modelDep);
-
+        
+        
+        //------------- DASHHBOARDDD-------------
+        this.setDashboard();
+    }
+    
+    private void setDashboard(){
+        try {
+            this.lblDoctores.setText(Integer.toString(conn.ContarDoctores()));
+            this.lblMedicamentos.setText(Integer.toString(conn.ContarMedicamentos()));
+            this.lblPacientes.setText(Integer.toString(conn.ContarPacientes()));
+            this.lblConsultas.setText(Integer.toString(conn.ConsultasxMes()));
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Root.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -4494,6 +4504,8 @@ public class Home_Root extends javax.swing.JFrame {
         this.btn_config.setBackground(Color.black);
         this.btn_reports.setBackground(Color.black);
         this.btn_empleado.setBackground(Color.black);
+        
+        this.setDashboard();
     }//GEN-LAST:event_btn_homeActionPerformed
 
     private void btn_docsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_docsActionPerformed

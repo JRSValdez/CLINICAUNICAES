@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b5537a31-2390-4c79-908b-b8f59b94ecd0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="43"/>
+	<parameter name="medico" class="java.lang.String">
+		<defaultValueExpression><![CDATA["José Ricardo Sifontes Valdez"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="paciente" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Pedro Osvaldo Pacheco Martínez"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="diagnostico" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Diagnostico de prueba preuba prueba prueba"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="especialidad" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Especialidad especialidad"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="centro" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Clinica Clinica Clinica"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select * from departamento limit 1;]]>
+	</queryString>
+	<field name="iddepartamento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="departamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="157" splitType="Stretch">
+			<image>
+				<reportElement x="343" y="0" width="150" height="153" uuid="247ed976-00c6-45b2-a272-a025d61e806d"/>
+				<imageExpression><![CDATA[".\\unicaes_logo_small.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="61" y="45" width="282" height="31" uuid="3e746a85-d58a-4e14-8ce8-a9d02f2057fd"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REFERENCIA MÉDICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="77" width="282" height="26" forecolor="#333333" uuid="766baa88-837a-4160-9673-50c8b11b02ab"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA UNICAES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="591" splitType="Stretch">
+			<staticText>
+				<reportElement x="34" y="52" width="184" height="20" uuid="a27be4b4-3f8b-46eb-9516-82d95691d1de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Por este medio se refiere a:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="179" y="435" width="374" height="20" uuid="a7284ca0-8115-40f7-96a0-600dabafc118"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="86" width="153" height="20" uuid="005027ac-433c-4ecc-af42-dca119616ea9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Con el diagnóstico de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="218" y="52" width="333" height="20" uuid="d11dbd40-aae3-4119-bbf7-9cbb7159be53"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{paciente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="162" width="519" height="27" uuid="a97bb6f7-c0da-480b-98b1-a0a97a460376"/>
+				<textElement textAlignment="Justified">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Para manejo adecuado de dicha patología al Centro:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="106" width="499" height="43" uuid="adafdaba-a931-4106-8f3f-40a1edd470d7"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{diagnostico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="254" width="49" height="20" uuid="1f161bb5-66b7-4c50-8914-09c9934e3cfe"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[El día:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="455" width="288" height="20" uuid="f79e0cdf-2636-4c36-80ad-9e69055822ac"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Atentamente Médico]]></text>
+			</staticText>
+			<line>
+				<reportElement x="227" y="454" width="288" height="1" uuid="d3b4d50e-e267-4334-80ac-d7ffd16172cc"/>
+			</line>
+			<staticText>
+				<reportElement x="32" y="219" width="95" height="20" uuid="b9a8a432-d9d5-4eb5-94eb-c173b89844d6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Especialidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="127" y="219" width="424" height="20" uuid="099fb5e9-2081-4ddf-a990-8414e7c9c314"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{especialidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="289" width="184" height="20" uuid="433c5240-f4e8-4a11-9dac-7ce826ee5ac2"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Gracias por su atención.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="189" width="499" height="20" uuid="44452dbe-7335-4944-800a-5ac81e691730"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{centro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="255" width="347" height="20" uuid="973eab8c-dc40-4be2-83de-d8c468dac5a5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

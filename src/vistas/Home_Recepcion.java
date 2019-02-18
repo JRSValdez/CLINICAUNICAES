@@ -73,10 +73,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MMMMM/YYYY");
         lblFecha.setText(formato.format(sistFecha));
 
-        //this.cboActAcademico.setEnabled(false);
         this.cboFacultadAcadem.setEnabled(false);
         this.txtnombreEmp.setEnabled(false);
-        // this.cboActEmpleado.setEnabled(false);
 
         //Pacientes
         this.llenarFacultad();
@@ -3546,6 +3544,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
                         paciente = this.conn.getPaciente(idPaciente);
                         Consulta_Signos_Vitales form = new Consulta_Signos_Vitales(consulta, paciente);
                         form.setVisible(true);
+                        this.llenarDashboard();
                         //JOptionPane.showMessageDialog(rootPane,"Agregada exitosamente");
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Error");
@@ -3624,6 +3623,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                             this.txtTelEmergenciaC.setText("");
                             this.txtNombreC.setText("");
                             this.txtTelefonoC.setText("");
+                            
+                            this.llenarDashboard();
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Error al agregar consulta ");
                         }
@@ -3853,7 +3854,7 @@ public class Home_Recepcion extends javax.swing.JFrame {
     private void itemNombreMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNombreMedActionPerformed
         // Buscar medicamento por nombre
         try {
-            String nombre = this.txtBuscarNombreMed.getText();
+            String nombre = this.txtBuscarNombreMed.getText().trim();
             this.jTFarmacia.setModel(this.conn.getMedicamentobyNombre(jTFarmacia, nombre));
         } catch (SQLException ex) {
             Logger.getLogger(Home_Recepcion.class.getName()).log(Level.SEVERE, null, ex);
@@ -3890,6 +3891,8 @@ public class Home_Recepcion extends javax.swing.JFrame {
                 this.txtNombreMedicmento.setText("");
                 this.txtCantMedicamento.setText("");
                 this.txtFechaV.setText("");
+                
+                this.llenarDashboard();
 
             } else {
                 //error de validación

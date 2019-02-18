@@ -71,6 +71,10 @@ public class Home_Consultorio extends javax.swing.JFrame {
         this.btnAlertaTotal.setText("Todas("+jTAlertas.getRowCount()+")");
         this.btnAlertaTotal.setFont(new Font("Arial", Font.BOLD, 12)); 
         
+        this.setDashboard();
+    }
+    
+    private void setDashboard() throws SQLException{
         // DaSSSHHHBOARDD
         this.lblPac_atendidos.setText(String.valueOf(this.conn.ContarConsultasByDoctor(this.user.idDoctor)));
         this.lblConsult_espera.setText(""+this.conn.ContarConsultasEspera());
@@ -1139,6 +1143,12 @@ public class Home_Consultorio extends javax.swing.JFrame {
         this.btn_home.setBackground(Color.decode("#660000"));
         this.btn_cons.setBackground(Color.black);
         this.btn_farmacia.setBackground(Color.black);
+        
+        try {
+            this.setDashboard();
+        } catch (SQLException ex) {
+            Logger.getLogger(Home_Consultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_homeActionPerformed
 
     private void Barra_SuperiorMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Barra_SuperiorMouseDragged
